@@ -1,0 +1,165 @@
+@use '@/assets/styles/variables' as *;
+@use '@/assets/styles/mixins' as *;
+
+@layer app {
+  // Offsets
+  @for $i from 0 through 120 {
+    @if $i % 5 == 0 {
+      .p-#{$i} {
+        padding: #{$i}px;
+      }
+      .pt-#{$i} {
+        padding-top: #{$i}px;
+      }
+      .pb-#{$i} {
+        padding-bottom: #{$i}px;
+      }
+      .pl-#{$i} {
+        padding-left: #{$i}px;
+      }
+      .pr-#{$i} {
+        padding-right: #{$i}px;
+      }
+      .ptb-#{$i} {
+        padding-top: #{$i}px;
+        padding-bottom: #{$i}px;
+      }
+      .plr-#{$i} {
+        padding-left: #{$i}px;
+        padding-right: #{$i}px;
+      }
+
+      .m-#{$i} {
+        margin: #{$i}px;
+      }
+      .mt-#{$i} {
+        margin-top: #{$i}px;
+      }
+      .mb-#{$i} {
+        margin-bottom: #{$i}px;
+      }
+      .ml-#{$i} {
+        margin-left: #{$i}px;
+      }
+      .mr-#{$i} {
+        margin-right: #{$i}px;
+      }
+      .mtb-#{$i} {
+        margin-top: #{$i}px;
+        margin-bottom: #{$i}px;
+      }
+      .mlr-#{$i} {
+        margin-left: #{$i}px;
+        margin-right: #{$i}px;
+      }
+    }
+  }
+
+  * {
+    scroll-behavior: smooth;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
+  ::-webkit-scrollbar-track,
+  ::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    outline: 3px solid var(--p-primary-300);
+    outline-offset: -6px;
+    background-color: transparent;
+    &:hover {
+      outline-color: var(--p-primary-color);
+    }
+  }
+
+  ::selection {
+    background: var(--p-surface-100);
+  }
+
+  [placeholder] {
+    text-overflow: ellipsis;
+  }
+
+  html {
+    font-size: 62.5%;
+  }
+
+  body {
+    @include font-base($fs-s);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: var(--p-primary-950);
+    word-break: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    background: var(--p-surface-50);
+    background-repeat: no-repeat;
+    scrollbar-width: thin;
+    scrollbar-gutter: stable;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    overflow-y: overlay;
+  }
+
+  picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  th {
+    font-weight: initial;
+  }
+
+  button,
+  input,
+  textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+  }
+
+  button {
+    text-wrap: nowrap;
+  }
+
+  small {
+    font-size: 1.2rem;
+  }
+
+  .icon {
+    font-size: 2rem;
+    &-message-send {
+      width: 2rem;
+      height: 2rem;
+      path {
+        transform: scale(0.76);
+      }
+    }
+    &-favicon {
+      width: 7.2rem;
+      height: 7.2rem;
+    }
+  }
+}

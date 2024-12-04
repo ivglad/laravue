@@ -1,0 +1,100 @@
+@use '@/assets/styles/variables' as *;
+
+// Font
+@mixin font-face($weight, $fileName) {
+  @font-face {
+    font-family: 'Inter';
+    font-weight: $weight;
+    font-style: normal;
+    font-display: auto;
+    unicode-range: U+000-5FF;
+    src: local('Inter'), url('/fonts/#{$fileName}.woff2') format('woff2');
+  }
+}
+@mixin font-base($size: 1rem, $weight: 400, $line-height: 130%) {
+  font-family: 'Inter', sans-serif;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line-height;
+  letter-spacing: 0.5px;
+}
+@mixin font($size: 1rem, $weight: 400, $line-height: 130%) {
+  font-size: $size;
+  font-weight: $weight;
+}
+
+// Transition
+@mixin transition(
+  $duration: var(--p-transition-duration),
+  $delay: 0s,
+  $timing-function: cubic-bezier(0.45, 0, 0.55, 1),
+  $property: all
+) {
+  transform-origin: 50% 50%;
+  transition: $property $duration $timing-function $delay;
+}
+@mixin transition-enter(
+  $duration: calc(var(--p-transition-duration) - 0.5s),
+  $delay: 0s,
+  $timing-function: cubic-bezier(0.65, 0, 0.35, 1),
+  $property: all
+) {
+  @include transition($duration, $delay, $timing-function, $property);
+}
+
+// Media query
+@mixin mq($size) {
+  @if ($size == 2xl) {
+    @media (max-width: 2000px) {
+      @content;
+    }
+  } @else if ($size == xl) {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  } @else if ($size == l) {
+    @media (max-width: 992px) {
+      @content;
+    }
+  } @else if ($size == m) {
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else if ($size == s) {
+    @media (max-width: 576px) {
+      @content;
+    }
+  } @else if ($size == xs) {
+    @media (max-width: 320px) {
+      @content;
+    }
+  } @else {
+    @media (max-width: #{$size}px) {
+      @content;
+    }
+  }
+}
+
+// Active element
+@mixin active() {
+  @media (hover: none) {
+    @include transition;
+    -webkit-tap-highlight-color: transparent;
+    &:active,
+    &:focus {
+      @include transition-enter;
+      @content;
+    }
+  }
+  @media (hover: hover),
+    all and (-ms-high-contrast: none),
+    (-ms-high-contrast: active) {
+    @include transition;
+    cursor: pointer;
+    &:hover,
+    &:focus-visible {
+      @include transition-enter;
+      @content;
+    }
+  }
+}

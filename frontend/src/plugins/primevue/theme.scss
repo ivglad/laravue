@@ -1,0 +1,371 @@
+@use '@/assets/styles/variables' as *;
+@use '@/assets/styles/mixins' as *;
+
+@layer theme {
+  // --------------------------------------------------------------------------
+  // Buttons
+  // --------------------------------------------------------------------------
+  .p-button {
+    @mixin hoverColors {
+      &:not(:disabled) {
+        &:hover {
+          @content;
+        }
+      }
+    }
+    @mixin activeColors {
+      &:not(:disabled) {
+        &:active {
+          @content;
+        }
+      }
+    }
+
+    &:not(&-icon-only):not(&-text):not(&-sm) {
+      height: 42px;
+    }
+    &:not(&-rounded):not(&-text):not(&-sm) {
+      width: 140px;
+      min-width: fit-content;
+      max-width: 100%;
+    }
+    &-sm {
+      width: 100px;
+      min-width: fit-content;
+      max-width: 100%;
+      height: 36px;
+    }
+
+    &-icon-only {
+      min-width: 42px;
+      min-height: 42px;
+    }
+
+    &-outlined {
+      @include hoverColors {
+        color: var(--p-button-primary-hover-border-color);
+        border-color: var(--p-button-primary-hover-border-color);
+      }
+      @include activeColors {
+        color: var(--p-button-primary-border-color);
+        border-color: var(--p-button-primary-border-color);
+      }
+    }
+    &-outlined:where(&-secondary) {
+      @include hoverColors {
+        color: var(--p-button-secondary-hover-border-color);
+        border-color: var(--p-button-secondary-hover-border-color);
+      }
+      @include activeColors {
+        color: var(--p-button-secondary-border-color);
+        border-color: var(--p-button-secondary-border-color);
+      }
+    }
+    &-outlined:where(&-danger) {
+      @include hoverColors {
+        color: var(--p-button-danger-hover-border-color);
+        border-color: var(--p-button-danger-hover-border-color);
+      }
+      @include activeColors {
+        color: var(--p-button-danger-border-color);
+        border-color: var(--p-button-danger-border-color);
+      }
+    }
+    &-text {
+      padding: calc(var(--p-button-padding-y) / 2)
+        calc(var(--p-button-padding-x) / 2);
+      @include hoverColors {
+        color: var(--p-primary-700);
+      }
+      @include activeColors {
+        color: var(--p-button-primary-border-color);
+      }
+    }
+    &-text:where(&-icon-only) {
+      padding: calc(var(--p-button-padding-y) / 2)
+        calc(var(--p-button-padding-x) / 2);
+      @include hoverColors {
+        color: var(--p-button-primary-hover-border-color);
+      }
+      @include activeColors {
+        color: var(--p-button-primary-border-color);
+      }
+    }
+    &-text:where(&-secondary) {
+      @include hoverColors {
+        color: var(--p-surface-700);
+      }
+      @include activeColors {
+        color: var(--p-button-secondary-border-color);
+      }
+    }
+    &-text:where(&-secondary):where(&-icon-only) {
+      @include hoverColors {
+        color: var(--p-button-secondary-hover-border-color);
+      }
+      @include activeColors {
+        color: var(--p-button-secondary-border-color);
+      }
+    }
+
+    &-loading &-label {
+      display: none;
+    }
+  }
+  // --------------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
+  // Inputs
+  // --------------------------------------------------------------------------
+  .p-inputtext {
+    width: clamp(200px, 100%, 400px);
+    min-height: 42px;
+    &:not(:disabled):not(.p-invalid) {
+      &:placeholder-shown,
+      &::placeholder {
+        color: var(--p-inputtext-placeholder-color);
+      }
+    }
+    &:placeholder-shown,
+    &::placeholder {
+      color: var(--p-surface-200);
+    }
+    &.p-invalid {
+      color: var(--p-inputtext-invalid-placeholder-color);
+    }
+  }
+
+  .p-inputwrapper {
+    width: clamp(200px, 100%, 400px);
+  }
+
+  .p-textarea {
+    width: clamp(200px, 100%, 400px);
+  }
+  // --------------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
+  // Checkbox
+  // --------------------------------------------------------------------------
+  .p-checkbox {
+    &-icon {
+      filter: drop-shadow(0 0 0.5px var(--p-primary-500));
+    }
+  }
+  // --------------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
+  // Selects
+  // --------------------------------------------------------------------------
+  .p-select,
+  .p-multiselect {
+    align-items: center;
+    width: 100%;
+    min-width: 200px;
+    max-width: 400px;
+    min-height: 42px;
+    &-sm {
+      min-height: 32px;
+    }
+    &-dropdown {
+      .p-icon {
+        width: 1.4rem;
+        height: 1.4rem;
+        margin-right: 0.5rem;
+      }
+    }
+    &-label {
+      flex-wrap: wrap;
+      &:has(.p-chip) {
+        padding: calc(var(--p-multiselect-padding-y) / 2)
+          var(--p-multiselect-padding-x);
+      }
+    }
+    .p-chip {
+      padding-block: var(--p-chip-padding-y);
+      padding-inline: var(--p-chip-padding-x);
+      &-label {
+        max-width: 80px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+      .icon {
+        color: var(--p-chip-remove-icon-color);
+      }
+    }
+  }
+  // --------------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
+  // Chip
+  // --------------------------------------------------------------------------
+  .p-chip {
+    font-size: $fs-xs;
+    &-label {
+      padding-block: var(--p-chip-padding-y);
+      padding-inline: var(--p-chip-padding-x);
+    }
+    .icon-close {
+      min-width: fit-content;
+      min-height: fit-content;
+      color: var(--p-surface-500);
+    }
+  }
+  // --------------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
+  // Datepicker
+  // --------------------------------------------------------------------------
+  .p-datepicker {
+    &-day {
+      line-height: var(--p-datepicker-date-height);
+      &-view {
+        font-size: $fs-s;
+        user-select: none;
+      }
+      &.p-disabled {
+        color: var(--p-surface-200);
+      }
+    }
+    &-time-picker {
+      span {
+        font-size: $fs-s;
+      }
+    }
+    .p-component:disabled + &-input-icon-container {
+      cursor: inherit;
+    }
+  }
+  // --------------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
+  // Badge
+  // --------------------------------------------------------------------------
+  .p-badge {
+    line-height: var(--p-badge-height);
+    &-lg {
+      line-height: var(--p-badge-lg-height);
+    }
+    &-xl {
+      line-height: var(--p-badge-xl-height);
+    }
+    &-sm {
+      line-height: var(--p-badge-sm-height);
+      padding: 0.3rem 0.3rem;
+    }
+  }
+
+  .p-overlaybadge {
+    width: fit-content;
+    height: fit-content;
+    .p-badge {
+      transform: translate(90%, -50%);
+    }
+  }
+  // --------------------------------------------------------------------------
+
+  .p-iconfield {
+    & *:first-child.p-inputicon {
+      z-index: 1;
+      & + * input {
+        padding-inline-start: calc(
+          (var(--p-form-field-padding-x) * 2) + var(--p-icon-size)
+        );
+        padding-inline-end: var(--p-form-field-padding-x);
+      }
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // File upload
+  // --------------------------------------------------------------------------
+  .p-fileupload {
+    &-content {
+      border-radius: var(--p-fileupload-border-radius);
+    }
+  }
+  // --------------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
+  // Tooltip
+  // --------------------------------------------------------------------------
+  .p-tooltip {
+    max-width: 30rem;
+    &-arrow {
+      border-top-color: var(--p-surface-0);
+      border-bottom-color: var(--p-surface-0);
+    }
+    &-text {
+      font-size: $fs-xs;
+      border-radius: var(--p-border-radius-md);
+      color: var(--p-text-color);
+      background: var(--p-surface-0);
+    }
+  }
+
+  .p-confirmpopup {
+  }
+  // --------------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
+  // Overlay offsets
+  // --------------------------------------------------------------------------
+  [data-pc-section='overlay'],
+  [data-pc-section='panel'] {
+    margin-top: 0.5rem;
+    &[style*='margin-top'] {
+      margin-top: -0.5rem !important;
+    }
+  }
+  // --------------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
+  // Disabled styles
+  // --------------------------------------------------------------------------
+  .p-disabled,
+  .p-component[disabled] {
+    opacity: 0.6;
+    filter: grayscale(0.9);
+    user-select: none;
+    pointer-events: none;
+    &.p-button {
+      opacity: 0.4;
+      filter: grayscale(0.9);
+    }
+
+    &:not(:has(.p-disabled)):not(:has(.p-component[disabled])) {
+      opacity: 0.6;
+      filter: grayscale(0.9);
+      &.p-button {
+        opacity: 0.4;
+        filter: grayscale(0.9);
+      }
+    }
+
+    &:has(.p-disabled),
+    &:has(.p-component[disabled]) {
+      opacity: 1;
+      filter: none;
+    }
+
+    > * {
+      opacity: 1;
+      filter: none;
+    }
+
+    &:not(.p-button) .icon,
+    &:not(.p-button) .p-icon,
+    + .icon,
+    + .p-icon,
+    + * .icon,
+    + * .p-icon {
+      color: var(--p-surface-200);
+      opacity: 0.6;
+      cursor: default;
+      user-select: none;
+      pointer-events: none;
+    }
+  }
+  // --------------------------------------------------------------------------
+}

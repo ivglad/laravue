@@ -1,0 +1,107 @@
+@use '@/assets/styles/variables' as *;
+@use '@/assets/styles/mixins' as *;
+
+@layer app {
+  .app-toast {
+    flex-direction: column;
+    &-summary {
+      display: flex;
+      align-items: center;
+      gap: var(--p-toast-content-gap);
+    }
+  }
+
+  .app-multiselect-extended {
+    &-overlay {
+      background: color-mix(
+        in srgb,
+        var(--p-surface-100),
+        var(--p-surface-0) 50%
+      );
+      .p-multiselect {
+        &-list {
+          gap: 1rem;
+          padding-right: 0;
+        }
+        &-option {
+          align-items: start;
+          gap: 1rem;
+          margin-left: 0.75rem;
+          border-radius: var(--p-border-radius-lg);
+          &:not(&-selected):not(.p-disabled):not(.p-focus) {
+            background: var(--p-surface-0);
+          }
+          .option-content {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 300px;
+            &-info {
+              display: flex;
+              justify-content: space-between;
+              margin-top: 1rem;
+            }
+            span {
+              text-wrap: wrap;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .app-chip {
+    gap: 0.2rem;
+    &-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      min-width: 2.5rem;
+      min-height: 2.5rem;
+      line-height: 2.5rem;
+      font-size: 1.2rem;
+      color: var(--p-primary-contrast-color);
+      background-color: var(--p-surface-500);
+      border-radius: 10rem;
+      user-select: none;
+    }
+  }
+
+  .app-fileupload {
+    &-file {
+      display: flex;
+      align-items: start;
+      gap: 1rem;
+      &-name {
+        max-width: 25rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+      &-info {
+        display: flex;
+        flex-direction: column;
+      }
+      .p-button-icon-only {
+        width: min-content;
+        height: min-content;
+        min-width: min-content;
+        min-height: min-content;
+        padding: 0;
+        margin: 0 0 0 auto;
+        border: none;
+      }
+    }
+  }
+
+  .app-progressspinner-insert {
+    position: absolute;
+    top: 50%;
+    right: var(--p-inputtext-padding-x);
+    width: 2.5rem;
+    height: 2.5rem;
+    transform: translateY(-50%);
+  }
+}

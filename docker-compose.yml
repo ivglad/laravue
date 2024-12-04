@@ -1,0 +1,80 @@
+services:
+  ####################################################################################################
+  # Nginx
+  ####################################################################################################
+  nginx:
+    build:
+      context: .docker/nginx
+      dockerfile: Dockerfile
+    container_name: nginx-${DOCKER_PROJECT_NAME}
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - ./.docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./.docker/nginx/logs:/var/log/nginx
+    ports:
+      - ${HOST_FRONTEND_PORT}:80
+    env_file:
+      - ./.env
+    networks:
+      - default
+
+  ####################################################################################################
+  # Vue
+  ####################################################################################################
+  frontend:
+    build:
+      context: .
+      dockerfile: .docker/frontend/Dockerfile
+    container_name: frontend-${DOCKER_PROJECT_NAME}
+    restart: unless-stopped
+    volumes:
+      - ./frontend:/var/www/frontend
+      - /var/www/frontend/node_modules
+    env_file:
+      - ./frontend/.env
+    networks:
+      - default
+
+  ####################################################################################################
+  # Laravel
+  ####################################################################################################
+  backend:
+    build:
+      context: .
+      dockerfile: .docker/backend/Dockerfile
+    container_name: backend-${DOCKER_PROJECT_NAME}
+    restart: unless-stopped
+    volumes:
+      - ./backend:/var/www/backend
+      - /var/www/backend/vendor
+    env_file:
+      - ./backend/.env
+
+  ####################################################################################################
+  # PostgreSQL
+  ####################################################################################################
+  db:
+    build:
+      context: .
+      dockerfile: .docker/db/Dockerfile
+    container_name: db-${DOCKER_PROJECT_NAME}
+    restart: unless-stopped
+    ports:
+      - ${HOST_DB_PORT}:5432
+    volumes:
+      - ./.docker/db/data:/var/lib/postgresql/data:rw
+      - ./.docker/db/sql:/docker-entrypoint-initdb.d:rw
+    env_file:
+      - ./.env
+      - ./backend/.env
+    networks:
+      - default
+
+volumes:
+  db:
+    external: true
+
+networks:
+  default:
+    driver: bridge

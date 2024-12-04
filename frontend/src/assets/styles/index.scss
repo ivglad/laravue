@@ -1,0 +1,16 @@
+@use '@/assets/styles/reset';
+
+@forward '@/assets/styles/variables';
+@forward '@/assets/styles/mixins';
+
+@forward '@/assets/styles/fonts';
+@forward '@/assets/styles/animations';
+@forward '@/assets/styles/common';
+
+// ============================================================================
+// PrimeVue styles
+// ============================================================================
+@forward '@/plugins/primevue/theme';
+// ============================================================================
+
+@forward '@/assets/styles/components';
