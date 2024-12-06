@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <section class="layout-ui-date-badges">
+  <section class="layout-ui-badges">
     <Divider type="dashed" align="center">
       <h2>Badges</h2>
     </Divider>

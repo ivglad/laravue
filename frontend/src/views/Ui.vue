@@ -13,14 +13,6 @@ const selectButton = ref(null)
 const color = ref(null)
 
 const toast = useToast()
-const showOverlayMessage = () => {
-  toast.add({
-    severity: 'success',
-    summary: 'Успешно',
-    detail: 'Все прошло успешно!',
-    life: 10000,
-  })
-}
 
 const confirm = useConfirm()
 const confirmPosition = (position) => {
@@ -95,23 +87,6 @@ const dialog = ref({
 const drawer = ref({
   show: false,
 })
-
-const onAdvancedUpload = () => {
-  toast.add({
-    severity: 'info',
-    summary: 'Успешно',
-    detail: 'Файл(ы) загружены',
-    life: 3000,
-  })
-}
-const onErrorUpload = () => {
-  toast.add({
-    severity: 'error',
-    summary: 'Ошибка',
-    detail: 'Файл(ы) не загружены',
-    life: 3000,
-  })
-}
 
 const contextMenu = ref(null)
 const contextMenuItems = ref([{ label: 'Copy' }, { label: 'Rename' }])
@@ -275,6 +250,8 @@ const pageHandler = (data) => {
     <LayoutUiChips />
 
     <LayoutUiBadges />
+
+    <LayoutUiTags />
 
     <LayoutUiTabs />
 
@@ -487,97 +464,6 @@ const pageHandler = (data) => {
     </section>
 
     <Divider align="center">
-      <h2>ConfirmDialog</h2>
-    </Divider>
-    <section class="confirm-dialog">
-      <div>
-        <Button
-          @click="confirmPosition('bottom')"
-          label="Модальное окно подтверждения" />
-      </div>
-      <div>
-        <ConfirmPopup></ConfirmPopup>
-        <Button
-          @click="confirmPopup($event)"
-          label="Сохранить"
-          outlined></Button>
-      </div>
-      <div>
-        <Button label="Модальное окно" @click="dialog.show = true" />
-        <Dialog
-          v-model:visible="dialog.show"
-          maximizable
-          modal
-          header="Ты программист"
-          :style="{ width: '50rem' }"
-          :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
-          <p>
-            Когда ты пишешь свой код для простенькой управляемой формы, на самом
-            деле ты юзаешь model-view-controller с double-way data binding в
-            three-layered-data-app-engine, сдобренный high level
-            object-relation-mapping на базе declarative metadata description,
-            имеющей свой platform-independed query language, c declarative
-            data-driven user interface, complete transparent serialization и
-            domain-oriented programm language.
-          </p>
-        </Dialog>
-      </div>
-    </section>
-
-    <Divider align="center">
-      <h2>Drawer</h2>
-    </Divider>
-    <section class="drawer">
-      <Drawer v-model:visible="drawer.show" style="width: 30rem">
-        <template #header>
-          <span>...</span>
-        </template>
-        <pre>
-Былых сомнений кандалы
-Как змеи, ноги обвивали.
-Сам понимал тогда едва ли,
-Что ты надел их! Но малы
-
-Тебе сейчас уже они.
-Лети вперёд, расправив крылья,
-Не позволяй неверья пыли
-Затмить души твоей огни!
-
-Ты можешь всё, игры творец!
-Поверь в себя. Любые горы
-Кому-то точно будут впору,
-Возьмёт их смелый удалец.
-
-И запрети словам извне
-Тебя вести назад за руку.
-Решимость – страж. Долой испуги!
-Потенциал твой виден мне.
-
-Я знаю то, что все мы здесь
-Храним сокровищницы в душах.
-И в них возможности. Послушай –
-Они поют победы песнь! Л.
-        </pre>
-        <template #footer>
-          <div style="display: flex; justify-content: space-between">
-            <Button
-              label="Не важно"
-              severity="danger"
-              text
-              v-tooltip="':('"
-              @click="drawer.show = false" />
-            <Button label="Хорошо" outlined @click="drawer.show = false" />
-          </div>
-        </template>
-      </Drawer>
-      <Button @click="drawer.show = true" style="padding: 1rem" outlined>
-        <template #icon>
-          <i-fluent-design-ideas-16-filled />
-        </template>
-      </Button>
-    </section>
-
-    <Divider align="center">
       <h2>Breadcrumb</h2>
     </Divider>
     <section class="breadcrumb">
@@ -601,22 +487,6 @@ const pageHandler = (data) => {
       <div>
         Контекстное меню на правую кнопку мыши
         <ContextMenu ref="contextMenu" :model="contextMenuItems" />
-      </div>
-    </section>
-
-    <Divider align="center">
-      <h2>Tag</h2>
-    </Divider>
-    <section class="tag">
-      <div
-        style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 1rem">
-        <Tag value="Primary"></Tag>
-        <Tag severity="secondary" value="Secondary"></Tag>
-        <Tag severity="success" value="Success"></Tag>
-        <Tag severity="info" value="Info"></Tag>
-        <Tag severity="warn" value="Warn"></Tag>
-        <Tag severity="danger" value="Danger"></Tag>
-        <Tag severity="contrast" value="Contrast"></Tag>
       </div>
     </section>
 
@@ -768,6 +638,7 @@ const pageHandler = (data) => {
     }
     .row {
       display: flex;
+      flex-direction: row;
       align-items: center;
       flex-wrap: wrap;
       gap: $size-10;

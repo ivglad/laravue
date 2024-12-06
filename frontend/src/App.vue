@@ -22,7 +22,12 @@
     <router-view />
   </main>
 
-  <ConfirmDialog group="positioned"></ConfirmDialog>
+  <DynamicDialog />
+  <ConfirmDialog group="confirm" pt:root:class="app-confirm-modified" />
+  <ConfirmDialog
+    group="confirm-secondary"
+    pt:root:class="app-confirm-secondary" />
+  <ConfirmPopup />
 </template>
 
 <style lang="scss">

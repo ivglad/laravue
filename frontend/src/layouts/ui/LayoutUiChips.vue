@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <section class="layout-ui-date-chips">
+  <section class="layout-ui-chips">
     <Divider type="dashed" align="center">
       <h2>Chips</h2>
     </Divider>

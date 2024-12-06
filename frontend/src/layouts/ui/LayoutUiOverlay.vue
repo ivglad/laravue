@@ -2,105 +2,153 @@
 const confirm = useConfirm()
 const toast = useToast()
 
-const confirmPosition = (position) => {
+const confirmDialog = (position) => {
   confirm.require({
-    group: 'positioned',
-    message: 'Are you sure you want to proceed?',
-    header: 'Confirmation',
+    group: 'confirm',
+    message: 'Вы хотите удалить выбранные договоры?',
+    header: 'Подтверждение',
     position: position,
     rejectProps: {
-      label: 'Cancel',
-      severity: 'secondary',
-      text: true,
-    },
-    acceptProps: {
-      label: 'Save',
-      text: true,
-    },
-    accept: () => {
-      // toast.add({ severity: 'info', summary: 'Confirmed', detail: 'Request submitted', life: 3000 });
-    },
-    reject: () => {
-      // toast.add({ severity: 'error', summary: 'Rejected', detail: 'Process incomplete', life: 3000 });
-    },
-  })
-}
-
-const confirm1 = (event) => {
-  confirm.require({
-    target: event.currentTarget,
-    message: 'Are you sure you want to proceed?',
-    header: 'Confirmation',
-    rejectProps: {
-      label: 'Cancel',
-      severity: 'secondary',
+      label: 'Отмена',
       outlined: true,
     },
     acceptProps: {
-      label: 'Save',
+      label: 'Да',
     },
     accept: () => {
-      // toast.add({
-      //   severity: 'info',
-      //   summary: 'Confirmed',
-      //   detail: 'You have accepted',
-      //   life: 3000,
-      // })
+      toast.add({
+        severity: 'info',
+        summary: 'Подтверждено',
+        detail: 'Действие подтверждено',
+        life: 3000,
+      })
     },
     reject: () => {
-      // toast.add({
-      //   severity: 'error',
-      //   summary: 'Rejected',
-      //   detail: 'You have rejected',
-      //   life: 3000,
-      // })
+      toast.add({
+        severity: 'info',
+        summary: 'Отмена',
+        detail: 'Действие отменено',
+        life: 3000,
+      })
     },
   })
 }
-
-const confirm2 = (event) => {
+const saveConfirmPopup = (event) => {
   confirm.require({
     target: event.currentTarget,
-    message: 'Do you want to delete this record?',
+    message: 'Сохранить документ?',
+    header: 'Подтверждение',
+    rejectProps: {
+      label: 'Отменить',
+      outlined: true,
+    },
+    acceptProps: {
+      label: 'Сохранить',
+    },
+    accept: () => {
+      toast.add({
+        severity: 'info',
+        summary: 'Подтверждено',
+        detail: 'Действие подтверждено',
+        life: 3000,
+      })
+    },
+    reject: () => {
+      toast.add({
+        severity: 'info',
+        summary: 'Отмена',
+        detail: 'Действие отменено',
+        life: 3000,
+      })
+    },
+  })
+}
+const deleteConfirmPopup = (event) => {
+  confirm.require({
+    target: event.currentTarget,
+    message: 'Удалить документ?',
     header: 'Danger Zone',
-    rejectLabel: 'Cancel',
     rejectProps: {
-      label: 'Cancel',
-      severity: 'secondary',
+      label: 'Отменить',
       outlined: true,
     },
     acceptProps: {
-      label: 'Delete',
+      label: 'Удалить',
       severity: 'danger',
     },
     accept: () => {
-      // toast.add({
-      //   severity: 'info',
-      //   summary: 'Confirmed',
-      //   detail: 'Record deleted',
-      //   life: 3000,
-      // })
+      toast.add({
+        severity: 'info',
+        summary: 'Подтверждено',
+        detail: 'Действие подтверждено',
+        life: 3000,
+      })
     },
     reject: () => {
-      // toast.add({
-      //   severity: 'error',
-      //   summary: 'Rejected',
-      //   detail: 'You have rejected',
-      //   life: 3000,
-      // })
+      toast.add({
+        severity: 'info',
+        summary: 'Отмена',
+        detail: 'Действие отменено',
+        life: 3000,
+      })
     },
   })
+}
+
+const dialogVisible = ref(false)
+const drawerVisible = ref(false)
+
+const dialog = useDialog()
+const LayoutUiColors = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiColors.vue'),
+)
+const IconCustomClose = defineAsyncComponent(() =>
+  import('~icons/custom/close'),
+)
+const showComponent = () => {
+  dialog.open(h(LayoutUiColors), {
+    props: {
+      header: 'Компонент Ui Colors',
+      modal: true,
+      maximizable: true,
+      dismissableMask: true,
+      blockScroll: true,
+    },
+    templates: {
+      // Баг PrimeVue - невозможно использовать собственные иконки
+      // closeicon: h(IconCustomClose),
+    },
+  })
+}
+
+const popover = ref()
+const selectedPopoverElement = ref(null)
+const popoverElements = ref([
+  {
+    name: 'Документ 1',
+  },
+  {
+    name: 'Документ 2',
+  },
+  {
+    name: 'Документ 3',
+  },
+])
+const togglePopover = (event) => {
+  popover.value.toggle(event)
+}
+const selectPopoverElement = (element) => {
+  selectedPopoverElement.value = element
+  popover.value.hide()
 }
 </script>
 
 <template>
-  <section class="layout-ui-date-popups">
+  <section class="layout-ui-overlay">
     <Divider type="dashed" align="center">
       <h2>Popups / Dialogs</h2>
     </Divider>
     <div class="content">
-      <!-- <ConfirmDialog></ConfirmDialog> -->
-      <!-- <ConfirmDialog group="positioned"></ConfirmDialog> -->
       <div class="table-wrapper">
         <table>
           <thead>
@@ -111,31 +159,130 @@ const confirm2 = (event) => {
           </thead>
           <tbody>
             <tr>
-              <td>Confirm dialog</td>
+              <td>Confirm Dialog</td>
               <td>
                 <Button
-                  @click="confirmPosition('bottom')"
-                  label="Bottom"
-                  severity="secondary"></Button>
-                <Button @click="confirm1($event)" label="Save" outlined />
-                <Button
-                  @click="confirm2($event)"
-                  label="Delete"
-                  severity="danger"
-                  outlined></Button>
+                  label="Подтверждение"
+                  outlined
+                  @click="confirmDialog('bottom')" />
               </td>
             </tr>
             <tr>
-              <td>Confirm popup</td>
-              <td></td>
+              <td>Confirm Popup</td>
+              <td>
+                <Button
+                  label="Сохранить"
+                  severity="success"
+                  outlined
+                  @click="saveConfirmPopup($event)" />
+              </td>
+              <td>
+                <Button
+                  label="Удалить"
+                  severity="danger"
+                  outlined
+                  @click="deleteConfirmPopup($event)" />
+              </td>
             </tr>
             <tr>
               <td>Dialog</td>
-              <td></td>
+              <td>
+                <Button
+                  label="Посмотреть"
+                  outlined
+                  @click="dialogVisible = true" />
+                <Dialog
+                  v-model:visible="dialogVisible"
+                  maximizable
+                  modal
+                  dismissableMask
+                  header="Заголовок"
+                  :footer="new Date().toLocaleString()"
+                  class="app-dialog">
+                  <template #closeicon>
+                    <i-custom-close />
+                  </template>
+                  <span>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum.
+                  </span>
+                </Dialog>
+              </td>
             </tr>
             <tr>
               <td>Drawer</td>
-              <td></td>
+              <td>
+                <Button
+                  label="Посмотреть"
+                  outlined
+                  @click="drawerVisible = true" />
+                <Drawer v-model:visible="drawerVisible" class="app-drawer">
+                  <template #header>
+                    <span class="fs-m fw-semibold">Заголовок</span>
+                  </template>
+                  <template #closeicon>
+                    <i-custom-close />
+                  </template>
+                  <span>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum.
+                  </span>
+                  <template #footer>
+                    <Button
+                      label="Понятно"
+                      outlined
+                      @click="drawerVisible = false" />
+                  </template>
+                </Drawer>
+              </td>
+            </tr>
+            <tr>
+              <td>Dynamic Dialog</td>
+              <td>
+                <Button
+                  label="Посмотреть"
+                  severity="secondary"
+                  outlined
+                  @click="showComponent" />
+              </td>
+            </tr>
+            <tr>
+              <td>Popover</td>
+              <td>
+                <Button type="button" label="Выбрать" @click="togglePopover" />
+                <Popover ref="popover" class="app-popover">
+                  <div
+                    class="app-popover-element"
+                    v-for="element in popoverElements"
+                    :key="element.name"
+                    @click="selectPopoverElement(element)">
+                    <span>{{ element.name }}</span>
+                  </div>
+                </Popover>
+              </td>
+            </tr>
+            <tr>
+              <td>Tooltip</td>
+              <td>
+                <div class="tooltip">
+                  <InputText
+                    v-tooltip="'...информации'"
+                    type="text"
+                    placeholder="Наведите для информации" />
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -144,4 +291,11 @@ const confirm2 = (event) => {
   </section>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.tooltip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $size-10;
+  max-width: 14rem;
+}
+</style>

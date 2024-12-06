@@ -37,7 +37,7 @@ const uploadEvent = (callback) => {
 </script>
 
 <template>
-  <section class="layout-ui-date-fileupload">
+  <section class="layout-ui-fileupload">
     <Divider type="dashed" align="center">
       <h2>File upload</h2>
     </Divider>

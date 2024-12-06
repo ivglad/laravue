@@ -374,7 +374,7 @@ const Preset = definePreset(Aura, {
       },
       item: {
         padding: '0.5rem 0.75rem',
-        borderRadius: '{border.radius.lg}',
+        borderRadius: '{border.radius.md}',
         gap: '0.5rem',
       },
       submenuLabel: {
@@ -393,13 +393,13 @@ const Preset = definePreset(Aura, {
       },
       popover: {
         borderRadius: '{border.radius.lg}',
-        padding: '0.75rem',
+        padding: '1rem',
         shadow:
           '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
       },
       modal: {
         borderRadius: '{border.radius.lg}',
-        padding: '1.25rem',
+        padding: '1rem',
         shadow:
           '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
       },
@@ -667,35 +667,47 @@ const Preset = definePreset(Aura, {
         light: {
           primary: {
             color: '{primary.contrast.color}',
-            hoverColor: '{primary.contrast.color}',
-            background: '{primary.500}',
-            hoverBackground: '{primary.600}',
-            activeBackground: '{primary.600}',
             borderColor: '{primary.500}',
+            background: '{primary.500}',
+            hoverColor: '{primary.contrast.color}',
             hoverBorderColor: '{primary.600}',
-            activeBorderColor: '{surface.50}',
+            hoverBackground: '{primary.600}',
+            activeColor: '{primary.100}',
+            activeBorderColor: '{primary.500}',
+            activeBackground: '{primary.500}',
           },
           secondary: {
             color: '{primary.contrast.color}',
-            hoverColor: '{primary.contrast.color}',
-            activeColor: '{primary.contrast.color}',
-            background: '{surface.400}',
-            hoverBackground: '{surface.500}',
-            activeBackground: '{surface.500}',
             borderColor: '{surface.400}',
+            background: '{surface.400}',
+            hoverColor: '{primary.contrast.color}',
             hoverBorderColor: '{surface.500}',
-            activeBorderColor: '{surface.50}',
+            hoverBackground: '{surface.500}',
+            activeColor: '{surface.100}',
+            activeBorderColor: '{surface.400}',
+            activeBackground: '{surface.400}',
+          },
+          success: {
+            color: '{primary.contrast.color}',
+            borderColor: '{green.400}',
+            background: '{green.400}',
+            hoverColor: '{primary.contrast.color}',
+            hoverBorderColor: '{green.500}',
+            hoverBackground: '{green.500}',
+            activeColor: '{green.100}',
+            activeBorderColor: '{green.400}',
+            activeBackground: '{green.400}',
           },
           danger: {
             color: '{primary.contrast.color}',
-            hoverColor: '{primary.contrast.color}',
-            activeColor: '{primary.contrast.color}',
-            background: '{red.400}',
-            hoverBackground: '{red.500}',
-            activeBackground: '{red.500}',
             borderColor: '{red.400}',
+            background: '{red.400}',
+            hoverColor: '{primary.contrast.color}',
             hoverBorderColor: '{red.500}',
-            activeBorderColor: '{surface.50}',
+            hoverBackground: '{red.500}',
+            activeColor: '{red.100}',
+            activeBorderColor: '{red.400}',
+            activeBackground: '{red.400}',
           },
           outlined: {
             primary: {
@@ -711,6 +723,8 @@ const Preset = definePreset(Aura, {
               activeBackground: 'transparent',
             },
             success: {
+              color: '{green.400}',
+              borderColor: '{green.400}',
               hoverBackground: 'transparent',
               activeBackground: 'transparent',
             },
@@ -1080,7 +1094,17 @@ const Preset = definePreset(Aura, {
       },
     },
     confirmpopup: {
-      arrowOffset: 'calc({confirmpopupBorderRadius} * 2)',
+      arrowOffset: 'calc({confirmpopupBorderRadius} * 2.5)',
+    },
+    dialog: {
+      title: {
+        fontSize: '1.6rem',
+        fontWeight: '600',
+      },
+      footerGap: '1rem',
+    },
+    popover: {
+      arrowOffset: 'calc({popoverBorderRadius} * 2)',
     },
     progressspinner: {
       colorScheme: {

@@ -30,10 +30,11 @@
       max-width: 100%;
     }
     &-sm {
-      width: 100px;
+      width: 80px;
       min-width: fit-content;
       max-width: 100%;
-      height: 36px;
+      height: 32px;
+      font-size: 1.2rem;
     }
 
     &-icon-only {
@@ -47,8 +48,8 @@
         border-color: var(--p-button-primary-hover-border-color);
       }
       @include activeColors {
-        color: var(--p-button-primary-border-color);
-        border-color: var(--p-button-primary-border-color);
+        color: var(--p-button-primary-active-border-color);
+        border-color: var(--p-button-primary-active-border-color);
       }
     }
     &-outlined:where(&-secondary) {
@@ -57,8 +58,18 @@
         border-color: var(--p-button-secondary-hover-border-color);
       }
       @include activeColors {
-        color: var(--p-button-secondary-border-color);
-        border-color: var(--p-button-secondary-border-color);
+        color: var(--p-button-secondary-active-border-color);
+        border-color: var(--p-button-secondary-active-border-color);
+      }
+    }
+    &-outlined:where(&-success) {
+      @include hoverColors {
+        color: var(--p-button-success-hover-border-color);
+        border-color: var(--p-button-success-hover-border-color);
+      }
+      @include activeColors {
+        color: var(--p-button-success-active-border-color);
+        border-color: var(--p-button-success-active-border-color);
       }
     }
     &-outlined:where(&-danger) {
@@ -67,18 +78,18 @@
         border-color: var(--p-button-danger-hover-border-color);
       }
       @include activeColors {
-        color: var(--p-button-danger-border-color);
-        border-color: var(--p-button-danger-border-color);
+        color: var(--p-button-danger-active-border-color);
+        border-color: var(--p-button-danger-active-border-color);
       }
     }
     &-text {
       padding: calc(var(--p-button-padding-y) / 2)
         calc(var(--p-button-padding-x) / 2);
       @include hoverColors {
-        color: var(--p-primary-700);
+        color: var(--p-button-primary-hover-border-color);
       }
       @include activeColors {
-        color: var(--p-button-primary-border-color);
+        color: var(--p-button-primary-active-border-color);
       }
     }
     &-text:where(&-icon-only) {
@@ -88,7 +99,7 @@
         color: var(--p-button-primary-hover-border-color);
       }
       @include activeColors {
-        color: var(--p-button-primary-border-color);
+        color: var(--p-button-primary-active-border-color);
       }
     }
     &-text:where(&-secondary) {
@@ -96,7 +107,7 @@
         color: var(--p-surface-700);
       }
       @include activeColors {
-        color: var(--p-button-secondary-border-color);
+        color: var(--p-button-secondary-active-border-color);
       }
     }
     &-text:where(&-secondary):where(&-icon-only) {
@@ -104,7 +115,7 @@
         color: var(--p-button-secondary-hover-border-color);
       }
       @include activeColors {
-        color: var(--p-button-secondary-border-color);
+        color: var(--p-button-secondary-active-border-color);
       }
     }
 
@@ -305,7 +316,11 @@
   }
 
   .p-confirmpopup {
+    &-message {
+      font-size: 1.2rem;
+    }
   }
+
   // --------------------------------------------------------------------------
 
   // --------------------------------------------------------------------------
@@ -368,4 +383,13 @@
     }
   }
   // --------------------------------------------------------------------------
+
+  button,
+  input,
+  textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+  }
 }

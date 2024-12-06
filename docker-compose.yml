@@ -4,7 +4,7 @@ services:
   ####################################################################################################
   nginx:
     build:
-      context: .docker/nginx
+      context: .
       dockerfile: Dockerfile
     container_name: nginx-${DOCKER_PROJECT_NAME}
     restart: unless-stopped
@@ -64,7 +64,7 @@ services:
       - ${HOST_DB_PORT}:5432
     volumes:
       - ./.docker/db/data:/var/lib/postgresql/data:rw
-      - ./.docker/db/sql:/docker-entrypoint-initdb.d:rw
+      - ./.docker/db/sql:/docker-entrypoint-initdb.d:ro
     env_file:
       - ./.env
       - ./backend/.env

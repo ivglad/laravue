@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <section class="layout-ui-date-pickers">
+  <section class="layout-ui-pickers">
     <Divider type="dashed" align="center">
       <h2>DatePickers</h2>
     </Divider>

@@ -104,4 +104,55 @@
     height: 2.5rem;
     transform: translateY(-50%);
   }
+
+  .app-confirm {
+    &-modified {
+      border-color: var(--p-primary-950);
+      background-color: var(--p-primary-950);
+      .p-dialog {
+        &-header {
+          color: var(--p-surface-50);
+        }
+        &-content {
+          max-width: 20rem;
+          color: var(--p-surface-50);
+        }
+      }
+    }
+  }
+
+  .app-dialog {
+    width: 50%;
+  }
+
+  .app-drawer {
+    width: 30rem;
+    .p-drawer {
+      &-footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: $size-10;
+      }
+    }
+  }
+
+  .app-popover {
+    .p-popover {
+      &-content {
+        display: flex;
+        flex-direction: column;
+        gap: $size-5;
+      }
+    }
+    &-element {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: $size-10 $size-10;
+      border-radius: var(--p-border-radius-lg);
+      @include active {
+        background: var(--p-surface-100);
+      }
+    }
+  }
 }

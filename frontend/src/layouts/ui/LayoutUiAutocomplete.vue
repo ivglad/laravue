@@ -17,7 +17,7 @@ const autoCompleateSearch = useDebounceFn((event) => {
 </script>
 
 <template>
-  <section class="layout-ui-date-autocomplete">
+  <section class="layout-ui-autocomplete">
     <Divider type="dashed" align="center">
       <h2>AutoComplete</h2>
     </Divider>
