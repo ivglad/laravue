@@ -278,7 +278,10 @@ const selectPopoverElement = (element) => {
               <td>
                 <div class="tooltip">
                   <InputText
-                    v-tooltip="'...информации'"
+                    v-tooltip="{
+                      value: 'Дополнительная информация',
+                      showDelay: 500,
+                    }"
                     type="text"
                     placeholder="Наведите для информации" />
                 </div>

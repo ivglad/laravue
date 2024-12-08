@@ -8,85 +8,7 @@ import {
   createColumnHelper,
 } from '@tanstack/vue-table'
 
-const selectButton = ref(null)
-
 const color = ref(null)
-
-const toast = useToast()
-
-const confirm = useConfirm()
-const confirmPosition = (position) => {
-  confirm.require({
-    group: 'positioned',
-    message: 'Вы уверены?',
-    header: 'Подтверждение',
-    position: position,
-    rejectProps: {
-      label: 'Отмена',
-      severity: 'secondary',
-      text: true,
-    },
-    acceptProps: {
-      label: 'Да',
-      text: true,
-    },
-    accept: () => {
-      toast.add({
-        severity: 'info',
-        summary: 'Принято',
-        detail: 'Запрос обработан',
-        life: 3000,
-      })
-    },
-    reject: () => {
-      toast.add({
-        severity: 'error',
-        summary: 'Отменено',
-        detail: 'Запрос отменен',
-        life: 3000,
-      })
-    },
-  })
-}
-const confirmPopup = (event) => {
-  confirm.require({
-    target: event.currentTarget,
-    message: 'Вы уверены?',
-    rejectProps: {
-      label: 'Отмена',
-      severity: 'secondary',
-      text: true,
-    },
-    acceptProps: {
-      label: 'Да',
-      text: true,
-    },
-    accept: () => {
-      toast.add({
-        severity: 'info',
-        summary: 'Принято',
-        detail: 'Запрос обработан',
-        life: 3000,
-      })
-    },
-    reject: () => {
-      toast.add({
-        severity: 'error',
-        summary: 'Отменено',
-        detail: 'Запрос отменен',
-        life: 3000,
-      })
-    },
-  })
-}
-
-const dialog = ref({
-  show: false,
-})
-
-const drawer = ref({
-  show: false,
-})
 
 const contextMenu = ref(null)
 const contextMenuItems = ref([{ label: 'Copy' }, { label: 'Rename' }])
@@ -223,6 +145,7 @@ const pageHandler = (data) => {
       <h1>UI-KIT</h1>
     </Divider>
 
+    <LayoutUiColorPicker />
     <LayoutUiOverlay />
     <LayoutUiButtons />
     <LayoutUiFileUpload />
@@ -247,6 +170,8 @@ const pageHandler = (data) => {
 
     <LayoutUiSwitches />
 
+    <LayoutUiSelectToggleButtons />
+
     <LayoutUiChips />
 
     <LayoutUiBadges />
@@ -256,15 +181,6 @@ const pageHandler = (data) => {
     <LayoutUiTabs />
 
     <LayoutUiProgress />
-
-    <Divider align="center">
-      <h2>SelectButton</h2>
-    </Divider>
-    <section class="select-button">
-      <div>
-        <SelectButton v-model="selectButton" :options="['On', 'Off']" />
-      </div>
-    </section>
 
     <Divider align="center">
       <h2>ColorPicker</h2>

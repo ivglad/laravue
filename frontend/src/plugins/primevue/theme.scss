@@ -303,14 +303,22 @@
   // --------------------------------------------------------------------------
   .p-tooltip {
     max-width: 30rem;
-    &-arrow {
+    &-top &-arrow {
       border-top-color: var(--p-surface-0);
+    }
+    &-right &-arrow {
+      border-right-color: var(--p-surface-0);
+    }
+    &-bottom &-arrow {
       border-bottom-color: var(--p-surface-0);
+    }
+    &-left &-arrow {
+      border-left-color: var(--p-surface-0);
     }
     &-text {
       font-size: $fs-xs;
-      border-radius: var(--p-border-radius-md);
       color: var(--p-text-color);
+      border-radius: var(--p-border-radius-md);
       background: var(--p-surface-0);
     }
   }
@@ -326,8 +334,8 @@
   // --------------------------------------------------------------------------
   // Overlay offsets
   // --------------------------------------------------------------------------
-  [data-pc-section='overlay'],
-  [data-pc-section='panel'] {
+  [data-pc-section='overlay']:not(.p-colorpicker-panel-inline),
+  [data-pc-section='panel']:not(.p-colorpicker-panel-inline) {
     margin-top: 0.5rem;
     &[style*='margin-top'] {
       margin-top: -0.5rem !important;

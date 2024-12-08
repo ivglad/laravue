@@ -4,13 +4,12 @@ services:
   ####################################################################################################
   nginx:
     build:
-      context: .
+      context: ./.docker/nginx
       dockerfile: Dockerfile
     container_name: nginx-${DOCKER_PROJECT_NAME}
     restart: unless-stopped
     tty: true
     volumes:
-      - ./.docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ./.docker/nginx/logs:/var/log/nginx
     ports:
       - ${HOST_FRONTEND_PORT}:80

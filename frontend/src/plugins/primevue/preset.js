@@ -1084,8 +1084,10 @@ const Preset = definePreset(Aura, {
       headerPadding: '1rem 1rem 0.5rem 1rem',
       contentPadding: '0.5rem 1rem 1rem 1rem',
     },
+    // Tooltip options not working because of PrimeVue bug
     tooltip: {
-      maxWidth: '20rem',
+      maxWidth: '30rem',
+      gutter: '0.5rem',
       colorScheme: {
         light: {
           color: '{text.color}',
@@ -1105,6 +1107,10 @@ const Preset = definePreset(Aura, {
     },
     popover: {
       arrowOffset: 'calc({popoverBorderRadius} * 2)',
+    },
+    colorpicker: {
+      previewWidth: '3rem',
+      previewHeight: '3rem',
     },
     progressspinner: {
       colorScheme: {

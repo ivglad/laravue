@@ -30,15 +30,15 @@ const elements = ref({
 })
 // ----------------------------------------------------------------------------
 
-const copyColorSwitch = ref(false)
+const copyColorSwitch = ref('HEX')
 const copyTypeHexClass = computed(() => {
   return {
-    'copy-type-active': !copyColorSwitch.value,
+    'copy-type-active': copyColorSwitch.value === 'HEX',
   }
 })
 const copyTypeVarClass = computed(() => {
   return {
-    'copy-type-active': copyColorSwitch.value,
+    'copy-type-active': copyColorSwitch.value === 'CSS Variable',
   }
 })
 
@@ -88,16 +88,13 @@ const showCopyColorMessage = () => {
   toast.add({
     severity: 'success',
     summary: 'Успешно',
-    detail: `${
-      !copyColorSwitch.value ? 'HEX' : 'CSS Variable'
-    } в буфере обмена: 
-      ${text.value}`,
+    detail: `${copyColorSwitch.value} в буфере обмена: ${text.value}`,
     life: 5000,
   })
 }
 const copyColor = async (hex, variable) => {
   if (!isSupported) return
-  await copy(!copyColorSwitch.value ? hex : variable)
+  await copy(copyColorSwitch.value === 'HEX' ? hex : variable)
   showCopyColorMessage()
 }
 </script>
@@ -111,11 +108,10 @@ const copyColor = async (hex, variable) => {
       <div class="options">
         <div>
           <span class="fw-semibold">Copy:</span>
-          <span class="fw-semibold" :class="copyTypeHexClass">HEX</span>
-          <ToggleSwitch v-model="copyColorSwitch" />
-          <span class="fw-semibold" :class="copyTypeVarClass"
-            >CSS variable</span
-          >
+          <SelectButton
+            v-model="copyColorSwitch"
+            :options="['HEX', 'CSS Variable']"
+            :allowEmpty="false" />
         </div>
         <span class="fs-xs"
           >* копирует [<span :class="copyTypeHexClass">цвет</span>
