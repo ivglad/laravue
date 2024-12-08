@@ -1133,6 +1133,18 @@ const Preset = definePreset(Aura, {
         },
       },
     },
+    card: {
+      title: {
+        fontSize: '1.6rem',
+        fontWeight: '600',
+      },
+      bodyGap: '1rem',
+      colorScheme: {
+        light: {
+          subtitleColor: '{surface.300}',
+        },
+      },
+    },
     progressspinner: {
       colorScheme: {
         light: {

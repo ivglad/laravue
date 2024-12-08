@@ -1,9 +1,9 @@
 <script setup></script>
 
 <template>
-  <section class="layout-ui-pickers">
+  <section class="layout-ui-">
     <Divider type="dashed" align="center">
-      <h2>DatePickers</h2>
+      <h2></h2>
     </Divider>
     <div class="content">
       <div class="table-wrapper">
@@ -12,10 +12,13 @@
             <tr>
               <th>State /<br />Variant</th>
               <th>Default</th>
-              <th>Disabled</th>
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td>Default</td>
+              <td></td>
+            </tr>
             <tr>
               <td></td>
               <td></td>

@@ -7,7 +7,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    2: typeof import('./src/layouts/ui/LayoutUiColorPicker copy 2.vue')['default']
+    2: typeof import('./src/layouts/ui/LayoutUiBadges copy 2.vue')['default']
     3: typeof import('./src/layouts/ui/LayoutUiDatePickers copy 3.vue')['default']
     4: typeof import('./src/layouts/ui/LayoutUiDatePickers copy 4.vue')['default']
     5: typeof import('./src/layouts/ui/LayoutUiDatePickers copy 5.vue')['default']
@@ -33,7 +33,7 @@ declare module 'vue' {
     ConfirmDialog: typeof import('primevue/confirmdialog')['default']
     ConfirmPopup: typeof import('primevue/confirmpopup')['default']
     ContextMenu: typeof import('primevue/contextmenu')['default']
-    copy: typeof import('./src/layouts/ui/LayoutUiColorPicker copy.vue')['default']
+    copy: typeof import('./src/layouts/ui/LayoutUiBadges copy.vue')['default']
     DatePicker: typeof import('primevue/datepicker')['default']
     Dialog: typeof import('primevue/dialog')['default']
     Divider: typeof import('primevue/divider')['default']
@@ -76,12 +76,13 @@ declare module 'vue' {
     LayoutUiAutocompleate: typeof import('./src/layouts/ui/LayoutUiAutocompleate.vue')['default']
     LayoutUiAutocomplete: typeof import('./src/layouts/ui/LayoutUiAutocomplete.vue')['default']
     LayoutUiBadges: typeof import('./src/layouts/ui/LayoutUiBadges.vue')['default']
+    'LayoutUiBadges copy 2': typeof import('./src/layouts/ui/LayoutUiBadges copy 2.vue')['default']
     LayoutUiButtons: typeof import('./src/layouts/ui/LayoutUiButtons.vue')['default']
+    LayoutUiCard: typeof import('./src/layouts/ui/LayoutUiCard.vue')['default']
     LayoutUiCheckboxes: typeof import('./src/layouts/ui/LayoutUiCheckboxes.vue')['default']
     LayoutUiChip: typeof import('./src/layouts/ui/LayoutUiChip.vue')['default']
     LayoutUiChips: typeof import('./src/layouts/ui/LayoutUiChips.vue')['default']
     LayoutUiColorPicker: typeof import('./src/layouts/ui/LayoutUiColorPicker.vue')['default']
-    'LayoutUiColorPicker copy 2': typeof import('./src/layouts/ui/LayoutUiColorPicker copy 2.vue')['default']
     LayoutUiColors: typeof import('./src/layouts/ui/LayoutUiColors.vue')['default']
     LayoutUiDatePickers: typeof import('./src/layouts/ui/LayoutUiDatePickers.vue')['default']
     LayoutUiFileUpload: typeof import('./src/layouts/ui/LayoutUiFileUpload.vue')['default']

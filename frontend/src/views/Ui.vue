@@ -8,6 +8,7 @@ import {
   createColumnHelper,
 } from '@tanstack/vue-table'
 import LayoutUiAccordion from '../layouts/ui/LayoutUiAccordion.vue'
+import LayoutUiCard from '../layouts/ui/LayoutUiCard.vue'
 
 const color = ref(null)
 
@@ -146,6 +147,7 @@ const pageHandler = (data) => {
       <h1>UI-KIT</h1>
     </Divider>
 
+    <LayoutUiCard />
     <LayoutUiAccordion />
 
     <LayoutUiButtons />

@@ -155,4 +155,15 @@
       }
     }
   }
+
+  .app-card {
+    width: 30rem;
+    .p-card {
+      &-footer {
+        display: flex;
+        gap: $size-10;
+        margin-top: $size-10;
+      }
+    }
+  }
 }
