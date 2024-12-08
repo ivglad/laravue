@@ -1145,6 +1145,13 @@ const Preset = definePreset(Aura, {
         },
       },
     },
+    paginator: {
+      colorScheme: {
+        light: {
+          background: 'transparent',
+        },
+      },
+    },
     progressspinner: {
       colorScheme: {
         light: {

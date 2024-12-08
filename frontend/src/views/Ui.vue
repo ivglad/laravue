@@ -7,8 +7,6 @@ import {
   useVueTable,
   createColumnHelper,
 } from '@tanstack/vue-table'
-import LayoutUiAccordion from '../layouts/ui/LayoutUiAccordion.vue'
-import LayoutUiCard from '../layouts/ui/LayoutUiCard.vue'
 
 const color = ref(null)
 
@@ -17,128 +15,6 @@ const contextMenuItems = ref([{ label: 'Copy' }, { label: 'Rename' }])
 const onContextMenu = (event) => {
   contextMenu.value.show(event)
 }
-
-// ================================================================================================
-// PrimeVue table - Таблица
-// ================================================================================================
-
-// ================================================================================================
-
-// ================================================================================================
-// Tanstack table - Таблица
-// ================================================================================================
-const columnHelper = createColumnHelper()
-const columns = ref([
-  {
-    id: 'select',
-    header: ({ table }) => {
-      return h(Checkbox, {
-        modelValue: table.getIsAllRowsSelected(),
-        indeterminate: table.getIsSomeRowsSelected(),
-        onChange: table.getToggleAllRowsSelectedHandler(),
-        binary: true,
-        size: 'big',
-      })
-    },
-    cell: ({ row }) => {
-      return h(Checkbox, {
-        modelValue: row.getIsSelected(),
-        onChange: row.getToggleSelectedHandler(),
-        disabled: !row.getCanSelect(),
-        binary: true,
-        size: 'big',
-      })
-    },
-  },
-  columnHelper.group({
-    header: 'Пользователь',
-    columns: [
-      columnHelper.accessor((row) => row.name, {
-        id: 'name',
-        header: 'Имя',
-        cell: (info) => info.getValue(),
-      }),
-      columnHelper.accessor((row) => row.lastName, {
-        id: 'lastName',
-        header: 'Фамилия',
-        cell: (info) => info.getValue(),
-      }),
-    ],
-  }),
-  columnHelper.group({
-    header: 'Информация',
-    columns: [
-      columnHelper.accessor('age', {
-        header: 'Возраст',
-      }),
-      columnHelper.accessor('visits', {
-        header: 'Посещений',
-      }),
-      columnHelper.accessor('status', {
-        header: 'Статус',
-      }),
-      columnHelper.accessor('progress', {
-        header: 'Прогресс',
-      }),
-    ],
-  }),
-])
-const rows = ref(
-  Array.from({ length: 100 }).map((_, i) => ({
-    id: i + 1,
-    name: `Имя ${i + 1}`,
-    lastName: `Фамилия ${i + 1}`,
-    age: Math.floor(Math.random() * 100),
-    visits: Math.floor(Math.random() * 100),
-    status:
-      Math.floor(Math.random() * 100) % 2 === 0 ? 'Успешно' : 'Есть вопросы',
-    progress: Math.floor(Math.random() * 100),
-  })),
-)
-const rowSelection = ref({})
-const sorting = ref([])
-const table = useVueTable({
-  get columns() {
-    return columns.value
-  },
-  get data() {
-    return rows.value
-  },
-  state: {
-    get rowSelection() {
-      return rowSelection.value
-    },
-    get sorting() {
-      return sorting.value
-    },
-  },
-
-  enableRowSelection: true,
-  onRowSelectionChange: (updateOrValue) => {
-    rowSelection.value =
-      typeof updateOrValue === 'function'
-        ? updateOrValue(rowSelection.value)
-        : updateOrValue
-  },
-  isMultiSortEvent: () => true,
-  onSortingChange: (updaterOrValue) => {
-    sorting.value =
-      typeof updaterOrValue === 'function'
-        ? updaterOrValue(sorting.value)
-        : updaterOrValue
-  },
-  getSortedRowModel: getSortedRowModel(),
-  getCoreRowModel: getCoreRowModel(),
-  getPaginationRowModel: getPaginationRowModel(),
-})
-const pageSizes = [10, 20, 50]
-const pageHandler = (data) => {
-  const pageSize = data.rows
-  const page = data.page
-  table.setPageSize(pageSize)
-  table.setPageIndex(page)
-}
-// ================================================================================================
 </script>
 
 <template>
@@ -147,9 +23,7 @@ const pageHandler = (data) => {
       <h1>UI-KIT</h1>
     </Divider>
 
-    <LayoutUiCard />
-    <LayoutUiAccordion />
-
+    <LayoutUiTables />
     <LayoutUiButtons />
 
     <LayoutUiFonts />
@@ -188,45 +62,13 @@ const pageHandler = (data) => {
 
     <LayoutUiTabs />
 
+    <LayoutUiPaginator />
+
+    <LayoutUiAccordion />
+
+    <LayoutUiCard />
+
     <LayoutUiProgress />
-
-    <Divider align="center">
-      <h2>Pagination</h2>
-    </Divider>
-    <section class="pagination">
-      <div>
-        <Paginator
-          :rows="10"
-          :totalRecords="120"
-          :rowsPerPageOptions="[10, 20, 50]">
-          <template #start="slotProps">
-            <div class="pagination-info">
-              <span>Страница: {{ slotProps.state.page + 1 }}</span>
-              <span>На странице: {{ slotProps.state.rows }}</span>
-            </div>
-          </template>
-        </Paginator>
-      </div>
-    </section>
-
-    <Divider align="center">
-      <h2>Card</h2>
-    </Divider>
-    <section class="card">
-      <div>
-        <Card>
-          <template #title>Сообщение</template>
-          <template #content>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Inventore sed consequuntur error repudiandae numquam deserunt
-              quisquam repellat libero asperiores earum nam nobis, culpa ratione
-              quam perferendis esse, cupiditate neque quas!
-            </p>
-          </template>
-        </Card>
-      </div>
-    </section>
 
     <Divider align="center">
       <h2>Inplace</h2>
@@ -354,82 +196,6 @@ const pageHandler = (data) => {
       </div>
     </section>
 
-    <Divider align="center">
-      <h2>Table</h2>
-    </Divider>
-    <section class="table">
-      <div class="text-3xl">table</div>
-    </section>
-
-    <Divider align="center">
-      <h2>Tanstack table</h2>
-    </Divider>
-    <section class="tanstack-table">
-      <div style="width: 100%">
-        <table>
-          <thead>
-            <tr
-              v-for="headerGroup in table.getHeaderGroups()"
-              :key="headerGroup.id">
-              <th
-                v-for="header in headerGroup.headers"
-                :key="header.id"
-                :colSpan="header.colSpan"
-                :style="header.column.getCanSort() ? 'user-select: none;' : ''"
-                @click="header.column.getToggleSortingHandler()?.($event)">
-                <template v-if="!header.isPlaceholder">
-                  <div class="th-title">
-                    <FlexRender
-                      :render="header.column.columnDef.header"
-                      :props="header.getContext()" />
-                    <i-custom-triangle-down
-                      v-show="
-                        header.column.getCanSort() &&
-                        header.column.getIsSorted() !== false
-                      "
-                      :style="
-                        header.column.getIsSorted() === 'asc'
-                          ? 'transform: rotate(180deg);'
-                          : ''
-                      " />
-                  </div>
-                </template>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="row in table.getRowModel().rows" :key="row.id">
-              <td v-for="cell in row.getVisibleCells()" :key="cell.id">
-                <FlexRender
-                  :render="cell.column.columnDef.cell"
-                  :props="cell.getContext()" />
-              </td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr
-              v-for="footerGroup in table.getFooterGroups()"
-              :key="footerGroup.id">
-              <th
-                v-for="header in footerGroup.headers"
-                :key="header.id"
-                :colSpan="header.colSpan">
-                <FlexRender
-                  v-if="!header.isPlaceholder"
-                  :render="header.column.columnDef.footer"
-                  :props="header.getContext()" />
-              </th>
-            </tr>
-          </tfoot>
-        </table>
-        <Paginator
-          @page="pageHandler"
-          :rows="table.getState().pagination.pageSize"
-          :totalRecords="rows.length"
-          :rowsPerPageOptions="pageSizes" />
-      </div>
-    </section>
-
     <ScrollTop>
       <template #icon>
         <i-fluent-arrow-curve-up-right-20-filled />
@@ -531,83 +297,6 @@ const pageHandler = (data) => {
           }
           & > .column {
             flex-direction: column;
-          }
-        }
-      }
-    }
-  }
-
-  .pagination {
-    &-info {
-      display: flex;
-      flex-direction: column;
-      width: 150px;
-    }
-  }
-
-  .accordion {
-    display: flex;
-    width: 100%;
-    & > div {
-      width: 100%;
-    }
-  }
-
-  .context-menu {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: $size-40;
-    border-radius: var(--p-border-radius-lg);
-    background: var(--p-primary-100);
-  }
-
-  .tanstack-table {
-    & > div {
-      gap: 0;
-    }
-    table {
-      $border-color: var(--p-primary-500);
-      border-collapse: separate;
-      border-spacing: 0;
-      th,
-      td {
-        padding: $size-5 $size-20 $size-5 $size-10;
-      }
-      thead {
-        background: var(--p-primary-100);
-        tr {
-          height: $size-30;
-          &:first-child {
-            th {
-              &:first-child {
-                border-radius: 10px 0 0 0;
-              }
-              &:last-child {
-                border-radius: 0 10px 0 0;
-              }
-            }
-          }
-          &:nth-child(2) {
-            th {
-              text-align: left;
-            }
-          }
-          th {
-            padding: $size-10 $size-20 $size-10 $size-10;
-            .th-title {
-              position: relative;
-              display: flex;
-              align-items: center;
-              flex-wrap: nowrap;
-              width: fit-content;
-              margin-right: $size-20;
-              .icon {
-                position: absolute;
-                left: calc(100% + 0.5rem);
-              }
-            }
           }
         }
       }

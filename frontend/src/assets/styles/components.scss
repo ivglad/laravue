@@ -158,6 +158,7 @@
 
   .app-card {
     width: 30rem;
+    overflow: hidden;
     .p-card {
       &-footer {
         display: flex;
