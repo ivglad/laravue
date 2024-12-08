@@ -140,6 +140,7 @@
   }
 
   .icon {
+    @include transition;
     font-size: 2rem;
     &-message-send {
       width: 2rem;

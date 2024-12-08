@@ -1112,6 +1112,27 @@ const Preset = definePreset(Aura, {
       previewWidth: '3rem',
       previewHeight: '3rem',
     },
+    scrollpanel: {
+      bar: {
+        size: '0.6rem',
+        borderRadius: '{border.radius.md}',
+      },
+      colorScheme: {
+        light: {
+          barBackground: '{primary.300}',
+        },
+      },
+    },
+    fieldset: {
+      colorScheme: {
+        light: {
+          legend: {
+            background: 'transparent',
+            hoverBackground: 'transparent',
+          },
+        },
+      },
+    },
     progressspinner: {
       colorScheme: {
         light: {

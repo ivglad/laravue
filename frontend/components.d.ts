@@ -7,7 +7,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    2: typeof import('./src/layouts/ui/LayoutUiDatePickers copy 2.vue')['default']
+    2: typeof import('./src/layouts/ui/LayoutUiColorPicker copy 2.vue')['default']
     3: typeof import('./src/layouts/ui/LayoutUiDatePickers copy 3.vue')['default']
     4: typeof import('./src/layouts/ui/LayoutUiDatePickers copy 4.vue')['default']
     5: typeof import('./src/layouts/ui/LayoutUiDatePickers copy 5.vue')['default']
@@ -40,6 +40,7 @@ declare module 'vue' {
     Drawer: typeof import('primevue/drawer')['default']
     DynamicDialog: typeof import('primevue/dynamicdialog')['default']
     Error: typeof import('./src/views/Error.vue')['default']
+    Fieldset: typeof import('primevue/fieldset')['default']
     FileUpload: typeof import('primevue/fileupload')['default']
     FloatLabel: typeof import('primevue/floatlabel')['default']
     IconField: typeof import('primevue/iconfield')['default']
@@ -51,6 +52,7 @@ declare module 'vue' {
     ICustomInfoSign: typeof import('~icons/custom/info-sign')['default']
     ICustomLogo: typeof import('~icons/custom/logo')['default']
     ICustomMessageSend: typeof import('~icons/custom/message-send')['default']
+    ICustomMinus: typeof import('~icons/custom/minus')['default']
     ICustomNotifications: typeof import('~icons/custom/notifications')['default']
     ICustomOptions: typeof import('~icons/custom/options')['default']
     ICustomPlus: typeof import('~icons/custom/plus')['default']
@@ -70,6 +72,7 @@ declare module 'vue' {
     InputIcon: typeof import('primevue/inputicon')['default']
     InputMask: typeof import('primevue/inputmask')['default']
     InputText: typeof import('primevue/inputtext')['default']
+    LayoutUiAccordion: typeof import('./src/layouts/ui/LayoutUiAccordion.vue')['default']
     LayoutUiAutocompleate: typeof import('./src/layouts/ui/LayoutUiAutocompleate.vue')['default']
     LayoutUiAutocomplete: typeof import('./src/layouts/ui/LayoutUiAutocomplete.vue')['default']
     LayoutUiBadges: typeof import('./src/layouts/ui/LayoutUiBadges.vue')['default']
@@ -78,7 +81,7 @@ declare module 'vue' {
     LayoutUiChip: typeof import('./src/layouts/ui/LayoutUiChip.vue')['default']
     LayoutUiChips: typeof import('./src/layouts/ui/LayoutUiChips.vue')['default']
     LayoutUiColorPicker: typeof import('./src/layouts/ui/LayoutUiColorPicker.vue')['default']
-    'LayoutUiColorPicker copy': typeof import('./src/layouts/ui/LayoutUiColorPicker copy.vue')['default']
+    'LayoutUiColorPicker copy 2': typeof import('./src/layouts/ui/LayoutUiColorPicker copy 2.vue')['default']
     LayoutUiColors: typeof import('./src/layouts/ui/LayoutUiColors.vue')['default']
     LayoutUiDatePickers: typeof import('./src/layouts/ui/LayoutUiDatePickers.vue')['default']
     LayoutUiFileUpload: typeof import('./src/layouts/ui/LayoutUiFileUpload.vue')['default']

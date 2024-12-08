@@ -276,6 +276,9 @@
   }
   // --------------------------------------------------------------------------
 
+  // --------------------------------------------------------------------------
+  // Iconfield
+  // --------------------------------------------------------------------------
   .p-iconfield {
     & *:first-child.p-inputicon {
       z-index: 1;
@@ -328,17 +331,31 @@
       font-size: 1.2rem;
     }
   }
-
   // --------------------------------------------------------------------------
+
+  .p-accordion {
+    &header,
+    &header svg {
+      transition: color var(--p-accordion-transition-duration),
+        background var(--p-accordion-transition-duration);
+    }
+    &panel {
+      &:last-child {
+        border-color: transparent;
+      }
+    }
+  }
 
   // --------------------------------------------------------------------------
   // Overlay offsets
   // --------------------------------------------------------------------------
-  [data-pc-section='overlay']:not(.p-colorpicker-panel-inline),
-  [data-pc-section='panel']:not(.p-colorpicker-panel-inline) {
-    margin-top: 0.5rem;
-    &[style*='margin-top'] {
-      margin-top: -0.5rem !important;
+  [data-pc-section='overlay'],
+  [data-pc-section='panel'] {
+    :not(.p-colorpicker-panel-inline) {
+      margin-top: 0.5rem;
+      &[style*='margin-top'] {
+        margin-top: -0.5rem !important;
+      }
     }
   }
   // --------------------------------------------------------------------------
