@@ -102,6 +102,9 @@ declare global {
   const FieldsetStyle: typeof import('primevue')['FieldsetStyle']
   const FileUpload: typeof import('primevue')['FileUpload']
   const FileUploadStyle: typeof import('primevue')['FileUploadStyle']
+  const FilterMatchMode: typeof import('@primevue/core/api')['FilterMatchMode']
+  const FilterOperator: typeof import('@primevue/core/api')['FilterOperator']
+  const FilterService: typeof import('@primevue/core/api')['FilterService']
   const FlexRender: typeof import('@tanstack/vue-table')['FlexRender']
   const FloatLabel: typeof import('primevue')['FloatLabel']
   const FloatLabelStyle: typeof import('primevue')['FloatLabelStyle']
@@ -185,6 +188,7 @@ declare global {
   const PopoverStyle: typeof import('primevue')['PopoverStyle']
   const Portal: typeof import('primevue')['Portal']
   const PortalStyle: typeof import('primevue')['PortalStyle']
+  const PrimeIcons: typeof import('@primevue/core/api')['PrimeIcons']
   const PrimeVueConfirmSymbol: typeof import('primevue')['PrimeVueConfirmSymbol']
   const PrimeVueDialogSymbol: typeof import('primevue')['PrimeVueDialogSymbol']
   const PrimeVueToastSymbol: typeof import('primevue')['PrimeVueToastSymbol']
@@ -274,6 +278,7 @@ declare global {
   const Toast: typeof import('primevue')['Toast']
   const ToastEventBus: typeof import('primevue')['ToastEventBus']
   const ToastService: typeof import('primevue')['ToastService']
+  const ToastSeverity: typeof import('@primevue/core/api')['ToastSeverity']
   const ToastStyle: typeof import('primevue')['ToastStyle']
   const ToggleButton: typeof import('primevue')['ToggleButton']
   const ToggleButtonStyle: typeof import('primevue')['ToggleButtonStyle']
@@ -799,6 +804,9 @@ declare module 'vue' {
     readonly FieldsetStyle: UnwrapRef<typeof import('primevue')['FieldsetStyle']>
     readonly FileUpload: UnwrapRef<typeof import('primevue')['FileUpload']>
     readonly FileUploadStyle: UnwrapRef<typeof import('primevue')['FileUploadStyle']>
+    readonly FilterMatchMode: UnwrapRef<typeof import('@primevue/core/api')['FilterMatchMode']>
+    readonly FilterOperator: UnwrapRef<typeof import('@primevue/core/api')['FilterOperator']>
+    readonly FilterService: UnwrapRef<typeof import('@primevue/core/api')['FilterService']>
     readonly FlexRender: UnwrapRef<typeof import('@tanstack/vue-table')['FlexRender']>
     readonly FloatLabel: UnwrapRef<typeof import('primevue')['FloatLabel']>
     readonly FloatLabelStyle: UnwrapRef<typeof import('primevue')['FloatLabelStyle']>
@@ -882,6 +890,7 @@ declare module 'vue' {
     readonly PopoverStyle: UnwrapRef<typeof import('primevue')['PopoverStyle']>
     readonly Portal: UnwrapRef<typeof import('primevue')['Portal']>
     readonly PortalStyle: UnwrapRef<typeof import('primevue')['PortalStyle']>
+    readonly PrimeIcons: UnwrapRef<typeof import('@primevue/core/api')['PrimeIcons']>
     readonly PrimeVueConfirmSymbol: UnwrapRef<typeof import('primevue')['PrimeVueConfirmSymbol']>
     readonly PrimeVueDialogSymbol: UnwrapRef<typeof import('primevue')['PrimeVueDialogSymbol']>
     readonly PrimeVueToastSymbol: UnwrapRef<typeof import('primevue')['PrimeVueToastSymbol']>
@@ -971,6 +980,7 @@ declare module 'vue' {
     readonly Toast: UnwrapRef<typeof import('primevue')['Toast']>
     readonly ToastEventBus: UnwrapRef<typeof import('primevue')['ToastEventBus']>
     readonly ToastService: UnwrapRef<typeof import('primevue')['ToastService']>
+    readonly ToastSeverity: UnwrapRef<typeof import('@primevue/core/api')['ToastSeverity']>
     readonly ToastStyle: UnwrapRef<typeof import('primevue')['ToastStyle']>
     readonly ToggleButton: UnwrapRef<typeof import('primevue')['ToggleButton']>
     readonly ToggleButtonStyle: UnwrapRef<typeof import('primevue')['ToggleButtonStyle']>

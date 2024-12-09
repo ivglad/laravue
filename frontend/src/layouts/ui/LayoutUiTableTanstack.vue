@@ -1,15 +1,6 @@
 <script setup>
 import { FlexRender } from '@tanstack/vue-table'
 
-// ================================================================================================
-// PrimeVue table - Таблица
-// ================================================================================================
-
-// ================================================================================================
-
-// ================================================================================================
-// Tanstack table - Таблица
-// ================================================================================================
 const columnHelper = createColumnHelper()
 const columns = ref([
   {
@@ -121,18 +112,21 @@ const pageHandler = (data) => {
   table.setPageSize(pageSize)
   table.setPageIndex(page)
 }
-// ================================================================================================
+
+const paginatorDropdownStyle = {
+  pcRowPerPageDropdown: {
+    root: {
+      class: 'p-select-sm p-inputfield-sm ml-10',
+    },
+    overlay: {
+      class: 'p-select-overlay-sm',
+    },
+  },
+}
 </script>
 
 <template>
-  <section class="layout-ui-tables">
-    <Divider type="dashed" align="center">
-      <h2>Table</h2>
-    </Divider>
-    <div class="content no-ui-styles">
-      <div class="table"></div>
-    </div>
-
+  <section class="layout-ui-table-tanstack">
     <Divider type="dashed" align="center">
       <h2>Tanstack table</h2>
     </Divider>
@@ -205,82 +199,79 @@ const pageHandler = (data) => {
           :rows="table.getState().pagination.pageSize"
           :totalRecords="rows.length"
           :rowsPerPageOptions="pageSizes"
-          :pt="{
-            pcRowPerPageDropdown: {
-              root: {
-                class: 'ml-10',
-              },
-            },
-          }" />
+          :pt="paginatorDropdownStyle" />
       </div>
     </div>
   </section>
 </template>
 
 <style lang="scss" scoped>
-.table-tanstack {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  table {
-    width: 100%;
-    padding-bottom: 0;
-    border-collapse: separate;
-    border-spacing: 0;
-    th,
-    td {
-      padding: $size-5 $size-20 $size-5 $size-10;
-    }
-    thead {
-      color: var(--p-surface-500);
-      background: var(--p-surface-100);
-      tr {
-        height: $size-30;
-        &:first-child {
-          th {
-            &:first-child {
-              border-radius: 10px 0 0 0;
-            }
-            &:last-child {
-              border-radius: 0 10px 0 0;
+.layout-ui-table-tanstack {
+  .table-tanstack {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    table {
+      width: 100%;
+      padding-bottom: 0;
+      border-collapse: separate;
+      border-spacing: 0;
+      th,
+      td {
+        padding: $size-5 $size-20 $size-5 $size-10;
+      }
+      thead {
+        color: var(--p-surface-500);
+        background: var(--p-surface-100);
+        tr {
+          height: $size-30;
+          &:first-child {
+            th {
+              &:first-child {
+                border-radius: 10px 0 0 0;
+              }
+              &:last-child {
+                border-radius: 0 10px 0 0;
+              }
             }
           }
-        }
-        &:nth-child(2) {
-          th {
-            text-align: left;
+          &:nth-child(2) {
+            th {
+              text-align: left;
+            }
           }
-        }
-        th {
-          padding: $size-10 $size-20 $size-10 $size-10;
-          .th-title {
-            position: relative;
-            display: flex;
-            align-items: center;
-            flex-wrap: nowrap;
-            width: fit-content;
-            margin-right: $size-20;
-            .icon {
-              position: absolute;
-              left: calc(100% + 0.5rem);
+          th {
+            padding: $size-10 $size-20 $size-10 $size-10;
+            .th-title {
+              position: relative;
+              display: flex;
+              align-items: center;
+              flex-wrap: nowrap;
+              width: fit-content;
+              margin-right: $size-20;
+              .icon {
+                position: absolute;
+                left: calc(100% + 0.5rem);
+                transition: none;
+              }
             }
           }
         }
       }
-    }
-    tbody {
-      tr {
-        @include transition;
-      }
-      .row {
-        &-selected {
-          background: var(--p-primary-100);
+      tbody {
+        tr {
+          @include transition;
         }
-        &-disabled {
-          opacity: 0.4;
-          filter: grayscale(0.9);
-          user-select: none;
-          pointer-events: none;
+        .row {
+          &-selected {
+            background: var(--p-primary-100);
+          }
+          &-disabled {
+            opacity: 0.4;
+            filter: grayscale(0.9);
+            user-select: none;
+            pointer-events: none;
+          }
         }
       }
     }

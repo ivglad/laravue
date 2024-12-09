@@ -64,7 +64,12 @@ export default defineConfig({
       include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/, /\.md$/],
       dirs: ['src/helpers/**', 'src/store/**'],
       imports: ['vue', 'vue-router'],
-      packagePresets: ['primevue', '@vueuse/core', '@tanstack/vue-table'],
+      packagePresets: [
+        'primevue',
+        '@primevue/core/api',
+        '@vueuse/core',
+        '@tanstack/vue-table',
+      ],
       vueTemplate: true,
       vueDirectives: undefined,
       viteOptimizeDeps: true,

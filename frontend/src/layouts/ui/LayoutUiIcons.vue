@@ -33,6 +33,8 @@ const dynamicIcons = {
           <i-custom-options />
           <i-custom-notifications />
           <i-custom-triangle-down />
+          <i-custom-arrow-right />
+          <i-custom-arrow-down />
           <i-custom-dot-loader />
         </div>
         <div class="row">

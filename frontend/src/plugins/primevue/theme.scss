@@ -171,12 +171,17 @@
   .p-select,
   .p-multiselect {
     align-items: center;
-    width: 100%;
-    min-width: 200px;
-    max-width: 400px;
-    min-height: 42px;
+    width: 20rem;
+    min-width: fit-content;
+    max-width: 40rem;
+    height: 4.2rem;
+    min-height: fit-content;
+    max-height: 100%;
     &-sm {
-      min-height: 32px;
+      height: 3.2rem;
+    }
+    &-overlay-sm &-option {
+      height: 3.2rem;
     }
     &-dropdown {
       .p-icon {

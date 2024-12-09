@@ -353,7 +353,7 @@ const Preset = definePreset(Aura, {
         padding: '0.5rem 1rem 0.25rem 1rem',
       },
       option: {
-        padding: '1rem 1rem',
+        padding: '0.75rem 0.75rem',
         borderRadius: '{border.radius.md}',
       },
       optionGroup: {
@@ -887,8 +887,16 @@ const Preset = definePreset(Aura, {
         },
       },
     },
+    select: {
+      sm: {
+        fontSize: '1.4rem',
+      },
+    },
     multiselect: {
       chipBorderRadius: '10rem',
+      sm: {
+        fontSize: '1.4rem',
+      },
     },
     chip: {
       paddingX: '0.3rem',
@@ -1108,6 +1116,18 @@ const Preset = definePreset(Aura, {
     popover: {
       arrowOffset: 'calc({popoverBorderRadius} * 2)',
     },
+    progressspinner: {
+      colorScheme: {
+        light: {
+          root: {
+            'color.1': '{primary.color}',
+            'color.2': '{primary.color}',
+            'color.3': '{primary.color}',
+            'color.4': '{primary.color}',
+          },
+        },
+      },
+    },
     colorpicker: {
       previewWidth: '3rem',
       previewHeight: '3rem',
@@ -1152,14 +1172,16 @@ const Preset = definePreset(Aura, {
         },
       },
     },
-    progressspinner: {
+    datatable: {
+      rowToggleButtonSize: '3rem',
       colorScheme: {
         light: {
-          root: {
-            'color.1': '{primary.color}',
-            'color.2': '{primary.color}',
-            'color.3': '{primary.color}',
-            'color.4': '{primary.color}',
+          headerCellBorderColor: 'transparent',
+          headerCellBackground: 'transparent',
+          bodyCellBorderColor: 'transparent',
+          footerCellBackground: 'transparent',
+          row: {
+            toggleButtonHoverBackground: 'transparent',
           },
         },
       },
