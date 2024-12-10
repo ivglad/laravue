@@ -71,7 +71,7 @@ const autoCompleateSearch = useDebounceFn((event) => {
                     @complete="autoCompleateSearch">
                     <template #loader>
                       <ProgressSpinner
-                        class="app-progressspinner-insert"
+                        class="app-progressspinner-inside"
                         fill="transparent"
                         animationDuration="0.9s" />
                     </template>
@@ -91,7 +91,7 @@ const autoCompleateSearch = useDebounceFn((event) => {
                     @complete="autoCompleateSearch">
                     <template #loader>
                       <ProgressSpinner
-                        class="app-progressspinner-insert"
+                        class="app-progressspinner-inside"
                         fill="transparent"
                         animationDuration="0.9s" />
                     </template>

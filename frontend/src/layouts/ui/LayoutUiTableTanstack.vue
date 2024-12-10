@@ -132,68 +132,72 @@ const paginatorDropdownStyle = {
     </Divider>
     <div class="content no-ui-styles">
       <div class="table-tanstack">
-        <table>
-          <thead>
-            <tr
-              v-for="headerGroup in table.getHeaderGroups()"
-              :key="headerGroup.id">
-              <th
-                v-for="header in headerGroup.headers"
-                :key="header.id"
-                :colSpan="header.colSpan"
-                :style="header.column.getCanSort() ? 'user-select: none;' : ''"
-                @click="header.column.getToggleSortingHandler()?.($event)">
-                <template v-if="!header.isPlaceholder">
-                  <div class="th-title">
-                    <FlexRender
-                      :render="header.column.columnDef.header"
-                      :props="header.getContext()" />
-                    <i-custom-triangle-down
-                      v-show="
-                        header.column.getCanSort() &&
-                        header.column.getIsSorted() !== false
-                      "
-                      :style="
-                        header.column.getIsSorted() === 'asc'
-                          ? 'transform: rotate(180deg);'
-                          : ''
-                      " />
-                  </div>
-                </template>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              v-for="row in table.getRowModel().rows"
-              :key="row.id"
-              :class="[
-                row.id == 2 ? 'row-disabled' : '',
-                row.getIsSelected() ? 'row-selected' : '',
-              ]">
-              <td v-for="cell in row.getVisibleCells()" :key="cell.id">
-                <FlexRender
-                  :render="cell.column.columnDef.cell"
-                  :props="cell.getContext()" />
-              </td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr
-              v-for="footerGroup in table.getFooterGroups()"
-              :key="footerGroup.id">
-              <th
-                v-for="header in footerGroup.headers"
-                :key="header.id"
-                :colSpan="header.colSpan">
-                <FlexRender
-                  v-if="!header.isPlaceholder"
-                  :render="header.column.columnDef.footer"
-                  :props="header.getContext()" />
-              </th>
-            </tr>
-          </tfoot>
-        </table>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr
+                v-for="headerGroup in table.getHeaderGroups()"
+                :key="headerGroup.id">
+                <th
+                  v-for="header in headerGroup.headers"
+                  :key="header.id"
+                  :colSpan="header.colSpan"
+                  :style="
+                    header.column.getCanSort() ? 'user-select: none;' : ''
+                  "
+                  @click="header.column.getToggleSortingHandler()?.($event)">
+                  <template v-if="!header.isPlaceholder">
+                    <div class="th-title">
+                      <FlexRender
+                        :render="header.column.columnDef.header"
+                        :props="header.getContext()" />
+                      <i-custom-triangle-down
+                        v-show="
+                          header.column.getCanSort() &&
+                          header.column.getIsSorted() !== false
+                        "
+                        :style="
+                          header.column.getIsSorted() === 'asc'
+                            ? 'transform: rotate(180deg);'
+                            : ''
+                        " />
+                    </div>
+                  </template>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="row in table.getRowModel().rows"
+                :key="row.id"
+                :class="[
+                  row.id == 2 ? 'row-disabled' : '',
+                  row.getIsSelected() ? 'row-selected' : '',
+                ]">
+                <td v-for="cell in row.getVisibleCells()" :key="cell.id">
+                  <FlexRender
+                    :render="cell.column.columnDef.cell"
+                    :props="cell.getContext()" />
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr
+                v-for="footerGroup in table.getFooterGroups()"
+                :key="footerGroup.id">
+                <th
+                  v-for="header in footerGroup.headers"
+                  :key="header.id"
+                  :colSpan="header.colSpan">
+                  <FlexRender
+                    v-if="!header.isPlaceholder"
+                    :render="header.column.columnDef.footer"
+                    :props="header.getContext()" />
+                </th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
         <Paginator
           @page="pageHandler"
           :rows="table.getState().pagination.pageSize"
@@ -207,6 +211,10 @@ const paginatorDropdownStyle = {
 
 <style lang="scss" scoped>
 .layout-ui-table-tanstack {
+  .table-wrapper {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
   .table-tanstack {
     display: flex;
     flex-direction: column;

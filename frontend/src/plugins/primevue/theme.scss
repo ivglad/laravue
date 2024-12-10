@@ -22,24 +22,24 @@
     }
 
     &:not(&-icon-only):not(&-text):not(&-sm) {
-      height: 42px;
+      height: 4.2rem;
     }
     &:not(&-rounded):not(&-text):not(&-sm) {
-      width: 140px;
+      width: 14rem;
       min-width: fit-content;
       max-width: 100%;
     }
     &-sm {
-      width: 80px;
+      width: 8rem;
       min-width: fit-content;
       max-width: 100%;
-      height: 32px;
+      height: 3.2rem;
       font-size: 1.2rem;
     }
 
     &-icon-only {
-      min-width: 42px;
-      min-height: 42px;
+      min-width: 4.2rem;
+      min-height: 4.2rem;
     }
 
     &-outlined {
@@ -129,8 +129,10 @@
   // Inputs
   // --------------------------------------------------------------------------
   .p-inputtext {
-    width: clamp(200px, 100%, 400px);
-    min-height: 42px;
+    width: 25rem;
+    min-width: 10rem;
+    max-width: 40rem;
+    min-height: 4.2rem;
     &:not(:disabled):not(.p-invalid) {
       &:placeholder-shown,
       &::placeholder {
@@ -146,12 +148,18 @@
     }
   }
 
+  .p-textarea,
   .p-inputwrapper {
-    width: clamp(200px, 100%, 400px);
+    width: 25rem;
+    min-width: 10rem;
+    max-width: 40rem;
   }
 
-  .p-textarea {
-    width: clamp(200px, 100%, 400px);
+  .p-inputotp {
+    .p-inputtext {
+      width: 4.2rem;
+      min-width: 4.2rem;
+    }
   }
   // --------------------------------------------------------------------------
 
@@ -437,7 +445,10 @@
   textarea {
     font-family: inherit;
     font-size: inherit;
-    line-height: inherit;
+    line-height: 100%;
     letter-spacing: inherit;
+  }
+  textarea {
+    line-height: inherit;
   }
 }

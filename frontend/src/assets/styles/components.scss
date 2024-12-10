@@ -2,12 +2,24 @@
 @use '@/assets/styles/mixins' as *;
 
 @layer app {
-  .app-toast {
-    flex-direction: column;
-    &-summary {
+  .app-input {
+    position: relative;
+    display: flex;
+    // TODO: Переместить при реализации в AppInput
+    &-button {
+      position: absolute;
+      right: 0;
+    }
+    // TODO: Переместить при реализации в AppInput
+    &-mask,
+    &-help {
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    &-wrapper {
+      position: relative;
       display: flex;
       align-items: center;
-      gap: var(--p-toast-content-gap);
     }
   }
 
@@ -96,15 +108,6 @@
     }
   }
 
-  .app-progressspinner-insert {
-    position: absolute;
-    top: 50%;
-    right: var(--p-inputtext-padding-x);
-    width: 2.5rem;
-    height: 2.5rem;
-    transform: translateY(-50%);
-  }
-
   .app-confirm {
     &-modified {
       border-color: var(--p-primary-950);
@@ -162,9 +165,50 @@
     .p-card {
       &-footer {
         display: flex;
+        justify-content: end;
         gap: $size-10;
-        margin-top: $size-10;
+        height: 4.2rem;
       }
     }
+    .p-speeddial {
+      align-items: end !important;
+      &-list {
+        align-items: end;
+        gap: 0;
+        border-radius: var(--p-border-radius-lg);
+      }
+      &-item {
+        width: 100%;
+        padding: 0.5rem;
+        background-color: var(--p-content-background);
+        cursor: pointer;
+      }
+    }
+  }
+
+  .app-stepper {
+    &-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: $size-20;
+    }
+  }
+
+  .app-toast {
+    flex-direction: column;
+    &-summary {
+      display: flex;
+      align-items: center;
+      gap: var(--p-toast-content-gap);
+    }
+  }
+
+  .app-progressspinner-inside {
+    position: absolute;
+    top: 50%;
+    right: var(--p-inputtext-padding-x);
+    width: 2.5rem;
+    height: 2.5rem;
+    transform: translateY(-50%);
   }
 }

@@ -887,6 +887,10 @@ const Preset = definePreset(Aura, {
         },
       },
     },
+    togglebutton: {
+      padding: '0.75rem 1rem',
+      contentTop: '0.3rem',
+    },
     select: {
       sm: {
         fontSize: '1.4rem',
@@ -930,33 +934,33 @@ const Preset = definePreset(Aura, {
         light: {
           success: {
             color: '{text.color}',
-            background: '{surface.50}',
+            background: '{content.background}',
             borderColor: '{green.500}',
           },
           info: {
             color: '{text.color}',
-            background: '{surface.50}',
+            background: '{content.background}',
             borderColor: '{sky.500}',
           },
           warn: {
             color: '{text.color}',
-            background: '{surface.50}',
+            background: '{content.background}',
             borderColor: '{amber.500}',
           },
           error: {
             color: '{text.color}',
-            background: '{surface.50}',
+            background: '{content.background}',
             borderColor: '{red.400}',
           },
           secondary: {
             color: '{text.color}',
-            background: '{surface.50}',
+            background: '{content.background}',
             borderColor: '{gray.500}',
           },
           contrast: {
             color: '{primary.color}',
             detailColor: '{text.color}',
-            background: '{surface.50}',
+            background: '{content.background}',
             borderColor: '{primary.color}',
           },
         },
@@ -1182,6 +1186,22 @@ const Preset = definePreset(Aura, {
           footerCellBackground: 'transparent',
           row: {
             toggleButtonHoverBackground: 'transparent',
+          },
+        },
+      },
+    },
+    stepper: {
+      stepNumber: {
+        size: '4rem',
+        fontSize: '1.6rem',
+      },
+      colorScheme: {
+        light: {
+          steppanelBackground: 'transparent',
+          stepNumber: {
+            activeColor: '{primary.contrastColor}',
+            activeBorderColor: '{stepper.step.title.active.color}',
+            activeBackground: '{stepper.step.title.active.color}',
           },
         },
       },

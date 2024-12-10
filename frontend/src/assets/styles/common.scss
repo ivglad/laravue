@@ -73,11 +73,11 @@
   }
   ::-webkit-scrollbar-thumb {
     border-radius: 0.6rem;
-    outline: 0.3rem solid var(--p-primary-300);
-    outline-offset: -0.6rem;
-    background-color: transparent;
+    border: 0.3rem solid transparent;
+    background-clip: padding-box;
+    background-color: var(--p-primary-400);
     &:hover {
-      outline-color: var(--p-primary-color);
+      background-color: var(--p-primary-color);
     }
   }
 
@@ -137,6 +137,10 @@
 
   small {
     font-size: 1.2rem;
+  }
+
+  textarea {
+    resize: none;
   }
 
   .icon {

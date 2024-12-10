@@ -1,4 +1,13 @@
-<script setup></script>
+<script setup>
+const settings = [
+  {
+    label: 'Добавить в закладки',
+  },
+  {
+    label: 'Включить уведомления',
+  },
+]
+</script>
 
 <template>
   <section class="layout-ui-card">
@@ -22,12 +31,49 @@
           </p>
         </template>
         <template #footer>
-          <Button label="Убрать" severity="secondary" outlined />
-          <Button label="Получить" />
+          <SpeedDial
+            class="app-card-speeddial"
+            :model="settings"
+            direction="down"
+            :transitionDelay="80"
+            :style="{ position: 'absolute' }"
+            pt:menuitem="m-2">
+            <template #button="{ toggleCallback }">
+              <Button variant="text" rounded @click="toggleCallback">
+                <template #icon>
+                  <i-custom-settings />
+                </template>
+              </Button>
+            </template>
+            <template #item="{ item, toggleCallback }">
+              <div class="" @click="toggleCallback">
+                <!-- <span :class="item.icon" /> -->
+                <span>
+                  {{ item.label }}
+                </span>
+              </div>
+            </template>
+          </SpeedDial>
+          <div class="app-card-footer"></div>
+          <!-- <Button label="Убрать" severity="secondary" outlined />
+          <Button label="Получить" /> -->
         </template>
       </Card>
     </div>
   </section>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.app-card {
+  // &-footer {
+  //   position: relative;
+  //   width: 100%;
+  //   height: 4.2rem;
+  // }
+  // &-speeddial {
+  //   justify-content: end;
+  //   width: fit-content;
+  //   // left: 100%;
+  // }
+}
+</style>

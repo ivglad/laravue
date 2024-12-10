@@ -24,10 +24,11 @@ const totalVisits = computed(() =>
   customers.value.reduce((acc, row) => acc + row.visits, 0),
 )
 
+const totalSelectedRows = ref(null)
 const selectedCustomer = ref(null)
 const selectedCustomerExpandedRows = ref({})
-const onSelectedRows = (row) => {
-  console.log(row)
+const onSelectedRows = (rows) => {
+  totalSelectedRows.value = rows.length
 }
 
 const paginatorDropdownStyle = {
@@ -107,6 +108,10 @@ const paginatorDropdownStyle = {
               <Column footer="Всего:" :colspan="5" />
               <Column :footer="totalVisits" :colspan="3" />
             </Row>
+            <Row>
+              <Column footer="Выбрано строк:" :colspan="2" />
+              <Column :footer="totalSelectedRows" :colspan="6" />
+            </Row>
           </ColumnGroup>
           <template #expansion="slotProps">
             <div class="ml-30 mtb-10">
@@ -137,6 +142,8 @@ const paginatorDropdownStyle = {
     display: flex;
     flex-direction: column;
     gap: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
     :deep(table) {
       width: 100%;
       padding-bottom: 0;

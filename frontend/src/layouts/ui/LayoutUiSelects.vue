@@ -120,6 +120,7 @@ const groupedCities = ref([
                 <th>Default</th>
                 <th>Disabled</th>
                 <th>Invalid</th>
+                <th>Loading</th>
               </tr>
             </thead>
             <tbody>
@@ -130,7 +131,7 @@ const groupedCities = ref([
                     v-model="selectedCity"
                     :options="cities"
                     optionLabel="label"
-                    placeholder="Select a City" />
+                    placeholder="Выберите город" />
                 </td>
                 <td>
                   <Select
@@ -138,15 +139,30 @@ const groupedCities = ref([
                     :options="cities"
                     disabled
                     optionLabel="label"
-                    placeholder="Select a City" />
+                    placeholder="Выберите город" />
                 </td>
                 <td>
                   <Select
                     v-model="selectedCity"
                     :options="cities"
-                    :invalid="true"
+                    :invalid="!selectedCity"
                     optionLabel="label"
-                    placeholder="Select a City" />
+                    placeholder="Выберите город" />
+                </td>
+                <td>
+                  <Select
+                    v-model="selectedCity"
+                    :options="cities"
+                    :loading="true"
+                    optionLabel="label"
+                    placeholder="Выберите город">
+                    <template #loadingicon>
+                      <ProgressSpinner
+                        class="app-progressspinner-inside"
+                        fill="transparent"
+                        animationDuration="0.9s" />
+                    </template>
+                  </Select>
                 </td>
               </tr>
               <tr>
@@ -157,7 +173,7 @@ const groupedCities = ref([
                     :options="cities"
                     optionLabel="label"
                     display="chip"
-                    placeholder="Select Cities"
+                    placeholder="Выберите города"
                     filter
                     resetFilterOnHide
                     autoFilterFocus>
@@ -176,7 +192,7 @@ const groupedCities = ref([
                     :options="cities"
                     optionLabel="label"
                     display="chip"
-                    placeholder="Select Cities"
+                    placeholder="Выберите города"
                     filter
                     resetFilterOnHide
                     autoFilterFocus
@@ -187,6 +203,52 @@ const groupedCities = ref([
                           <i-custom-close @click="slotProps.removeCallback" />
                         </template>
                       </Chip>
+                    </template>
+                  </MultiSelect>
+                </td>
+                <td>
+                  <MultiSelect
+                    v-model="selectedCities"
+                    :options="cities"
+                    :invalid="!selectedCities"
+                    optionLabel="label"
+                    display="chip"
+                    placeholder="Выберите города"
+                    filter
+                    resetFilterOnHide
+                    autoFilterFocus>
+                    <template #chip="slotProps">
+                      <Chip :label="slotProps.value.label" removable>
+                        <template #removeicon>
+                          <i-custom-close @click="slotProps.removeCallback" />
+                        </template>
+                      </Chip>
+                    </template>
+                  </MultiSelect>
+                </td>
+                <td>
+                  <MultiSelect
+                    v-model="selectedCities"
+                    :options="cities"
+                    :loading="true"
+                    optionLabel="label"
+                    display="chip"
+                    placeholder="Выберите города"
+                    filter
+                    resetFilterOnHide
+                    autoFilterFocus>
+                    <template #chip="slotProps">
+                      <Chip :label="slotProps.value.label" removable>
+                        <template #removeicon>
+                          <i-custom-close @click="slotProps.removeCallback" />
+                        </template>
+                      </Chip>
+                    </template>
+                    <template #loadingicon>
+                      <ProgressSpinner
+                        class="app-progressspinner-inside"
+                        fill="transparent"
+                        animationDuration="0.9s" />
                     </template>
                   </MultiSelect>
                 </td>
@@ -201,7 +263,7 @@ const groupedCities = ref([
                     optionGroupLabel="label"
                     optionGroupChildren="items"
                     display="chip"
-                    placeholder="Select Cities"
+                    placeholder="Выберите города"
                     filter
                     resetFilterOnHide
                     autoFilterFocus>
@@ -227,7 +289,7 @@ const groupedCities = ref([
                     optionGroupLabel="label"
                     optionGroupChildren="items"
                     display="chip"
-                    placeholder="Select Cities"
+                    placeholder="Выберите города"
                     filter
                     :showToggleAll="false"
                     resetFilterOnHide

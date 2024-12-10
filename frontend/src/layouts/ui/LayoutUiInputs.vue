@@ -90,7 +90,10 @@ const sendMessage = () => {
                 </td>
               </tr>
               <tr>
-                <td>Textarea</td>
+                <td>
+                  Textarea <br />
+                  Ifta-label
+                </td>
                 <td>
                   <FloatLabel variant="on">
                     <Textarea
@@ -102,13 +105,47 @@ const sendMessage = () => {
                 </td>
               </tr>
               <tr>
+                <td>Number</td>
+                <td>
+                  <InputNumber
+                    v-model="inputState.value"
+                    inputId="integeronly"
+                    locale="ru-RU" />
+                </td>
+              </tr>
+              <tr>
+                <td>Currency</td>
+                <td>
+                  <InputNumber
+                    v-model="inputState.value"
+                    mode="currency"
+                    currency="USD"
+                    locale="ru-RU" />
+                </td>
+              </tr>
+              <tr>
+                <td>Prefix / Suffix</td>
+                <td>
+                  <InputNumber
+                    v-model="inputState.value"
+                    suffix="℃"
+                    locale="ru-RU" />
+                </td>
+              </tr>
+              <tr>
+                <td>Otp</td>
+                <td>
+                  <InputOtp v-model="inputState.value" />
+                </td>
+              </tr>
+              <tr>
                 <td>Mask</td>
                 <td>
                   <!-- TODO: Добавить вариант реализации в AppInput -->
                   <div class="app-input app-input-mask">
-                    <Message severity="secondary" variant="simple"
-                      >Телефон</Message
-                    >
+                    <Message severity="secondary" variant="simple">
+                      Телефон
+                    </Message>
                     <InputMask
                       v-model="inputState.valueMask"
                       mask="(999) 999-9999"
@@ -121,28 +158,30 @@ const sendMessage = () => {
                 <td>
                   <!-- TODO: Добавить вариант реализации в AppInput -->
                   <div class="app-input app-input-help">
-                    <Message severity="secondary" variant="simple"
-                      >Имя пользователя</Message
-                    >
+                    <Message severity="secondary" variant="simple">
+                      Имя пользователя
+                    </Message>
                     <div class="app-input-wrapper">
-                      <InputText
-                        v-model="inputState.value"
-                        aria-describedby="username-help" />
-                      <Button
-                        class="app-input-button"
-                        :disabled="!inputState.value"
-                        variant="text"
-                        aria-label="message-send"
-                        rounded
-                        @click="sendMessage">
-                        <template #icon>
-                          <i-custom-message-send />
-                        </template>
-                      </Button>
+                      <IconField>
+                        <InputText
+                          v-model="inputState.value"
+                          aria-describedby="username-help" />
+                        <Button
+                          class="app-input-button"
+                          :disabled="!inputState.value"
+                          variant="text"
+                          aria-label="message-send"
+                          rounded
+                          @click="sendMessage">
+                          <template #icon>
+                            <i-custom-message-send />
+                          </template>
+                        </Button>
+                      </IconField>
                     </div>
-                    <Message size="small" severity="secondary" variant="simple"
-                      >Введите имя пользователя</Message
-                    >
+                    <Message size="small" severity="secondary" variant="simple">
+                      Введите имя пользователя
+                    </Message>
                   </div>
                 </td>
               </tr>
@@ -154,31 +193,4 @@ const sendMessage = () => {
   </section>
 </template>
 
-<style lang="scss" scoped>
-.inputs {
-  .app-input {
-    position: relative;
-    display: flex;
-    // TODO: Переместить при реализации в AppInput
-    &-button {
-      position: absolute;
-      right: var(--p-inputtext-padding-x);
-    }
-    // TODO: Переместить при реализации в AppInput
-    &-mask,
-    &-help {
-      flex-direction: column;
-      gap: 0.2rem;
-    }
-    &-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-  }
-
-  #textarea-label {
-    resize: none;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

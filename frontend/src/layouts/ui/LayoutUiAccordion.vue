@@ -27,8 +27,14 @@ const panelIconStyle = (collapsed) => {
               <td>Accordion</td>
               <td>
                 <Accordion :value="['0']" multiple>
+                  <template #expandicon>
+                    <i-custom-arrow-down style="transform: rotate(180deg)" />
+                  </template>
+                  <template #collapseicon>
+                    <i-custom-arrow-down />
+                  </template>
                   <AccordionPanel value="0">
-                    <AccordionHeader>Заголовок I</AccordionHeader>
+                    <AccordionHeader> Заголовок I</AccordionHeader>
                     <AccordionContent>
                       <p class="m-0">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,

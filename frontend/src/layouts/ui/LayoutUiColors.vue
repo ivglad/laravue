@@ -186,7 +186,7 @@ const copyColor = async (hex, variable) => {
     text-align: center;
   }
   .color-value {
-    padding: 1rem;
+    padding: 0.5rem;
     cursor: pointer;
   }
 }

@@ -38,14 +38,14 @@ const dynamicIcons = {
           <i-custom-dot-loader />
         </div>
         <div class="row">
-          <span>Dynamic import:</span>
+          <span>Динамический импорт:</span>
           <div v-for="icon in dynamicIcons" :key="icon.title">
             <component :is="icon.component" />
           </div>
         </div>
         <div class="row">
           <!-- Импорт предзагруженных иконок из библиотеки https://icon-sets.iconify.design/fluent -->
-          <span>External library:</span>
+          <span>Внешняя библиотека:</span>
           <i-fluent-home-16-regular />
           <i-fluent-target-arrow-20-regular />
         </div>

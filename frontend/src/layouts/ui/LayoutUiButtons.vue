@@ -27,14 +27,14 @@ const setButtonLoading = (status) => {
                 <td>Primary</td>
                 <td>
                   <Button
-                    label="Button"
+                    label="Кнопка"
                     @click="setButtonLoading(!buttonLoading)" />
                 </td>
                 <td>
-                  <Button label="Button" disabled />
+                  <Button label="Кнопка" disabled />
                 </td>
                 <td>
-                  <Button label="Button" :loading="buttonLoading">
+                  <Button label="Кнопка" :loading="buttonLoading">
                     <template #loadingicon>
                       <i-custom-dot-loader />
                     </template>
@@ -45,16 +45,16 @@ const setButtonLoading = (status) => {
                 <td>Secondary</td>
                 <td>
                   <Button
-                    label="Button"
+                    label="Кнопка"
                     severity="secondary"
                     @click="setButtonLoading(!buttonLoading)" />
                 </td>
                 <td>
-                  <Button label="Button" severity="secondary" disabled />
+                  <Button label="Кнопка" severity="secondary" disabled />
                 </td>
                 <td>
                   <Button
-                    label="Button"
+                    label="Кнопка"
                     severity="secondary"
                     :loading="buttonLoading">
                     <template #loadingicon>
@@ -67,15 +67,15 @@ const setButtonLoading = (status) => {
                 <td>Outlined</td>
                 <td>
                   <Button
-                    label="Button"
+                    label="Кнопка"
                     outlined
                     @click="setButtonLoading(!buttonLoading)" />
                 </td>
                 <td>
-                  <Button label="Button" outlined disabled />
+                  <Button label="Кнопка" outlined disabled />
                 </td>
                 <td>
-                  <Button label="Button" :loading="buttonLoading" outlined>
+                  <Button label="Кнопка" :loading="buttonLoading" outlined>
                     <template #loadingicon>
                       <i-custom-dot-loader />
                     </template>
@@ -86,21 +86,21 @@ const setButtonLoading = (status) => {
                 <td>Outlined <br />secondary</td>
                 <td>
                   <Button
-                    label="Button"
+                    label="Кнопка"
                     severity="secondary"
                     outlined
                     @click="setButtonLoading(!buttonLoading)" />
                 </td>
                 <td>
                   <Button
-                    label="Button"
+                    label="Кнопка"
                     severity="secondary"
                     outlined
                     disabled />
                 </td>
                 <td>
                   <Button
-                    label="Button"
+                    label="Кнопка"
                     severity="secondary"
                     :loading="buttonLoading"
                     outlined>
@@ -217,15 +217,15 @@ const setButtonLoading = (status) => {
                 <td>Text</td>
                 <td>
                   <div class="column">
-                    <Button label="Text button" variant="text" />
+                    <Button label="Кнопка" variant="text" />
                     <Button
-                      label="Text button"
+                      label="Кнопка"
                       variant="text"
                       severity="secondary" />
                   </div>
                 </td>
                 <td>
-                  <Button label="Text button" variant="text" disabled />
+                  <Button label="Кнопка" variant="text" disabled />
                 </td>
               </tr>
             </tbody>
