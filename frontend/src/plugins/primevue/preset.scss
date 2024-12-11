@@ -1,7 +1,7 @@
 @use '@/assets/styles/variables' as *;
 @use '@/assets/styles/mixins' as *;
 
-@layer theme {
+@layer preset {
   // --------------------------------------------------------------------------
   // Buttons
   // --------------------------------------------------------------------------
@@ -37,9 +37,14 @@
       font-size: 1.2rem;
     }
 
-    &-icon-only {
+    &-icon-only:not(&-text) {
       min-width: 4.2rem;
       min-height: 4.2rem;
+    }
+
+    &-icon-only:where(&-text) {
+      min-width: var(--p-icon-size);
+      min-height: var(--p-icon-size);
     }
 
     &-outlined {
@@ -83,8 +88,7 @@
       }
     }
     &-text {
-      padding: calc(var(--p-button-padding-y) / 2)
-        calc(var(--p-button-padding-x) / 2);
+      padding: 0.5rem;
       @include hoverColors {
         color: var(--p-button-primary-hover-border-color);
       }
@@ -93,8 +97,7 @@
       }
     }
     &-text:where(&-icon-only) {
-      padding: calc(var(--p-button-padding-y) / 2)
-        calc(var(--p-button-padding-x) / 2);
+      padding: 0.5rem;
       @include hoverColors {
         color: var(--p-button-primary-hover-border-color);
       }
@@ -121,6 +124,12 @@
 
     &-loading &-label {
       display: none;
+    }
+  }
+
+  .p-selectbutton {
+    .p-togglebutton::before {
+      border-radius: var(--p-border-radius-md);
     }
   }
   // --------------------------------------------------------------------------
@@ -296,6 +305,8 @@
   // Iconfield
   // --------------------------------------------------------------------------
   .p-iconfield {
+    display: flex;
+    align-items: center;
     & *:first-child.p-inputicon {
       z-index: 1;
       & + * input {
@@ -304,6 +315,10 @@
         );
         padding-inline-end: var(--p-form-field-padding-x);
       }
+    }
+    .p-inputicon {
+      top: unset;
+      margin-top: 0;
     }
   }
 
@@ -445,9 +460,12 @@
   textarea {
     font-family: inherit;
     font-size: inherit;
-    line-height: 100%;
     letter-spacing: inherit;
   }
+  button {
+    line-height: 100%;
+  }
+  input,
   textarea {
     line-height: inherit;
   }

@@ -1,12 +1,23 @@
 <script setup>
+const menuEl = ref()
 const settings = [
   {
-    label: 'Добавить в закладки',
-  },
-  {
-    label: 'Включить уведомления',
+    label: 'Опции',
+    items: [
+      {
+        id: 0,
+        label: 'Подробнее',
+      },
+      {
+        id: 1,
+        label: 'Уведомить',
+      },
+    ],
   },
 ]
+const toggleMenu = (event) => {
+  menuEl.value.toggle(event)
+}
 </script>
 
 <template>
@@ -31,49 +42,28 @@ const settings = [
           </p>
         </template>
         <template #footer>
-          <SpeedDial
-            class="app-card-speeddial"
-            :model="settings"
-            direction="down"
-            :transitionDelay="80"
-            :style="{ position: 'absolute' }"
-            pt:menuitem="m-2">
-            <template #button="{ toggleCallback }">
-              <Button variant="text" rounded @click="toggleCallback">
-                <template #icon>
-                  <i-custom-settings />
-                </template>
-              </Button>
+          <Button
+            variant="text"
+            severity="secondary"
+            rounded
+            @click="toggleMenu">
+            <template #icon>
+              <i-custom-options />
             </template>
-            <template #item="{ item, toggleCallback }">
-              <div class="" @click="toggleCallback">
-                <!-- <span :class="item.icon" /> -->
-                <span>
-                  {{ item.label }}
-                </span>
+          </Button>
+          <Menu ref="menuEl" :model="settings" :popup="true">
+            <template #item="{ item }">
+              <div class="app-card-item">
+                <i-custom-search v-if="item.id == 0" />
+                <i-custom-notifications v-if="item.id == 1" />
+                {{ item.label }}
               </div>
             </template>
-          </SpeedDial>
-          <div class="app-card-footer"></div>
-          <!-- <Button label="Убрать" severity="secondary" outlined />
-          <Button label="Получить" /> -->
+          </Menu>
         </template>
       </Card>
     </div>
   </section>
 </template>
 
-<style lang="scss" scoped>
-.app-card {
-  // &-footer {
-  //   position: relative;
-  //   width: 100%;
-  //   height: 4.2rem;
-  // }
-  // &-speeddial {
-  //   justify-content: end;
-  //   width: fit-content;
-  //   // left: 100%;
-  // }
-}
-</style>
+<style lang="scss" scoped></style>

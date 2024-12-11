@@ -29,7 +29,7 @@ export default function registerPlugins(app) {
         darkModeSelector: '.p-dark-mode',
         cssLayer: {
           name: 'default',
-          order: 'reset, default, theme, app',
+          order: 'reset, default, preset, app',
         },
       },
     },

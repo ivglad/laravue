@@ -141,10 +141,90 @@ const selectPopoverElement = (element) => {
   selectedPopoverElement.value = element
   popover.value.hide()
 }
+
+const menu = ref()
+const settings = [
+  {
+    label: 'Опции',
+    items: [
+      {
+        id: 0,
+        label: 'Подробнее',
+      },
+      {
+        id: 1,
+        label: 'Уведомить',
+      },
+    ],
+  },
+]
+const toggleMenu = (event) => {
+  menu.value.toggle(event)
+}
+
+const tieredMenu = ref()
+const tieredSettings = ref([
+  {
+    label: 'Файл',
+    items: [
+      {
+        label: 'Новый',
+        items: [
+          {
+            label: 'Документ',
+          },
+          {
+            label: 'Изображение',
+          },
+          {
+            label: 'Видео',
+          },
+        ],
+      },
+      {
+        label: 'Открыть',
+      },
+      {
+        label: 'Печать',
+      },
+    ],
+  },
+  {
+    label: 'Редактирование',
+    items: [
+      {
+        label: 'Копировать',
+      },
+      {
+        label: 'Удалить',
+      },
+    ],
+  },
+  {
+    label: 'Поиск',
+  },
+  {
+    separator: true,
+  },
+  {
+    label: 'Отправить',
+    items: [
+      {
+        label: 'Telegram',
+      },
+      {
+        label: 'WhatsApp',
+      },
+    ],
+  },
+])
+const toggleTieredMenu = (event) => {
+  tieredMenu.value.toggle(event)
+}
 </script>
 
 <template>
-  <section class="layout-ui-overlay">
+  <section class="layout-ui-popups-dialogs">
     <Divider type="dashed" align="center">
       <h2>Popups / Dialogs</h2>
     </Divider>
@@ -271,6 +351,46 @@ const selectPopoverElement = (element) => {
                     <span>{{ element.name }}</span>
                   </div>
                 </Popover>
+              </td>
+            </tr>
+            <tr>
+              <td>Menu</td>
+              <td>
+                <Button
+                  variant="text"
+                  severity="secondary"
+                  label="Настроить"
+                  rounded
+                  @click="toggleMenu">
+                  <template #icon>
+                    <i-custom-options />
+                  </template>
+                </Button>
+                <Menu ref="menu" :model="settings" :popup="true">
+                  <template #item="{ item }">
+                    <div class="app-card-item">
+                      <i-custom-search v-if="item.id == 0" />
+                      <i-custom-notifications v-if="item.id == 1" />
+                      {{ item.label }}
+                    </div>
+                  </template>
+                </Menu>
+              </td>
+            </tr>
+            <tr>
+              <td>TieredMenu</td>
+              <td>
+                <Button
+                  variant="text"
+                  severity="secondary"
+                  label="Настройки"
+                  rounded
+                  @click="toggleTieredMenu">
+                  <template #icon>
+                    <i-custom-options />
+                  </template>
+                </Button>
+                <TieredMenu ref="tieredMenu" :model="tieredSettings" popup />
               </td>
             </tr>
             <tr>

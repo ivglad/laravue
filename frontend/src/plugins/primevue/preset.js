@@ -663,6 +663,7 @@ const Preset = definePreset(Aura, {
   },
   components: {
     button: {
+      iconOnlyWidth: 'fit-content',
       colorScheme: {
         light: {
           primary: {
@@ -1205,6 +1206,11 @@ const Preset = definePreset(Aura, {
           },
         },
       },
+    },
+    tieredmenu: {
+      itemPadding: '1rem 1rem',
+      listGap: '0.2rem',
+      submenuIconSize: '1.4rem',
     },
   },
 })

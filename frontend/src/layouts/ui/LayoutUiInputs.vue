@@ -161,24 +161,23 @@ const sendMessage = () => {
                     <Message severity="secondary" variant="simple">
                       Имя пользователя
                     </Message>
-                    <div class="app-input-wrapper">
-                      <IconField>
-                        <InputText
-                          v-model="inputState.value"
-                          aria-describedby="username-help" />
+                    <IconField>
+                      <InputText
+                        v-model="inputState.value"
+                        aria-describedby="username-help" />
+                      <InputIcon>
                         <Button
                           class="app-input-button"
                           :disabled="!inputState.value"
                           variant="text"
                           aria-label="message-send"
-                          rounded
                           @click="sendMessage">
                           <template #icon>
                             <i-custom-message-send />
                           </template>
                         </Button>
-                      </IconField>
-                    </div>
+                      </InputIcon>
+                    </IconField>
                     <Message size="small" severity="secondary" variant="simple">
                       Введите имя пользователя
                     </Message>

@@ -5,7 +5,8 @@
     <Divider align="center">
       <h1>UI-KIT</h1>
     </Divider>
-    <span>CascadeSelect</span>
+    <span>Carousel</span>
+    <span>Avatar</span>
 
     <LayoutUiButtons />
 
@@ -33,7 +34,7 @@
 
     <LayoutUiFileUpload />
 
-    <LayoutUiOverlay />
+    <LayoutUiPopups />
 
     <LayoutUiChips />
 
