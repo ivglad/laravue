@@ -16,6 +16,26 @@
     }
   }
 
+  .app-checkbox,
+  .app-radio {
+    label {
+      display: flex;
+      align-items: center;
+      gap: $size-10;
+      .p-disabled + .app-checkbox-label,
+      .p-disabled + .app-radio-label {
+        opacity: 0.4;
+        filter: grayscale(0.9);
+        user-select: none;
+        pointer-events: none;
+      }
+    }
+    &-label {
+      color: inherit;
+      user-select: none;
+    }
+  }
+
   .app-multiselect-extended {
     &-overlay {
       background: color-mix(
@@ -156,6 +176,9 @@
     width: 30rem;
     overflow: hidden;
     .p-card {
+      &-header {
+        padding: var(--p-select-option-padding);
+      }
       &-footer {
         display: flex;
         justify-content: end;
@@ -199,5 +222,17 @@
     width: 2.5rem;
     height: 2.5rem;
     transform: translateY(-50%);
+  }
+
+  .app-carousel {
+    .p-carousel {
+      &-item {
+        & > * {
+          width: auto;
+          height: calc(100% - 1rem);
+          margin: 0.5rem;
+        }
+      }
+    }
   }
 }

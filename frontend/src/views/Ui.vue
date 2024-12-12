@@ -5,8 +5,6 @@
     <Divider align="center">
       <h1>UI-KIT</h1>
     </Divider>
-    <span>Carousel</span>
-    <span>Avatar</span>
 
     <LayoutUiButtons />
 
@@ -46,17 +44,34 @@
 
     <LayoutUiTabs />
 
-    <LayoutUiPaginator />
-
     <LayoutUiAccordion />
 
-    <LayoutUiCard />
+    <LayoutUiPaginator />
 
     <LayoutUiStepper />
 
-    <LayoutUiTable />
+    <LayoutUiCard />
 
-    <LayoutUiTableTanstack />
+    <LayoutUiCarousel
+      v-animateonscroll="{
+        enterClass: 'animate-fadein',
+        leaveClass: 'animate-fadeout',
+      }"
+      style="transition-duration: 0.5s" />
+
+    <LayoutUiTable
+      v-animateonscroll="{
+        enterClass: 'animate-fadein',
+        leaveClass: 'animate-fadeout',
+      }"
+      style="transition-duration: 0.5s" />
+
+    <LayoutUiTableTanstack
+      v-animateonscroll="{
+        enterClass: 'animate-scalein',
+        leaveClass: 'animate-fadeout',
+      }"
+      style="transition-duration: 0.5s" />
 
     <LayoutUiProgress />
 

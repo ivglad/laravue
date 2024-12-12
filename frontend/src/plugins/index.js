@@ -14,6 +14,7 @@ import DialogService from 'primevue/dialogservice'
 import Tooltip from 'primevue/tooltip'
 import KeyFilter from 'primevue/keyfilter'
 import StyleClass from 'primevue/styleclass'
+import AnimateOnScroll from 'primevue/animateonscroll'
 import Preset from './primevue/preset.js'
 import Locale from './primevue/locale.json'
 // ============================================================================
@@ -42,4 +43,5 @@ export default function registerPlugins(app) {
   app.directive('tooltip', Tooltip)
   app.directive('keyfilter', KeyFilter)
   app.directive('styleclass', StyleClass)
+  app.directive('animateonscroll', AnimateOnScroll)
 }

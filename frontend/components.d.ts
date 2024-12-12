@@ -27,6 +27,7 @@ declare module 'vue' {
     Breadcrumb: typeof import('primevue/breadcrumb')['default']
     Button: typeof import('primevue/button')['default']
     Card: typeof import('primevue/card')['default']
+    Carousel: typeof import('primevue/carousel')['default']
     Checkbox: typeof import('primevue/checkbox')['default']
     Chip: typeof import('primevue/chip')['default']
     ColorPicker: typeof import('primevue/colorpicker')['default']
@@ -35,7 +36,7 @@ declare module 'vue' {
     ConfirmDialog: typeof import('primevue/confirmdialog')['default']
     ConfirmPopup: typeof import('primevue/confirmpopup')['default']
     ContextMenu: typeof import('primevue/contextmenu')['default']
-    copy: typeof import('./src/layouts/ui/LayoutUiTables copy.vue')['default']
+    copy: typeof import('./src/layouts/ui/LayoutUiCard copy.vue')['default']
     DataTable: typeof import('primevue/datatable')['default']
     DatePicker: typeof import('primevue/datepicker')['default']
     Dialog: typeof import('primevue/dialog')['default']
@@ -86,6 +87,7 @@ declare module 'vue' {
     LayoutUiBadges: typeof import('./src/layouts/ui/LayoutUiBadges.vue')['default']
     LayoutUiButtons: typeof import('./src/layouts/ui/LayoutUiButtons.vue')['default']
     LayoutUiCard: typeof import('./src/layouts/ui/LayoutUiCard.vue')['default']
+    LayoutUiCarousel: typeof import('./src/layouts/ui/LayoutUiCarousel.vue')['default']
     LayoutUiCheckboxes: typeof import('./src/layouts/ui/LayoutUiCheckboxes.vue')['default']
     LayoutUiChip: typeof import('./src/layouts/ui/LayoutUiChip.vue')['default']
     LayoutUiChips: typeof import('./src/layouts/ui/LayoutUiChips.vue')['default']
@@ -151,6 +153,7 @@ declare module 'vue' {
     Ui: typeof import('./src/views/Ui.vue')['default']
   }
   export interface ComponentCustomProperties {
+    AnimateOnScroll: typeof import('primevue/animateonscroll')['default']
     Tooltip: typeof import('primevue/tooltip')['default']
   }
 }
