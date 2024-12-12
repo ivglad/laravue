@@ -3,7 +3,7 @@
 <template>
   <section class="layout-ui-badges">
     <Divider type="dashed" align="center">
-      <h2>Badges</h2>
+      <h2>Badges / Avatar</h2>
     </Divider>
     <div class="content">
       <div class="table-wrapper">
@@ -24,7 +24,7 @@
               </td>
             </tr>
             <tr>
-              <td>Default <br />xlarge</td>
+              <td>Xlarge</td>
               <td>
                 <OverlayBadge value="35" severity="warn" size="xlarge">
                   <i-custom-notifications />
@@ -32,7 +32,7 @@
               </td>
             </tr>
             <tr>
-              <td>Default <br />large</td>
+              <td>Large</td>
               <td>
                 <OverlayBadge value="35" severity="success" size="large">
                   <i-custom-notifications />
@@ -40,7 +40,7 @@
               </td>
             </tr>
             <tr>
-              <td>Default <br />small</td>
+              <td>Small</td>
               <td>
                 <OverlayBadge value="35" severity="info" size="small">
                   <i-custom-notifications />
@@ -52,6 +52,26 @@
               <td>
                 <OverlayBadge severity="danger">
                   <i-custom-notifications />
+                </OverlayBadge>
+              </td>
+            </tr>
+            <tr>
+              <td>Avatar</td>
+              <td>
+                <Avatar
+                  :label="getInitialsHelper('Линус Бенедикт Торвальдс')"
+                  size="xlarge"
+                  shape="circle" />
+              </td>
+            </tr>
+            <tr>
+              <td>Avatar</td>
+              <td>
+                <OverlayBadge value="4" severity="danger">
+                  <Avatar
+                    :label="getInitialsHelper('Линус Бенедикт Торвальдс')"
+                    size="xlarge"
+                    shape="circle" />
                 </OverlayBadge>
               </td>
             </tr>

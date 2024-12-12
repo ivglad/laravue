@@ -296,7 +296,9 @@
     width: fit-content;
     height: fit-content;
     .p-badge {
-      transform: translate(90%, -50%);
+      &:not(&-circle) {
+        transform: translate(90%, -50%);
+      }
     }
   }
   // --------------------------------------------------------------------------
