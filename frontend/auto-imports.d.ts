@@ -6,6 +6,8 @@
 // biome-ignore lint: disable
 export {}
 declare global {
+  const $dt: typeof import('@primevue/themes')['$dt']
+  const $t: typeof import('@primevue/themes')['$t']
   const Accordion: typeof import('primevue')['Accordion']
   const AccordionContent: typeof import('primevue')['AccordionContent']
   const AccordionContentStyle: typeof import('primevue')['AccordionContentStyle']
@@ -271,6 +273,9 @@ declare global {
   const TerminalStyle: typeof import('primevue')['TerminalStyle']
   const Textarea: typeof import('primevue')['Textarea']
   const TextareaStyle: typeof import('primevue')['TextareaStyle']
+  const Theme: typeof import('@primevue/themes')['Theme']
+  const ThemeService: typeof import('@primevue/themes')['ThemeService']
+  const ThemeUtils: typeof import('@primevue/themes')['ThemeUtils']
   const TieredMenu: typeof import('primevue')['TieredMenu']
   const TieredMenuStyle: typeof import('primevue')['TieredMenuStyle']
   const Timeline: typeof import('primevue')['Timeline']
@@ -345,6 +350,7 @@ declare global {
   const createTable: typeof import('@tanstack/vue-table')['createTable']
   const createTemplatePromise: typeof import('@vueuse/core')['createTemplatePromise']
   const createUnrefFn: typeof import('@vueuse/core')['createUnrefFn']
+  const css: typeof import('@primevue/themes')['css']
   const customRef: typeof import('vue')['customRef']
   const customStorageEventName: typeof import('@vueuse/core')['customStorageEventName']
   const debounceFilter: typeof import('@vueuse/core')['debounceFilter']
@@ -359,7 +365,10 @@ declare global {
   const defaultWindow: typeof import('@vueuse/core')['defaultWindow']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
+  const definePreset: typeof import('@primevue/themes')['definePreset']
   const directiveHooks: typeof import('@vueuse/core')['directiveHooks']
+  const dt: typeof import('@primevue/themes')['dt']
+  const dtwt: typeof import('@primevue/themes')['dtwt']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
   const executeTransition: typeof import('@vueuse/core')['executeTransition']
@@ -373,6 +382,7 @@ declare global {
   const formatTimeAgo: typeof import('@vueuse/core')['formatTimeAgo']
   const functionalUpdate: typeof import('@tanstack/vue-table')['functionalUpdate']
   const get: typeof import('@vueuse/core')['get']
+  const getComputedValue: typeof import('@primevue/themes')['getComputedValue']
   const getCoreRowModel: typeof import('@tanstack/vue-table')['getCoreRowModel']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
@@ -387,9 +397,13 @@ declare global {
   const getLifeCycleTarget: typeof import('@vueuse/core')['getLifeCycleTarget']
   const getMemoOptions: typeof import('@tanstack/vue-table')['getMemoOptions']
   const getPaginationRowModel: typeof import('@tanstack/vue-table')['getPaginationRowModel']
+  const getRule: typeof import('@primevue/themes')['getRule']
   const getSSRHandler: typeof import('@vueuse/core')['getSSRHandler']
   const getSortedRowModel: typeof import('@tanstack/vue-table')['getSortedRowModel']
+  const getVariableName: typeof import('@primevue/themes')['getVariableName']
+  const getVariableValue: typeof import('@primevue/themes')['getVariableValue']
   const h: typeof import('vue')['h']
+  const hasOddBraces: typeof import('@primevue/themes')['hasOddBraces']
   const hasOwn: typeof import('@vueuse/core')['hasOwn']
   const hyphenate: typeof import('@vueuse/core')['hyphenate']
   const identity: typeof import('@vueuse/core')['identity']
@@ -417,6 +431,8 @@ declare global {
   const mapGamepadToXbox360Controller: typeof import('@vueuse/core')['mapGamepadToXbox360Controller']
   const markRaw: typeof import('vue')['markRaw']
   const memo: typeof import('@tanstack/vue-table')['memo']
+  const merge: typeof import('@primevue/themes')['merge']
+  const mix: typeof import('@primevue/themes')['mix']
   const nextTick: typeof import('vue')['nextTick']
   const noop: typeof import('@tanstack/vue-table')['noop']
   const normalizeDate: typeof import('@vueuse/core')['normalizeDate']
@@ -449,6 +465,7 @@ declare global {
   const onUpdated: typeof import('vue')['onUpdated']
   const onWatcherCleanup: typeof import('vue')['onWatcherCleanup']
   const orderColumns: typeof import('@tanstack/vue-table')['orderColumns']
+  const palette: typeof import('@primevue/themes')['palette']
   const passiveEventSupported: typeof import('@tanstack/vue-table')['passiveEventSupported']
   const pausableFilter: typeof import('@vueuse/core')['pausableFilter']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
@@ -475,9 +492,11 @@ declare global {
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
   const selectRowsFn: typeof import('@tanstack/vue-table')['selectRowsFn']
   const set: typeof import('@vueuse/core')['set']
+  const setProperty: typeof import('@primevue/themes')['setProperty']
   const setSSRHandler: typeof import('@vueuse/core')['setSSRHandler']
   const setup: typeof import('primevue')['setup']
   const setupConfig: typeof import('primevue')['setupConfig']
+  const shade: typeof import('@primevue/themes')['shade']
   const shallowReactive: typeof import('vue')['shallowReactive']
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
@@ -490,11 +509,17 @@ declare global {
   const throttledRef: typeof import('@vueuse/core')['throttledRef']
   const throttledWatch: typeof import('@vueuse/core')['throttledWatch']
   const timestamp: typeof import('@vueuse/core')['timestamp']
+  const tint: typeof import('@primevue/themes')['tint']
+  const toNormalizePrefix: typeof import('@primevue/themes')['toNormalizePrefix']
+  const toNormalizeVariable: typeof import('@primevue/themes')['toNormalizeVariable']
   const toRaw: typeof import('vue')['toRaw']
   const toReactive: typeof import('@vueuse/core')['toReactive']
   const toRef: typeof import('vue')['toRef']
   const toRefs: typeof import('vue')['toRefs']
+  const toTokenKey: typeof import('@primevue/themes')['toTokenKey']
+  const toUnit: typeof import('@primevue/themes')['toUnit']
   const toValue: typeof import('vue')['toValue']
+  const toVariables: typeof import('@primevue/themes')['toVariables']
   const triggerRef: typeof import('vue')['triggerRef']
   const tryOnBeforeMount: typeof import('@vueuse/core')['tryOnBeforeMount']
   const tryOnBeforeUnmount: typeof import('@vueuse/core')['tryOnBeforeUnmount']
@@ -504,6 +529,9 @@ declare global {
   const unref: typeof import('vue')['unref']
   const unrefElement: typeof import('@vueuse/core')['unrefElement']
   const until: typeof import('@vueuse/core')['until']
+  const updatePreset: typeof import('@primevue/themes')['updatePreset']
+  const updatePrimaryPalette: typeof import('@primevue/themes')['updatePrimaryPalette']
+  const updateSurfacePalette: typeof import('@primevue/themes')['updateSurfacePalette']
   const useActiveElement: typeof import('@vueuse/core')['useActiveElement']
   const useAnimate: typeof import('@vueuse/core')['useAnimate']
   const useArrayDifference: typeof import('@vueuse/core')['useArrayDifference']
@@ -616,6 +644,7 @@ declare global {
   const usePreferredDark: typeof import('@vueuse/core')['usePreferredDark']
   const usePreferredLanguages: typeof import('@vueuse/core')['usePreferredLanguages']
   const usePreferredReducedMotion: typeof import('@vueuse/core')['usePreferredReducedMotion']
+  const usePreset: typeof import('@primevue/themes')['usePreset']
   const usePrevious: typeof import('@vueuse/core')['usePrevious']
   const usePrimeVue: typeof import('primevue')['usePrimeVue']
   const useRafFn: typeof import('@vueuse/core')['useRafFn']
@@ -649,6 +678,7 @@ declare global {
   const useTextDirection: typeof import('@vueuse/core')['useTextDirection']
   const useTextSelection: typeof import('@vueuse/core')['useTextSelection']
   const useTextareaAutosize: typeof import('@vueuse/core')['useTextareaAutosize']
+  const useTheme: typeof import('@primevue/themes')['useTheme']
   const useThrottle: typeof import('@vueuse/core')['useThrottle']
   const useThrottleFn: typeof import('@vueuse/core')['useThrottleFn']
   const useThrottledRefHistory: typeof import('@vueuse/core')['useThrottledRefHistory']
@@ -708,6 +738,8 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface GlobalComponents {}
   interface ComponentCustomProperties {
+    readonly $dt: UnwrapRef<typeof import('@primevue/themes')['$dt']>
+    readonly $t: UnwrapRef<typeof import('@primevue/themes')['$t']>
     readonly Accordion: UnwrapRef<typeof import('primevue')['Accordion']>
     readonly AccordionContent: UnwrapRef<typeof import('primevue')['AccordionContent']>
     readonly AccordionContentStyle: UnwrapRef<typeof import('primevue')['AccordionContentStyle']>
@@ -973,6 +1005,9 @@ declare module 'vue' {
     readonly TerminalStyle: UnwrapRef<typeof import('primevue')['TerminalStyle']>
     readonly Textarea: UnwrapRef<typeof import('primevue')['Textarea']>
     readonly TextareaStyle: UnwrapRef<typeof import('primevue')['TextareaStyle']>
+    readonly Theme: UnwrapRef<typeof import('@primevue/themes')['Theme']>
+    readonly ThemeService: UnwrapRef<typeof import('@primevue/themes')['ThemeService']>
+    readonly ThemeUtils: UnwrapRef<typeof import('@primevue/themes')['ThemeUtils']>
     readonly TieredMenu: UnwrapRef<typeof import('primevue')['TieredMenu']>
     readonly TieredMenuStyle: UnwrapRef<typeof import('primevue')['TieredMenuStyle']>
     readonly Timeline: UnwrapRef<typeof import('primevue')['Timeline']>
@@ -1047,6 +1082,7 @@ declare module 'vue' {
     readonly createTable: UnwrapRef<typeof import('@tanstack/vue-table')['createTable']>
     readonly createTemplatePromise: UnwrapRef<typeof import('@vueuse/core')['createTemplatePromise']>
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
+    readonly css: UnwrapRef<typeof import('@primevue/themes')['css']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly customStorageEventName: UnwrapRef<typeof import('@vueuse/core')['customStorageEventName']>
     readonly debounceFilter: UnwrapRef<typeof import('@vueuse/core')['debounceFilter']>
@@ -1061,6 +1097,9 @@ declare module 'vue' {
     readonly defaultWindow: UnwrapRef<typeof import('@vueuse/core')['defaultWindow']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
+    readonly definePreset: UnwrapRef<typeof import('@primevue/themes')['definePreset']>
+    readonly dt: UnwrapRef<typeof import('@primevue/themes')['dt']>
+    readonly dtwt: UnwrapRef<typeof import('@primevue/themes')['dtwt']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly executeTransition: UnwrapRef<typeof import('@vueuse/core')['executeTransition']>
@@ -1073,6 +1112,7 @@ declare module 'vue' {
     readonly formatTimeAgo: UnwrapRef<typeof import('@vueuse/core')['formatTimeAgo']>
     readonly functionalUpdate: UnwrapRef<typeof import('@tanstack/vue-table')['functionalUpdate']>
     readonly get: UnwrapRef<typeof import('@vueuse/core')['get']>
+    readonly getComputedValue: UnwrapRef<typeof import('@primevue/themes')['getComputedValue']>
     readonly getCoreRowModel: UnwrapRef<typeof import('@tanstack/vue-table')['getCoreRowModel']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
@@ -1086,9 +1126,13 @@ declare module 'vue' {
     readonly getLifeCycleTarget: UnwrapRef<typeof import('@vueuse/core')['getLifeCycleTarget']>
     readonly getMemoOptions: UnwrapRef<typeof import('@tanstack/vue-table')['getMemoOptions']>
     readonly getPaginationRowModel: UnwrapRef<typeof import('@tanstack/vue-table')['getPaginationRowModel']>
+    readonly getRule: UnwrapRef<typeof import('@primevue/themes')['getRule']>
     readonly getSSRHandler: UnwrapRef<typeof import('@vueuse/core')['getSSRHandler']>
     readonly getSortedRowModel: UnwrapRef<typeof import('@tanstack/vue-table')['getSortedRowModel']>
+    readonly getVariableName: UnwrapRef<typeof import('@primevue/themes')['getVariableName']>
+    readonly getVariableValue: UnwrapRef<typeof import('@primevue/themes')['getVariableValue']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
+    readonly hasOddBraces: UnwrapRef<typeof import('@primevue/themes')['hasOddBraces']>
     readonly hasOwn: UnwrapRef<typeof import('@vueuse/core')['hasOwn']>
     readonly hyphenate: UnwrapRef<typeof import('@vueuse/core')['hyphenate']>
     readonly identity: UnwrapRef<typeof import('@vueuse/core')['identity']>
@@ -1116,6 +1160,8 @@ declare module 'vue' {
     readonly mapGamepadToXbox360Controller: UnwrapRef<typeof import('@vueuse/core')['mapGamepadToXbox360Controller']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly memo: UnwrapRef<typeof import('@tanstack/vue-table')['memo']>
+    readonly merge: UnwrapRef<typeof import('@primevue/themes')['merge']>
+    readonly mix: UnwrapRef<typeof import('@primevue/themes')['mix']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly noop: UnwrapRef<typeof import('@tanstack/vue-table')['noop']>
     readonly normalizeDate: UnwrapRef<typeof import('@vueuse/core')['normalizeDate']>
@@ -1148,6 +1194,7 @@ declare module 'vue' {
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
     readonly onWatcherCleanup: UnwrapRef<typeof import('vue')['onWatcherCleanup']>
     readonly orderColumns: UnwrapRef<typeof import('@tanstack/vue-table')['orderColumns']>
+    readonly palette: UnwrapRef<typeof import('@primevue/themes')['palette']>
     readonly passiveEventSupported: UnwrapRef<typeof import('@tanstack/vue-table')['passiveEventSupported']>
     readonly pausableFilter: UnwrapRef<typeof import('@vueuse/core')['pausableFilter']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
@@ -1174,9 +1221,11 @@ declare module 'vue' {
     readonly resolveUnref: UnwrapRef<typeof import('@vueuse/core')['resolveUnref']>
     readonly selectRowsFn: UnwrapRef<typeof import('@tanstack/vue-table')['selectRowsFn']>
     readonly set: UnwrapRef<typeof import('@vueuse/core')['set']>
+    readonly setProperty: UnwrapRef<typeof import('@primevue/themes')['setProperty']>
     readonly setSSRHandler: UnwrapRef<typeof import('@vueuse/core')['setSSRHandler']>
     readonly setup: UnwrapRef<typeof import('primevue')['setup']>
     readonly setupConfig: UnwrapRef<typeof import('primevue')['setupConfig']>
+    readonly shade: UnwrapRef<typeof import('@primevue/themes')['shade']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
@@ -1189,11 +1238,17 @@ declare module 'vue' {
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
     readonly timestamp: UnwrapRef<typeof import('@vueuse/core')['timestamp']>
+    readonly tint: UnwrapRef<typeof import('@primevue/themes')['tint']>
+    readonly toNormalizePrefix: UnwrapRef<typeof import('@primevue/themes')['toNormalizePrefix']>
+    readonly toNormalizeVariable: UnwrapRef<typeof import('@primevue/themes')['toNormalizeVariable']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toReactive: UnwrapRef<typeof import('@vueuse/core')['toReactive']>
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
+    readonly toTokenKey: UnwrapRef<typeof import('@primevue/themes')['toTokenKey']>
+    readonly toUnit: UnwrapRef<typeof import('@primevue/themes')['toUnit']>
     readonly toValue: UnwrapRef<typeof import('vue')['toValue']>
+    readonly toVariables: UnwrapRef<typeof import('@primevue/themes')['toVariables']>
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly tryOnBeforeMount: UnwrapRef<typeof import('@vueuse/core')['tryOnBeforeMount']>
     readonly tryOnBeforeUnmount: UnwrapRef<typeof import('@vueuse/core')['tryOnBeforeUnmount']>
@@ -1203,6 +1258,9 @@ declare module 'vue' {
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
+    readonly updatePreset: UnwrapRef<typeof import('@primevue/themes')['updatePreset']>
+    readonly updatePrimaryPalette: UnwrapRef<typeof import('@primevue/themes')['updatePrimaryPalette']>
+    readonly updateSurfacePalette: UnwrapRef<typeof import('@primevue/themes')['updateSurfacePalette']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
     readonly useArrayDifference: UnwrapRef<typeof import('@vueuse/core')['useArrayDifference']>
@@ -1315,6 +1373,7 @@ declare module 'vue' {
     readonly usePreferredDark: UnwrapRef<typeof import('@vueuse/core')['usePreferredDark']>
     readonly usePreferredLanguages: UnwrapRef<typeof import('@vueuse/core')['usePreferredLanguages']>
     readonly usePreferredReducedMotion: UnwrapRef<typeof import('@vueuse/core')['usePreferredReducedMotion']>
+    readonly usePreset: UnwrapRef<typeof import('@primevue/themes')['usePreset']>
     readonly usePrevious: UnwrapRef<typeof import('@vueuse/core')['usePrevious']>
     readonly usePrimeVue: UnwrapRef<typeof import('primevue')['usePrimeVue']>
     readonly useRafFn: UnwrapRef<typeof import('@vueuse/core')['useRafFn']>
@@ -1348,6 +1407,7 @@ declare module 'vue' {
     readonly useTextDirection: UnwrapRef<typeof import('@vueuse/core')['useTextDirection']>
     readonly useTextSelection: UnwrapRef<typeof import('@vueuse/core')['useTextSelection']>
     readonly useTextareaAutosize: UnwrapRef<typeof import('@vueuse/core')['useTextareaAutosize']>
+    readonly useTheme: UnwrapRef<typeof import('@primevue/themes')['useTheme']>
     readonly useThrottle: UnwrapRef<typeof import('@vueuse/core')['useThrottle']>
     readonly useThrottleFn: UnwrapRef<typeof import('@vueuse/core')['useThrottleFn']>
     readonly useThrottledRefHistory: UnwrapRef<typeof import('@vueuse/core')['useThrottledRefHistory']>

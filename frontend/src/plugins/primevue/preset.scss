@@ -47,80 +47,80 @@
       min-height: var(--p-icon-size);
     }
 
-    &-outlined {
-      @include hoverColors {
-        color: var(--p-button-primary-hover-border-color);
-        border-color: var(--p-button-primary-hover-border-color);
-      }
-      @include activeColors {
-        color: var(--p-button-primary-active-border-color);
-        border-color: var(--p-button-primary-active-border-color);
-      }
-    }
-    &-outlined:where(&-secondary) {
-      @include hoverColors {
-        color: var(--p-button-secondary-hover-border-color);
-        border-color: var(--p-button-secondary-hover-border-color);
-      }
-      @include activeColors {
-        color: var(--p-button-secondary-active-border-color);
-        border-color: var(--p-button-secondary-active-border-color);
-      }
-    }
-    &-outlined:where(&-success) {
-      @include hoverColors {
-        color: var(--p-button-success-hover-border-color);
-        border-color: var(--p-button-success-hover-border-color);
-      }
-      @include activeColors {
-        color: var(--p-button-success-active-border-color);
-        border-color: var(--p-button-success-active-border-color);
-      }
-    }
-    &-outlined:where(&-danger) {
-      @include hoverColors {
-        color: var(--p-button-danger-hover-border-color);
-        border-color: var(--p-button-danger-hover-border-color);
-      }
-      @include activeColors {
-        color: var(--p-button-danger-active-border-color);
-        border-color: var(--p-button-danger-active-border-color);
-      }
-    }
-    &-text {
-      padding: 0.5rem;
-      @include hoverColors {
-        color: var(--p-button-primary-hover-border-color);
-      }
-      @include activeColors {
-        color: var(--p-button-primary-active-border-color);
-      }
-    }
-    &-text:where(&-icon-only) {
-      padding: 0.5rem;
-      @include hoverColors {
-        color: var(--p-button-primary-hover-border-color);
-      }
-      @include activeColors {
-        color: var(--p-button-primary-active-border-color);
-      }
-    }
-    &-text:where(&-secondary) {
-      @include hoverColors {
-        color: var(--p-surface-700);
-      }
-      @include activeColors {
-        color: var(--p-button-secondary-active-border-color);
-      }
-    }
-    &-text:where(&-secondary):where(&-icon-only) {
-      @include hoverColors {
-        color: var(--p-button-secondary-hover-border-color);
-      }
-      @include activeColors {
-        color: var(--p-button-secondary-active-border-color);
-      }
-    }
+    // &-outlined {
+    //   @include hoverColors {
+    //     color: var(--p-button-primary-hover-border-color);
+    //     border-color: var(--p-button-primary-hover-border-color);
+    //   }
+    //   @include activeColors {
+    //     color: var(--p-button-primary-active-border-color);
+    //     border-color: var(--p-button-primary-active-border-color);
+    //   }
+    // }
+    // &-outlined:where(&-secondary) {
+    //   @include hoverColors {
+    //     color: var(--p-button-secondary-hover-border-color);
+    //     border-color: var(--p-button-secondary-hover-border-color);
+    //   }
+    //   @include activeColors {
+    //     color: var(--p-button-secondary-active-border-color);
+    //     border-color: var(--p-button-secondary-active-border-color);
+    //   }
+    // }
+    // &-outlined:where(&-success) {
+    //   @include hoverColors {
+    //     color: var(--p-button-success-hover-border-color);
+    //     border-color: var(--p-button-success-hover-border-color);
+    //   }
+    //   @include activeColors {
+    //     color: var(--p-button-success-active-border-color);
+    //     border-color: var(--p-button-success-active-border-color);
+    //   }
+    // }
+    // &-outlined:where(&-danger) {
+    //   @include hoverColors {
+    //     color: var(--p-button-danger-hover-border-color);
+    //     border-color: var(--p-button-danger-hover-border-color);
+    //   }
+    //   @include activeColors {
+    //     color: var(--p-button-danger-active-border-color);
+    //     border-color: var(--p-button-danger-active-border-color);
+    //   }
+    // }
+    // &-text {
+    //   padding: 0.5rem;
+    //   @include hoverColors {
+    //     color: var(--p-button-primary-hover-border-color);
+    //   }
+    //   @include activeColors {
+    //     color: var(--p-button-primary-active-border-color);
+    //   }
+    // }
+    // &-text:where(&-icon-only) {
+    //   padding: 0.5rem;
+    //   @include hoverColors {
+    //     color: var(--p-button-primary-hover-border-color);
+    //   }
+    //   @include activeColors {
+    //     color: var(--p-button-primary-active-border-color);
+    //   }
+    // }
+    // &-text:where(&-secondary) {
+    //   @include hoverColors {
+    //     color: var(--p-surface-700);
+    //   }
+    //   @include activeColors {
+    //     color: var(--p-button-secondary-active-border-color);
+    //   }
+    // }
+    // &-text:where(&-secondary):where(&-icon-only) {
+    //   @include hoverColors {
+    //     color: var(--p-button-secondary-hover-border-color);
+    //   }
+    //   @include activeColors {
+    //     color: var(--p-button-secondary-active-border-color);
+    //   }
+    // }
 
     &-loading &-label {
       display: none;

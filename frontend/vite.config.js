@@ -66,6 +66,7 @@ export default defineConfig({
       imports: ['vue', 'vue-router'],
       packagePresets: [
         'primevue',
+        '@primevue/themes',
         '@primevue/core/api',
         '@vueuse/core',
         '@tanstack/vue-table',

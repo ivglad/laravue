@@ -12,7 +12,7 @@
 
     <LayoutUiIcons />
 
-    <LayoutUiColors />
+    <!-- <LayoutUiColors />
 
     <LayoutUiInputs />
 
@@ -73,7 +73,7 @@
       }"
       style="transition-duration: 0.5s" />
 
-    <LayoutUiProgress />
+    <LayoutUiProgress /> -->
 
     <ScrollTop>
       <template #icon>

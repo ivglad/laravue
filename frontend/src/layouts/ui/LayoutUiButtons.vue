@@ -64,6 +64,30 @@ const setButtonLoading = (status) => {
                 </td>
               </tr>
               <tr>
+                <td>Success</td>
+                <td><Button label="Кнопка" severity="success" /></td>
+              </tr>
+              <tr>
+                <td>Info</td>
+                <td><Button label="Кнопка" severity="info" /></td>
+              </tr>
+              <tr>
+                <td>Warn</td>
+                <td><Button label="Кнопка" severity="warn" /></td>
+              </tr>
+              <tr>
+                <td>Help</td>
+                <td><Button label="Кнопка" severity="help" /></td>
+              </tr>
+              <tr>
+                <td>Danger</td>
+                <td><Button label="Кнопка" severity="danger" /></td>
+              </tr>
+              <tr>
+                <td>Contrast</td>
+                <td><Button label="Кнопка" severity="contrast" /></td>
+              </tr>
+              <tr>
                 <td>Outlined</td>
                 <td>
                   <Button
@@ -109,6 +133,30 @@ const setButtonLoading = (status) => {
                     </template>
                   </Button>
                 </td>
+              </tr>
+              <tr>
+                <td>Outlined <br />success</td>
+                <td><Button label="Кнопка" severity="success" outlined /></td>
+              </tr>
+              <tr>
+                <td>Outlined <br />info</td>
+                <td><Button label="Кнопка" severity="info" outlined /></td>
+              </tr>
+              <tr>
+                <td>Outlined <br />warn</td>
+                <td><Button label="Кнопка" severity="warn" outlined /></td>
+              </tr>
+              <tr>
+                <td>Outlined <br />help</td>
+                <td><Button label="Кнопка" severity="help" outlined /></td>
+              </tr>
+              <tr>
+                <td>Outlined <br />danger</td>
+                <td><Button label="Кнопка" severity="danger" outlined /></td>
+              </tr>
+              <tr>
+                <td>Outlined <br />contrast</td>
+                <td><Button label="Кнопка" severity="contrast" outlined /></td>
               </tr>
               <tr>
                 <td>Icon filled</td>
@@ -164,13 +212,16 @@ const setButtonLoading = (status) => {
                   hover filled
                 </td>
                 <td>
-                  <Button class="p-button-outlined-secondary" outlined rounded>
+                  <Button
+                    class="app-button-outlined-hover-fill"
+                    outlined
+                    rounded>
                     <template #icon>
                       <i-custom-settings />
                     </template>
                   </Button>
                   <Button
-                    class="p-button-outlined-secondary"
+                    class="app-button-outlined-secondary-hover-fill"
                     severity="secondary"
                     outlined
                     rounded>
@@ -181,7 +232,7 @@ const setButtonLoading = (status) => {
                 </td>
                 <td>
                   <Button
-                    class="p-button-outlined-secondary"
+                    class="app-button-outlined-hover-fill"
                     outlined
                     rounded
                     disabled>

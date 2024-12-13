@@ -1,35 +1,4 @@
 <script setup>
-// ----------------------------------------------------------------------------
-// TODO: реализовать адаптер для PrimeVue
-// ----------------------------------------------------------------------------
-const elementsStatic = ['button', 'input']
-const statesStatic = [
-  'Default',
-  'Hover',
-  'Active',
-  'Focus',
-  'Disabled',
-  'Error',
-]
-const stylesStatic = ['color', 'backgroundColor', 'borderColor']
-const initStates = () => {
-  const result = []
-  statesStatic.forEach((state) => {
-    result.push({
-      state: state,
-      color: '',
-      backgroundColor: '',
-      borderColor: '',
-    })
-  })
-  return result
-}
-const elements = ref({
-  button: initStates(),
-  input: initStates(),
-})
-// ----------------------------------------------------------------------------
-
 const copyColorSwitch = ref('HEX')
 const copyTypeHexClass = computed(() => {
   return {
@@ -42,7 +11,7 @@ const copyTypeVarClass = computed(() => {
   }
 })
 
-// Основано на цветовой палитре primevue
+// Основано на цветовой палитре Primevue
 const colors = ref([
   'primary',
   'surface',
