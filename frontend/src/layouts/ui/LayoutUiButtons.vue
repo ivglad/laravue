@@ -42,6 +42,14 @@ const setButtonLoading = (status) => {
                 </td>
               </tr>
               <tr>
+                <td>Large</td>
+                <td><Button label="Кнопка" size="large" /></td>
+              </tr>
+              <tr>
+                <td>Small</td>
+                <td><Button label="Кнопка" size="small" /></td>
+              </tr>
+              <tr>
                 <td>Secondary</td>
                 <td>
                   <Button
@@ -87,6 +95,7 @@ const setButtonLoading = (status) => {
                 <td>Contrast</td>
                 <td><Button label="Кнопка" severity="contrast" /></td>
               </tr>
+
               <tr>
                 <td>Outlined</td>
                 <td>
@@ -159,7 +168,7 @@ const setButtonLoading = (status) => {
                 <td><Button label="Кнопка" severity="contrast" outlined /></td>
               </tr>
               <tr>
-                <td>Icon filled</td>
+                <td>Icon <br />filled</td>
                 <td>
                   <Button aria-label="options" rounded>
                     <template #icon>
@@ -181,7 +190,7 @@ const setButtonLoading = (status) => {
                 </td>
               </tr>
               <tr>
-                <td>Icon outlined</td>
+                <td>Icon <br />outlined</td>
                 <td>
                   <Button aria-label="plus" outlined rounded>
                     <template #icon>

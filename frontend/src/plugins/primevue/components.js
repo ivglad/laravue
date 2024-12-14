@@ -1,90 +1,183 @@
-export const components = {
+export default {
   button: {
     iconOnlyWidth: 'fit-content',
+    app: {
+      width: '14rem',
+      height: '4.2rem',
+      sm: {
+        width: '8rem',
+        height: '3.2rem',
+        fontSize: '1.2rem',
+      },
+    },
     colorScheme: {
       light: {
         primary: {
           color: '{primary.contrast.color}',
-          borderColor: '{primary.500}',
-          background: '{primary.500}',
           hoverColor: '{primary.contrast.color}',
-          hoverBorderColor: '{primary.600}',
-          hoverBackground: '{primary.600}',
           activeColor: '{primary.contrast.color}',
+          borderColor: '{primary.500}',
+          hoverBorderColor: '{primary.600}',
           activeBorderColor: '{primary.700}',
+          background: '{primary.500}',
+          hoverBackground: '{primary.600}',
           activeBackground: '{primary.700}',
         },
         secondary: {
           color: '{primary.contrast.color}',
-          borderColor: '{surface.400}',
-          background: '{surface.400}',
           hoverColor: '{primary.contrast.color}',
-          hoverBorderColor: '{surface.500}',
-          hoverBackground: '{surface.500}',
           activeColor: '{primary.contrast.color}',
+          borderColor: '{surface.400}',
+          hoverBorderColor: '{surface.500}',
           activeBorderColor: '{surface.600}',
+          background: '{surface.400}',
+          hoverBackground: '{surface.500}',
           activeBackground: '{surface.600}',
         },
         success: {
           color: '{primary.contrast.color}',
-          borderColor: '{green.400}',
-          background: '{green.400}',
           hoverColor: '{primary.contrast.color}',
-          hoverBorderColor: '{green.500}',
-          hoverBackground: '{green.500}',
           activeColor: '{primary.contrast.color}',
+          borderColor: '{green.400}',
+          hoverBorderColor: '{green.500}',
           activeBorderColor: '{green.600}',
+          background: '{green.400}',
+          hoverBackground: '{green.500}',
           activeBackground: '{green.600}',
+        },
+        info: {
+          color: '{primary.contrast.color}',
+          hoverColor: '{primary.contrast.color}',
+          activeColor: '{primary.contrast.color}',
+          borderColor: '{blue.400}',
+          hoverBorderColor: '{blue.500}',
+          activeBorderColor: '{blue.600}',
+          background: '{blue.400}',
+          hoverBackground: '{blue.500}',
+          activeBackground: '{blue.600}',
+        },
+        warn: {
+          color: '{primary.contrast.color}',
+          hoverColor: '{primary.contrast.color}',
+          activeColor: '{primary.contrast.color}',
+          borderColor: '{orange.400}',
+          hoverBorderColor: '{orange.500}',
+          activeBorderColor: '{orange.600}',
+          background: '{orange.400}',
+          hoverBackground: '{orange.500}',
+          activeBackground: '{orange.600}',
+        },
+        help: {
+          color: '{primary.contrast.color}',
+          hoverColor: '{primary.contrast.color}',
+          activeColor: '{primary.contrast.color}',
+          borderColor: '{purple.400}',
+          hoverBorderColor: '{purple.500}',
+          activeBorderColor: '{purple.600}',
+          background: '{purple.400}',
+          hoverBackground: '{purple.500}',
+          activeBackground: '{purple.600}',
         },
         danger: {
           color: '{primary.contrast.color}',
-          borderColor: '{red.400}',
-          background: '{red.400}',
           hoverColor: '{primary.contrast.color}',
-          hoverBorderColor: '{red.500}',
-          hoverBackground: '{red.500}',
           activeColor: '{primary.contrast.color}',
+          borderColor: '{red.400}',
+          hoverBorderColor: '{red.500}',
           activeBorderColor: '{red.600}',
+          background: '{red.400}',
+          hoverBackground: '{red.500}',
           activeBackground: '{red.600}',
+        },
+        contrast: {
+          color: '{primary.contrast.color}',
+          hoverColor: '{primary.contrast.color}',
+          activeColor: '{primary.contrast.color}',
+          borderColor: '{gray.500}',
+          hoverBorderColor: '{gray.700}',
+          activeBorderColor: '{gray.800}',
+          background: '{gray.500}',
+          hoverBackground: '{gray.700}',
+          activeBackground: '{gray.800}',
         },
         outlined: {
           primary: {
             color: '{primary.500}',
+            hoverColor: '{primary.700}',
+            activeColor: '{primary.800}',
             borderColor: '{primary.500}',
-            hoverBorderColor: '{primary.600}',
+            hoverBorderColor: '{primary.700}',
+            activeBorderColor: '{primary.800}',
             hoverBackground: 'transparent',
-            activeBorderColor: '{primary.700}',
             activeBackground: 'transparent',
           },
           secondary: {
             color: '{surface.400}',
+            hoverColor: '{surface.600}',
+            activeColor: '{surface.700}',
             borderColor: '{surface.400}',
-            hoverBorderColor: '{surface.500}',
+            hoverBorderColor: '{surface.600}',
+            activeBorderColor: '{surface.700}',
             hoverBackground: 'transparent',
-            activeBorderColor: '{surface.600}',
             activeBackground: 'transparent',
           },
           success: {
             color: '{green.400}',
+            hoverColor: '{green.600}',
+            activeColor: '{green.700}',
             borderColor: '{green.400}',
+            hoverBorderColor: '{green.600}',
+            activeBorderColor: '{green.700}',
             hoverBackground: 'transparent',
             activeBackground: 'transparent',
           },
           info: {
+            color: '{blue.400}',
+            hoverColor: '{blue.600}',
+            activeColor: '{blue.700}',
+            borderColor: '{blue.400}',
+            hoverBorderColor: '{blue.600}',
+            activeBorderColor: '{blue.700}',
             hoverBackground: 'transparent',
             activeBackground: 'transparent',
           },
           warn: {
+            color: '{orange.400}',
+            hoverColor: '{orange.600}',
+            activeColor: '{orange.700}',
+            borderColor: '{orange.400}',
+            hoverBorderColor: '{orange.600}',
+            activeBorderColor: '{orange.700}',
             hoverBackground: 'transparent',
             activeBackground: 'transparent',
           },
           help: {
+            color: '{purple.400}',
+            hoverColor: '{purple.600}',
+            activeColor: '{purple.700}',
+            borderColor: '{purple.400}',
+            hoverBorderColor: '{purple.600}',
+            activeBorderColor: '{purple.700}',
             hoverBackground: 'transparent',
             activeBackground: 'transparent',
           },
           danger: {
             color: '{red.400}',
+            hoverColor: '{red.600}',
+            activeColor: '{red.700}',
             borderColor: '{red.400}',
+            hoverBorderColor: '{red.600}',
+            activeBorderColor: '{red.700}',
+            hoverBackground: 'transparent',
+            activeBackground: 'transparent',
+          },
+          contrast: {
+            color: '{gray.500}',
+            hoverColor: '{gray.700}',
+            activeColor: '{gray.800}',
+            borderColor: '{gray.500}',
+            hoverBorderColor: '{gray.700}',
+            activeBorderColor: '{gray.800}',
             hoverBackground: 'transparent',
             activeBackground: 'transparent',
           },
@@ -92,32 +185,57 @@ export const components = {
         text: {
           primary: {
             color: '{primary.500}',
+            hoverColor: '{primary.700}',
+            activeColor: '{primary.800}',
             hoverBackground: 'transparent',
             activeBackground: 'transparent',
           },
           secondary: {
-            color: '{surface.400}',
-            hoverColor: '{surface.500}',
+            color: '{surface.500}',
+            hoverColor: '{surface.700}',
+            activeColor: '{surface.800}',
             hoverBackground: 'transparent',
             activeBackground: 'transparent',
           },
           success: {
+            color: '{green.500}',
+            hoverColor: '{green.700}',
+            activeColor: '{green.800}',
             hoverBackground: 'transparent',
             activeBackground: 'transparent',
           },
           info: {
+            color: '{blue.500}',
+            hoverColor: '{blue.700}',
+            activeColor: '{blue.800}',
             hoverBackground: 'transparent',
             activeBackground: 'transparent',
           },
           warn: {
+            color: '{orange.500}',
+            hoverColor: '{orange.700}',
+            activeColor: '{orange.800}',
             hoverBackground: 'transparent',
             activeBackground: 'transparent',
           },
           help: {
+            color: '{purple.500}',
+            hoverColor: '{purple.700}',
+            activeColor: '{purple.800}',
             hoverBackground: 'transparent',
             activeBackground: 'transparent',
           },
           danger: {
+            color: '{red.500}',
+            hoverColor: '{red.700}',
+            activeColor: '{red.800}',
+            hoverBackground: 'transparent',
+            activeBackground: 'transparent',
+          },
+          contrast: {
+            color: '{gray.500}',
+            hoverColor: '{gray.700}',
+            activeColor: '{gray.800}',
             hoverBackground: 'transparent',
             activeBackground: 'transparent',
           },
@@ -125,31 +243,199 @@ export const components = {
       },
     },
     css: ({ dt }) => `
+      .p-button {
+        &:not(.p-button-icon-only):not(.p-button-text):not(.p-button-sm) {
+          height: ${dt('button.app.height')};
+        }
+        &:not(.p-button-rounded):not(.p-button-text):not(.p-button-sm) {
+          width: ${dt('button.app.width')};
+          min-width: fit-content;
+          max-width: 100%;
+        }
+      }
+        
+      .p-button-sm {
+        width: ${dt('button.app.sm.width')};
+        min-width: fit-content;
+        max-width: 100%;
+        height: ${dt('button.app.sm.height')};
+        font-size: ${dt('button.app.sm.fontSize')};
+        border-radius: ${dt('border.radius.sm')};
+      }
+
+      .p-button-icon-only {
+        &:not(.p-button-text) {
+          min-width: ${dt('button.app.height')};
+          min-height: ${dt('button.app.height')};
+        }
+      }
+
+      .p-button-icon-only.p-button-text {
+        min-width: ${dt('icon.size')};
+        min-height: ${dt('icon.size')};
+      }
+
       .p-button-outlined {
+        &:not(:disabled):hover {
+          color: ${dt('button.outlined.primary.hover.color')};
+          border-color: ${dt('button.outlined.primary.hover.border.color')};
+        }
+        &:not(:disabled):active {
+          color: ${dt('button.outlined.primary.active.color')};
+          border-color: ${dt('button.outlined.primary.active.border.color')};
+        }
+        &.p-button-secondary {
+          &:not(:disabled):hover {
+            color: ${dt('button.outlined.secondary.hover.color')};
+            border-color: ${dt('button.outlined.secondary.hover.border.color')};
+          }
+          &:not(:disabled):active {
+            color: ${dt('button.outlined.secondary.active.color')};
+            border-color: ${dt(
+              'button.outlined.secondary.active.border.color',
+            )};
+          }
+        }
+        &.p-button-success {
+          &:not(:disabled):hover {
+            color: ${dt('button.outlined.success.hover.color')};
+            border-color: ${dt('button.outlined.success.hover.border.color')};
+          }
+          &:not(:disabled):active {
+            color: ${dt('button.outlined.success.active.color')};
+            border-color: ${dt('button.outlined.success.active.border.color')};
+          }
+        }
+        &.p-button-info {
+          &:not(:disabled):hover {
+            color: ${dt('button.outlined.info.hover.color')};
+            border-color: ${dt('button.outlined.info.hover.border.color')};
+          }
+          &:not(:disabled):active {
+            color: ${dt('button.outlined.info.active.color')};
+            border-color: ${dt('button.outlined.info.active.border.color')};
+          }
+        }
+        &.p-button-warn {
+          &:not(:disabled):hover {
+            color: ${dt('button.outlined.warn.hover.color')};
+            border-color: ${dt('button.outlined.warn.hover.border.color')};
+          }
+          &:not(:disabled):active {
+            color: ${dt('button.outlined.warn.active.color')};
+            border-color: ${dt('button.outlined.warn.active.border.color')};
+          }
+        }
+        &.p-button-help {
+          &:not(:disabled):hover {
+            color: ${dt('button.outlined.help.hover.color')};
+            border-color: ${dt('button.outlined.help.hover.border.color')};
+          }
+          &:not(:disabled):active {
+            color: ${dt('button.outlined.help.active.color')};
+            border-color: ${dt('button.outlined.help.active.border.color')};
+          }
+        }
+        &.p-button-danger {
+          &:not(:disabled):hover {
+            color: ${dt('button.outlined.danger.hover.color')};
+            border-color: ${dt('button.outlined.danger.hover.border.color')};
+          }
+          &:not(:disabled):active {
+            color: ${dt('button.outlined.danger.active.color')};
+            border-color: ${dt('button.outlined.danger.active.border.color')};
+          }
+        }
+        &.p-button-contrast {
+          &:not(:disabled):hover {
+            color: ${dt('button.outlined.contrast.hover.color')};
+            border-color: ${dt('button.outlined.contrast.hover.border.color')};
+          }
+          &:not(:disabled):active {
+            color: ${dt('button.outlined.contrast.active.color')};
+            border-color: ${dt('button.outlined.contrast.active.border.color')};
+          }
+        }
+
         &.app-button-outlined-hover-fill {
           &:not(:disabled):hover {
             color: ${dt('button.primary.color')};
-            border-color: ${dt('button.outlined.primary.hover.border.color')};
-            background: ${dt('button.outlined.primary.hover.border.color')};
+            border-color: ${dt('button.primary.hover.border.color')};
+            background: ${dt('button.primary.hover.border.color')};
           }
           &:not(:disabled):active {
             color: ${dt('button.primary.color')};
-            border-color: ${dt('button.outlined.primary.active.border.color')};
+            border-color: ${dt('button.primary.active.border.color')};
             background: ${dt('button.primary.active.border.color')};
           }
         }
         &.app-button-outlined-secondary-hover-fill {
           &:not(:disabled):hover {
             color: ${dt('button.secondary.color')};
-            border-color: ${dt('button.outlined.secondary.hover.border.color')};
-            background: ${dt('button.outlined.secondary.hover.border.color')};
+            border-color: ${dt('button.secondary.hover.border.color')};
+            background: ${dt('button.secondary.hover.border.color')};
           }
           &:not(:disabled):active {
             color: ${dt('button.secondary.color')};
-            border-color: ${dt(
-              'button.outlined.secondary.active.border.color',
-            )};
+            border-color: ${dt('button.secondary.active.border.color')};
             background: ${dt('button.secondary.active.border.color')};
+          }
+        }
+      }
+
+      .p-button-text {
+        &:not(:disabled):hover {
+          color: ${dt('button.text.primary.hover.color')};
+        }
+        &:not(:disabled):active {
+          color: ${dt('button.text.primary.active.color')};
+        }
+        &.p-button-secondary {
+          &:not(:disabled):hover {
+            color: ${dt('button.text.secondary.hover.color')};
+          }
+          &:not(:disabled):active {
+            color: ${dt('button.text.secondary.active.color')};
+          }
+        }
+        &.p-button-success {
+          &:not(:disabled):hover {
+            color: ${dt('button.text.success.hover.color')};
+          }
+          &:not(:disabled):active {
+            color: ${dt('button.text.success.active.color')};
+          }
+        }
+        &.p-button-info {
+          &:not(:disabled):hover {
+            color: ${dt('button.text.info.hover.color')};
+          }
+          &:not(:disabled):active {
+            color: ${dt('button.text.info.active.color')};
+          }
+        }
+        &.p-button-warn {
+          &:not(:disabled):hover {
+            color: ${dt('button.text.warn.hover.color')};
+          }
+          &:not(:disabled):active {
+            color: ${dt('button.text.warn.active.color')};
+          }
+        }
+        &.p-button-help {
+          &:not(:disabled):hover {
+            color: ${dt('button.text.help.hover.color')};
+          }
+          &:not(:disabled):active {
+            color: ${dt('button.text.help.active.color')};
+          }
+        }
+        &.p-button-danger {
+          &:not(:disabled):hover {
+            color: ${dt('button.text.danger.hover.color')};
+          }
+          &:not(:disabled):active {
+            color: ${dt('button.text.danger.active.color')};
           }
         }
       }

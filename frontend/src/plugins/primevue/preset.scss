@@ -6,46 +6,46 @@
   // Buttons
   // --------------------------------------------------------------------------
   .p-button {
-    @mixin hoverColors {
-      &:not(:disabled) {
-        &:hover {
-          @content;
-        }
-      }
-    }
-    @mixin activeColors {
-      &:not(:disabled) {
-        &:active {
-          @content;
-        }
-      }
-    }
+    // @mixin hoverColors {
+    //   &:not(:disabled) {
+    //     &:hover {
+    //       @content;
+    //     }
+    //   }
+    // }
+    // @mixin activeColors {
+    //   &:not(:disabled) {
+    //     &:active {
+    //       @content;
+    //     }
+    //   }
+    // }
 
-    &:not(&-icon-only):not(&-text):not(&-sm) {
-      height: 4.2rem;
-    }
-    &:not(&-rounded):not(&-text):not(&-sm) {
-      width: 14rem;
-      min-width: fit-content;
-      max-width: 100%;
-    }
-    &-sm {
-      width: 8rem;
-      min-width: fit-content;
-      max-width: 100%;
-      height: 3.2rem;
-      font-size: 1.2rem;
-    }
+    // &:not(&-icon-only):not(&-text):not(&-sm) {
+    //   height: 4.2rem;
+    // }
+    // &:not(&-rounded):not(&-text):not(&-sm) {
+    //   width: 14rem;
+    //   min-width: fit-content;
+    //   max-width: 100%;
+    // }
+    // &-sm {
+    //   width: 8rem;
+    //   min-width: fit-content;
+    //   max-width: 100%;
+    //   height: 3.2rem;
+    //   font-size: 1.2rem;
+    // }
 
-    &-icon-only:not(&-text) {
-      min-width: 4.2rem;
-      min-height: 4.2rem;
-    }
+    // &-icon-only:not(&-text) {
+    //   min-width: 4.2rem;
+    //   min-height: 4.2rem;
+    // }
 
-    &-icon-only:where(&-text) {
-      min-width: var(--p-icon-size);
-      min-height: var(--p-icon-size);
-    }
+    // &-icon-only:where(&-text) {
+    //   min-width: var(--p-icon-size);
+    //   min-height: var(--p-icon-size);
+    // }
 
     // &-outlined {
     //   @include hoverColors {
