@@ -6,7 +6,7 @@ const Preset = definePreset(Aura, {
   primitive: {
     borderRadius: {
       none: '0',
-      xs: '6px',
+      xs: '4px',
       sm: '8px',
       md: '10px',
       lg: '12px',

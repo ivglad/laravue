@@ -1,4 +1,370 @@
 export default {
+  // --------------------------------------------------------------------------
+  // Form
+  // --------------------------------------------------------------------------
+  // AutoComplete
+  // CascadeSelect
+  // Checkbox
+  checkbox: {
+    width: '1.6rem',
+    height: '1.6rem',
+    borderRadius: '{border.radius.xs}',
+    sm: {
+      width: '1.2rem',
+      height: '1.2rem',
+    },
+    lg: {
+      width: '2rem',
+      height: '2rem',
+    },
+    icon: {
+      smSize: '0.6rem',
+      size: '1rem',
+      lgSize: '1.2rem',
+    },
+    colorScheme: {
+      light: {
+        borderColor: '{primary.200}',
+        hoverBorderColor: '{primary.color}',
+        checked: {
+          background: '{surface.0}',
+          hoverBackground: '{surface.0}',
+          borderColor: '{primary.color}',
+          hoverBorderColor: '{primary.color}',
+        },
+        icon: {
+          color: '{primary.color}',
+          checkedColor: '{primary.color}',
+          checkedHoverColor: '{primary.color}',
+          disabledColor: '{surface.200}',
+        },
+      },
+    },
+    css: ({ dt }) => `
+      .p-checkbox-icon {
+        filter: drop-shadow(0 0 0.5px ${dt('primary.color')}); 
+      }
+    `,
+  },
+  // ColorPicker
+  colorpicker: {
+    previewWidth: '3rem',
+    previewHeight: '3rem',
+  },
+  // DatePicker
+  datepicker: {
+    select: {
+      monthPadding: '0.5rem 1rem',
+      yearPadding: '0.5rem 1rem',
+    },
+    titleFontWeight: '700',
+    monthViewMargin: '1rem 0',
+    dayViewMargin: '1rem 0',
+    weekDayFontWeight: '700',
+    date: {
+      width: '3rem',
+      height: '3rem',
+      borderRadius: '{border.radius.lg}',
+    },
+    colorScheme: {
+      light: {
+        headerColor: '{primary.color}',
+        select: {
+          month: {
+            color: '{primary.color}',
+            hoverColor: '{primary.700}',
+            hoverBackground: 'transparent',
+          },
+          year: {
+            color: '{primary.color}',
+            hoverColor: '{primary.700}',
+            hoverBackground: 'transparent',
+          },
+        },
+        date: {
+          hoverColor: '{primary.contrastColor}',
+          hoverBackground: '{primary.color}',
+          rangeSelectedColor: '{primary.contrastColor}',
+          rangeSelectedBackground: '{primary.color}',
+        },
+        today: {
+          color: '{primary.color}',
+          background: 'transparent',
+        },
+      },
+    },
+  },
+  // Editor
+  // FloatLabel
+  floatlabel: {
+    activeFontSize: '1.2rem',
+  },
+  // IconField
+  // IftaLabel
+  // InputGroup
+  // InputMask
+  // InputNumber
+  // InputOtp
+  inputotp: {
+    css: ({ dt }) => `
+      .p-inputotp {
+        .p-inputtext {
+          width: ${dt('inputtext.app.min.height')};
+          min-width: ${dt('inputtext.app.min.height')};
+        }
+      }
+    `,
+  },
+  // InputText
+  inputtext: {
+    app: {
+      width: '25rem',
+      minWidth: '10rem',
+      maxWidth: '40rem',
+      minHeight: '4.2rem',
+    },
+    css: ({ dt }) => `
+      .p-inputtext {
+        width: ${dt('inputtext.app.width')};
+        min-width: ${dt('inputtext.app.minWidth')};
+        max-width: ${dt('inputtext.app.maxWidth')};
+        min-height: ${dt('inputtext.app.minHeight')};
+        &:not(:disabled):not(.p-invalid) {
+          &:placeholder-shown,
+          &::placeholder {
+            color: var(--p-inputtext-placeholder-color);
+          }
+        }
+        &:placeholder-shown,
+        &::placeholder {
+          color: var(--p-surface-200);
+        }
+        &.p-invalid {
+          color: var(--p-inputtext-invalid-placeholder-color);
+        }
+      }
+    `,
+  },
+  // KeyFilter
+  // Knob
+  // Listbox
+  // MultiSelect
+  multiselect: {
+    chipBorderRadius: '10rem',
+    sm: {
+      fontSize: '1.4rem',
+    },
+    css: ({ dt }) => `
+      .p-multiselect {
+        align-items: center;
+        width: ${dt('select.app.width')};
+        min-width: ${dt('select.app.min.width')};
+        max-width: ${dt('select.app.max.width')};
+        height: ${dt('select.app.height')};
+        min-height: ${dt('select.app.min.height')};
+        max-height: ${dt('select.app.max.height')};
+        &.p-multiselect-sm {
+          height: ${dt('select.app.sm.height')};
+        }
+        .p-multiselect-dropdown {
+          .p-icon {
+            width: ${dt('select.app.dropdownIconSize')};
+            height: ${dt('select.app.dropdownIconSize')};
+            margin-right: 0.5rem;
+          }
+        }
+        .p-multiselect-label {
+          flex-wrap: wrap;
+          &:has(.p-chip) {
+            padding: calc(${dt('multiselect.padding.y')} / 2)
+              ${dt('multiselect.padding.x')};
+          }
+        }
+        .p-chip {
+          padding-block: ${dt('chip.padding.y')};
+          padding-inline: ${dt('chip.padding.x')};
+          .p-chip-label {
+            max-width: 80px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+          .icon {
+            color: ${dt('chip.remove.icon.color')};
+          }
+        }
+      }
+      .p-multiselect-overlay-sm .p-select-option {
+        height: ${dt('select.app.sm.height')};
+      }
+    `,
+  },
+  // Password
+  // RadioButton
+  radiobutton: {
+    width: '16px',
+    height: '16px',
+    sm: {
+      width: '12px',
+      height: '12px',
+    },
+    lg: {
+      width: '20px',
+      height: '20px',
+    },
+    icon: {
+      smSize: '6px',
+      size: '8px',
+      lgSize: '10px',
+    },
+    colorScheme: {
+      light: {
+        checked: {
+          background: '{surface.0}',
+          hoverBackground: '{surface.0}',
+        },
+        icon: {
+          color: '{primary.color}',
+          checkedColor: '{primary.color}',
+          checkedHoverColor: '{primary.color}',
+          disabledColor: '{surface.200}',
+        },
+      },
+    },
+  },
+  // Rating
+  // Select
+  select: {
+    sm: {
+      fontSize: '1.4rem',
+    },
+    app: {
+      width: '20rem',
+      minWidth: 'fit-content',
+      maxWidth: '40rem',
+      height: '4.2rem',
+      minHeight: 'fit-content',
+      maxHeight: '100%',
+      smHeight: '3.2rem',
+      dropdownIconSize: '1.4rem',
+    },
+    css: ({ dt }) => `
+      .p-select {
+        align-items: center;
+        width: ${dt('select.app.width')};
+        min-width: ${dt('select.app.min.width')};
+        max-width: ${dt('select.app.max.width')};
+        height: ${dt('select.app.height')};
+        min-height: ${dt('select.app.min.height')};
+        max-height: ${dt('select.app.max.height')};
+        &.p-select-sm {
+          height: ${dt('select.app.sm.height')};
+        }
+        .p-select-dropdown {
+          .p-icon {
+            width: ${dt('select.app.dropdownIconSize')};
+            height: ${dt('select.app.dropdownIconSize')};
+            margin-right: 0.5rem;
+          }
+        }
+        .p-select-label {
+          flex-wrap: wrap;
+          &:has(.p-chip) {
+            padding: calc(${dt('multiselect.padding.y')} / 2)
+              ${dt('multiselect.padding.x')};
+          }
+        }
+        .p-chip {
+          padding-block: ${dt('chip.padding.y')};
+          padding-inline: ${dt('chip.padding.x')};
+          .p-chip-label {
+            max-width: 80px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+          .icon {
+            color: ${dt('chip.remove.icon.color')};
+          }
+        }
+      }
+      .p-select-overlay-sm .p-select-option {
+        height: ${dt('select.app.sm.height')};
+      }
+    `,
+  },
+  // SelectButton
+  selectbutton: {
+    css: ({ dt }) => `
+      .p-selectbutton {
+        .p-togglebutton::before {
+          border-radius: ${dt('border.radius.sm')};
+        }
+      }
+    `,
+  },
+  // Slider
+  // Textarea
+  textarea: {
+    app: {
+      width: '25rem',
+      minWidth: '10rem',
+      maxWidth: '40rem',
+    },
+    css: ({ dt }) => `
+      .p-textarea {
+        width: ${dt('textarea.app.width')};
+        min-width: ${dt('textarea.app.min.width')};
+        max-width: ${dt('textarea.app.max.width')};
+      }
+    `,
+  },
+  // ToggleButton
+  togglebutton: {
+    padding: '0.75rem 1rem',
+    contentTop: '0.3rem',
+  },
+  // ToggleSwitch
+  toggleswitch: {
+    width: '3.4rem',
+    height: '2rem',
+    handle: {
+      size: '1.4rem',
+    },
+    colorScheme: {
+      light: {
+        background: '{surface.0}',
+        hoverBackground: '{surface.0}',
+        checkedBackground: '{surface.0}',
+        checkedHoverBackground: '{surface.0}',
+        borderColor: '{surface.200}',
+        hoverBorderColor: '{primary.color}',
+        checkedBorderColor: '{primary.color}',
+        checkedHoverBorderColor: '{primary.color}',
+        handle: {
+          background: '{surface.200}',
+          hoverBackground: '{surface.200}',
+          checkedBackground: '{primary.color}',
+          checkedHoverBackground: '{primary.color}',
+          disabledBackground: '{surface.100}',
+        },
+      },
+    },
+    css: ({ dt }) => `
+      .p-toggleswitch {
+        &.p-toggleswitch-checked.p-disabled .p-toggleswitch-slider {
+          border-color: ${dt('toggleswitch.border.color')};
+        }
+      }
+    `,
+  },
+  // TreeSelect
+  // --------------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
+  // Button
+  // --------------------------------------------------------------------------
+  // Button
   button: {
     iconOnlyWidth: 'fit-content',
     app: {
@@ -253,6 +619,10 @@ export default {
           max-width: 100%;
         }
       }
+
+      .p-button-loading .p-button-label {
+        display: none;
+      }
         
       .p-button-sm {
         width: ${dt('button.app.sm.width')};
@@ -441,6 +811,260 @@ export default {
       }
     `,
   },
+  // SpeedDial
+  // SplitButton
+  // --------------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
+  // Data
+  // --------------------------------------------------------------------------
+  // DataTable
+  datatable: {
+    rowToggleButtonSize: '3rem',
+    colorScheme: {
+      light: {
+        headerCellBorderColor: 'transparent',
+        headerCellBackground: 'transparent',
+        bodyCellBorderColor: 'transparent',
+        footerCellBackground: 'transparent',
+        row: {
+          toggleButtonHoverBackground: 'transparent',
+        },
+      },
+    },
+  },
+  // DataView
+  // OrderList
+  // OrgChart
+  // Paginator
+  paginator: {
+    app: {
+      minWidth: '6rem',
+      maxWidth: 'fit-content',
+    },
+    colorScheme: {
+      light: {
+        background: 'transparent',
+      },
+    },
+    css: ({ dt }) => `
+      .p-paginator {
+        .p-paginator-rpp-dropdown {
+          min-width: ${dt('paginator.app.min.width')};
+          max-width: ${dt('paginator.app.max.width')};
+        }
+      }
+    `,
+  },
+  // PickList
+  // Timeline
+  // Tree
+  // TreeTable
+  // VirtualScroller
+  // --------------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
+  // Panel
+  // --------------------------------------------------------------------------
+  // Accordion
+  accordion: {
+    css: ({ dt }) => `
+      .p-accordion {
+        .p-accordionheader,
+        .p-accordionheader svg {
+          transition: color ${dt('accordion.transition.duration')},
+            background ${dt('accordion.transition.duration')};
+        }
+        .p-accordionpanel {
+          &:last-child {
+            border-color: transparent;
+          }
+        }
+      }
+    `,
+  },
+  // Card
+  card: {
+    title: {
+      fontSize: '1.6rem',
+      fontWeight: '600',
+    },
+    bodyGap: '1rem',
+    colorScheme: {
+      light: {
+        subtitleColor: '{surface.300}',
+      },
+    },
+  },
+  // Deferred
+  // Divider
+  divider: {
+    colorScheme: {
+      light: {
+        contentBackground: '{surface.50}',
+      },
+    },
+  },
+  // Fieldset
+  fieldset: {
+    colorScheme: {
+      light: {
+        legend: {
+          background: 'transparent',
+          hoverBackground: 'transparent',
+        },
+      },
+    },
+  },
+  // Panel
+  // ScrollPanel
+  scrollpanel: {
+    bar: {
+      size: '0.6rem',
+      borderRadius: '{border.radius.md}',
+    },
+    colorScheme: {
+      light: {
+        barBackground: '{primary.300}',
+      },
+    },
+  },
+  // Splitter
+  // Stepper
+  stepper: {
+    stepNumber: {
+      size: '4rem',
+      fontSize: '1.6rem',
+    },
+    colorScheme: {
+      light: {
+        steppanelBackground: 'transparent',
+        stepNumber: {
+          activeColor: '{primary.contrastColor}',
+          activeBorderColor: '{stepper.step.title.active.color}',
+          activeBackground: '{stepper.step.title.active.color}',
+        },
+      },
+    },
+  },
+  // Tabs
+  tabs: {
+    tablist: {
+      border: {
+        width: '0 0 3px 0',
+        color: 'transparent',
+      },
+    },
+    tab: {
+      margin: '0 0 -3px 0',
+      border: {
+        width: '0 0 3px 0',
+        color: 'transparent',
+      },
+      color: '{text.color}',
+      hoverColor: '{primary.color}',
+      hoverBorderColor: 'transparent',
+    },
+    active: {
+      barHeight: '3px',
+      barBottom: '-3px',
+    },
+    colorScheme: {
+      light: {
+        tablistBackground: '{surface.50}',
+        tabpanelBackground: '{surface.50}',
+        nav: {
+          button: {
+            color: '{primary.color}',
+            hoverColor: '{primary.hover.color}',
+            background: '{surface.50}',
+            shadow: '0px 0px 10px 10px {surface.50}',
+          },
+        },
+      },
+    },
+  },
+  // Toolbar
+  // --------------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
+  // Overlay
+  // --------------------------------------------------------------------------
+  // ConfirmDialog
+  // ConfirmPopup
+  confirmpopup: {
+    arrowOffset: 'calc({confirmpopupBorderRadius} * 2.5)',
+  },
+  // Dialog
+  dialog: {
+    title: {
+      fontSize: '1.6rem',
+      fontWeight: '600',
+    },
+    footerGap: '1rem',
+  },
+  // Drawer
+  // DinamicDialog
+  // Popover
+  popover: {
+    arrowOffset: 'calc({popoverBorderRadius} * 2)',
+  },
+  // Tooltip (options not working because of PrimeVue bug)
+  tooltip: {
+    maxWidth: '30rem',
+    gutter: '0.5rem',
+    colorScheme: {
+      light: {
+        color: '{text.color}',
+        background: '{surface.50}',
+      },
+    },
+  },
+  // --------------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
+  // File
+  // --------------------------------------------------------------------------
+  // Upload
+  fileupload: {
+    headerPadding: '1rem 1rem 0.5rem 1rem',
+    contentPadding: '0.5rem 1rem 1rem 1rem',
+    css: ({ dt }) => `
+      .p-fileupload-content {
+        border-radius: ${dt('fileupload.border.radius')};
+      }
+    `,
+  },
+  // --------------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
+  // Menu
+  // --------------------------------------------------------------------------
+  // Breadcrumb
+  // ContextMenu
+  // Dock
+  // Menu
+  // Menubar
+  // MegaMenu
+  // PanelMenu
+  // TieredMenu
+  tieredmenu: {
+    itemPadding: '1rem 1rem',
+    listGap: '0.2rem',
+    submenuIconSize: '1.4rem',
+  },
+  // --------------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
+  // Chart
+  // --------------------------------------------------------------------------
+  // Chart.js
+  // --------------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
+  // Messages
+  // --------------------------------------------------------------------------
+  // Message
   message: {
     text: {
       fontSize: 'inherit',
@@ -449,133 +1073,7 @@ export default {
       fontWeight: 'inherit',
     },
   },
-  floatlabel: {
-    activeFontSize: '1.2rem',
-  },
-  checkbox: {
-    width: '16px',
-    height: '16px',
-    borderRadius: '{border.radius.sm}',
-    sm: {
-      width: '12px',
-      height: '12px',
-    },
-    lg: {
-      width: '20px',
-      height: '20px',
-    },
-    icon: {
-      smSize: '6px',
-      size: '10px',
-      lgSize: '12px',
-    },
-    colorScheme: {
-      light: {
-        borderColor: '{primary.200}',
-        hoverBorderColor: '{primary.color}',
-        checked: {
-          background: '{surface.0}',
-          hoverBackground: '{surface.0}',
-          borderColor: '{primary.color}',
-          hoverBorderColor: '{primary.color}',
-        },
-        icon: {
-          color: '{primary.color}',
-          checkedColor: '{primary.color}',
-          checkedHoverColor: '{primary.color}',
-          disabledColor: '{surface.200}',
-        },
-      },
-    },
-  },
-  radiobutton: {
-    width: '16px',
-    height: '16px',
-    sm: {
-      width: '12px',
-      height: '12px',
-    },
-    lg: {
-      width: '20px',
-      height: '20px',
-    },
-    icon: {
-      smSize: '6px',
-      size: '8px',
-      lgSize: '10px',
-    },
-    colorScheme: {
-      light: {
-        checked: {
-          background: '{surface.0}',
-          hoverBackground: '{surface.0}',
-        },
-        icon: {
-          color: '{primary.color}',
-          checkedColor: '{primary.color}',
-          checkedHoverColor: '{primary.color}',
-          disabledColor: '{surface.200}',
-        },
-      },
-    },
-  },
-  toggleswitch: {
-    width: '34px',
-    height: '20px',
-    handle: {
-      size: '14px',
-    },
-    colorScheme: {
-      light: {
-        background: '{surface.0}',
-        hoverBackground: '{surface.0}',
-        checkedBackground: '{surface.0}',
-        checkedHoverBackground: '{surface.0}',
-        borderColor: '{surface.200}',
-        hoverBorderColor: '{primary.color}',
-        checkedBorderColor: '{primary.color}',
-        checkedHoverBorderColor: '{primary.color}',
-        handle: {
-          background: '{surface.200}',
-          hoverBackground: '{surface.200}',
-          checkedBackground: '{primary.color}',
-          checkedHoverBackground: '{primary.color}',
-          disabledBackground: '{surface.100}',
-        },
-      },
-    },
-  },
-  togglebutton: {
-    padding: '0.75rem 1rem',
-    contentTop: '0.3rem',
-  },
-  select: {
-    sm: {
-      fontSize: '1.4rem',
-    },
-  },
-  multiselect: {
-    chipBorderRadius: '10rem',
-    sm: {
-      fontSize: '1.4rem',
-    },
-  },
-  chip: {
-    paddingX: '0.3rem',
-    paddingY: '0.3rem',
-    iconSize: '2rem',
-    remove: {
-      iconSize: '2rem',
-    },
-    colorScheme: {
-      light: {
-        iconColor: '{surface.500}',
-        remove: {
-          iconColor: '{surface.500}',
-        },
-      },
-    },
-  },
+  // Toast
   toast: {
     width: '30rem',
     contentPadding: '1.5rem',
@@ -624,67 +1122,22 @@ export default {
       },
     },
   },
-  datepicker: {
-    select: {
-      monthPadding: '0.5rem 1rem',
-      yearPadding: '0.5rem 1rem',
-    },
-    titleFontWeight: '700',
-    monthViewMargin: '1rem 0',
-    dayViewMargin: '1rem 0',
-    weekDayFontWeight: '700',
-    date: {
-      width: '3rem',
-      height: '3rem',
-      borderRadius: '{border.radius.lg}',
-    },
-    colorScheme: {
-      light: {
-        headerColor: '{primary.color}',
-        select: {
-          month: {
-            color: '{primary.color}',
-            hoverColor: '{primary.700}',
-            hoverBackground: 'transparent',
-          },
-          year: {
-            color: '{primary.color}',
-            hoverColor: '{primary.700}',
-            hoverBackground: 'transparent',
-          },
-        },
-        date: {
-          hoverColor: '{primary.contrastColor}',
-          hoverBackground: '{primary.color}',
-          rangeSelectedColor: '{primary.contrastColor}',
-          rangeSelectedBackground: '{primary.color}',
-        },
-        today: {
-          color: '{primary.color}',
-          background: 'transparent',
-        },
-      },
-    },
-  },
-  divider: {
-    colorScheme: {
-      light: {
-        contentBackground: '{surface.50}',
-      },
-    },
-  },
-  chip: {
-    paddingX: '0.3rem',
-    paddingY: '0.3rem',
-    gap: '0',
-    borderRadius: '10rem',
-    colorScheme: {
-      light: {
-        iconColor: '{surface.500}',
-        removeIconColor: '{surface.500}',
-      },
-    },
-  },
+  // --------------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
+  // Media
+  // --------------------------------------------------------------------------
+  // Carousel
+  // Galleria
+  // Image
+  // ImageCompare
+  // --------------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
+  // Misc
+  // --------------------------------------------------------------------------
+  // Avatar
+  // Badge
   badge: {
     fontSize: '1.2rem',
     fontWeight: '400',
@@ -714,70 +1167,46 @@ export default {
       },
     },
   },
-  tabs: {
-    tablist: {
-      border: {
-        width: '0 0 3px 0',
-        color: 'transparent',
-      },
+  // BlockUI
+  // Chip
+  chip: {
+    paddingX: '0.3rem',
+    paddingY: '0.3rem',
+    gap: '0',
+    borderRadius: '10rem',
+    iconSize: '2rem',
+    remove: {
+      iconSize: '2rem',
     },
-    tab: {
-      margin: '0 0 -3px 0',
-      border: {
-        width: '0 0 3px 0',
-        color: 'transparent',
-      },
-      color: '{text.color}',
-      hoverColor: '{primary.color}',
-      hoverBorderColor: 'transparent',
-    },
-    active: {
-      barHeight: '3px',
-      barBottom: '-3px',
+    app: {
+      fontSize: '1.2rem',
     },
     colorScheme: {
       light: {
-        tablistBackground: '{surface.50}',
-        tabpanelBackground: '{surface.50}',
-        nav: {
-          button: {
-            color: '{primary.color}',
-            hoverColor: '{primary.hover.color}',
-            background: '{surface.50}',
-            shadow: '0px 0px 10px 10px {surface.50}',
-          },
-        },
+        iconColor: '{surface.500}',
+        removeIconColor: '{surface.500}',
       },
     },
+    css: ({ dt }) => `
+      .p-chip {
+        font-size: ${dt('chip.app.fontSize')};
+        .p-chip-label {
+          padding-block: ${dt('chip.padding.y')};
+          padding-inline: ${dt('chip.padding.x')};
+        }
+        .icon-close {
+          min-width: fit-content;
+          min-height: fit-content;
+          color: ${dt('chip.remove.icon.color')};
+        }
+      }
+    `,
   },
-  fileupload: {
-    headerPadding: '1rem 1rem 0.5rem 1rem',
-    contentPadding: '0.5rem 1rem 1rem 1rem',
-  },
-  // Tooltip options not working because of PrimeVue bug
-  tooltip: {
-    maxWidth: '30rem',
-    gutter: '0.5rem',
-    colorScheme: {
-      light: {
-        color: '{text.color}',
-        background: '{surface.50}',
-      },
-    },
-  },
-  confirmpopup: {
-    arrowOffset: 'calc({confirmpopupBorderRadius} * 2.5)',
-  },
-  dialog: {
-    title: {
-      fontSize: '1.6rem',
-      fontWeight: '600',
-    },
-    footerGap: '1rem',
-  },
-  popover: {
-    arrowOffset: 'calc({popoverBorderRadius} * 2)',
-  },
+  // Fluid
+  // Inplace
+  // MeterGroup
+  // ProgressBar
+  // ProgressSpinner
   progressspinner: {
     colorScheme: {
       light: {
@@ -790,83 +1219,9 @@ export default {
       },
     },
   },
-  colorpicker: {
-    previewWidth: '3rem',
-    previewHeight: '3rem',
-  },
-  scrollpanel: {
-    bar: {
-      size: '0.6rem',
-      borderRadius: '{border.radius.md}',
-    },
-    colorScheme: {
-      light: {
-        barBackground: '{primary.300}',
-      },
-    },
-  },
-  fieldset: {
-    colorScheme: {
-      light: {
-        legend: {
-          background: 'transparent',
-          hoverBackground: 'transparent',
-        },
-      },
-    },
-  },
-  card: {
-    title: {
-      fontSize: '1.6rem',
-      fontWeight: '600',
-    },
-    bodyGap: '1rem',
-    colorScheme: {
-      light: {
-        subtitleColor: '{surface.300}',
-      },
-    },
-  },
-  paginator: {
-    colorScheme: {
-      light: {
-        background: 'transparent',
-      },
-    },
-  },
-  datatable: {
-    rowToggleButtonSize: '3rem',
-    colorScheme: {
-      light: {
-        headerCellBorderColor: 'transparent',
-        headerCellBackground: 'transparent',
-        bodyCellBorderColor: 'transparent',
-        footerCellBackground: 'transparent',
-        row: {
-          toggleButtonHoverBackground: 'transparent',
-        },
-      },
-    },
-  },
-  stepper: {
-    stepNumber: {
-      size: '4rem',
-      fontSize: '1.6rem',
-    },
-    colorScheme: {
-      light: {
-        steppanelBackground: 'transparent',
-        stepNumber: {
-          activeColor: '{primary.contrastColor}',
-          activeBorderColor: '{stepper.step.title.active.color}',
-          activeBackground: '{stepper.step.title.active.color}',
-        },
-      },
-    },
-  },
-  tieredmenu: {
-    itemPadding: '1rem 1rem',
-    listGap: '0.2rem',
-    submenuIconSize: '1.4rem',
-  },
+  // ScrollTop
+  // Skeleton
+  // Tag
+  // Terminal
+  // --------------------------------------------------------------------------
 }
