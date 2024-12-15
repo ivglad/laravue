@@ -154,50 +154,6 @@ export default {
     sm: {
       fontSize: '1.4rem',
     },
-    css: ({ dt }) => `
-      .p-multiselect {
-        align-items: center;
-        width: ${dt('select.app.width')};
-        min-width: ${dt('select.app.min.width')};
-        max-width: ${dt('select.app.max.width')};
-        height: ${dt('select.app.height')};
-        min-height: ${dt('select.app.min.height')};
-        max-height: ${dt('select.app.max.height')};
-        &.p-multiselect-sm {
-          height: ${dt('select.app.sm.height')};
-        }
-        .p-multiselect-dropdown {
-          .p-icon {
-            width: ${dt('select.app.dropdownIconSize')};
-            height: ${dt('select.app.dropdownIconSize')};
-            margin-right: 0.5rem;
-          }
-        }
-        .p-multiselect-label {
-          flex-wrap: wrap;
-          &:has(.p-chip) {
-            padding: calc(${dt('multiselect.padding.y')} / 2)
-              ${dt('multiselect.padding.x')};
-          }
-        }
-        .p-chip {
-          padding-block: ${dt('chip.padding.y')};
-          padding-inline: ${dt('chip.padding.x')};
-          .p-chip-label {
-            max-width: 80px;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-          }
-          .icon {
-            color: ${dt('chip.remove.icon.color')};
-          }
-        }
-      }
-      .p-multiselect-overlay-sm .p-select-option {
-        height: ${dt('select.app.sm.height')};
-      }
-    `,
   },
   // Password
   // RadioButton
@@ -249,7 +205,8 @@ export default {
       dropdownIconSize: '1.4rem',
     },
     css: ({ dt }) => `
-      .p-select {
+      .p-select,
+      .p-multiselect {
         align-items: center;
         width: ${dt('select.app.width')};
         min-width: ${dt('select.app.min.width')};
@@ -257,17 +214,20 @@ export default {
         height: ${dt('select.app.height')};
         min-height: ${dt('select.app.min.height')};
         max-height: ${dt('select.app.max.height')};
-        &.p-select-sm {
+        &.p-select-sm,
+        &.p-multiselect-sm {
           height: ${dt('select.app.sm.height')};
         }
-        .p-select-dropdown {
+        .p-select-dropdown,
+        .p-multiselect-dropdown {
           .p-icon {
             width: ${dt('select.app.dropdownIconSize')};
             height: ${dt('select.app.dropdownIconSize')};
             margin-right: 0.5rem;
           }
         }
-        .p-select-label {
+        .p-select-label,
+        .p-multiselect-label {
           flex-wrap: wrap;
           &:has(.p-chip) {
             padding: calc(${dt('multiselect.padding.y')} / 2)
@@ -288,7 +248,8 @@ export default {
           }
         }
       }
-      .p-select-overlay-sm .p-select-option {
+      .p-select-overlay-sm .p-select-option,
+      .p-multiselect-overlay-sm .p-multiselect-option {
         height: ${dt('select.app.sm.height')};
       }
     `,
