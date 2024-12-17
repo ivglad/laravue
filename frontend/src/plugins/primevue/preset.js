@@ -4,6 +4,14 @@ import components from './components'
 
 const Preset = definePreset(Aura, {
   primitive: {
+    app: {
+      disabled: {
+        color: '{surface.200}',
+      },
+      fontSize: '1.4rem',
+      fontSizeSm: '1.2rem',
+      fontSizeLg: '1.6rem',
+    },
     borderRadius: {
       none: '0',
       xs: '4px',

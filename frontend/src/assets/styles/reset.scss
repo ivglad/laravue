@@ -66,10 +66,14 @@
   h4,
   h5,
   h6 {
-    display: flex;
-    font-size: inherit;
-    font-weight: inherit;
+    font-weight: unset;
+    line-height: initial;
     margin: 0;
+  }
+
+  h1,
+  h2 {
+    font-weight: bold;
   }
 
   /* Grouping content

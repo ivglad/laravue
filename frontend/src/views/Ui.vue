@@ -6,13 +6,13 @@
       <h1>UI-KIT</h1>
     </Divider>
 
-    <LayoutUiButtons />
-
     <LayoutUiFonts />
 
     <LayoutUiIcons />
 
     <LayoutUiColors />
+
+    <LayoutUiButtons />
 
     <LayoutUiInputs />
 
@@ -59,19 +59,9 @@
       }"
       style="transition-duration: 0.5s" />
 
-    <LayoutUiTable
-      v-animateonscroll="{
-        enterClass: 'animate-fadein',
-        leaveClass: 'animate-fadeout',
-      }"
-      style="transition-duration: 0.5s" />
+    <LayoutUiTable />
 
-    <LayoutUiTableTanstack
-      v-animateonscroll="{
-        enterClass: 'animate-scalein',
-        leaveClass: 'animate-fadeout',
-      }"
-      style="transition-duration: 0.5s" />
+    <LayoutUiTableTanstack />
 
     <LayoutUiProgress />
 
@@ -95,6 +85,12 @@
   padding: $size-20 $size-40 $size-60 $size-40;
   @include mq(m) {
     padding: $size-20 $size-20 $size-40 $size-20;
+  }
+
+  .components {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 
   section {
@@ -182,11 +178,11 @@
   }
 
   :deep(h1) {
-    font-size: 2.2rem;
+    @include fluid-text(40, 20);
     font-weight: 700;
   }
   :deep(h2) {
-    font-size: 1.8rem;
+    @include fluid-text(24, 18);
     font-weight: 600;
   }
 }

@@ -41,6 +41,7 @@ declare module 'vue' {
     DatePicker: typeof import('primevue/datepicker')['default']
     Dialog: typeof import('primevue/dialog')['default']
     Divider: typeof import('primevue/divider')['default']
+    Dock: typeof import('primevue/dock')['default']
     Drawer: typeof import('primevue/drawer')['default']
     DynamicDialog: typeof import('primevue/dynamicdialog')['default']
     Error: typeof import('./src/views/Error.vue')['default']

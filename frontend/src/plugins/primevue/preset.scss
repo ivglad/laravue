@@ -260,79 +260,79 @@
   // --------------------------------------------------------------------------
   // Datepicker
   // --------------------------------------------------------------------------
-  .p-datepicker {
-    &-day {
-      line-height: var(--p-datepicker-date-height);
-      &-view {
-        font-size: $fs-s;
-        user-select: none;
-      }
-      &.p-disabled {
-        color: var(--p-surface-200);
-      }
-    }
-    &-time-picker {
-      span {
-        font-size: $fs-s;
-      }
-    }
-    .p-component:disabled + &-input-icon-container {
-      color: var(--p-surface-200);
-      opacity: 0.6;
-      user-select: none;
-      pointer-events: none;
-    }
-  }
+  // .p-datepicker {
+  // &-day {
+  // line-height: var(--p-datepicker-date-height);
+  // &-view {
+  //   font-size: $fs-s;
+  //   user-select: none;
+  // }
+  // &.p-disabled {
+  //   color: var(--p-surface-200);
+  // }
+  // }
+  // &-time-picker {
+  //   span {
+  //     font-size: $fs-s;
+  //   }
+  // }
+  // .p-component:disabled + &-input-icon-container {
+  //   color: var(--p-surface-200);
+  //   opacity: 0.6;
+  //   user-select: none;
+  //   pointer-events: none;
+  // }
+  // }
   // --------------------------------------------------------------------------
 
   // --------------------------------------------------------------------------
   // Badge
   // --------------------------------------------------------------------------
-  .p-badge {
-    line-height: var(--p-badge-height);
-    &-lg {
-      line-height: var(--p-badge-lg-height);
-    }
-    &-xl {
-      line-height: var(--p-badge-xl-height);
-    }
-    &-sm {
-      line-height: var(--p-badge-sm-height);
-      padding: 0.3rem 0.3rem;
-    }
-  }
+  // .p-badge {
+  //   line-height: var(--p-badge-height);
+  //   &-lg {
+  //     line-height: var(--p-badge-lg-height);
+  //   }
+  //   &-xl {
+  //     line-height: var(--p-badge-xl-height);
+  //   }
+  //   &-sm {
+  //     line-height: var(--p-badge-sm-height);
+  //     padding: 0.3rem 0.3rem;
+  //   }
+  // }
 
-  .p-overlaybadge {
-    width: fit-content;
-    height: fit-content;
-    .p-badge {
-      &:not(&-circle) {
-        transform: translate(90%, -50%);
-      }
-    }
-  }
+  // .p-overlaybadge {
+  //   width: fit-content;
+  //   height: fit-content;
+  //   .p-badge {
+  //     &:not(&-circle) {
+  //       transform: translate(90%, -50%);
+  //     }
+  //   }
+  // }
   // --------------------------------------------------------------------------
 
   // --------------------------------------------------------------------------
   // Iconfield
   // --------------------------------------------------------------------------
-  .p-iconfield {
-    display: flex;
-    align-items: center;
-    & *:first-child.p-inputicon {
-      z-index: 1;
-      & + * input {
-        padding-inline-start: calc(
-          (var(--p-form-field-padding-x) * 2) + var(--p-icon-size)
-        );
-        padding-inline-end: var(--p-form-field-padding-x);
-      }
-    }
-    .p-inputicon {
-      top: unset;
-      margin-top: 0;
-    }
-  }
+  // .p-iconfield {
+  //   display: flex;
+  //   align-items: center;
+  //   & *:first-child.p-inputicon {
+  //     z-index: 1;
+  //     & + * input {
+  //       padding-inline-start: calc(
+  //         (var(--p-form-field-padding-x) * 2) + var(--p-icon-size)
+  //       );
+  //       padding-inline-end: var(--p-form-field-padding-x);
+  //     }
+  //   }
+  //   .p-inputicon {
+  //     top: unset;
+  //     margin-top: 0;
+  //   }
+  // }
 
   // --------------------------------------------------------------------------
   // File upload
@@ -346,6 +346,7 @@
 
   // --------------------------------------------------------------------------
   // Tooltip
+  // FIXME: Удалить после исправления бага в PrimeVue
   // --------------------------------------------------------------------------
   .p-tooltip {
     max-width: 30rem;
@@ -369,11 +370,11 @@
     }
   }
 
-  .p-confirmpopup {
-    &-message {
-      font-size: 1.2rem;
-    }
-  }
+  // .p-confirmpopup {
+  //   &-message {
+  //     font-size: 1.2rem;
+  //   }
+  // }
   // --------------------------------------------------------------------------
 
   // --------------------------------------------------------------------------
@@ -454,8 +455,6 @@
 
     &:not(.p-button) .icon,
     &:not(.p-button) .p-icon,
-    // + * .icon,
-    // + * .p-icon,
     + .icon,
     + .p-icon {
       color: var(--p-surface-200);

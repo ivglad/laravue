@@ -64,7 +64,7 @@ export default {
     date: {
       width: '3rem',
       height: '3rem',
-      borderRadius: '{border.radius.lg}',
+      borderRadius: '{border.radius.sm}',
     },
     colorScheme: {
       light: {
@@ -93,6 +93,27 @@ export default {
         },
       },
     },
+    app: {
+      day: {
+        fontSize: '{app.font.size}',
+        disabledColor: '{app.disabled.color}',
+      },
+    },
+    css: ({ dt }) => `
+      .p-datepicker-day,
+      .p-datepicker-weekday,
+      .p-datepicker-time-picker {
+        font-size: ${dt('datepicker.app.day.font.size')};
+        &.p-disabled {
+          color: ${dt('datepicker.app.day.disabled.color')};
+        }      
+      }
+      .p-datepicker-input:disabled + .p-datepicker-input-icon-container {
+        color: ${dt('datepicker.app.day.disabled.color')};
+        opacity: 0.6;
+        pointer-events: none;
+      }
+    `,
   },
   // Editor
   // FloatLabel
@@ -100,6 +121,27 @@ export default {
     activeFontSize: '1.2rem',
   },
   // IconField
+  iconfield: {
+    css: ({ dt }) => `
+      .p-iconfield {
+        display: flex;
+        align-items: center;
+        & *:first-child.p-inputicon {
+          z-index: 1;
+          & + * input {
+            padding-inline-start: calc(
+              (${dt('form.field.padding.x')} * 2) + ${dt('icon.size')}
+            );
+            padding-inline-end: ${dt('form.field.padding.x')};
+          }
+        }
+        .p-inputicon {
+          top: unset;
+          margin-top: 0;
+        }
+      }
+    `,
+  },
   // IftaLabel
   // InputGroup
   // InputMask
@@ -152,26 +194,26 @@ export default {
   multiselect: {
     chipBorderRadius: '10rem',
     sm: {
-      fontSize: '1.4rem',
+      fontSize: '{app.font.size}',
     },
   },
   // Password
   // RadioButton
   radiobutton: {
-    width: '16px',
-    height: '16px',
+    width: '1.6rem',
+    height: '1.6rem',
     sm: {
-      width: '12px',
-      height: '12px',
+      width: '1.2rem',
+      height: '1.2rem',
     },
     lg: {
-      width: '20px',
-      height: '20px',
+      width: '2rem',
+      height: '2rem',
     },
     icon: {
-      smSize: '6px',
-      size: '8px',
-      lgSize: '10px',
+      smSize: '0.6rem',
+      size: '0.8rem',
+      lgSize: '1rem',
     },
     colorScheme: {
       light: {
@@ -192,7 +234,7 @@ export default {
   // Select
   select: {
     sm: {
-      fontSize: '1.4rem',
+      fontSize: '{app.font.size}',
     },
     app: {
       width: '20rem',
@@ -202,7 +244,7 @@ export default {
       minHeight: 'fit-content',
       maxHeight: '100%',
       smHeight: '3.2rem',
-      dropdownIconSize: '1.4rem',
+      dropdownIconSize: '{app.font.size}',
     },
     css: ({ dt }) => `
       .p-select,
@@ -282,8 +324,13 @@ export default {
   },
   // ToggleButton
   togglebutton: {
-    padding: '0.75rem 1rem',
+    padding: '0.8rem 0.8rem',
     contentTop: '0.3rem',
+    css: ({ dt }) => `
+      .p-togglebutton::before {
+        border-radius: ${dt('border.radius.sm')};
+      }
+    `,
   },
   // ToggleSwitch
   toggleswitch: {
@@ -328,15 +375,6 @@ export default {
   // Button
   button: {
     iconOnlyWidth: 'fit-content',
-    app: {
-      width: '14rem',
-      height: '4.2rem',
-      sm: {
-        width: '8rem',
-        height: '3.2rem',
-        fontSize: '1.2rem',
-      },
-    },
     colorScheme: {
       light: {
         primary: {
@@ -450,51 +488,51 @@ export default {
           },
           success: {
             color: '{green.400}',
-            hoverColor: '{green.600}',
-            activeColor: '{green.700}',
+            hoverColor: '{green.500}',
+            activeColor: '{green.600}',
             borderColor: '{green.400}',
-            hoverBorderColor: '{green.600}',
-            activeBorderColor: '{green.700}',
+            hoverBorderColor: '{green.500}',
+            activeBorderColor: '{green.600}',
             hoverBackground: 'transparent',
             activeBackground: 'transparent',
           },
           info: {
             color: '{blue.400}',
-            hoverColor: '{blue.600}',
-            activeColor: '{blue.700}',
+            hoverColor: '{blue.500}',
+            activeColor: '{blue.600}',
             borderColor: '{blue.400}',
-            hoverBorderColor: '{blue.600}',
-            activeBorderColor: '{blue.700}',
+            hoverBorderColor: '{blue.500}',
+            activeBorderColor: '{blue.600}',
             hoverBackground: 'transparent',
             activeBackground: 'transparent',
           },
           warn: {
             color: '{orange.400}',
-            hoverColor: '{orange.600}',
-            activeColor: '{orange.700}',
+            hoverColor: '{orange.500}',
+            activeColor: '{orange.600}',
             borderColor: '{orange.400}',
-            hoverBorderColor: '{orange.600}',
-            activeBorderColor: '{orange.700}',
+            hoverBorderColor: '{orange.500}',
+            activeBorderColor: '{orange.600}',
             hoverBackground: 'transparent',
             activeBackground: 'transparent',
           },
           help: {
             color: '{purple.400}',
-            hoverColor: '{purple.600}',
-            activeColor: '{purple.700}',
+            hoverColor: '{purple.500}',
+            activeColor: '{purple.600}',
             borderColor: '{purple.400}',
-            hoverBorderColor: '{purple.600}',
-            activeBorderColor: '{purple.700}',
+            hoverBorderColor: '{purple.500}',
+            activeBorderColor: '{purple.600}',
             hoverBackground: 'transparent',
             activeBackground: 'transparent',
           },
           danger: {
             color: '{red.400}',
-            hoverColor: '{red.600}',
-            activeColor: '{red.700}',
+            hoverColor: '{red.500}',
+            activeColor: '{red.600}',
             borderColor: '{red.400}',
-            hoverBorderColor: '{red.600}',
-            activeBorderColor: '{red.700}',
+            hoverBorderColor: '{red.500}',
+            activeBorderColor: '{red.600}',
             hoverBackground: 'transparent',
             activeBackground: 'transparent',
           },
@@ -569,6 +607,17 @@ export default {
         },
       },
     },
+    app: {
+      width: '14rem',
+      height: '4.2rem',
+      iconPadding: '0.5rem',
+      textPadding: '0.5rem',
+      sm: {
+        width: '8rem',
+        height: '3.2rem',
+        fontSize: '1.2rem',
+      },
+    },
     css: ({ dt }) => `
       .p-button {
         &:not(.p-button-icon-only):not(.p-button-text):not(.p-button-sm) {
@@ -599,11 +648,13 @@ export default {
           min-width: ${dt('button.app.height')};
           min-height: ${dt('button.app.height')};
         }
-      }
-
-      .p-button-icon-only.p-button-text {
-        min-width: ${dt('icon.size')};
-        min-height: ${dt('icon.size')};
+        &.p-button-text {
+          min-width: ${dt('icon.size')};
+          min-height: ${dt('icon.size')};
+        }
+        &.p-button-rounded {
+          padding: ${dt('button.app.icon.padding')};
+        }
       }
 
       .p-button-outlined {
@@ -715,6 +766,7 @@ export default {
       }
 
       .p-button-text {
+        padding: ${dt('button.app.text.padding')};
         &:not(:disabled):hover {
           color: ${dt('button.text.primary.hover.color')};
         }
@@ -782,6 +834,7 @@ export default {
   // DataTable
   datatable: {
     rowToggleButtonSize: '3rem',
+    sortIconSize: '1.2rem',
     colorScheme: {
       light: {
         headerCellBorderColor: 'transparent',
@@ -799,14 +852,14 @@ export default {
   // OrgChart
   // Paginator
   paginator: {
-    app: {
-      minWidth: '6rem',
-      maxWidth: 'fit-content',
-    },
     colorScheme: {
       light: {
         background: 'transparent',
       },
+    },
+    app: {
+      minWidth: '6rem',
+      maxWidth: 'fit-content',
     },
     css: ({ dt }) => `
       .p-paginator {
@@ -970,7 +1023,7 @@ export default {
   popover: {
     arrowOffset: 'calc({popoverBorderRadius} * 2)',
   },
-  // Tooltip (options not working because of PrimeVue bug)
+  // Tooltip (не работает из-за бага PrimeVue)
   tooltip: {
     maxWidth: '30rem',
     gutter: '0.5rem',
@@ -980,6 +1033,34 @@ export default {
         background: '{surface.50}',
       },
     },
+    app: {
+      maxWidth: '30rem',
+      fontSize: '{app.font.size.sm}',
+      borderColor: '{surface.0}',
+    },
+    css: ({ dt }) => `
+      .p-tooltip {
+        max-width: ${dt('tooltip.app.max.width')};
+        &.p-tooltip-top .p-tooltip-arrow {
+          border-top-color: ${dt('tooltip.app.border.color')};
+        }
+        &.p-tooltip-right .p-tooltip-arrow {
+          border-right-color: ${dt('tooltip.app.border.color')};
+        }
+        &.p-tooltip-bottom .p-tooltip-arrow {
+          border-bottom-color: ${dt('tooltip.app.border.color')};
+        }
+        &.p-tooltip-left .p-tooltip-arrow {
+          border-left-color: ${dt('tooltip.app.border.color')};
+        }
+        .p-tooltip-text {
+          font-size: ${dt('tooltip.app.font.size')};
+          color: ${dt('text.color')};
+          border-radius: ${dt('border.radius.sm')};
+          background: ${dt('tooltip.app.border.color')};
+        }
+      }
+    `,
   },
   // --------------------------------------------------------------------------
 
@@ -1100,24 +1181,24 @@ export default {
   // Avatar
   // Badge
   badge: {
-    fontSize: '1.2rem',
+    fontSize: '{app.font.size.sm}',
     fontWeight: '400',
     minWidth: '1.8rem',
     height: '1.8rem',
     padding: '0.5rem 0.5rem',
     borderRadius: '10rem',
     xl: {
-      fontSize: '1.6rem',
+      fontSize: '{app.font.size.lg}',
       minWidth: '2.2rem',
       height: '2.2rem',
     },
     lg: {
-      fontSize: '1.4rem',
+      fontSize: '{app.font.size}',
       minWidth: '2rem',
       height: '2rem',
     },
     sm: {
-      fontSize: '1rem',
+      fontSize: '{app.font.size.sm}',
       minWidth: '1.6rem',
       height: '1.6rem',
     },
@@ -1127,6 +1208,17 @@ export default {
         primaryBackground: '{surface.500}',
       },
     },
+    css: ({ dt }) => `
+      .p-overlaybadge {
+        width: fit-content;
+        height: fit-content;
+        .p-badge {
+          &:not(.p-badge-circle) {
+            transform: translate(90%, -50%);
+          }
+        }
+      }
+    `,
   },
   // BlockUI
   // Chip
@@ -1139,14 +1231,14 @@ export default {
     remove: {
       iconSize: '2rem',
     },
-    app: {
-      fontSize: '1.2rem',
-    },
     colorScheme: {
       light: {
         iconColor: '{surface.500}',
         removeIconColor: '{surface.500}',
       },
+    },
+    app: {
+      fontSize: '{app.font.size.sm}',
     },
     css: ({ dt }) => `
       .p-chip {
@@ -1163,7 +1255,6 @@ export default {
       }
     `,
   },
-  // Fluid
   // Inplace
   // MeterGroup
   // ProgressBar
