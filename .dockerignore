@@ -3,4 +3,6 @@
 **/vendor
 .git
 .gitignore
-docker/db/data/*
+.docker/db/data/*
+.docker/db/sql/*
+.docker/nginx/logs/*
