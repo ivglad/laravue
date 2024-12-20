@@ -23,9 +23,9 @@ const router = useRouter()
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: $size-20;
+  gap: 2rem;
   height: 80vh;
-  padding: $size-60;
+  padding: 6rem;
 
   .title {
     @include font(6rem, 900, 1);

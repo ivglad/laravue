@@ -418,7 +418,7 @@ const toggleTieredMenu = (event) => {
 .tooltip {
   display: flex;
   flex-wrap: wrap;
-  gap: $size-10;
+  gap: 1rem;
   max-width: 14rem;
 }
 </style>

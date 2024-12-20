@@ -48,6 +48,8 @@ declare module 'vue' {
     Fieldset: typeof import('primevue/fieldset')['default']
     FileUpload: typeof import('primevue/fileupload')['default']
     FloatLabel: typeof import('primevue/floatlabel')['default']
+    Form: typeof import('@primevue/forms/form')['default']
+    FormField: typeof import('@primevue/forms/formfield')['default']
     IconField: typeof import('primevue/iconfield')['default']
     ICustomArrowBottom: typeof import('~icons/custom/arrow-bottom')['default']
     ICustomArrowDown: typeof import('~icons/custom/arrow-down')['default']

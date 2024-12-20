@@ -226,13 +226,13 @@ const paginatorDropdownStyle = {
       border-spacing: 0;
       th,
       td {
-        padding: $size-5 $size-20 $size-5 $size-10;
+        padding: 0.5rem 2rem 0.5rem 1rem;
       }
       thead {
         color: var(--p-surface-500);
         background: var(--p-surface-100);
         tr {
-          height: $size-30;
+          height: 3rem;
           &:first-child {
             th {
               &:first-child {
@@ -249,14 +249,14 @@ const paginatorDropdownStyle = {
             }
           }
           th {
-            padding: $size-10 $size-20 $size-10 $size-10;
+            padding: 1rem 2rem 1rem 1rem;
             .th-title {
               position: relative;
               display: flex;
               align-items: center;
               flex-wrap: nowrap;
               width: fit-content;
-              margin-right: $size-20;
+              margin-right: 2rem;
               .icon {
                 position: absolute;
                 left: calc(100% + 0.5rem);

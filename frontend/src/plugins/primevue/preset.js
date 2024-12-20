@@ -333,7 +333,7 @@ const Preset = definePreset(Aura, {
       950: '#21203b',
     },
     formField: {
-      paddingX: '0.75rem',
+      paddingX: '1rem',
       paddingY: '0.75rem',
       sm: {
         fontSize: '1.2rem',

@@ -78,13 +78,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: $size-20;
+  gap: 2rem;
   width: 100%;
   max-width: 1200px;
   height: 100%;
-  padding: $size-20 $size-40 $size-60 $size-40;
+  padding: 2rem 4rem 6rem 4rem;
   @include mq(m) {
-    padding: $size-20 $size-20 $size-40 $size-20;
+    padding: 2rem 2rem 4rem 2rem;
   }
 
   .components {
@@ -103,7 +103,7 @@
   :deep(.content):not(.no-ui-styles) {
     display: flex;
     flex-wrap: wrap;
-    gap: $size-10;
+    gap: 1rem;
     .table-wrapper {
       overflow-x: auto;
       overflow-y: hidden;
@@ -112,7 +112,7 @@
     & > div {
       display: flex;
       flex-direction: column;
-      gap: $size-10;
+      gap: 1rem;
       width: 100%;
     }
     .row {
@@ -120,17 +120,17 @@
       flex-direction: row;
       align-items: center;
       flex-wrap: wrap;
-      gap: $size-10;
+      gap: 1rem;
       width: 100%;
     }
     table {
       width: fit-content;
       border-collapse: separate;
       border-spacing: 0;
-      padding-bottom: $size-10;
+      padding-bottom: 1rem;
       th,
       td {
-        padding: $size-5 $size-10;
+        padding: 0.5rem 1rem;
       }
       thead {
         tr {
@@ -154,10 +154,10 @@
           td {
             &:first-child {
               text-align: start;
-              padding-right: $size-20;
+              padding-right: 2rem;
             }
             & > * {
-              margin-right: $size-10;
+              margin-right: 1rem;
               &:last-child {
                 margin-right: 0;
               }
@@ -166,7 +166,7 @@
             & > .column {
               display: flex;
               width: fit-content;
-              gap: $size-10;
+              gap: 1rem;
             }
             & > .column {
               flex-direction: column;

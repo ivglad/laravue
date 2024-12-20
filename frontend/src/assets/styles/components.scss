@@ -5,14 +5,41 @@
   .app-input {
     position: relative;
     display: flex;
-    // TODO: Переместить при реализации в AppInput
+    &:has(input:focus) &-message {
+      opacity: 0;
+      pointer-events: none;
+    }
+    &:has(input:not(:focus)):has(&-message.p-message-error) {
+      label {
+        opacity: 0;
+      }
+    }
+    &-message {
+      @include transition;
+      position: absolute;
+      inset: 2px;
+      padding-block: var(--p-inputtext-padding-y);
+      padding-inline: var(--p-inputtext-padding-x);
+      padding-inline-start: calc(var(--p-inputtext-padding-x) + 1px);
+      padding-inline-end: calc(var(--p-inputtext-padding-x) * 2);
+      user-select: none;
+      pointer-events: none;
+      background: var(--p-inputtext-background);
+      z-index: 1;
+      .p-message-text {
+        line-height: 1;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
     &-mask,
     &-help {
       flex-direction: column;
       gap: 0.2rem;
     }
     &-button {
-      padding-right: 0;
+      padding: 0;
     }
   }
 
@@ -21,7 +48,7 @@
     label {
       display: flex;
       align-items: center;
-      gap: $size-10;
+      gap: 1rem;
       .p-disabled + .app-checkbox-label,
       .p-disabled + .app-radio-label {
         opacity: 0.4;
@@ -32,6 +59,7 @@
     }
     &-label {
       color: inherit;
+      cursor: pointer;
       user-select: none;
     }
   }
@@ -147,7 +175,7 @@
       &-footer {
         display: flex;
         justify-content: flex-end;
-        gap: $size-10;
+        gap: 1rem;
       }
     }
   }
@@ -157,14 +185,14 @@
       &-content {
         display: flex;
         flex-direction: column;
-        gap: $size-5;
+        gap: 0.5rem;
       }
     }
     &-element {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: $size-10 $size-10;
+      padding: 1rem 1rem;
       border-radius: var(--p-border-radius-lg);
       @include active {
         background: var(--p-surface-100);
@@ -182,13 +210,13 @@
       &-footer {
         display: flex;
         justify-content: end;
-        gap: $size-10;
+        gap: 1rem;
       }
     }
     &-item {
       display: flex;
       align-items: center;
-      gap: $size-5;
+      gap: 0.5rem;
       width: 100%;
       padding: var(--p-select-option-padding);
       cursor: pointer;
@@ -202,7 +230,7 @@
     &-buttons {
       display: flex;
       justify-content: space-between;
-      margin-top: $size-20;
+      margin-top: 2rem;
     }
   }
 

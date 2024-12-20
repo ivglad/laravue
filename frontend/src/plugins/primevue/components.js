@@ -119,6 +119,7 @@ export default {
   // FloatLabel
   floatlabel: {
     activeFontSize: '1.2rem',
+    overActiveTop: '-1.7rem',
   },
   // IconField
   iconfield: {
@@ -162,14 +163,14 @@ export default {
     app: {
       width: '25rem',
       minWidth: '10rem',
-      maxWidth: '40rem',
       minHeight: '4.2rem',
     },
     css: ({ dt }) => `
       .p-inputtext {
-        width: ${dt('inputtext.app.width')};
+        &:not(.p-inputtext-fluid) {
+          width: ${dt('inputtext.app.width')};
+        }
         min-width: ${dt('inputtext.app.minWidth')};
-        max-width: ${dt('inputtext.app.maxWidth')};
         min-height: ${dt('inputtext.app.minHeight')};
         &:not(:disabled):not(.p-invalid) {
           &:placeholder-shown,
@@ -198,6 +199,13 @@ export default {
     },
   },
   // Password
+  password: {
+    css: ({ dt }) => `
+      .p-password-fluid {
+        width: 100%;
+      }
+    `,
+  },
   // RadioButton
   radiobutton: {
     width: '1.6rem',

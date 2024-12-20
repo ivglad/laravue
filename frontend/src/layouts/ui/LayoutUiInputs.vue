@@ -141,7 +141,6 @@ const sendMessage = () => {
               <tr>
                 <td>Mask</td>
                 <td>
-                  <!-- TODO: Добавить вариант реализации в AppInput -->
                   <div class="app-input app-input-mask">
                     <Message severity="secondary" variant="simple">
                       Телефон
@@ -156,7 +155,6 @@ const sendMessage = () => {
               <tr>
                 <td>Custom</td>
                 <td>
-                  <!-- TODO: Добавить вариант реализации в AppInput -->
                   <div class="app-input app-input-help">
                     <Message severity="secondary" variant="simple">
                       Имя пользователя

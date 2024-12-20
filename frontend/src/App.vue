@@ -42,6 +42,7 @@
 
 main {
   display: flex;
+  flex: 1 1 100%;
   width: 100%;
   overflow: auto;
 }

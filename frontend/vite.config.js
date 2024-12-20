@@ -68,6 +68,7 @@ export default defineConfig({
         'primevue',
         '@primevue/themes',
         '@primevue/core/api',
+        '@primevue/forms/resolvers/zod',
         '@vueuse/core',
         '@tanstack/vue-table',
       ],

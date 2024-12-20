@@ -158,7 +158,7 @@ const panelIconStyle = (collapsed) => {
 .content {
   display: flex;
   flex-direction: column;
-  gap: $size-10;
+  gap: 1rem;
   .scrollpanel {
     width: 100%;
     height: 8rem;
