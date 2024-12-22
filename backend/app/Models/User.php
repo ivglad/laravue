@@ -32,7 +32,6 @@ class User extends Authenticatable
         'email',
         'username',
         'password',
-        'hex_color',
         'is_admin',
     ];
 

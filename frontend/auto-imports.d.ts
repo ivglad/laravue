@@ -26,6 +26,9 @@ declare global {
   const AvatarGroup: typeof import('primevue')['AvatarGroup']
   const AvatarGroupStyle: typeof import('primevue')['AvatarGroupStyle']
   const AvatarStyle: typeof import('primevue')['AvatarStyle']
+  const Axios: typeof import('axios')['Axios']
+  const AxiosError: typeof import('axios')['AxiosError']
+  const AxiosHeaders: typeof import('axios')['AxiosHeaders']
   const BRAND: typeof import('zod')['BRAND']
   const Badge: typeof import('primevue')['Badge']
   const BadgeDirective: typeof import('primevue')['BadgeDirective']
@@ -41,6 +44,10 @@ declare global {
   const ButtonStyle: typeof import('primevue')['ButtonStyle']
   const Calendar: typeof import('primevue')['Calendar']
   const CalendarStyle: typeof import('primevue')['CalendarStyle']
+  const Cancel: typeof import('axios')['Cancel']
+  const CancelToken: typeof import('axios')['CancelToken']
+  const CanceledError: typeof import('axios')['CanceledError']
+  const CancelledError: typeof import('@tanstack/vue-query')['CancelledError']
   const Card: typeof import('primevue')['Card']
   const CardStyle: typeof import('primevue')['CardStyle']
   const Carousel: typeof import('primevue')['Carousel']
@@ -122,6 +129,7 @@ declare global {
   const GlobalFaceting: typeof import('@tanstack/vue-table')['GlobalFaceting']
   const GlobalFiltering: typeof import('@tanstack/vue-table')['GlobalFiltering']
   const Headers: typeof import('@tanstack/vue-table')['Headers']
+  const HttpStatusCode: typeof import('axios')['HttpStatusCode']
   const INVALID: typeof import('zod')['INVALID']
   const IconField: typeof import('primevue')['IconField']
   const IconFieldStyle: typeof import('primevue')['IconFieldStyle']
@@ -131,6 +139,7 @@ declare global {
   const ImageCompare: typeof import('primevue')['ImageCompare']
   const ImageCompareStyle: typeof import('primevue')['ImageCompareStyle']
   const ImageStyle: typeof import('primevue')['ImageStyle']
+  const InfiniteQueryObserver: typeof import('@tanstack/vue-query')['InfiniteQueryObserver']
   const InlineMessage: typeof import('primevue')['InlineMessage']
   const InlineMessageStyle: typeof import('primevue')['InlineMessageStyle']
   const Inplace: typeof import('primevue')['Inplace']
@@ -171,6 +180,9 @@ declare global {
   const MeterGroupStyle: typeof import('primevue')['MeterGroupStyle']
   const MultiSelect: typeof import('primevue')['MultiSelect']
   const MultiSelectStyle: typeof import('primevue')['MultiSelectStyle']
+  const Mutation: typeof import('@tanstack/vue-query')['Mutation']
+  const MutationCache: typeof import('@tanstack/vue-query')['MutationCache']
+  const MutationObserver: typeof import('@tanstack/vue-query')['MutationObserver']
   const NEVER: typeof import('zod')['NEVER']
   const OK: typeof import('zod')['OK']
   const OrderList: typeof import('primevue')['OrderList']
@@ -205,6 +217,11 @@ declare global {
   const ProgressBarStyle: typeof import('primevue')['ProgressBarStyle']
   const ProgressSpinner: typeof import('primevue')['ProgressSpinner']
   const ProgressSpinnerStyle: typeof import('primevue')['ProgressSpinnerStyle']
+  const QueriesObserver: typeof import('@tanstack/vue-query')['QueriesObserver']
+  const Query: typeof import('@tanstack/vue-query')['Query']
+  const QueryCache: typeof import('@tanstack/vue-query')['QueryCache']
+  const QueryClient: typeof import('@tanstack/vue-query')['QueryClient']
+  const QueryObserver: typeof import('@tanstack/vue-query')['QueryObserver']
   const RadioButton: typeof import('primevue')['RadioButton']
   const RadioButtonGroup: typeof import('primevue')['RadioButtonGroup']
   const RadioButtonGroupStyle: typeof import('primevue')['RadioButtonGroupStyle']
@@ -308,8 +325,11 @@ declare global {
   const TreeStyle: typeof import('primevue')['TreeStyle']
   const TreeTable: typeof import('primevue')['TreeTable']
   const TreeTableStyle: typeof import('primevue')['TreeTableStyle']
+  const VERSION: typeof import('axios')['VERSION']
+  const VUE_QUERY_CLIENT: typeof import('@tanstack/vue-query')['VUE_QUERY_CLIENT']
   const VirtualScroller: typeof import('primevue')['VirtualScroller']
   const VirtualScrollerStyle: typeof import('primevue')['VirtualScrollerStyle']
+  const VueQueryPlugin: typeof import('@tanstack/vue-query')['VueQueryPlugin']
   const ZodAny: typeof import('zod')['ZodAny']
   const ZodArray: typeof import('zod')['ZodArray']
   const ZodBigInt: typeof import('zod')['ZodBigInt']
@@ -356,12 +376,14 @@ declare global {
   const _getVisibleLeafColumns: typeof import('@tanstack/vue-table')['_getVisibleLeafColumns']
   const addIssueToContext: typeof import('zod')['addIssueToContext']
   const aggregationFns: typeof import('@tanstack/vue-table')['aggregationFns']
+  const all: typeof import('axios')['all']
   const any: typeof import('zod')['any']
   const api: typeof import('./src/helpers/api/api.js')['default']
   const array: typeof import('zod')['array']
   const assert: typeof import('@vueuse/core')['assert']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
+  const axios: typeof import('axios')['default']
   const bigint: typeof import('zod')['bigint']
   const boolean: typeof import('zod')['boolean']
   const breakpointsAntDesign: typeof import('@vueuse/core')['breakpointsAntDesign']
@@ -423,10 +445,13 @@ declare global {
   const defaultLocation: typeof import('@vueuse/core')['defaultLocation']
   const defaultNavigator: typeof import('@vueuse/core')['defaultNavigator']
   const defaultOptions: typeof import('primevue')['defaultOptions']
+  const defaultShouldDehydrateMutation: typeof import('@tanstack/vue-query')['defaultShouldDehydrateMutation']
+  const defaultShouldDehydrateQuery: typeof import('@tanstack/vue-query')['defaultShouldDehydrateQuery']
   const defaultWindow: typeof import('@vueuse/core')['defaultWindow']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
   const definePreset: typeof import('@primevue/themes')['definePreset']
+  const dehydrate: typeof import('@tanstack/vue-query')['dehydrate']
   const directiveHooks: typeof import('@vueuse/core')['directiveHooks']
   const discriminatedUnion: typeof import('zod')['discriminatedUnion']
   const dt: typeof import('@primevue/themes')['dt']
@@ -440,6 +465,8 @@ declare global {
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const filterFns: typeof import('@tanstack/vue-table')['filterFns']
   const flattenBy: typeof import('@tanstack/vue-table')['flattenBy']
+  const focusManager: typeof import('@tanstack/vue-query')['focusManager']
+  const formToJSON: typeof import('axios')['formToJSON']
   const formatDate: typeof import('@vueuse/core')['formatDate']
   const formatSize: typeof import('./src/helpers/index.js')['formatSize']
   const formatSizeHelper: typeof import('./src/helpers/index.js')['formatSizeHelper']
@@ -447,6 +474,7 @@ declare global {
   const function: typeof import('zod')['function']
   const functionalUpdate: typeof import('@tanstack/vue-table')['functionalUpdate']
   const get: typeof import('@vueuse/core')['get']
+  const getAdapter: typeof import('axios')['getAdapter']
   const getComputedValue: typeof import('@primevue/themes')['getComputedValue']
   const getCoreRowModel: typeof import('@tanstack/vue-table')['getCoreRowModel']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
@@ -472,10 +500,13 @@ declare global {
   const h: typeof import('vue')['h']
   const hasOddBraces: typeof import('@primevue/themes')['hasOddBraces']
   const hasOwn: typeof import('@vueuse/core')['hasOwn']
+  const hashKey: typeof import('@tanstack/vue-query')['hashKey']
+  const hydrate: typeof import('@tanstack/vue-query')['hydrate']
   const hyphenate: typeof import('@vueuse/core')['hyphenate']
   const identity: typeof import('@vueuse/core')['identity']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const increaseWithUnit: typeof import('@vueuse/core')['increaseWithUnit']
+  const infiniteQueryOptions: typeof import('@tanstack/vue-query')['infiniteQueryOptions']
   const inject: typeof import('vue')['inject']
   const injectLocal: typeof import('@vueuse/core')['injectLocal']
   const instanceof: typeof import('zod')['instanceof']
@@ -483,6 +514,9 @@ declare global {
   const invoke: typeof import('@vueuse/core')['invoke']
   const isAborted: typeof import('zod')['isAborted']
   const isAsync: typeof import('zod')['isAsync']
+  const isAxiosError: typeof import('axios')['isAxiosError']
+  const isCancel: typeof import('axios')['isCancel']
+  const isCancelledError: typeof import('@tanstack/vue-query')['isCancelledError']
   const isClient: typeof import('@vueuse/core')['isClient']
   const isDef: typeof import('@vueuse/core')['isDef']
   const isDefined: typeof import('@vueuse/core')['isDefined']
@@ -496,9 +530,11 @@ declare global {
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
   const isRowSelected: typeof import('@tanstack/vue-table')['isRowSelected']
+  const isServer: typeof import('@tanstack/vue-query')['isServer']
   const isSubRowSelected: typeof import('@tanstack/vue-table')['isSubRowSelected']
   const isValid: typeof import('zod')['isValid']
   const isWorker: typeof import('@vueuse/core')['isWorker']
+  const keepPreviousData: typeof import('@tanstack/vue-query')['keepPreviousData']
   const late: typeof import('zod')['late']
   const lazy: typeof import('zod')['lazy']
   const literal: typeof import('zod')['literal']
@@ -508,8 +544,11 @@ declare global {
   const map: typeof import('zod')['map']
   const mapGamepadToXbox360Controller: typeof import('@vueuse/core')['mapGamepadToXbox360Controller']
   const markRaw: typeof import('vue')['markRaw']
+  const matchMutation: typeof import('@tanstack/vue-query')['matchMutation']
+  const matchQuery: typeof import('@tanstack/vue-query')['matchQuery']
   const memo: typeof import('@tanstack/vue-table')['memo']
   const merge: typeof import('@primevue/themes')['merge']
+  const mergeConfig: typeof import('axios')['mergeConfig']
   const mix: typeof import('@primevue/themes')['mix']
   const nan: typeof import('zod')['nan']
   const nativeEnum: typeof import('zod')['nativeEnum']
@@ -518,6 +557,7 @@ declare global {
   const noop: typeof import('@tanstack/vue-table')['noop']
   const normalizeDate: typeof import('@vueuse/core')['normalizeDate']
   const notNullish: typeof import('@vueuse/core')['notNullish']
+  const notifyManager: typeof import('@tanstack/vue-query')['notifyManager']
   const now: typeof import('@vueuse/core')['now']
   const null: typeof import('zod')['null']
   const nullable: typeof import('zod')['nullable']
@@ -551,6 +591,7 @@ declare global {
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
   const onWatcherCleanup: typeof import('vue')['onWatcherCleanup']
+  const onlineManager: typeof import('@tanstack/vue-query')['onlineManager']
   const onumber: typeof import('zod')['onumber']
   const optional: typeof import('zod')['optional']
   const orderColumns: typeof import('@tanstack/vue-table')['orderColumns']
@@ -565,6 +606,7 @@ declare global {
   const promiseTimeout: typeof import('@vueuse/core')['promiseTimeout']
   const provide: typeof import('vue')['provide']
   const provideLocal: typeof import('@vueuse/core')['provideLocal']
+  const queryOptions: typeof import('@tanstack/vue-query')['queryOptions']
   const quotelessJson: typeof import('zod')['quotelessJson']
   const rand: typeof import('@vueuse/core')['rand']
   const reSplitAlphaNumeric: typeof import('@tanstack/vue-table')['reSplitAlphaNumeric']
@@ -582,6 +624,7 @@ declare global {
   const refDefault: typeof import('@vueuse/core')['refDefault']
   const refThrottled: typeof import('@vueuse/core')['refThrottled']
   const refWithControl: typeof import('@vueuse/core')['refWithControl']
+  const replaceEqualDeep: typeof import('@tanstack/vue-query')['replaceEqualDeep']
   const resolveComponent: typeof import('vue')['resolveComponent']
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
@@ -597,7 +640,9 @@ declare global {
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
   const shouldAutoRemoveFilter: typeof import('@tanstack/vue-table')['shouldAutoRemoveFilter']
+  const skipToken: typeof import('@tanstack/vue-query')['skipToken']
   const sortingFns: typeof import('@tanstack/vue-table')['sortingFns']
+  const spread: typeof import('axios')['spread']
   const strictObject: typeof import('zod')['strictObject']
   const string: typeof import('zod')['string']
   const symbol: typeof import('zod')['symbol']
@@ -609,6 +654,7 @@ declare global {
   const throttledWatch: typeof import('@vueuse/core')['throttledWatch']
   const timestamp: typeof import('@vueuse/core')['timestamp']
   const tint: typeof import('@primevue/themes')['tint']
+  const toFormData: typeof import('axios')['toFormData']
   const toNormalizePrefix: typeof import('@primevue/themes')['toNormalizePrefix']
   const toNormalizeVariable: typeof import('@primevue/themes')['toNormalizeVariable']
   const toRaw: typeof import('vue')['toRaw']
@@ -708,10 +754,13 @@ declare global {
   const useId: typeof import('vue')['useId']
   const useIdle: typeof import('@vueuse/core')['useIdle']
   const useImage: typeof import('@vueuse/core')['useImage']
+  const useInfiniteQuery: typeof import('@tanstack/vue-query')['useInfiniteQuery']
   const useInfiniteScroll: typeof import('@vueuse/core')['useInfiniteScroll']
   const useIntersectionObserver: typeof import('@vueuse/core')['useIntersectionObserver']
   const useInterval: typeof import('@vueuse/core')['useInterval']
   const useIntervalFn: typeof import('@vueuse/core')['useIntervalFn']
+  const useIsFetching: typeof import('@tanstack/vue-query')['useIsFetching']
+  const useIsMutating: typeof import('@tanstack/vue-query')['useIsMutating']
   const useKeyModifier: typeof import('@vueuse/core')['useKeyModifier']
   const useLastChanged: typeof import('@vueuse/core')['useLastChanged']
   const useLink: typeof import('vue-router')['useLink']
@@ -728,7 +777,9 @@ declare global {
   const useMouse: typeof import('@vueuse/core')['useMouse']
   const useMouseInElement: typeof import('@vueuse/core')['useMouseInElement']
   const useMousePressed: typeof import('@vueuse/core')['useMousePressed']
+  const useMutation: typeof import('@tanstack/vue-query')['useMutation']
   const useMutationObserver: typeof import('@vueuse/core')['useMutationObserver']
+  const useMutationState: typeof import('@tanstack/vue-query')['useMutationState']
   const useNavigatorLanguage: typeof import('@vueuse/core')['useNavigatorLanguage']
   const useNetwork: typeof import('@vueuse/core')['useNetwork']
   const useNow: typeof import('@vueuse/core')['useNow']
@@ -751,6 +802,9 @@ declare global {
   const usePreset: typeof import('@primevue/themes')['usePreset']
   const usePrevious: typeof import('@vueuse/core')['usePrevious']
   const usePrimeVue: typeof import('primevue')['usePrimeVue']
+  const useQueries: typeof import('@tanstack/vue-query')['useQueries']
+  const useQuery: typeof import('@tanstack/vue-query')['useQuery']
+  const useQueryClient: typeof import('@tanstack/vue-query')['useQueryClient']
   const useRafFn: typeof import('@vueuse/core')['useRafFn']
   const useRefHistory: typeof import('@vueuse/core')['useRefHistory']
   const useRefreshUser: typeof import('./src/helpers/api/queries.js')['useRefreshUser']
@@ -880,6 +934,7 @@ declare module 'vue' {
     readonly ButtonStyle: UnwrapRef<typeof import('primevue')['ButtonStyle']>
     readonly Calendar: UnwrapRef<typeof import('primevue')['Calendar']>
     readonly CalendarStyle: UnwrapRef<typeof import('primevue')['CalendarStyle']>
+    readonly CancelledError: UnwrapRef<typeof import('@tanstack/vue-query')['CancelledError']>
     readonly Card: UnwrapRef<typeof import('primevue')['Card']>
     readonly CardStyle: UnwrapRef<typeof import('primevue')['CardStyle']>
     readonly Carousel: UnwrapRef<typeof import('primevue')['Carousel']>
@@ -967,6 +1022,7 @@ declare module 'vue' {
     readonly ImageCompare: UnwrapRef<typeof import('primevue')['ImageCompare']>
     readonly ImageCompareStyle: UnwrapRef<typeof import('primevue')['ImageCompareStyle']>
     readonly ImageStyle: UnwrapRef<typeof import('primevue')['ImageStyle']>
+    readonly InfiniteQueryObserver: UnwrapRef<typeof import('@tanstack/vue-query')['InfiniteQueryObserver']>
     readonly InlineMessage: UnwrapRef<typeof import('primevue')['InlineMessage']>
     readonly InlineMessageStyle: UnwrapRef<typeof import('primevue')['InlineMessageStyle']>
     readonly Inplace: UnwrapRef<typeof import('primevue')['Inplace']>
@@ -1007,6 +1063,9 @@ declare module 'vue' {
     readonly MeterGroupStyle: UnwrapRef<typeof import('primevue')['MeterGroupStyle']>
     readonly MultiSelect: UnwrapRef<typeof import('primevue')['MultiSelect']>
     readonly MultiSelectStyle: UnwrapRef<typeof import('primevue')['MultiSelectStyle']>
+    readonly Mutation: UnwrapRef<typeof import('@tanstack/vue-query')['Mutation']>
+    readonly MutationCache: UnwrapRef<typeof import('@tanstack/vue-query')['MutationCache']>
+    readonly MutationObserver: UnwrapRef<typeof import('@tanstack/vue-query')['MutationObserver']>
     readonly OrderList: UnwrapRef<typeof import('primevue')['OrderList']>
     readonly OrderListStyle: UnwrapRef<typeof import('primevue')['OrderListStyle']>
     readonly OrganizationChart: UnwrapRef<typeof import('primevue')['OrganizationChart']>
@@ -1038,6 +1097,11 @@ declare module 'vue' {
     readonly ProgressBarStyle: UnwrapRef<typeof import('primevue')['ProgressBarStyle']>
     readonly ProgressSpinner: UnwrapRef<typeof import('primevue')['ProgressSpinner']>
     readonly ProgressSpinnerStyle: UnwrapRef<typeof import('primevue')['ProgressSpinnerStyle']>
+    readonly QueriesObserver: UnwrapRef<typeof import('@tanstack/vue-query')['QueriesObserver']>
+    readonly Query: UnwrapRef<typeof import('@tanstack/vue-query')['Query']>
+    readonly QueryCache: UnwrapRef<typeof import('@tanstack/vue-query')['QueryCache']>
+    readonly QueryClient: UnwrapRef<typeof import('@tanstack/vue-query')['QueryClient']>
+    readonly QueryObserver: UnwrapRef<typeof import('@tanstack/vue-query')['QueryObserver']>
     readonly RadioButton: UnwrapRef<typeof import('primevue')['RadioButton']>
     readonly RadioButtonGroup: UnwrapRef<typeof import('primevue')['RadioButtonGroup']>
     readonly RadioButtonGroupStyle: UnwrapRef<typeof import('primevue')['RadioButtonGroupStyle']>
@@ -1140,14 +1204,17 @@ declare module 'vue' {
     readonly TreeStyle: UnwrapRef<typeof import('primevue')['TreeStyle']>
     readonly TreeTable: UnwrapRef<typeof import('primevue')['TreeTable']>
     readonly TreeTableStyle: UnwrapRef<typeof import('primevue')['TreeTableStyle']>
+    readonly VUE_QUERY_CLIENT: UnwrapRef<typeof import('@tanstack/vue-query')['VUE_QUERY_CLIENT']>
     readonly VirtualScroller: UnwrapRef<typeof import('primevue')['VirtualScroller']>
     readonly VirtualScrollerStyle: UnwrapRef<typeof import('primevue')['VirtualScrollerStyle']>
+    readonly VueQueryPlugin: UnwrapRef<typeof import('@tanstack/vue-query')['VueQueryPlugin']>
     readonly _getVisibleLeafColumns: UnwrapRef<typeof import('@tanstack/vue-table')['_getVisibleLeafColumns']>
     readonly aggregationFns: UnwrapRef<typeof import('@tanstack/vue-table')['aggregationFns']>
     readonly api: UnwrapRef<typeof import('./src/helpers/api/api.js')['default']>
     readonly assert: UnwrapRef<typeof import('@vueuse/core')['assert']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
+    readonly axios: UnwrapRef<typeof import('axios')['default']>
     readonly breakpointsAntDesign: UnwrapRef<typeof import('@vueuse/core')['breakpointsAntDesign']>
     readonly breakpointsBootstrapV5: UnwrapRef<typeof import('@vueuse/core')['breakpointsBootstrapV5']>
     readonly breakpointsElement: UnwrapRef<typeof import('@vueuse/core')['breakpointsElement']>
@@ -1202,10 +1269,13 @@ declare module 'vue' {
     readonly defaultLocation: UnwrapRef<typeof import('@vueuse/core')['defaultLocation']>
     readonly defaultNavigator: UnwrapRef<typeof import('@vueuse/core')['defaultNavigator']>
     readonly defaultOptions: UnwrapRef<typeof import('primevue')['defaultOptions']>
+    readonly defaultShouldDehydrateMutation: UnwrapRef<typeof import('@tanstack/vue-query')['defaultShouldDehydrateMutation']>
+    readonly defaultShouldDehydrateQuery: UnwrapRef<typeof import('@tanstack/vue-query')['defaultShouldDehydrateQuery']>
     readonly defaultWindow: UnwrapRef<typeof import('@vueuse/core')['defaultWindow']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly definePreset: UnwrapRef<typeof import('@primevue/themes')['definePreset']>
+    readonly dehydrate: UnwrapRef<typeof import('@tanstack/vue-query')['dehydrate']>
     readonly dt: UnwrapRef<typeof import('@primevue/themes')['dt']>
     readonly dtwt: UnwrapRef<typeof import('@primevue/themes')['dtwt']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
@@ -1215,6 +1285,7 @@ declare module 'vue' {
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly filterFns: UnwrapRef<typeof import('@tanstack/vue-table')['filterFns']>
     readonly flattenBy: UnwrapRef<typeof import('@tanstack/vue-table')['flattenBy']>
+    readonly focusManager: UnwrapRef<typeof import('@tanstack/vue-query')['focusManager']>
     readonly formatDate: UnwrapRef<typeof import('@vueuse/core')['formatDate']>
     readonly formatSizeHelper: UnwrapRef<typeof import('./src/helpers/index.js')['formatSizeHelper']>
     readonly formatTimeAgo: UnwrapRef<typeof import('@vueuse/core')['formatTimeAgo']>
@@ -1242,13 +1313,17 @@ declare module 'vue' {
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly hasOddBraces: UnwrapRef<typeof import('@primevue/themes')['hasOddBraces']>
     readonly hasOwn: UnwrapRef<typeof import('@vueuse/core')['hasOwn']>
+    readonly hashKey: UnwrapRef<typeof import('@tanstack/vue-query')['hashKey']>
+    readonly hydrate: UnwrapRef<typeof import('@tanstack/vue-query')['hydrate']>
     readonly hyphenate: UnwrapRef<typeof import('@vueuse/core')['hyphenate']>
     readonly identity: UnwrapRef<typeof import('@vueuse/core')['identity']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly increaseWithUnit: UnwrapRef<typeof import('@vueuse/core')['increaseWithUnit']>
+    readonly infiniteQueryOptions: UnwrapRef<typeof import('@tanstack/vue-query')['infiniteQueryOptions']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly injectLocal: UnwrapRef<typeof import('@vueuse/core')['injectLocal']>
     readonly invoke: UnwrapRef<typeof import('@vueuse/core')['invoke']>
+    readonly isCancelledError: UnwrapRef<typeof import('@tanstack/vue-query')['isCancelledError']>
     readonly isClient: UnwrapRef<typeof import('@vueuse/core')['isClient']>
     readonly isDef: UnwrapRef<typeof import('@vueuse/core')['isDef']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
@@ -1261,12 +1336,16 @@ declare module 'vue' {
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly isRowSelected: UnwrapRef<typeof import('@tanstack/vue-table')['isRowSelected']>
+    readonly isServer: UnwrapRef<typeof import('@tanstack/vue-query')['isServer']>
     readonly isSubRowSelected: UnwrapRef<typeof import('@tanstack/vue-table')['isSubRowSelected']>
     readonly isWorker: UnwrapRef<typeof import('@vueuse/core')['isWorker']>
+    readonly keepPreviousData: UnwrapRef<typeof import('@tanstack/vue-query')['keepPreviousData']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly makeStateUpdater: UnwrapRef<typeof import('@tanstack/vue-table')['makeStateUpdater']>
     readonly mapGamepadToXbox360Controller: UnwrapRef<typeof import('@vueuse/core')['mapGamepadToXbox360Controller']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
+    readonly matchMutation: UnwrapRef<typeof import('@tanstack/vue-query')['matchMutation']>
+    readonly matchQuery: UnwrapRef<typeof import('@tanstack/vue-query')['matchQuery']>
     readonly memo: UnwrapRef<typeof import('@tanstack/vue-table')['memo']>
     readonly merge: UnwrapRef<typeof import('@primevue/themes')['merge']>
     readonly mix: UnwrapRef<typeof import('@primevue/themes')['mix']>
@@ -1274,6 +1353,7 @@ declare module 'vue' {
     readonly noop: UnwrapRef<typeof import('@tanstack/vue-table')['noop']>
     readonly normalizeDate: UnwrapRef<typeof import('@vueuse/core')['normalizeDate']>
     readonly notNullish: UnwrapRef<typeof import('@vueuse/core')['notNullish']>
+    readonly notifyManager: UnwrapRef<typeof import('@tanstack/vue-query')['notifyManager']>
     readonly now: UnwrapRef<typeof import('@vueuse/core')['now']>
     readonly objectEntries: UnwrapRef<typeof import('@vueuse/core')['objectEntries']>
     readonly objectOmit: UnwrapRef<typeof import('@vueuse/core')['objectOmit']>
@@ -1301,6 +1381,7 @@ declare module 'vue' {
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
     readonly onWatcherCleanup: UnwrapRef<typeof import('vue')['onWatcherCleanup']>
+    readonly onlineManager: UnwrapRef<typeof import('@tanstack/vue-query')['onlineManager']>
     readonly orderColumns: UnwrapRef<typeof import('@tanstack/vue-table')['orderColumns']>
     readonly palette: UnwrapRef<typeof import('@primevue/themes')['palette']>
     readonly passiveEventSupported: UnwrapRef<typeof import('@tanstack/vue-table')['passiveEventSupported']>
@@ -1309,6 +1390,7 @@ declare module 'vue' {
     readonly promiseTimeout: UnwrapRef<typeof import('@vueuse/core')['promiseTimeout']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly provideLocal: UnwrapRef<typeof import('@vueuse/core')['provideLocal']>
+    readonly queryOptions: UnwrapRef<typeof import('@tanstack/vue-query')['queryOptions']>
     readonly rand: UnwrapRef<typeof import('@vueuse/core')['rand']>
     readonly reSplitAlphaNumeric: UnwrapRef<typeof import('@tanstack/vue-table')['reSplitAlphaNumeric']>
     readonly reactify: UnwrapRef<typeof import('@vueuse/core')['reactify']>
@@ -1324,6 +1406,7 @@ declare module 'vue' {
     readonly refDefault: UnwrapRef<typeof import('@vueuse/core')['refDefault']>
     readonly refThrottled: UnwrapRef<typeof import('@vueuse/core')['refThrottled']>
     readonly refWithControl: UnwrapRef<typeof import('@vueuse/core')['refWithControl']>
+    readonly replaceEqualDeep: UnwrapRef<typeof import('@tanstack/vue-query')['replaceEqualDeep']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>
     readonly resolveUnref: UnwrapRef<typeof import('@vueuse/core')['resolveUnref']>
@@ -1338,6 +1421,7 @@ declare module 'vue' {
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
     readonly shouldAutoRemoveFilter: UnwrapRef<typeof import('@tanstack/vue-table')['shouldAutoRemoveFilter']>
+    readonly skipToken: UnwrapRef<typeof import('@tanstack/vue-query')['skipToken']>
     readonly sortingFns: UnwrapRef<typeof import('@tanstack/vue-table')['sortingFns']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
@@ -1441,10 +1525,13 @@ declare module 'vue' {
     readonly useId: UnwrapRef<typeof import('vue')['useId']>
     readonly useIdle: UnwrapRef<typeof import('@vueuse/core')['useIdle']>
     readonly useImage: UnwrapRef<typeof import('@vueuse/core')['useImage']>
+    readonly useInfiniteQuery: UnwrapRef<typeof import('@tanstack/vue-query')['useInfiniteQuery']>
     readonly useInfiniteScroll: UnwrapRef<typeof import('@vueuse/core')['useInfiniteScroll']>
     readonly useIntersectionObserver: UnwrapRef<typeof import('@vueuse/core')['useIntersectionObserver']>
     readonly useInterval: UnwrapRef<typeof import('@vueuse/core')['useInterval']>
     readonly useIntervalFn: UnwrapRef<typeof import('@vueuse/core')['useIntervalFn']>
+    readonly useIsFetching: UnwrapRef<typeof import('@tanstack/vue-query')['useIsFetching']>
+    readonly useIsMutating: UnwrapRef<typeof import('@tanstack/vue-query')['useIsMutating']>
     readonly useKeyModifier: UnwrapRef<typeof import('@vueuse/core')['useKeyModifier']>
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
@@ -1461,7 +1548,9 @@ declare module 'vue' {
     readonly useMouse: UnwrapRef<typeof import('@vueuse/core')['useMouse']>
     readonly useMouseInElement: UnwrapRef<typeof import('@vueuse/core')['useMouseInElement']>
     readonly useMousePressed: UnwrapRef<typeof import('@vueuse/core')['useMousePressed']>
+    readonly useMutation: UnwrapRef<typeof import('@tanstack/vue-query')['useMutation']>
     readonly useMutationObserver: UnwrapRef<typeof import('@vueuse/core')['useMutationObserver']>
+    readonly useMutationState: UnwrapRef<typeof import('@tanstack/vue-query')['useMutationState']>
     readonly useNavigatorLanguage: UnwrapRef<typeof import('@vueuse/core')['useNavigatorLanguage']>
     readonly useNetwork: UnwrapRef<typeof import('@vueuse/core')['useNetwork']>
     readonly useNow: UnwrapRef<typeof import('@vueuse/core')['useNow']>
@@ -1484,6 +1573,9 @@ declare module 'vue' {
     readonly usePreset: UnwrapRef<typeof import('@primevue/themes')['usePreset']>
     readonly usePrevious: UnwrapRef<typeof import('@vueuse/core')['usePrevious']>
     readonly usePrimeVue: UnwrapRef<typeof import('primevue')['usePrimeVue']>
+    readonly useQueries: UnwrapRef<typeof import('@tanstack/vue-query')['useQueries']>
+    readonly useQuery: UnwrapRef<typeof import('@tanstack/vue-query')['useQuery']>
+    readonly useQueryClient: UnwrapRef<typeof import('@tanstack/vue-query')['useQueryClient']>
     readonly useRafFn: UnwrapRef<typeof import('@vueuse/core')['useRafFn']>
     readonly useRefHistory: UnwrapRef<typeof import('@vueuse/core')['useRefHistory']>
     readonly useRefreshUser: UnwrapRef<typeof import('./src/helpers/api/queries.js')['useRefreshUser']>

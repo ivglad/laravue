@@ -23,7 +23,6 @@ class UserResource extends JsonResource
             'username' => $this->username,
             'phone' => $this->phone,
             'job' => $this->job,
-            'hex_color' => $this->hex_color,
             'is_admin' => $this->is_admin,
         ];
     }

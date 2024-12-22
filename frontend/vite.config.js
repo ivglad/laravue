@@ -63,7 +63,13 @@ export default defineConfig({
     AutoImport({
       include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/, /\.md$/],
       dirs: ['src/helpers/**', 'src/store/**'],
-      imports: ['vue', 'vue-router'],
+      imports: [
+        'vue',
+        'vue-router',
+        {
+          axios: [['default', 'axios']],
+        },
+      ],
       packagePresets: [
         'primevue',
         '@primevue/themes',
@@ -71,6 +77,7 @@ export default defineConfig({
         '@primevue/forms/resolvers/zod',
         '@vueuse/core',
         '@tanstack/vue-table',
+        '@tanstack/vue-query',
       ],
       vueTemplate: true,
       vueDirectives: undefined,

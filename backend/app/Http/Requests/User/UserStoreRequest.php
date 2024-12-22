@@ -30,7 +30,6 @@ class UserStoreRequest extends FormRequest
             'email' => ['nullable', 'email'],
             'phone' => ['nullable', 'string', 'min:6'],
             'job' => ['nullable', 'string', 'min:3'],
-            'hex_color' => ['nullable', 'hex_color'],
             'is_admin' => ['nullable', 'boolean'],
             'password' => ['required', 'string', Password::min(8)->letters()->mixedCase()->numbers()],
         ];

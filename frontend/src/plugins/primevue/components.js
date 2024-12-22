@@ -161,15 +161,12 @@ export default {
   // InputText
   inputtext: {
     app: {
-      width: '25rem',
       minWidth: '10rem',
       minHeight: '4.2rem',
     },
     css: ({ dt }) => `
       .p-inputtext {
-        &:not(.p-inputtext-fluid) {
-          width: ${dt('inputtext.app.width')};
-        }
+        width: 100%;
         min-width: ${dt('inputtext.app.minWidth')};
         min-height: ${dt('inputtext.app.minHeight')};
         &:not(:disabled):not(.p-invalid) {
@@ -185,6 +182,9 @@ export default {
         &.p-invalid {
           color: var(--p-inputtext-invalid-placeholder-color);
         }
+      }
+      .p-inputwrapper {
+        width: 100%;
       }
     `,
   },

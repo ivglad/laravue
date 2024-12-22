@@ -52,13 +52,13 @@ const resolver = zodResolver(
         message: 'Должен содержать строчные латинские буквы',
       }),
     remember: z.boolean().refine((value) => value, {
-      message: 'Согласно правилам необходимо принять условие',
+      message: 'Необходимо принять условие',
     }),
   }),
 )
 
 const onFormSubmit = (e) => {
-  console.log(resolve)
+  // console.log(resolve)
   // e.originalEvent: Represents the native form submit event.
   // e.valid: A boolean that indicates whether the form is valid or not.
   // e.states: Contains the current state of each form field, including validity status.

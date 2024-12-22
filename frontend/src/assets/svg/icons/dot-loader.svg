@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-	<circle cx="4" cy="12" r="3" fill="currentColor">
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="20" viewBox="0 0 40 20">
+	<circle r="3" cy="10" cx="5" fill="currentColor">
 		<animate fill="freeze" attributeName="opacity" begin="0s" dur="1.3s" repeatCount="indefinite" values="1;0.0" />
 	</circle>
-	<circle cx="12" cy="12" r="3" fill="currentColor" opacity="1">
+	<circle r="3" cy="10" cx="20" fill="currentColor" opacity="1">
 		<animate fill="freeze" attributeName="opacity" begin="0.325s" dur="1.3s" repeatCount="indefinite" values="1;0.0" />
 	</circle>
-	<circle cx="20" cy="12" r="3" fill="currentColor" opacity="0">
+	<circle r="3" cy="10" cx="35" fill="currentColor" opacity="0">
 		<animate fill="freeze" attributeName="opacity" begin="0.650s" dur="1.3s" repeatCount="indefinite" values="1;0.0" />
 	</circle>
 </svg>

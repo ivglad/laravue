@@ -10,7 +10,7 @@ services:
     restart: unless-stopped
     tty: true
     volumes:
-      - ./.docker/nginx/logs:/var/log/nginx
+      - ./.docker/nginx/logs:/var/log/nginx:rw
     ports:
       - ${HOST_FRONTEND_PORT}:80
     env_file:
@@ -62,11 +62,10 @@ services:
     ports:
       - ${HOST_DB_PORT}:5432
     volumes:
-      - ./.docker/db/data:/var/lib/postgresql/data:z
+      - ./.docker/db/data:/var/lib/postgresql/data
       - ./.docker/db/sql:/docker-entrypoint-initdb.d
       - ./.docker/db/postgresql.conf:/etc/postgresql.conf
     env_file:
-      - ./.env
       - ./backend/.env
     networks:
       - default
