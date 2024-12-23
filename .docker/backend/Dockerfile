@@ -50,7 +50,8 @@ ENV PATH $PATH:/composer/vendor/bin
 RUN composer config --global process-timeout 3600
 RUN composer global require "laravel/installer"
 
-RUN mkdir -p /var/www/backend
+RUN mkdir -p /var/www/backend && \
+    chown -R www-data:www-data /var/www/backend
 
 WORKDIR /var/www/backend
 
@@ -59,5 +60,3 @@ COPY --chown=www-data:www-data backend/composer.* ./
 RUN composer install --no-scripts
 
 EXPOSE 9000
-
-CMD ["php", "-S", "0.0.0.0:9000"]
