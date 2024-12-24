@@ -1,5 +1,19 @@
 FROM php:8.3-fpm-alpine
 
+RUN apk add --no-cache bash
+
+ARG UID
+ARG GID
+ENV UID=${UID}
+ENV GID=${GID}
+
+RUN addgroup -g ${GID} --system docker
+RUN adduser -G docker --system -D -s /bin/sh -u ${UID} docker
+
+RUN mkdir -p /var/www/backend
+
+WORKDIR /var/www/backend
+
 # mix
 RUN apk add --no-cache \
     build-base \
@@ -50,13 +64,12 @@ ENV PATH $PATH:/composer/vendor/bin
 RUN composer config --global process-timeout 3600
 RUN composer global require "laravel/installer"
 
-RUN mkdir -p /var/www/backend && \
-    chown -R www-data:www-data /var/www/backend
-
-WORKDIR /var/www/backend
-
-COPY --chown=www-data:www-data backend/composer.* ./
+COPY --chown=docker.docker backend/composer.* /var/www/backend/
 
 RUN composer install --no-scripts
+
+USER docker
+
+COPY --chown=docker.docker ./backend /var/www/backend/
 
 EXPOSE 9000

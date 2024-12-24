@@ -1,38 +1,53 @@
-// import api from '@/helpers/api/api'
-// import { useMutation } from '@tanstack/vue-query'
-
-export const useSignupUser = () => {
+/**
+ * Mutation hook for logging in a user.
+ *
+ * @example
+ * const { mutate: loginUserMutation } = useLoginUser()
+ * loginUserMutation({ email: 'user@example.com', password: 'password' })
+ *
+ * @param {Object} data - Login data.
+ * @param {string} data.email - User email.
+ * @param {string} data.password - User password.
+ * @returns {Promise} Promise of the mutation result.
+ */
+export const useLoginUser = () => {
   return useMutation({
     mutationFn: (data) => {
-      return api.signupUser(data)
-      // return api.post('/api/auth/signup', data)
+      return apiLoginUser(data)
     },
   })
 }
 
-export const useSigninUser = () => {
-  return useMutation({
-    mutationFn: (data) => {
-      return api.signupUser(data)
-      // return api.post('/api/auth/signin', data)
-    },
-  })
-}
-
+/**
+ * Mutation hook for logging out a user.
+ *
+ * @example
+ * const { mutate: logoutUserMutation } = useLogoutUser()
+ * logoutUserMutation()
+ *
+ * @returns {Promise} Promise of the mutation result.
+ */
 export const useLogoutUser = () => {
   return useMutation({
     mutationFn: () => {
-      return api.logoutUser()
-      // return api.get('/api/auth/logout')
+      return apiLogoutUser()
     },
   })
 }
 
+/**
+ * Mutation hook for refreshing a user.
+ *
+ * @example
+ * const { mutate: refreshUserMutation } = useRefreshUser()
+ * refreshUserMutation()
+ *
+ * @returns {Promise} Promise of the mutation result.
+ */
 export const useRefreshUser = () => {
   return useMutation({
     mutationFn: () => {
-      return api.refreshUser()
-      // return api.get('/api/auth/refresh')
+      return apiRefreshUser()
     },
   })
 }

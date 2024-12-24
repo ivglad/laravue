@@ -6,85 +6,72 @@ const router = useRouter()
 
 const toast = useToast()
 
-const { mutate: signinUserMutation, isPending: signinUserIsPending } =
-  useSigninUser()
-const signin = async () => {
-  const { email, password } = formData.value
-  signinUserMutation(
+const { mutate: loginUserMutation, isPending: loginUserIsPending } =
+  useLoginUser()
+const signin = async (e) => {
+  console.log(e)
+  if (!e.valid) return
+  const { username, password } = e.values
+  loginUserMutation(
     {
-      email: email.value,
-      password: password.value,
+      username,
+      password,
     },
     {
       onError: (error) => {
-        const errorMessage = error.response?.data?.message
-          ? error.response.data.message
-          : error.message
+        console.log('error', error)
+        // const errorMessage = error.response?.data?.message
+        //   ? error.response.data.message
+        //   : error.message
 
-        if (errorMessage.includes('пароль')) {
-          password.error.msg = errorMessage
-        } else {
-          email.error.msg = errorMessage
-        }
+        // if (errorMessage.includes('пароль')) {
+        //   password.error.msg = errorMessage
+        // } else {
+        //   email.error.msg = errorMessage
+        // }
       },
       onSuccess: (data) => {
-        const userData = data.data
-        userStore.initUser(userData)
-        router.push(userStore.user.homePage)
+        console.log('success', data)
+        // const userData = data.data
+        // userStore.initUser(userData)
+        // router.push(userStore.user.homePage)
       },
     },
   )
 }
 
 const initialValues = ref({
-  email: '',
+  username: '',
   password: '',
   remember: false,
 })
-const resolver = zodResolver(
-  z.object({
-    email: z.string().trim().email({ message: 'Некорректный Email' }),
-    password: z
-      .string()
-      .trim()
-      .min(4, { message: 'Минимум 4 символа' })
-      .refine((value) => /[a-z]/.test(value), {
-        message: 'Должен содержать строчные латинские буквы',
-      }),
-    remember: z.boolean().refine((value) => value, {
-      message: 'Необходимо принять условие',
+const loginSchema = z.object({
+  username: z.string().trim().min(3, { message: 'Минимум 3 символа' }),
+  password: z
+    .string()
+    .trim()
+    .min(3, { message: 'Минимум 3 символа' })
+    .refine((value) => /[a-z]/.test(value), {
+      message: 'Должен содержать строчные латинские буквы',
     }),
+  remember: z.boolean().refine((value) => value, {
+    message: 'Необходимо принять условие',
   }),
-)
+})
 
-const onFormSubmit = (e) => {
-  // console.log(resolve)
-  // e.originalEvent: Represents the native form submit event.
-  // e.valid: A boolean that indicates whether the form is valid or not.
-  // e.states: Contains the current state of each form field, including validity status.
-  // e.errors: An object that holds any validation errors for the invalid fields in the form.
-  // e.values: An object containing the current values of all form fields.
-  // e.reset: A function that resets the form to its initial state.
-  if (e.valid) {
-    toast.add({
-      severity: 'success',
-      summary: 'Form is submitted.',
-      life: 3000,
-    })
-  }
-}
+const resolver = zodResolver(loginSchema)
 </script>
 
 <template>
   <div class="auth">
     <h1 class="auth__title">Авторизация</h1>
-    <Form class="auth-form" :initialValues :resolver @submit="onFormSubmit">
+    <Form class="auth-form" :initialValues :resolver @submit="signin">
       <FormField
         class="auth-form__formfield"
         v-slot="$field"
         :validateOnValueUpdate="false"
         validateOnBlur
-        name="email">
+        name="username">
         <FloatLabel class="app-input">
           <InputText
             id="auth-form-username"
@@ -101,7 +88,7 @@ const onFormSubmit = (e) => {
             v-if="$field?.invalid">
             {{ $field.error?.message }}
           </Message>
-          <label for="auth-form-username">Email</label>
+          <label for="auth-form-username">Логин</label>
         </FloatLabel>
       </FormField>
       <FormField

@@ -10,7 +10,7 @@ services:
     restart: unless-stopped
     tty: true
     volumes:
-      - ./.docker/nginx/logs:/var/log/nginx:rw
+      - ./.docker/nginx/logs:/var/log/nginx
     ports:
       - ${HOST_FRONTEND_PORT}:80
     env_file:
@@ -42,10 +42,13 @@ services:
     build:
       context: .
       dockerfile: .docker/backend/Dockerfile
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
     container_name: backend-${DOCKER_PROJECT_NAME}
     restart: unless-stopped
     volumes:
-      - ./backend:/var/www/backend:rw
+      - ./backend:/var/www/backend
       - /var/www/backend/vendor
     env_file:
       - ./backend/.env

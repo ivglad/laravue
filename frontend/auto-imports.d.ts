@@ -379,6 +379,9 @@ declare global {
   const all: typeof import('axios')['all']
   const any: typeof import('zod')['any']
   const api: typeof import('./src/helpers/api/api.js')['default']
+  const apiLoginUser: typeof import('./src/helpers/api/api.js')['apiLoginUser']
+  const apiLogoutUser: typeof import('./src/helpers/api/api.js')['apiLogoutUser']
+  const apiRefreshUser: typeof import('./src/helpers/api/api.js')['apiRefreshUser']
   const array: typeof import('zod')['array']
   const assert: typeof import('@vueuse/core')['assert']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
@@ -765,6 +768,7 @@ declare global {
   const useLastChanged: typeof import('@vueuse/core')['useLastChanged']
   const useLink: typeof import('vue-router')['useLink']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
+  const useLoginUser: typeof import('./src/helpers/api/queries.js')['useLoginUser']
   const useLogoutUser: typeof import('./src/helpers/api/queries.js')['useLogoutUser']
   const useMagicKeys: typeof import('@vueuse/core')['useMagicKeys']
   const useManualRefHistory: typeof import('@vueuse/core')['useManualRefHistory']
@@ -1211,6 +1215,9 @@ declare module 'vue' {
     readonly _getVisibleLeafColumns: UnwrapRef<typeof import('@tanstack/vue-table')['_getVisibleLeafColumns']>
     readonly aggregationFns: UnwrapRef<typeof import('@tanstack/vue-table')['aggregationFns']>
     readonly api: UnwrapRef<typeof import('./src/helpers/api/api.js')['default']>
+    readonly apiLoginUser: UnwrapRef<typeof import('./src/helpers/api/api.js')['apiLoginUser']>
+    readonly apiLogoutUser: UnwrapRef<typeof import('./src/helpers/api/api.js')['apiLogoutUser']>
+    readonly apiRefreshUser: UnwrapRef<typeof import('./src/helpers/api/api.js')['apiRefreshUser']>
     readonly assert: UnwrapRef<typeof import('@vueuse/core')['assert']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
@@ -1536,6 +1543,7 @@ declare module 'vue' {
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
+    readonly useLoginUser: UnwrapRef<typeof import('./src/helpers/api/queries.js')['useLoginUser']>
     readonly useLogoutUser: UnwrapRef<typeof import('./src/helpers/api/queries.js')['useLogoutUser']>
     readonly useMagicKeys: UnwrapRef<typeof import('@vueuse/core')['useMagicKeys']>
     readonly useManualRefHistory: UnwrapRef<typeof import('@vueuse/core')['useManualRefHistory']>
@@ -1589,8 +1597,6 @@ declare module 'vue' {
     readonly useScrollLock: UnwrapRef<typeof import('@vueuse/core')['useScrollLock']>
     readonly useSessionStorage: UnwrapRef<typeof import('@vueuse/core')['useSessionStorage']>
     readonly useShare: UnwrapRef<typeof import('@vueuse/core')['useShare']>
-    readonly useSigninUser: UnwrapRef<typeof import('./src/helpers/api/queries.js')['useSigninUser']>
-    readonly useSignupUser: UnwrapRef<typeof import('./src/helpers/api/queries.js')['useSignupUser']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useSorted: UnwrapRef<typeof import('@vueuse/core')['useSorted']>
     readonly useSpeechRecognition: UnwrapRef<typeof import('@vueuse/core')['useSpeechRecognition']>

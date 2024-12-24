@@ -1,24 +1,17 @@
-// import axios from 'axios'
-// import { useUserStore } from '@/store/userStore'
-
 const api = axios.create({
   withCredentials: true,
 })
 
-const signupUser = async (data) => {
-  return await api.post('/api/auth/signup', data)
+export const apiLoginUser = async (data) => {
+  return await api.post('/api/login', data)
 }
 
-const signinUser = async (data) => {
-  return await api.post('/api/auth/signin', data)
+export const apiLogoutUser = async () => {
+  return await api.get('/api/logout')
 }
 
-const logoutUser = async () => {
-  return await api.get('/api/auth/logout')
-}
-
-const refreshUser = async () => {
-  return await api.get('/api/auth/refresh')
+export const apiRefreshUser = async () => {
+  return await api.get('/api/refresh')
 }
 
 // ----------------------------------------------------------------------------
