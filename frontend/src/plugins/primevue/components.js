@@ -6,21 +6,21 @@ export default {
   // CascadeSelect
   // Checkbox
   checkbox: {
-    width: '1.6rem',
-    height: '1.6rem',
+    width: '2rem',
+    height: '2rem',
     borderRadius: '{border.radius.xs}',
     sm: {
-      width: '1.2rem',
-      height: '1.2rem',
+      width: '1.4rem',
+      height: '1.4rem',
     },
     lg: {
-      width: '2rem',
-      height: '2rem',
+      width: '2.4rem',
+      height: '2.4rem',
     },
     icon: {
-      smSize: '0.6rem',
-      size: '1rem',
-      lgSize: '1.2rem',
+      size: '1.2rem',
+      smSize: '0.8rem',
+      lgSize: '1.6rem',
     },
     colorScheme: {
       light: {
@@ -127,6 +127,7 @@ export default {
       .p-iconfield {
         display: flex;
         align-items: center;
+        width: 100%;
         & *:first-child.p-inputicon {
           z-index: 1;
           & + * input {
@@ -208,20 +209,20 @@ export default {
   },
   // RadioButton
   radiobutton: {
-    width: '1.6rem',
-    height: '1.6rem',
+    width: '2rem',
+    height: '2rem',
     sm: {
-      width: '1.2rem',
-      height: '1.2rem',
+      width: '1.4rem',
+      height: '1.4rem',
     },
     lg: {
-      width: '2rem',
-      height: '2rem',
+      width: '2.4rem',
+      height: '2.4rem',
     },
     icon: {
-      smSize: '0.6rem',
-      size: '0.8rem',
-      lgSize: '1rem',
+      size: '1.2rem',
+      smSize: '0.8rem',
+      lgSize: '1.6rem',
     },
     colorScheme: {
       light: {

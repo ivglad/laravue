@@ -52,16 +52,64 @@ const sendMessage = () => {
                 <td>
                   <InputText
                     v-model="inputState.value"
-                    disabled
-                    placeholder="Disabled" />
+                    placeholder="Disabled"
+                    disabled />
                 </td>
                 <td>
-                  <AppInput :data="inputState">
+                  <div class="app-input">
                     <InputText
                       v-model="inputState.value"
                       :invalid="inputState.error.show"
                       @blur="errorHide" />
-                  </AppInput>
+                    <Message
+                      class="app-input-message"
+                      :severity="inputState.error.show ? 'error' : 'contrast'"
+                      variant="simple"
+                      size="small"
+                      v-if="inputState.error.show">
+                      {{ inputState?.error?.msg }}
+                    </Message>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>FloatLabel</td>
+                <td>
+                  <FloatLabel class="app-input mt-10">
+                    <InputText
+                      id="layout-ui-input-floatlabe-1"
+                      v-model="inputState.value"
+                      @blur="errorHide" />
+                    <label for="layout-ui-input-floatlabel-1">Логин</label>
+                  </FloatLabel>
+                </td>
+                <td>
+                  <FloatLabel class="app-input mt-10">
+                    <InputText
+                      id="layout-ui-input-floatlabel-2"
+                      v-model="inputState.value"
+                      @blur="errorHide"
+                      disabled />
+                    <label for="layout-ui-input-floatlabe-2">Логин</label>
+                  </FloatLabel>
+                </td>
+                <td>
+                  <FloatLabel class="app-input mt-10">
+                    <InputText
+                      id="layout-ui-input-floatlabel-3"
+                      v-model="inputState.value"
+                      @blur="errorHide"
+                      :invalid="inputState.error.show" />
+                    <Message
+                      class="app-input-message"
+                      :severity="inputState.error.show ? 'error' : 'contrast'"
+                      variant="simple"
+                      size="small"
+                      v-if="inputState.error.show">
+                      {{ inputState?.error?.msg }}
+                    </Message>
+                    <label for="layout-ui-input-floatlabel-3">Логин</label>
+                  </FloatLabel>
                 </td>
               </tr>
               <tr>
@@ -80,13 +128,21 @@ const sendMessage = () => {
                     toggleMask />
                 </td>
                 <td>
-                  <AppInput :data="inputState">
+                  <div class="app-input">
                     <Password
                       v-model="inputState.value"
                       :invalid="inputState.error.show"
                       :feedback="false"
                       toggleMask />
-                  </AppInput>
+                    <Message
+                      class="app-input-message"
+                      :severity="inputState.error.show ? 'error' : 'contrast'"
+                      variant="simple"
+                      size="small"
+                      v-if="inputState.error.show">
+                      {{ inputState?.error?.msg }}
+                    </Message>
+                  </div>
                 </td>
               </tr>
               <tr>

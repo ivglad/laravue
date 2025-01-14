@@ -20,33 +20,45 @@ const checkboxState = ref(false)
             </thead>
             <tbody>
               <tr>
+                <td>Large</td>
+                <td>
+                  <Checkbox v-model="checkboxState" size="large" binary />
+                </td>
+                <td>
+                  <Checkbox
+                    v-model="checkboxState"
+                    size="large"
+                    binary
+                    disabled />
+                </td>
+              </tr>
+              <tr>
                 <td>Default</td>
                 <td>
-                  <AppCheckbox label="Checkbox">
-                    <Checkbox
-                      v-model="checkboxState"
-                      ariaLabel="checkbox-large"
-                      size="large"
-                      binary />
-                  </AppCheckbox>
+                  <label class="app-checkbox">
+                    <Checkbox v-model="checkboxState" binary />
+                    <Message
+                      class="app-checkbox-message"
+                      variant="simple"
+                      severity="contrast">
+                      Checkbox
+                    </Message>
+                  </label>
                 </td>
                 <td>
-                  <AppCheckbox label="Checkbox">
-                    <Checkbox
-                      v-model="checkboxState"
-                      size="large"
-                      binary
-                      disabled />
-                  </AppCheckbox>
+                  <label class="app-checkbox">
+                    <Checkbox v-model="checkboxState" binary disabled />
+                    <Message
+                      class="app-checkbox-message"
+                      variant="simple"
+                      severity="contrast">
+                      Checkbox
+                    </Message>
+                  </label>
                 </td>
               </tr>
               <tr>
-                <td>Medium size</td>
-                <td><Checkbox v-model="checkboxState" binary /></td>
-                <td><Checkbox v-model="checkboxState" binary disabled /></td>
-              </tr>
-              <tr>
-                <td>Small size</td>
+                <td>Small</td>
                 <td>
                   <Checkbox v-model="checkboxState" size="small" binary />
                 </td>

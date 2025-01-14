@@ -7,28 +7,14 @@
     </Divider>
     <div class="content">
       <div class="progress">
-        <ProgressBar mode="indeterminate" class="progress-line"></ProgressBar>
-        <ProgressBar :value="50" class="progress-line-percent"></ProgressBar>
-        <ProgressSpinner
-          class="progress-spinner"
-          fill="transparent"
-          animationDuration="0.9s" />
+        <ProgressBar
+          mode="indeterminate"
+          class="app-progressline"></ProgressBar>
+        <ProgressBar :value="50" class="app-progressline-percent"></ProgressBar>
+        <ProgressSpinner class="app-progressspinner" fill="transparent" />
       </div>
     </div>
   </section>
 </template>
 
-<style lang="scss" scoped>
-.progress {
-  &-line {
-    height: 4px;
-    &-percent {
-      height: 20px;
-    }
-  }
-  &-spinner {
-    width: 42px;
-    height: 42px;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

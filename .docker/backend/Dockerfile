@@ -70,6 +70,6 @@ RUN composer install --no-scripts
 
 USER docker
 
-COPY --chown=docker.docker ./backend /var/www/backend/
+COPY --chown=docker.docker backend /var/www/backend/
 
 EXPOSE 9000

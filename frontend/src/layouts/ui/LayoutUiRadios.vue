@@ -20,67 +20,71 @@ const radioState = ref('')
             </thead>
             <tbody>
               <tr>
-                <td>Default</td>
+                <td>Large</td>
                 <td>
-                  <AppCheckbox radio label="Radio 1">
-                    <RadioButton
-                      v-model="radioState"
-                      value="Radio 1"
-                      name="radios"
-                      size="large" />
-                  </AppCheckbox>
+                  <RadioButton
+                    v-model="radioState"
+                    value="Radio 1"
+                    name="radios"
+                    size="large" />
                 </td>
                 <td>
-                  <AppCheckbox radio label="Radio 1">
-                    <RadioButton
-                      v-model="radioState"
-                      value="Radio 1"
-                      name="radios"
-                      size="large"
-                      disabled />
-                  </AppCheckbox>
+                  <RadioButton
+                    v-model="radioState"
+                    value="Radio 1"
+                    name="radios"
+                    size="large"
+                    disabled />
                 </td>
               </tr>
               <tr>
-                <td>Medium size</td>
+                <td>Default</td>
                 <td>
-                  <AppCheckbox radio>
+                  <label class="app-radio">
                     <RadioButton
                       v-model="radioState"
                       value="Radio 2"
                       name="radios" />
-                  </AppCheckbox>
+                    <Message
+                      class="app-radio-message"
+                      variant="simple"
+                      severity="contrast">
+                      Radio
+                    </Message>
+                  </label>
                 </td>
                 <td>
-                  <AppCheckbox radio>
+                  <label class="app-radio">
                     <RadioButton
                       v-model="radioState"
                       value="Radio 2"
                       name="radios"
                       disabled />
-                  </AppCheckbox>
+                    <Message
+                      class="app-radio-message"
+                      variant="simple"
+                      severity="contrast">
+                      Radio
+                    </Message>
+                  </label>
                 </td>
               </tr>
               <tr>
-                <td>Small size</td>
+                <td>Small</td>
                 <td>
-                  <AppCheckbox radio>
-                    <RadioButton
-                      v-model="radioState"
-                      value="Radio 3"
-                      name="radios"
-                      size="small" />
-                  </AppCheckbox>
+                  <RadioButton
+                    v-model="radioState"
+                    value="Radio 3"
+                    name="radios"
+                    size="small" />
                 </td>
                 <td>
-                  <AppCheckbox radio>
-                    <RadioButton
-                      v-model="radioState"
-                      value="Radio 3"
-                      name="radios"
-                      size="small"
-                      disabled />
-                  </AppCheckbox>
+                  <RadioButton
+                    v-model="radioState"
+                    value="Radio 3"
+                    name="radios"
+                    size="small"
+                    disabled />
                 </td>
               </tr>
             </tbody>

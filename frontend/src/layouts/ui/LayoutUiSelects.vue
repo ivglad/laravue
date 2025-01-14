@@ -159,8 +159,7 @@ const groupedCities = ref([
                     <template #loadingicon>
                       <ProgressSpinner
                         class="app-progressspinner-inside"
-                        fill="transparent"
-                        animationDuration="0.9s" />
+                        fill="transparent" />
                     </template>
                   </Select>
                 </td>
@@ -247,8 +246,7 @@ const groupedCities = ref([
                     <template #loadingicon>
                       <ProgressSpinner
                         class="app-progressspinner-inside"
-                        fill="transparent"
-                        animationDuration="0.9s" />
+                        fill="transparent" />
                     </template>
                   </MultiSelect>
                 </td>

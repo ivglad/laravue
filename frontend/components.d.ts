@@ -50,6 +50,7 @@ declare module 'vue' {
     FloatLabel: typeof import('primevue/floatlabel')['default']
     Form: typeof import('@primevue/forms/form')['default']
     FormField: typeof import('@primevue/forms/formfield')['default']
+    Iconfield: typeof import('primevue/iconfield')['default']
     IconField: typeof import('primevue/iconfield')['default']
     ICustomArrowBottom: typeof import('~icons/custom/arrow-bottom')['default']
     ICustomArrowDown: typeof import('~icons/custom/arrow-down')['default']

@@ -69,6 +69,9 @@ export default defineConfig({
         {
           axios: [['default', 'axios']],
         },
+        {
+          zod: ['z'],
+        },
       ],
       packagePresets: [
         'primevue',

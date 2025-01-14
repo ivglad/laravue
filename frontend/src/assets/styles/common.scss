@@ -3,54 +3,57 @@
 
 @layer app {
   // Offsets
+  // Из расчета 1rem = 10px - зависит от размера шрифта html
   @for $i from 0 through 120 {
     @if $i % 5 == 0 {
+      // To rem
+      $value: calc($i / 10);
       .p-#{$i} {
-        padding: #{$i}px;
+        padding: #{$value}rem;
       }
       .pt-#{$i} {
-        padding-top: #{$i}px;
+        padding-top: #{$value}rem;
       }
       .pb-#{$i} {
-        padding-bottom: #{$i}px;
+        padding-bottom: #{$value}rem;
       }
       .pl-#{$i} {
-        padding-left: #{$i}px;
+        padding-left: #{$value}rem;
       }
       .pr-#{$i} {
-        padding-right: #{$i}px;
+        padding-right: #{$value}rem;
       }
       .ptb-#{$i} {
-        padding-top: #{$i}px;
-        padding-bottom: #{$i}px;
+        padding-top: #{$value}rem;
+        padding-bottom: #{$value}rem;
       }
       .plr-#{$i} {
-        padding-left: #{$i}px;
-        padding-right: #{$i}px;
+        padding-left: #{$value}rem;
+        padding-right: #{$value}rem;
       }
 
       .m-#{$i} {
-        margin: #{$i}px;
+        margin: #{$value}rem;
       }
       .mt-#{$i} {
-        margin-top: #{$i}px;
+        margin-top: #{$value}rem;
       }
       .mb-#{$i} {
-        margin-bottom: #{$i}px;
+        margin-bottom: #{$value}rem;
       }
       .ml-#{$i} {
-        margin-left: #{$i}px;
+        margin-left: #{$value}rem;
       }
       .mr-#{$i} {
-        margin-right: #{$i}px;
+        margin-right: #{$value}rem;
       }
       .mtb-#{$i} {
-        margin-top: #{$i}px;
-        margin-bottom: #{$i}px;
+        margin-top: #{$value}rem;
+        margin-bottom: #{$value}rem;
       }
       .mlr-#{$i} {
-        margin-left: #{$i}px;
-        margin-right: #{$i}px;
+        margin-left: #{$value}rem;
+        margin-right: #{$value}rem;
       }
     }
   }
@@ -159,6 +162,11 @@
     &-favicon {
       width: 7.2rem;
       height: 7.2rem;
+    }
+    &-plus {
+      &--transform {
+        transform: rotate(45deg);
+      }
     }
   }
 }

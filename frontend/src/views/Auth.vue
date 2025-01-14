@@ -1,44 +1,8 @@
 <script setup>
-import { z } from 'zod'
-
 const userStore = useUserStore()
 const router = useRouter()
 
 const toast = useToast()
-
-const { mutate: loginUserMutation, isPending: loginUserIsPending } =
-  useLoginUser()
-const signin = async (e) => {
-  console.log(e)
-  if (!e.valid) return
-  const { username, password } = e.values
-  loginUserMutation(
-    {
-      username,
-      password,
-    },
-    {
-      onError: (error) => {
-        console.log('error', error)
-        // const errorMessage = error.response?.data?.message
-        //   ? error.response.data.message
-        //   : error.message
-
-        // if (errorMessage.includes('пароль')) {
-        //   password.error.msg = errorMessage
-        // } else {
-        //   email.error.msg = errorMessage
-        // }
-      },
-      onSuccess: (data) => {
-        console.log('success', data)
-        // const userData = data.data
-        // userStore.initUser(userData)
-        // router.push(userStore.user.homePage)
-      },
-    },
-  )
-}
 
 const initialValues = ref({
   username: '',
@@ -54,18 +18,63 @@ const loginSchema = z.object({
     .refine((value) => /[a-z]/.test(value), {
       message: 'Должен содержать строчные латинские буквы',
     }),
-  remember: z.boolean().refine((value) => value, {
+  remember: z.boolean().refine((checked) => checked, {
     message: 'Необходимо принять условие',
   }),
 })
 
-const resolver = zodResolver(loginSchema)
+const loginResolver = zodResolver(loginSchema)
+
+const { mutate: loginUserMutation, isPending: loginUserIsPending } =
+  useLoginUser()
+const loginSubmit = async (e) => {
+  console.log(e)
+  // const validation = zodResolver(loginSchema)
+  console.log(loginSchema)
+
+  if (!e.valid) return
+  console.log(e)
+  const { username, password } = e.values
+  loginUserMutation(
+    {
+      username,
+      password,
+    },
+    {
+      onError: (error) => {
+        e.states.username.valid = false
+        e.states.username.invalid = true
+        e.states.password.valid = false
+        e.states.password.invalid = true
+
+        toast.add({
+          severity: 'error',
+          summary: 'Ошибка',
+          detail: error?.response?.data?.message,
+          life: 5000,
+        })
+      },
+      onSuccess: (data) => {
+        const userData = data.data
+        userStore.initUser(userData)
+      },
+      // FIXME: remove in real app
+      onSettled: (data, error, variables, context) => {
+        // router.push('/ui')
+      },
+    },
+  )
+}
 </script>
 
 <template>
   <div class="auth">
     <h1 class="auth__title">Авторизация</h1>
-    <Form class="auth-form" :initialValues :resolver @submit="signin">
+    <Form
+      class="auth-form"
+      :initialValues
+      :resolver="loginResolver"
+      @submit="loginSubmit">
       <FormField
         class="auth-form__formfield"
         v-slot="$field"
@@ -79,13 +88,14 @@ const resolver = zodResolver(loginSchema)
               value: $field.error?.message,
               showDelay: 500,
             }"
+            :invalid="$field?.invalid"
             fluid />
           <Message
             class="app-input-message"
             :severity="$field?.invalid ? 'error' : 'contrast'"
             variant="simple"
             size="small"
-            v-if="$field?.invalid">
+            v-if="$field?.invalid && $field.error?.message">
             {{ $field.error?.message }}
           </Message>
           <label for="auth-form-username">Логин</label>
@@ -113,24 +123,32 @@ const resolver = zodResolver(loginSchema)
             :severity="$field?.invalid ? 'error' : 'contrast'"
             variant="simple"
             size="small"
-            v-if="$field?.invalid">
+            v-if="$field?.invalid && $field.error?.message">
             {{ $field.error?.message }}
           </Message>
           <label for="auth-form-password">Пароль</label>
         </FloatLabel>
       </FormField>
       <FormField v-slot="$field" class="auth-form__formfield" name="remember">
-        <AppCheckbox
-          class="auth-form__checkbox"
-          label="Соглашаюсь на обработку персональных данных">
-          <Checkbox
-            :invalid="$field?.invalid"
-            ariaLabel="checkbox-large"
-            size="large"
-            binary />
-        </AppCheckbox>
+        <label class="app-checkbox auth-form__checkbox">
+          <Checkbox v-model="checkboxState" :invalid="$field?.invalid" binary />
+          <Message
+            class="app-checkbox-message"
+            variant="simple"
+            severity="contrast">
+            Соглашаюсь на обработку персональных данных
+          </Message>
+        </label>
       </FormField>
-      <Button class="auth-form__submit" type="submit" label="Войти в систему" />
+      <Button
+        class="auth-form__submit"
+        type="submit"
+        label="Войти в систему"
+        :loading="loginUserIsPending">
+        <template #loadingicon>
+          <i-custom-dot-loader />
+        </template>
+      </Button>
       <Button
         class="auth-form__restore-password"
         label="Забыли пароль?"

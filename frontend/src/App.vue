@@ -2,7 +2,10 @@
 
 <template>
   <Toast>
-    <template #container="{ message }">
+    <template #closeicon>
+      <i-custom-close />
+    </template>
+    <template #container="{ message, closeCallback }">
       <div class="app-toast p-toast-message-content">
         <div v-if="message.summary" class="app-toast-summary">
           <i-custom-success-sign v-if="message.severity === 'success'" />
@@ -10,6 +13,17 @@
           <i-custom-warning-sign v-else-if="message.severity === 'warn'" />
           <i-custom-error-sign v-else-if="message.severity === 'error'" />
           <span class="p-toast-summary fw-bold">{{ message.summary }}</span>
+          <Button
+            class="app-toast-close-button"
+            variant="text"
+            size="small"
+            severity="secondary"
+            rounded
+            @click="closeCallback">
+            <template #icon>
+              <i-custom-plus class="icon-plus--transform" />
+            </template>
+          </Button>
         </div>
         <div v-if="message.detail" class="app-toast-detail p-toast-detail">
           {{ message.detail }}

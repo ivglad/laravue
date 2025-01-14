@@ -890,6 +890,7 @@ declare global {
   const watchWithFilter: typeof import('@vueuse/core')['watchWithFilter']
   const whenever: typeof import('@vueuse/core')['whenever']
   const z: typeof import('zod')['z']
+  const zod: typeof import('zod')['z']
   const zodResolver: typeof import('@primevue/forms/resolvers/zod')['zodResolver']
 }
 // for type re-export
@@ -1660,6 +1661,7 @@ declare module 'vue' {
     readonly watchTriggerable: UnwrapRef<typeof import('@vueuse/core')['watchTriggerable']>
     readonly watchWithFilter: UnwrapRef<typeof import('@vueuse/core')['watchWithFilter']>
     readonly whenever: UnwrapRef<typeof import('@vueuse/core')['whenever']>
+    readonly z: UnwrapRef<typeof import('zod')['z']>
     readonly zodResolver: UnwrapRef<typeof import('@primevue/forms/resolvers/zod')['zodResolver']>
   }
 }
