@@ -436,6 +436,8 @@ declare global {
   const custom: typeof import('zod')['custom']
   const customRef: typeof import('vue')['customRef']
   const customStorageEventName: typeof import('@vueuse/core')['customStorageEventName']
+  const dataTagErrorSymbol: typeof import('@tanstack/vue-query')['dataTagErrorSymbol']
+  const dataTagSymbol: typeof import('@tanstack/vue-query')['dataTagSymbol']
   const date: typeof import('zod')['date']
   const datetimeRegex: typeof import('zod')['datetimeRegex']
   const debounceFilter: typeof import('@vueuse/core')['debounceFilter']
@@ -579,6 +581,7 @@ declare global {
   const onBeforeUpdate: typeof import('vue')['onBeforeUpdate']
   const onClickOutside: typeof import('@vueuse/core')['onClickOutside']
   const onDeactivated: typeof import('vue')['onDeactivated']
+  const onElementRemoval: typeof import('@vueuse/core')['onElementRemoval']
   const onErrorCaptured: typeof import('vue')['onErrorCaptured']
   const onKeyDown: typeof import('@vueuse/core')['onKeyDown']
   const onKeyPressed: typeof import('@vueuse/core')['onKeyPressed']
@@ -609,6 +612,8 @@ declare global {
   const promiseTimeout: typeof import('@vueuse/core')['promiseTimeout']
   const provide: typeof import('vue')['provide']
   const provideLocal: typeof import('@vueuse/core')['provideLocal']
+  const provideSSRWidth: typeof import('@vueuse/core')['provideSSRWidth']
+  const pxValue: typeof import('@vueuse/core')['pxValue']
   const queryOptions: typeof import('@tanstack/vue-query')['queryOptions']
   const quotelessJson: typeof import('zod')['quotelessJson']
   const rand: typeof import('@vueuse/core')['rand']
@@ -657,6 +662,7 @@ declare global {
   const throttledWatch: typeof import('@vueuse/core')['throttledWatch']
   const timestamp: typeof import('@vueuse/core')['timestamp']
   const tint: typeof import('@primevue/themes')['tint']
+  const toArray: typeof import('@vueuse/core')['toArray']
   const toFormData: typeof import('axios')['toFormData']
   const toNormalizePrefix: typeof import('@primevue/themes')['toNormalizePrefix']
   const toNormalizeVariable: typeof import('@primevue/themes')['toNormalizeVariable']
@@ -681,6 +687,7 @@ declare global {
   const unknown: typeof import('zod')['unknown']
   const unref: typeof import('vue')['unref']
   const unrefElement: typeof import('@vueuse/core')['unrefElement']
+  const unsetMarker: typeof import('@tanstack/vue-query')['unsetMarker']
   const until: typeof import('@vueuse/core')['until']
   const updatePreset: typeof import('@primevue/themes')['updatePreset']
   const updatePrimaryPalette: typeof import('@primevue/themes')['updatePrimaryPalette']
@@ -803,6 +810,7 @@ declare global {
   const usePreferredDark: typeof import('@vueuse/core')['usePreferredDark']
   const usePreferredLanguages: typeof import('@vueuse/core')['usePreferredLanguages']
   const usePreferredReducedMotion: typeof import('@vueuse/core')['usePreferredReducedMotion']
+  const usePreferredReducedTransparency: typeof import('@vueuse/core')['usePreferredReducedTransparency']
   const usePreset: typeof import('@primevue/themes')['usePreset']
   const usePrevious: typeof import('@vueuse/core')['usePrevious']
   const usePrimeVue: typeof import('primevue')['usePrimeVue']
@@ -815,6 +823,7 @@ declare global {
   const useResizeObserver: typeof import('@vueuse/core')['useResizeObserver']
   const useRoute: typeof import('vue-router')['useRoute']
   const useRouter: typeof import('vue-router')['useRouter']
+  const useSSRWidth: typeof import('@vueuse/core')['useSSRWidth']
   const useScreenOrientation: typeof import('@vueuse/core')['useScreenOrientation']
   const useScreenSafeArea: typeof import('@vueuse/core')['useScreenSafeArea']
   const useScriptTag: typeof import('@vueuse/core')['useScriptTag']
@@ -1268,6 +1277,8 @@ declare module 'vue' {
     readonly css: UnwrapRef<typeof import('@primevue/themes')['css']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly customStorageEventName: UnwrapRef<typeof import('@vueuse/core')['customStorageEventName']>
+    readonly dataTagErrorSymbol: UnwrapRef<typeof import('@tanstack/vue-query')['dataTagErrorSymbol']>
+    readonly dataTagSymbol: UnwrapRef<typeof import('@tanstack/vue-query')['dataTagSymbol']>
     readonly debounceFilter: UnwrapRef<typeof import('@vueuse/core')['debounceFilter']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
@@ -1374,6 +1385,7 @@ declare module 'vue' {
     readonly onBeforeUpdate: UnwrapRef<typeof import('vue')['onBeforeUpdate']>
     readonly onClickOutside: UnwrapRef<typeof import('@vueuse/core')['onClickOutside']>
     readonly onDeactivated: UnwrapRef<typeof import('vue')['onDeactivated']>
+    readonly onElementRemoval: UnwrapRef<typeof import('@vueuse/core')['onElementRemoval']>
     readonly onErrorCaptured: UnwrapRef<typeof import('vue')['onErrorCaptured']>
     readonly onKeyDown: UnwrapRef<typeof import('@vueuse/core')['onKeyDown']>
     readonly onKeyPressed: UnwrapRef<typeof import('@vueuse/core')['onKeyPressed']>
@@ -1398,6 +1410,8 @@ declare module 'vue' {
     readonly promiseTimeout: UnwrapRef<typeof import('@vueuse/core')['promiseTimeout']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly provideLocal: UnwrapRef<typeof import('@vueuse/core')['provideLocal']>
+    readonly provideSSRWidth: UnwrapRef<typeof import('@vueuse/core')['provideSSRWidth']>
+    readonly pxValue: UnwrapRef<typeof import('@vueuse/core')['pxValue']>
     readonly queryOptions: UnwrapRef<typeof import('@tanstack/vue-query')['queryOptions']>
     readonly rand: UnwrapRef<typeof import('@vueuse/core')['rand']>
     readonly reSplitAlphaNumeric: UnwrapRef<typeof import('@tanstack/vue-table')['reSplitAlphaNumeric']>
@@ -1439,6 +1453,7 @@ declare module 'vue' {
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
     readonly timestamp: UnwrapRef<typeof import('@vueuse/core')['timestamp']>
     readonly tint: UnwrapRef<typeof import('@primevue/themes')['tint']>
+    readonly toArray: UnwrapRef<typeof import('@vueuse/core')['toArray']>
     readonly toNormalizePrefix: UnwrapRef<typeof import('@primevue/themes')['toNormalizePrefix']>
     readonly toNormalizeVariable: UnwrapRef<typeof import('@primevue/themes')['toNormalizeVariable']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
@@ -1457,6 +1472,7 @@ declare module 'vue' {
     readonly tryOnUnmounted: UnwrapRef<typeof import('@vueuse/core')['tryOnUnmounted']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
+    readonly unsetMarker: UnwrapRef<typeof import('@tanstack/vue-query')['unsetMarker']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
     readonly updatePreset: UnwrapRef<typeof import('@primevue/themes')['updatePreset']>
     readonly updatePrimaryPalette: UnwrapRef<typeof import('@primevue/themes')['updatePrimaryPalette']>
@@ -1579,6 +1595,7 @@ declare module 'vue' {
     readonly usePreferredDark: UnwrapRef<typeof import('@vueuse/core')['usePreferredDark']>
     readonly usePreferredLanguages: UnwrapRef<typeof import('@vueuse/core')['usePreferredLanguages']>
     readonly usePreferredReducedMotion: UnwrapRef<typeof import('@vueuse/core')['usePreferredReducedMotion']>
+    readonly usePreferredReducedTransparency: UnwrapRef<typeof import('@vueuse/core')['usePreferredReducedTransparency']>
     readonly usePreset: UnwrapRef<typeof import('@primevue/themes')['usePreset']>
     readonly usePrevious: UnwrapRef<typeof import('@vueuse/core')['usePrevious']>
     readonly usePrimeVue: UnwrapRef<typeof import('primevue')['usePrimeVue']>
@@ -1591,6 +1608,7 @@ declare module 'vue' {
     readonly useResizeObserver: UnwrapRef<typeof import('@vueuse/core')['useResizeObserver']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
+    readonly useSSRWidth: UnwrapRef<typeof import('@vueuse/core')['useSSRWidth']>
     readonly useScreenOrientation: UnwrapRef<typeof import('@vueuse/core')['useScreenOrientation']>
     readonly useScreenSafeArea: UnwrapRef<typeof import('@vueuse/core')['useScreenSafeArea']>
     readonly useScriptTag: UnwrapRef<typeof import('@vueuse/core')['useScriptTag']>
