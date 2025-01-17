@@ -7,6 +7,10 @@ const inputState = ref({
     show: true,
   },
 })
+
+const inputOtp = ref({
+  value: null,
+})
 const errorHide = () => {
   inputState.value.error.show = !inputState.value.value
 }
@@ -191,7 +195,7 @@ const sendMessage = () => {
               <tr>
                 <td>Otp</td>
                 <td>
-                  <InputOtp v-model="inputState.value" />
+                  <InputOtp v-model="inputOtp.value" />
                 </td>
               </tr>
               <tr>
