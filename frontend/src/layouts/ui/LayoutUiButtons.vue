@@ -46,6 +46,10 @@ const setButtonLoading = (status) => {
                 <td><Button label="Кнопка" size="small" /></td>
               </tr>
               <tr>
+                <td>Primary <br />large</td>
+                <td><Button label="Кнопка" size="large" /></td>
+              </tr>
+              <tr>
                 <td>Secondary</td>
                 <td>
                   <Button

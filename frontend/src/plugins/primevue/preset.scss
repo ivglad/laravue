@@ -89,9 +89,9 @@
   }
   // --------------------------------------------------------------------------
 
-  button,
-  input,
-  textarea {
+  button:not([class*='sm']):not([class*='lg']),
+  input:not([class*='sm']):not([class*='lg']),
+  textarea:not([class*='sm']):not([class*='lg']) {
     font-family: inherit;
     font-size: inherit;
     letter-spacing: inherit;

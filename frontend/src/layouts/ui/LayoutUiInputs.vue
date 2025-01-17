@@ -64,16 +64,40 @@ const sendMessage = () => {
                     <InputText
                       v-model="inputState.value"
                       :invalid="inputState.error.show"
+                      v-tooltip="{
+                        value: inputState?.error?.msg,
+                        showDelay: 500,
+                      }"
                       @blur="errorHide" />
                     <Message
                       class="app-input-message"
+                      v-if="inputState.error.show"
                       :severity="inputState.error.show ? 'error' : 'contrast'"
                       variant="simple"
-                      size="small"
-                      v-if="inputState.error.show">
+                      size="small">
                       {{ inputState?.error?.msg }}
                     </Message>
                   </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Default <br />small</td>
+                <td>
+                  <InputText
+                    v-model="inputState.value"
+                    :feedback="false"
+                    size="small"
+                    toggleMask />
+                </td>
+              </tr>
+              <tr>
+                <td>Default <br />large</td>
+                <td>
+                  <InputText
+                    v-model="inputState.value"
+                    :feedback="false"
+                    size="large"
+                    toggleMask />
                 </td>
               </tr>
               <tr>
@@ -106,10 +130,10 @@ const sendMessage = () => {
                       :invalid="inputState.error.show" />
                     <Message
                       class="app-input-message"
+                      v-if="inputState.error.show"
                       :severity="inputState.error.show ? 'error' : 'contrast'"
                       variant="simple"
-                      size="small"
-                      v-if="inputState.error.show">
+                      size="small">
                       {{ inputState?.error?.msg }}
                     </Message>
                     <label for="layout-ui-input-floatlabel-3">Логин</label>
@@ -140,10 +164,10 @@ const sendMessage = () => {
                       toggleMask />
                     <Message
                       class="app-input-message"
+                      v-if="inputState.error.show"
                       :severity="inputState.error.show ? 'error' : 'contrast'"
                       variant="simple"
-                      size="small"
-                      v-if="inputState.error.show">
+                      size="small">
                       {{ inputState?.error?.msg }}
                     </Message>
                   </div>

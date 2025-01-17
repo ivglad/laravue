@@ -164,12 +164,21 @@ export default {
     app: {
       minWidth: '10rem',
       minHeight: '4.2rem',
+      sm: {
+        minWidth: '6rem',
+        minHeight: '3.2rem',
+        fontSize: '1.2rem',
+      },
+      lg: {
+        minHeight: '5.2rem',
+      }
     },
-    css: ({ dt }) => `
+    css: ({ dt }) => `        
       .p-inputtext {
         width: 100%;
-        min-width: ${dt('inputtext.app.minWidth')};
-        min-height: ${dt('inputtext.app.minHeight')};
+        &:not(.p-inputtext-sm):not(.p-inputtext-lg) {
+          min-height: ${dt('inputtext.app.minHeight')};
+        }
         &:not(:disabled):not(.p-invalid) {
           &:placeholder-shown,
           &::placeholder {
@@ -184,6 +193,16 @@ export default {
           color: var(--p-inputtext-invalid-placeholder-color);
         }
       }
+        
+      .p-inputtext-sm {
+        min-height: ${dt('inputtext.app.sm.minHeight')};
+        font-size: ${dt('inputtext.app.sm.fontSize')};
+      }
+
+      .p-inputtext-lg {
+        min-height: ${dt('inputtext.app.lg.minHeight')};
+      }
+
       .p-inputwrapper {
         width: 100%;
       }
@@ -253,6 +272,7 @@ export default {
       minHeight: 'fit-content',
       maxHeight: '100%',
       smHeight: '3.2rem',
+      lgHeight: '5.2rem',
       dropdownIconSize: '{app.font.size}',
     },
     css: ({ dt }) => `
@@ -268,6 +288,10 @@ export default {
         &.p-select-sm,
         &.p-multiselect-sm {
           height: ${dt('select.app.sm.height')};
+        }
+        &.p-select-lg,
+        &.p-multiselect-lg {
+          height: ${dt('select.app.lg.height')};
         }
         .p-select-dropdown,
         .p-multiselect-dropdown {
@@ -626,13 +650,18 @@ export default {
         height: '3.2rem',
         fontSize: '1.2rem',
       },
+      lg: {
+        width: '16rem',
+        height: '5.2rem',
+        fontSize: '1.6rem',
+      }
     },
     css: ({ dt }) => `
       .p-button {
-        &:not(.p-button-icon-only):not(.p-button-text):not(.p-button-sm) {
+        &:not(.p-button-icon-only):not(.p-button-text):not(.p-button-sm):not(.p-button-lg) {
           height: ${dt('button.app.height')};
         }
-        &:not(.p-button-rounded):not(.p-button-text):not(.p-button-sm) {
+        &:not(.p-button-rounded):not(.p-button-text):not(.p-button-sm):not(.p-button-lg) {
           width: ${dt('button.app.width')};
           min-width: fit-content;
           max-width: 100%;
@@ -650,6 +679,15 @@ export default {
         height: ${dt('button.app.sm.height')};
         font-size: ${dt('button.app.sm.fontSize')};
         border-radius: ${dt('border.radius.sm')};
+      }
+
+      .p-button-lg {
+        width: ${dt('button.app.lg.width')};
+        min-width: fit-content;
+        max-width: 100%;
+        height: ${dt('button.app.lg.height')};
+        font-size: ${dt('button.app.lg.fontSize')};
+        border-radius: ${dt('border.radius.lg')};
       }
 
       .p-button-icon-only {

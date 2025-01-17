@@ -80,7 +80,7 @@
   align-items: flex-start;
   gap: 2rem;
   width: 100%;
-  max-width: 1200px;
+  // max-width: 1200px;
   height: 100%;
   padding: 2rem 4rem 6rem 4rem;
   @include mq(m) {
@@ -96,10 +96,15 @@
   section {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 10px;
     width: 100%;
   }
 
+  :deep(.content) {
+    width: 100%;
+    max-width: 1200px;
+  }
   :deep(.content):not(.no-ui-styles) {
     display: flex;
     flex-wrap: wrap;

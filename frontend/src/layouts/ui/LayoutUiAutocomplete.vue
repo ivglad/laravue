@@ -39,7 +39,7 @@ const autoCompleateSearch = useDebounceFn((event) => {
               </td>
               <td>
                 <IconField>
-                  <InputIcon>
+                  <InputIcon class="pe-none">
                     <i-custom-search />
                   </InputIcon>
                   <InputText v-model="inputValue" placeholder="Search" />
@@ -61,7 +61,7 @@ const autoCompleateSearch = useDebounceFn((event) => {
               <td>AutoComplete</td>
               <td>
                 <IconField>
-                  <InputIcon>
+                  <InputIcon class="pe-none">
                     <i-custom-search />
                   </InputIcon>
                   <AutoComplete

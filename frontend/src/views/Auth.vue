@@ -28,12 +28,7 @@ const loginResolver = zodResolver(loginSchema)
 const { mutate: loginUserMutation, isPending: loginUserIsPending } =
   useLoginUser()
 const loginSubmit = async (e) => {
-  console.log(e)
-  // const validation = zodResolver(loginSchema)
-  console.log(loginSchema)
-
   if (!e.valid) return
-  console.log(e)
   const { username, password } = e.values
   loginUserMutation(
     {
@@ -131,7 +126,7 @@ const loginSubmit = async (e) => {
       </FormField>
       <FormField v-slot="$field" class="auth-form__formfield" name="remember">
         <label class="app-checkbox auth-form__checkbox">
-          <Checkbox v-model="checkboxState" :invalid="$field?.invalid" binary />
+          <Checkbox :invalid="$field?.invalid" binary />
           <Message
             class="app-checkbox-message"
             variant="simple"

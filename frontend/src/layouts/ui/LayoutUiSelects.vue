@@ -165,6 +165,28 @@ const groupedCities = ref([
                 </td>
               </tr>
               <tr>
+                <td>Default <br /> small</td>
+                <td>
+                  <Select
+                    v-model="selectedCity"
+                    :options="cities"
+                    size="small"
+                    optionLabel="label"
+                    placeholder="Выберите город" />
+                </td>
+              </tr>
+              <tr>
+                <td>Default <br /> large</td>
+                <td>
+                  <Select
+                    v-model="selectedCity"
+                    :options="cities"
+                    size="large"
+                    optionLabel="label"
+                    placeholder="Выберите город" />
+                </td>
+              </tr>
+              <tr>
                 <td>Multiselect</td>
                 <td>
                   <MultiSelect
@@ -175,6 +197,7 @@ const groupedCities = ref([
                     placeholder="Выберите города"
                     filter
                     resetFilterOnHide
+                    :showToggleAll="false"
                     autoFilterFocus>
                     <template #chip="slotProps">
                       <Chip :label="slotProps.value.label" removable>

@@ -58,6 +58,10 @@
     }
   }
 
+  .pe-none {
+    pointer-events: none;
+  }
+
   * {
     scroll-behavior: smooth;
   }

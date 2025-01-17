@@ -559,7 +559,7 @@ declare global {
   const nativeEnum: typeof import('zod')['nativeEnum']
   const never: typeof import('zod')['never']
   const nextTick: typeof import('vue')['nextTick']
-  const noop: typeof import('@tanstack/vue-table')['noop']
+  const noop: typeof import('@vueuse/core')['noop']
   const normalizeDate: typeof import('@vueuse/core')['normalizeDate']
   const notNullish: typeof import('@vueuse/core')['notNullish']
   const notifyManager: typeof import('@tanstack/vue-query')['notifyManager']
@@ -1369,7 +1369,7 @@ declare module 'vue' {
     readonly merge: UnwrapRef<typeof import('@primevue/themes')['merge']>
     readonly mix: UnwrapRef<typeof import('@primevue/themes')['mix']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
-    readonly noop: UnwrapRef<typeof import('@tanstack/vue-table')['noop']>
+    readonly noop: UnwrapRef<typeof import('@vueuse/core')['noop']>
     readonly normalizeDate: UnwrapRef<typeof import('@vueuse/core')['normalizeDate']>
     readonly notNullish: UnwrapRef<typeof import('@vueuse/core')['notNullish']>
     readonly notifyManager: UnwrapRef<typeof import('@tanstack/vue-query')['notifyManager']>
