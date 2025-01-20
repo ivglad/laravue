@@ -64,7 +64,7 @@ const sendMessage = () => {
                     <InputText
                       v-model="inputState.value"
                       :invalid="inputState.error.show"
-                      v-tooltip="{
+                      v-tooltip.top="{
                         value: inputState?.error?.msg,
                         showDelay: 500,
                       }"
@@ -127,7 +127,11 @@ const sendMessage = () => {
                       id="layout-ui-input-floatlabel-3"
                       v-model="inputState.value"
                       @blur="errorHide"
-                      :invalid="inputState.error.show" />
+                      :invalid="inputState.error.show"
+                      v-tooltip.top="{
+                        value: inputState?.error?.msg,
+                        showDelay: 500,
+                      }" />
                     <Message
                       class="app-input-message"
                       v-if="inputState.error.show"
@@ -161,6 +165,10 @@ const sendMessage = () => {
                       v-model="inputState.value"
                       :invalid="inputState.error.show"
                       :feedback="false"
+                      v-tooltip.top="{
+                        value: inputState?.error?.msg,
+                        showDelay: 500,
+                      }"
                       toggleMask />
                     <Message
                       class="app-input-message"

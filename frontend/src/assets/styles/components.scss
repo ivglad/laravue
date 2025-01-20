@@ -168,7 +168,8 @@
   }
 
   .app-dialog {
-    width: 50%;
+    width: clamp(300px, 60%, 1400px);
+    max-width: 100%;
   }
 
   .app-drawer {

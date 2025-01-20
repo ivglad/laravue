@@ -113,6 +113,7 @@ const showComponent = () => {
       maximizable: true,
       dismissableMask: true,
       blockScroll: true,
+      class: 'app-dialog',
     },
     templates: {
       // Баг PrimeVue - невозможно использовать собственные иконки
@@ -398,7 +399,7 @@ const toggleTieredMenu = (event) => {
               <td>
                 <div class="tooltip">
                   <InputText
-                    v-tooltip="{
+                    v-tooltip.top="{
                       value: 'Дополнительная информация',
                       showDelay: 500,
                     }"

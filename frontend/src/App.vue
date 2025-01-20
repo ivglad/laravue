@@ -36,7 +36,7 @@
     <router-view />
   </main>
 
-  <DynamicDialog />
+  <DynamicDialog /> 
   <ConfirmDialog group="confirm" pt:root:class="app-confirm-modified" />
   <ConfirmDialog
     group="confirm-secondary"
