@@ -41,6 +41,10 @@ const loginSubmit = async (e) => {
         e.states.username.invalid = true
         e.states.password.valid = false
         e.states.password.invalid = true
+        // Для добавления сообщения об ошибке в tooltip поля
+        // e.states.username.error = {
+        //   message: error?.response?.data?.message,
+        // }
 
         toast.add({
           severity: 'error',
@@ -79,7 +83,7 @@ const loginSubmit = async (e) => {
         <FloatLabel class="app-input">
           <InputText
             id="auth-form-username"
-            v-tooltip="{
+            v-tooltip.top="{
               value: $field.error?.message,
               showDelay: 500,
             }"
@@ -106,7 +110,7 @@ const loginSubmit = async (e) => {
           <Password
             id="auth-form-password"
             type="text"
-            v-tooltip="{
+            v-tooltip.top="{
               value: $field.error?.message,
               showDelay: 500,
             }"
