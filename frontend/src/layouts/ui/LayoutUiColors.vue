@@ -12,7 +12,7 @@ const copyTypeVarClass = computed(() => {
 })
 
 // Основано на цветовой палитре Primevue
-const colors = ref([
+const staticColors = ref([
   'primary',
   'surface',
   'emerald',
@@ -101,7 +101,7 @@ const copyColor = async (hex, variable) => {
             </tr>
           </thead>
           <tbody>
-            <tr v-for="color in colors" :key="color" class="color">
+            <tr v-for="color in staticColors" :key="color" class="color">
               <td>{{ color }}</td>
               <td
                 v-for="shade in shadesStatic"

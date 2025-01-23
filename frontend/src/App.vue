@@ -36,7 +36,7 @@
     <router-view />
   </main>
 
-  <DynamicDialog /> 
+  <DynamicDialog />
   <ConfirmDialog group="confirm" pt:root:class="app-confirm-modified" />
   <ConfirmDialog
     group="confirm-secondary"
@@ -56,6 +56,7 @@
 
 main {
   display: flex;
+  flex-direction: column;
   flex: 1 1 100%;
   width: 100%;
   overflow: auto;
