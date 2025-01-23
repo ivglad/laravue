@@ -38,7 +38,7 @@ const colors = ref([
   'neutral',
   'stone',
 ])
-const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
+const shadesStatic = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
 
 const getBackgroundColor = (color, shade) => {
   return {
@@ -95,7 +95,7 @@ const copyColor = async (hex, variable) => {
           <thead>
             <tr>
               <th>Color /<br />Shade</th>
-              <th v-for="shade in shades" :key="shade" class="shade">
+              <th v-for="shade in shadesStatic" :key="shade" class="shade">
                 {{ shade }}
               </th>
             </tr>
@@ -104,7 +104,7 @@ const copyColor = async (hex, variable) => {
             <tr v-for="color in colors" :key="color" class="color">
               <td>{{ color }}</td>
               <td
-                v-for="shade in shades"
+                v-for="shade in shadesStatic"
                 :key="shade"
                 :ref="`shade-${color}-${shade}`"
                 class="shade"

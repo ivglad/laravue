@@ -1,6 +1,35 @@
-<script setup></script>
+<script setup>
+const shadesStatic = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
+const surfaceColorsStatic = ['slate', 'gray', 'zinc', 'neutral', 'stone']
+
+const getBackgroundColor = (color, shade = 400) => {
+  return {
+    backgroundColor: `var(--p-${color}-${shade})`,
+  }
+}
+const setSurfaceColor = (color) => {
+  const palette = Object.fromEntries(
+    shadesStatic.map((shade) => [shade, `{${color}.${shade}}`]),
+  )
+  updateSurfacePalette({
+    light: palette,
+  })
+}
+</script>
 
 <template>
+  <div class="ui-header">
+    <div class="ui-header__surface">
+      <span>Surface:</span>
+      <div
+        v-for="color in surfaceColorsStatic"
+        :key="color"
+        class="ui-header__surface-color"
+        :style="getBackgroundColor(color)"
+        @click="setSurfaceColor(color)"></div>
+    </div>
+  </div>
+
   <div class="ui">
     <Divider align="center">
       <h1>UI-KIT</h1>
@@ -80,11 +109,34 @@
   align-items: flex-start;
   gap: 2rem;
   width: 100%;
-  // max-width: 1200px;
   height: 100%;
   padding: 2rem 4rem 6rem 4rem;
   @include mq(m) {
     padding: 2rem 2rem 4rem 2rem;
+  }
+
+  &-header {
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 100%;
+    height: 4rem;
+    padding: 1rem;
+    background: var(--p-surface-50);
+    z-index: 10000;
+    &__surface {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      &-color {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+    }
   }
 
   .components {
