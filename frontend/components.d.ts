@@ -125,6 +125,7 @@ declare module 'vue' {
     Toast: typeof import('primevue/toast')['default']
     ToggleButton: typeof import('primevue/togglebutton')['default']
     ToggleSwitch: typeof import('primevue/toggleswitch')['default']
+    Toolbar: typeof import('primevue/toolbar')['default']
     Ui: typeof import('./src/views/Ui.vue')['default']
   }
   export interface ComponentCustomProperties {
