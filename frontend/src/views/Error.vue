@@ -24,7 +24,8 @@ const router = useRouter()
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  height: 80vh;
+  width: 100%;
+  height: 100%;
   padding: 6rem;
 
   .title {

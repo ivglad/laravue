@@ -4,3 +4,6 @@
 /dev-dist
 /package-lock.json
 /.env
+/dist
+/auto-imports.d.ts
+/components.d.ts
