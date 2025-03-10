@@ -1,8 +1,17 @@
-@layer preset {        
+@layer preset {
+  :root {
+    --p-inputtext-app-min-width: 10rem;
+    --p-inputtext-app-min-height: 4.2rem;
+    --p-inputtext-app-sm-min-width: 6rem;
+    --p-inputtext-app-sm-min-height: 3.2rem;
+    --p-inputtext-app-sm-font-size: 1.2rem;
+    --p-inputtext-app-lg-min-height: 5.2rem;
+  }
+        
   .p-inputtext {
     width: 100%;
     &:not(.p-inputtext-sm):not(.p-inputtext-lg) {
-      min-height: var(--p-inputtext-app-minHeight);
+      min-height: var(--p-inputtext-app-min-height);
     }
     &:not(:disabled):not(.p-invalid) {
       &:placeholder-shown,
@@ -20,12 +29,12 @@
   }
     
   .p-inputtext-sm {
-    min-height: var(--p-inputtext-app-sm-minHeight);
-    font-size: var(--p-inputtext-app-sm-fontSize);
+    min-height: var(--p-inputtext-app-sm-min-height);
+    font-size: var(--p-inputtext-app-sm-font-size);
   }
 
   .p-inputtext-lg {
-    min-height: var(--p-inputtext-app-lg-minHeight);
+    min-height: var(--p-inputtext-app-lg-min-height);
   }
 
   .p-inputwrapper {

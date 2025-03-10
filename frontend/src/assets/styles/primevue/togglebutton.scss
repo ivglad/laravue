@@ -1,4 +1,9 @@
 @layer preset {
+  :root {
+    --p-togglebutton-padding: 0.8rem 0.8rem;
+    --p-togglebutton-content-top: 0.3rem;
+  }
+
   .p-togglebutton::before {
     border-radius: var(--p-border-radius-sm);
   }

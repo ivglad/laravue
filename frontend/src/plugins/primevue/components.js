@@ -8,22 +8,6 @@ export default {
   cascadeselect: {},
   // Checkbox
   checkbox: {
-    width: '2rem',
-    height: '2rem',
-    borderRadius: '{border.radius.xs}',
-    sm: {
-      width: '1.4rem',
-      height: '1.4rem',
-    },
-    lg: {
-      width: '2.4rem',
-      height: '2.4rem',
-    },
-    icon: {
-      size: '1.2rem',
-      smSize: '0.8rem',
-      lgSize: '1.6rem',
-    },
     colorScheme: {
       light: {
         borderColor: '{primary.200}',
@@ -44,25 +28,9 @@ export default {
     },
   },
   // ColorPicker
-  colorpicker: {
-    previewWidth: '3rem',
-    previewHeight: '3rem',
-  },
+  colorpicker: {},
   // DatePicker
   datepicker: {
-    select: {
-      monthPadding: '0.5rem 1rem',
-      yearPadding: '0.5rem 1rem',
-    },
-    titleFontWeight: '700',
-    monthViewMargin: '1rem 0',
-    dayViewMargin: '1rem 0',
-    weekDayFontWeight: '700',
-    date: {
-      width: '3rem',
-      height: '3rem',
-      borderRadius: '{border.radius.sm}',
-    },
     colorScheme: {
       light: {
         headerColor: '{primary.color}',
@@ -90,20 +58,11 @@ export default {
         },
       },
     },
-    app: {
-      day: {
-        fontSize: '{app.font.size}',
-        disabledColor: '{app.disabled.color}',
-      },
-    },
   },
   // Editor
   editor: {},
   // FloatLabel
-  floatlabel: {
-    activeFontSize: '1.2rem',
-    overActiveTop: '-1.7rem',
-  },
+  floatlabel: {},
   // IconField
   iconfield: {},
   // IftaLabel
@@ -117,20 +76,7 @@ export default {
   // InputOtp
   inputotp: {},
   // InputText
-  inputtext: {
-    app: {
-      minWidth: '10rem',
-      minHeight: '4.2rem',
-      sm: {
-        minWidth: '6rem',
-        minHeight: '3.2rem',
-        fontSize: '1.2rem',
-      },
-      lg: {
-        minHeight: '5.2rem',
-      }
-    },
-  },
+  inputtext: {},
   // KeyFilter
   keyfilter: {},
   // Knob
@@ -138,31 +84,11 @@ export default {
   // Listbox
   listbox: {},
   // MultiSelect
-  multiselect: {
-    chipBorderRadius: '10rem',
-    sm: {
-      fontSize: '{app.font.size}',
-    },
-  },
+  multiselect: {},
   // Password
   password: {},
   // RadioButton
   radiobutton: {
-    width: '2rem',
-    height: '2rem',
-    sm: {
-      width: '1.4rem',
-      height: '1.4rem',
-    },
-    lg: {
-      width: '2.4rem',
-      height: '2.4rem',
-    },
-    icon: {
-      size: '1.2rem',
-      smSize: '0.8rem',
-      lgSize: '1.6rem',
-    },
     colorScheme: {
       light: {
         checked: {
@@ -181,46 +107,17 @@ export default {
   // Rating
   rating: {},
   // Select
-  select: {
-    sm: {
-      fontSize: '{app.font.size}',
-    },
-    app: {
-      width: '20rem',
-      minWidth: 'fit-content',
-      maxWidth: '40rem',
-      height: '4.2rem',
-      minHeight: 'fit-content',
-      maxHeight: '100%',
-      smHeight: '3.2rem',
-      lgHeight: '5.2rem',
-      dropdownIconSize: '{app.font.size}',
-    },
-  },
+  select: {},
   // SelectButton
   selectbutton: {},
   // Slider
   slider: {},
   // Textarea
-  textarea: {
-    app: {
-      width: '25rem',
-      minWidth: '10rem',
-      maxWidth: '40rem',
-    },
-  },
+  textarea: {},
   // ToggleButton
-  togglebutton: {
-    padding: '0.8rem 0.8rem',
-    contentTop: '0.3rem',
-  },
+  togglebutton: {},
   // ToggleSwitch
   toggleswitch: {
-    width: '3.4rem',
-    height: '2rem',
-    handle: {
-      size: '1.4rem',
-    },
     colorScheme: {
       light: {
         background: '{surface.0}',
@@ -250,7 +147,6 @@ export default {
   // --------------------------------------------------------------------------
   // Button
   button: {
-    iconOnlyWidth: 'fit-content',
     colorScheme: {
       light: {
         primary: {
@@ -483,22 +379,6 @@ export default {
         },
       },
     },
-    app: {
-      width: '14rem',
-      height: '4.2rem',
-      iconPadding: '0.5rem',
-      textPadding: '0.5rem',
-      sm: {
-        width: '8rem',
-        height: '3.2rem',
-        fontSize: '1.2rem',
-      },
-      lg: {
-        width: '16rem',
-        height: '5.2rem',
-        fontSize: '1.6rem',
-      }
-    },
   },
   // SpeedDial
   speeddial: {},
@@ -511,8 +391,6 @@ export default {
   // --------------------------------------------------------------------------
   // DataTable
   datatable: {
-    rowToggleButtonSize: '3rem',
-    sortIconSize: '1.2rem',
     colorScheme: {
       light: {
         headerCellBorderColor: 'transparent',
@@ -538,10 +416,6 @@ export default {
         background: 'transparent',
       },
     },
-    app: {
-      minWidth: '6rem',
-      maxWidth: 'fit-content',
-    },
   },
   // PickList
   picklist: {},
@@ -562,11 +436,6 @@ export default {
   accordion: {},
   // Card
   card: {
-    title: {
-      fontSize: '1.6rem',
-      fontWeight: '600',
-    },
-    bodyGap: '1rem',
     colorScheme: {
       light: {
         subtitleColor: '{surface.300}',
@@ -598,10 +467,6 @@ export default {
   panel: {},
   // ScrollPanel
   scrollpanel: {
-    bar: {
-      size: '0.6rem',
-      borderRadius: '{border.radius.md}',
-    },
     colorScheme: {
       light: {
         barBackground: '{primary.300}',
@@ -612,10 +477,6 @@ export default {
   splitter: {},
   // Stepper
   stepper: {
-    stepNumber: {
-      size: '4rem',
-      fontSize: '1.6rem',
-    },
     colorScheme: {
       light: {
         steppanelBackground: 'transparent',
@@ -629,26 +490,6 @@ export default {
   },
   // Tabs
   tabs: {
-    tablist: {
-      border: {
-        width: '0 0 3px 0',
-        color: 'transparent',
-      },
-    },
-    tab: {
-      margin: '0 0 -3px 0',
-      border: {
-        width: '0 0 3px 0',
-        color: 'transparent',
-      },
-      color: '{text.color}',
-      hoverColor: '{primary.color}',
-      hoverBorderColor: 'transparent',
-    },
-    active: {
-      barHeight: '3px',
-      barBottom: '-3px',
-    },
     colorScheme: {
       light: {
         tablistBackground: '{surface.50}',
@@ -674,39 +515,22 @@ export default {
   // ConfirmDialog
   confirmdialog: {},
   // ConfirmPopup
-  confirmpopup: {
-    arrowOffset: 'calc({confirmpopupBorderRadius} * 2.5)',
-  },
+  confirmpopup: {},
   // Dialog
-  dialog: {
-    title: {
-      fontSize: '1.6rem',
-      fontWeight: '600',
-    },
-    footerGap: '1rem',
-  },
+  dialog: {},
   // Drawer
   drawer: {},
   // DinamicDialog
   dinamicdialog: {},
   // Popover
-  popover: {
-    arrowOffset: 'calc({popoverBorderRadius} * 2)',
-  },
+  popover: {},
   // Tooltip (не работает из-за бага PrimeVue)
   tooltip: {
-    maxWidth: '30rem',
-    gutter: '0.5rem',
     colorScheme: {
       light: {
         color: '{text.color}',
         background: '{surface.50}',
       },
-    },
-    app: {
-      maxWidth: '30rem',
-      fontSize: '{app.font.size.sm}',
-      borderColor: '{surface.0}',
     },
   },
   // --------------------------------------------------------------------------
@@ -715,10 +539,7 @@ export default {
   // File
   // --------------------------------------------------------------------------
   // Upload
-  fileupload: {
-    headerPadding: '1rem 1rem 0.5rem 1rem',
-    contentPadding: '0.5rem 1rem 1rem 1rem',
-  },
+  fileupload: {},
   // --------------------------------------------------------------------------
 
   // --------------------------------------------------------------------------
@@ -739,44 +560,23 @@ export default {
   // PanelMenu
   panelmenu: {},
   // TieredMenu
-  tieredmenu: {
-    itemPadding: '1rem 1rem',
-    listGap: '0.2rem',
-    submenuIconSize: '1.4rem',
-  },
+  tieredmenu: {},
   // --------------------------------------------------------------------------
 
   // --------------------------------------------------------------------------
   // Chart
   // --------------------------------------------------------------------------
   // Chart.js
+  chartjs: {},
   // --------------------------------------------------------------------------
 
   // --------------------------------------------------------------------------
   // Messages
   // --------------------------------------------------------------------------
   // Message
-  message: {
-    text: {
-      fontSize: 'inherit',
-      smFontSize: '1.2rem',
-      lgFontSize: '1.6rem',
-      fontWeight: 'inherit',
-    },
-  },
+  message: {},
   // Toast
   toast: {
-    width: '30rem',
-    contentPadding: '1.5rem',
-    contentGap: '1.5rem',
-    summary: {
-      fontWeight: '700',
-      fontSize: '1.6rem',
-    },
-    detail: {
-      fontWeight: '400',
-      fontSize: 'initial',
-    },
     colorScheme: {
       light: {
         success: {
@@ -835,28 +635,6 @@ export default {
   avatar: {},
   // Badge
   badge: {
-    fontSize: '{app.font.size.sm}',
-    fontWeight: '400',
-    minWidth: '1.8rem',
-    height: '1.8rem',
-    padding: '0.5rem 0.5rem',
-    borderRadius: '10rem',
-    xl: {
-      fontSize: '{app.font.size.lg}',
-      minWidth: '2.2rem',
-      height: '2.2rem',
-    },
-    lg: {
-      fontSize: '{app.font.size}',
-      minWidth: '2rem',
-      height: '2rem',
-    },
-    sm: {
-      fontSize: '{app.font.size.sm}',
-      minWidth: '1.6rem',
-      height: '1.6rem',
-    },
-    dotSize: '0.6rem',
     colorScheme: {
       light: {
         primaryBackground: '{surface.500}',
@@ -867,22 +645,11 @@ export default {
   blockui: {},
   // Chip
   chip: {
-    paddingX: '0.3rem',
-    paddingY: '0.3rem',
-    gap: '0',
-    borderRadius: '10rem',
-    iconSize: '2rem',
-    remove: {
-      iconSize: '2rem',
-    },
     colorScheme: {
       light: {
         iconColor: '{surface.500}',
         removeIconColor: '{surface.500}',
       },
-    },
-    app: {
-      fontSize: '{app.font.size.sm}',
     },
   },
   // Inplace

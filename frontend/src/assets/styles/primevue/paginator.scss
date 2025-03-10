@@ -1,8 +1,13 @@
-@layer app {
+@layer preset {
+  :root {
+    --p-paginator-app-min-width: 6rem;
+    --p-paginator-app-max-width: fit-content;
+  }
+
   .p-paginator {
     .p-paginator-rpp-dropdown {
-      min-width: var(--paginator-app-min-width);
-      max-width: var(--paginator-app-max-width);
+      min-width: var(--p-paginator-app-min-width);
+      max-width: var(--p-paginator-app-max-width);
     }
   }
 } 

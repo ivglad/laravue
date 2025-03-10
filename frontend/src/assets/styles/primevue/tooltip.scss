@@ -1,4 +1,12 @@
 @layer preset {
+  :root {
+    --p-tooltip-max-width: 30rem;
+    --p-tooltip-gutter: 0.5rem;
+    --p-tooltip-app-max-width: 30rem;
+    --p-tooltip-app-font-size: var(--p-app-font-size-sm);
+    --p-tooltip-app-border-color: var(--p-surface-0);
+  }
+
   .p-tooltip {
     max-width: 30rem;
     &-top &-arrow {

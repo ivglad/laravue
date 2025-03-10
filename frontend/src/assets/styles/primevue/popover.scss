@@ -1,1 +1,5 @@
-@layer preset {}
+@layer preset {
+  :root {
+    --p-popover-arrow-offset: calc(var(--p-popover-border-radius) * 2);
+  }
+}

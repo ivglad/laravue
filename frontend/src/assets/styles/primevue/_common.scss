@@ -19,40 +19,40 @@
   .p-disabled,
   .p-component[disabled] {
     opacity: var(--p-disabled-opacity);
-    // filter: grayscale(var(--p-disabled-opacity));
+    filter: grayscale(var(--p-disabled-opacity));
     user-select: none;
     pointer-events: none;
     &.p-button {
       opacity: var(--p-disabled-opacity);
-      // filter: grayscale(var(--p-disabled-opacity));
+      filter: grayscale(var(--p-disabled-opacity));
     }
 
     &:not(:has(.p-disabled)):not(:has(.p-component[disabled])) {
       opacity: var(--p-disabled-opacity);
-      // filter: grayscale(var(--p-disabled-opacity));
+      filter: grayscale(var(--p-disabled-opacity));
       &.p-button {
         opacity: var(--p-disabled-opacity);
-        // filter: grayscale(var(--p-disabled-opacity));
+        filter: grayscale(var(--p-disabled-opacity));
       }
     }
 
     &:has(.p-disabled),
     &:has(.p-component[disabled]) {
       opacity: 1;
-      // filter: none;
+      filter: none;
     }
 
     > * {
       opacity: 1;
-      // filter: none;
+      filter: none;
     }
 
     &:not(.p-button) .icon,
     &:not(.p-button) .p-icon,
     + .icon,
     + .p-icon {
-      // color: var(--p-surface-200);
       opacity: var(--p-disabled-opacity);
+      filter: grayscale(var(--p-disabled-opacity));
       cursor: default;
       user-select: none;
       pointer-events: none;

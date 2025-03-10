@@ -1,4 +1,10 @@
-@layer app {
+@layer preset {
+  :root {
+    --p-textarea-app-width: 25rem;
+    --p-textarea-app-min-width: 10rem;
+    --p-textarea-app-max-width: 40rem;
+  }
+
   .p-textarea {
     width: var(--p-textarea-app-width);
     min-width: var(--p-textarea-app-min-width);

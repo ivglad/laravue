@@ -1,6 +1,6 @@
 @layer preset {
   .p-selectbutton {
-    .p-togglebutton::before {
+    &::before {
       border-radius: var(--p-border-radius-sm);
     }
   }
