@@ -7,10 +7,8 @@
 @forward '@/assets/styles/animations';
 @forward '@/assets/styles/common';
 
-// ============================================================================
 // PrimeVue styles
-// ============================================================================
-@forward '@/plugins/primevue/preset';
-// ============================================================================
+// @forward '@/assets/styles/primevue/preset';
+@forward '@/assets/styles/primevue/_index';
 
 @forward '@/assets/styles/components';

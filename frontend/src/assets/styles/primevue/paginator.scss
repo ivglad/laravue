@@ -1,0 +1,8 @@
+@layer app {
+  .p-paginator {
+    .p-paginator-rpp-dropdown {
+      min-width: var(--paginator-app-min-width);
+      max-width: var(--paginator-app-max-width);
+    }
+  }
+} 

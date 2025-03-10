@@ -58,8 +58,8 @@ const setSurfaceColor = (color) => {
 </script>
 
 <template>
-  <div class="ui">
-    <div class="ui-header">
+  <div class="ui bg-sky-600">
+    <div class="ui-header bg-sky-600">
       <div class="ui-header__palette">
         <span class="ui-header__palette-title fw-bold">Цветовая палитра:</span>
         <div class="ui-header__primary">

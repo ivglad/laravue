@@ -1,0 +1,7 @@
+@layer app {
+  .p-textarea {
+    width: var(--p-textarea-app-width);
+    min-width: var(--p-textarea-app-min-width);
+    max-width: var(--p-textarea-app-max-width);
+  }
+} 

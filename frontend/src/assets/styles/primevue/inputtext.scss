@@ -1,0 +1,34 @@
+@layer preset {        
+  .p-inputtext {
+    width: 100%;
+    &:not(.p-inputtext-sm):not(.p-inputtext-lg) {
+      min-height: var(--p-inputtext-app-minHeight);
+    }
+    &:not(:disabled):not(.p-invalid) {
+      &:placeholder-shown,
+      &::placeholder {
+        color: var(--p-inputtext-placeholder-color);
+      }
+    }
+    &:placeholder-shown,
+    &::placeholder {
+      color: var(--p-surface-200);
+    }
+    &.p-invalid {
+      color: var(--p-inputtext-invalid-placeholder-color);
+    }
+  }
+    
+  .p-inputtext-sm {
+    min-height: var(--p-inputtext-app-sm-minHeight);
+    font-size: var(--p-inputtext-app-sm-fontSize);
+  }
+
+  .p-inputtext-lg {
+    min-height: var(--p-inputtext-app-lg-minHeight);
+  }
+
+  .p-inputwrapper {
+    width: 100%;
+  }
+} 

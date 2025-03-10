@@ -3,7 +3,9 @@ export default {
   // Form
   // --------------------------------------------------------------------------
   // AutoComplete
+  autocomplete: {},
   // CascadeSelect
+  cascadeselect: {},
   // Checkbox
   checkbox: {
     width: '2rem',
@@ -40,11 +42,6 @@ export default {
         },
       },
     },
-    css: ({ dt }) => `
-      .p-checkbox-icon {
-        filter: drop-shadow(0 0 0.5px ${dt('primary.color')}); 
-      }
-    `,
   },
   // ColorPicker
   colorpicker: {
@@ -99,66 +96,26 @@ export default {
         disabledColor: '{app.disabled.color}',
       },
     },
-    css: ({ dt }) => `
-      .p-datepicker-day,
-      .p-datepicker-weekday,
-      .p-datepicker-time-picker {
-        font-size: ${dt('datepicker.app.day.font.size')};
-        &.p-disabled {
-          color: ${dt('datepicker.app.day.disabled.color')};
-        }      
-      }
-      .p-datepicker-input:disabled + .p-datepicker-input-icon-container {
-        color: ${dt('datepicker.app.day.disabled.color')};
-        opacity: 0.6;
-        pointer-events: none;
-      }
-    `,
   },
   // Editor
+  editor: {},
   // FloatLabel
   floatlabel: {
     activeFontSize: '1.2rem',
     overActiveTop: '-1.7rem',
   },
   // IconField
-  iconfield: {
-    css: ({ dt }) => `
-      .p-iconfield {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        & *:first-child.p-inputicon {
-          z-index: 1;
-          & + * input {
-            padding-inline-start: calc(
-              (${dt('form.field.padding.x')} * 2) + ${dt('icon.size')}
-            );
-            padding-inline-end: ${dt('form.field.padding.x')};
-          }
-        }
-        .p-inputicon {
-          top: unset;
-          margin-top: 0;
-        }
-      }
-    `,
-  },
+  iconfield: {},
   // IftaLabel
+  iftalabel: {},
   // InputGroup
+  inputgroup: {},
   // InputMask
+  inputmask: {},
   // InputNumber
+  inputnumber: {},
   // InputOtp
-  inputotp: {
-    css: ({ dt }) => `
-      .p-inputotp {
-        .p-inputtext {
-          width: ${dt('inputtext.app.min.height')};
-          min-width: ${dt('inputtext.app.min.height')};
-        }
-      }
-    `,
-  },
+  inputotp: {},
   // InputText
   inputtext: {
     app: {
@@ -173,44 +130,13 @@ export default {
         minHeight: '5.2rem',
       }
     },
-    css: ({ dt }) => `        
-      .p-inputtext {
-        width: 100%;
-        &:not(.p-inputtext-sm):not(.p-inputtext-lg) {
-          min-height: ${dt('inputtext.app.minHeight')};
-        }
-        &:not(:disabled):not(.p-invalid) {
-          &:placeholder-shown,
-          &::placeholder {
-            color: var(--p-inputtext-placeholder-color);
-          }
-        }
-        &:placeholder-shown,
-        &::placeholder {
-          color: var(--p-surface-200);
-        }
-        &.p-invalid {
-          color: var(--p-inputtext-invalid-placeholder-color);
-        }
-      }
-        
-      .p-inputtext-sm {
-        min-height: ${dt('inputtext.app.sm.minHeight')};
-        font-size: ${dt('inputtext.app.sm.fontSize')};
-      }
-
-      .p-inputtext-lg {
-        min-height: ${dt('inputtext.app.lg.minHeight')};
-      }
-
-      .p-inputwrapper {
-        width: 100%;
-      }
-    `,
   },
   // KeyFilter
+  keyfilter: {},
   // Knob
+  knob: {},
   // Listbox
+  listbox: {},
   // MultiSelect
   multiselect: {
     chipBorderRadius: '10rem',
@@ -219,13 +145,7 @@ export default {
     },
   },
   // Password
-  password: {
-    css: ({ dt }) => `
-      .p-password-fluid {
-        width: 100%;
-      }
-    `,
-  },
+  password: {},
   // RadioButton
   radiobutton: {
     width: '2rem',
@@ -259,6 +179,7 @@ export default {
     },
   },
   // Rating
+  rating: {},
   // Select
   select: {
     sm: {
@@ -275,71 +196,11 @@ export default {
       lgHeight: '5.2rem',
       dropdownIconSize: '{app.font.size}',
     },
-    css: ({ dt }) => `
-      .p-select,
-      .p-multiselect {
-        align-items: center;
-        width: ${dt('select.app.width')};
-        min-width: ${dt('select.app.min.width')};
-        max-width: ${dt('select.app.max.width')};
-        height: ${dt('select.app.height')};
-        min-height: ${dt('select.app.min.height')};
-        max-height: ${dt('select.app.max.height')};
-        &.p-select-sm,
-        &.p-multiselect-sm {
-          height: ${dt('select.app.sm.height')};
-        }
-        &.p-select-lg,
-        &.p-multiselect-lg {
-          height: ${dt('select.app.lg.height')};
-        }
-        .p-select-dropdown,
-        .p-multiselect-dropdown {
-          .p-icon {
-            width: ${dt('select.app.dropdownIconSize')};
-            height: ${dt('select.app.dropdownIconSize')};
-            margin-right: 0.5rem;
-          }
-        }
-        .p-select-label,
-        .p-multiselect-label {
-          flex-wrap: wrap;
-          &:has(.p-chip) {
-            padding: calc(${dt('multiselect.padding.y')} / 2)
-              ${dt('multiselect.padding.x')};
-          }
-        }
-        .p-chip {
-          padding-block: ${dt('chip.padding.y')};
-          padding-inline: ${dt('chip.padding.x')};
-          .p-chip-label {
-            max-width: 80px;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-          }
-          .icon {
-            color: ${dt('chip.remove.icon.color')};
-          }
-        }
-      }
-      .p-select-overlay-sm .p-select-option,
-      .p-multiselect-overlay-sm .p-multiselect-option {
-        height: ${dt('select.app.sm.height')};
-      }
-    `,
   },
   // SelectButton
-  selectbutton: {
-    css: ({ dt }) => `
-      .p-selectbutton {
-        .p-togglebutton::before {
-          border-radius: ${dt('border.radius.sm')};
-        }
-      }
-    `,
-  },
+  selectbutton: {},
   // Slider
+  slider: {},
   // Textarea
   textarea: {
     app: {
@@ -347,23 +208,11 @@ export default {
       minWidth: '10rem',
       maxWidth: '40rem',
     },
-    css: ({ dt }) => `
-      .p-textarea {
-        width: ${dt('textarea.app.width')};
-        min-width: ${dt('textarea.app.min.width')};
-        max-width: ${dt('textarea.app.max.width')};
-      }
-    `,
   },
   // ToggleButton
   togglebutton: {
     padding: '0.8rem 0.8rem',
     contentTop: '0.3rem',
-    css: ({ dt }) => `
-      .p-togglebutton::before {
-        border-radius: ${dt('border.radius.sm')};
-      }
-    `,
   },
   // ToggleSwitch
   toggleswitch: {
@@ -391,15 +240,9 @@ export default {
         },
       },
     },
-    css: ({ dt }) => `
-      .p-toggleswitch {
-        &.p-toggleswitch-checked.p-disabled .p-toggleswitch-slider {
-          border-color: ${dt('toggleswitch.border.color')};
-        }
-      }
-    `,
   },
   // TreeSelect
+  treeselect: {},
   // --------------------------------------------------------------------------
 
   // --------------------------------------------------------------------------
@@ -656,223 +499,11 @@ export default {
         fontSize: '1.6rem',
       }
     },
-    css: ({ dt }) => `
-      .p-button {
-        &:not(.p-button-icon-only):not(.p-button-text):not(.p-button-sm):not(.p-button-lg) {
-          height: ${dt('button.app.height')};
-        }
-        &:not(.p-button-rounded):not(.p-button-text):not(.p-button-sm):not(.p-button-lg) {
-          width: ${dt('button.app.width')};
-          min-width: fit-content;
-          max-width: 100%;
-        }
-      }
-
-      .p-button-loading .p-button-label {
-        display: none;
-      }
-        
-      .p-button-sm {
-        width: ${dt('button.app.sm.width')};
-        min-width: fit-content;
-        max-width: 100%;
-        height: ${dt('button.app.sm.height')};
-        font-size: ${dt('button.app.sm.fontSize')};
-        border-radius: ${dt('border.radius.sm')};
-      }
-
-      .p-button-lg {
-        width: ${dt('button.app.lg.width')};
-        min-width: fit-content;
-        max-width: 100%;
-        height: ${dt('button.app.lg.height')};
-        font-size: ${dt('button.app.lg.fontSize')};
-        border-radius: ${dt('border.radius.lg')};
-      }
-
-      .p-button-icon-only {
-        &:not(.p-button-text) {
-          min-width: ${dt('button.app.height')};
-          min-height: ${dt('button.app.height')};
-        }
-        &.p-button-text {
-          min-width: ${dt('icon.size')};
-          min-height: ${dt('icon.size')};
-        }
-        &.p-button-rounded {
-          padding: ${dt('button.app.icon.padding')};
-        }
-      }
-
-      .p-button-outlined {
-        &:not(:disabled):hover {
-          color: ${dt('button.outlined.primary.hover.color')};
-          border-color: ${dt('button.outlined.primary.hover.border.color')};
-        }
-        &:not(:disabled):active {
-          color: ${dt('button.outlined.primary.active.color')};
-          border-color: ${dt('button.outlined.primary.active.border.color')};
-        }
-        &.p-button-secondary {
-          &:not(:disabled):hover {
-            color: ${dt('button.outlined.secondary.hover.color')};
-            border-color: ${dt('button.outlined.secondary.hover.border.color')};
-          }
-          &:not(:disabled):active {
-            color: ${dt('button.outlined.secondary.active.color')};
-            border-color: ${dt(
-              'button.outlined.secondary.active.border.color',
-            )};
-          }
-        }
-        &.p-button-success {
-          &:not(:disabled):hover {
-            color: ${dt('button.outlined.success.hover.color')};
-            border-color: ${dt('button.outlined.success.hover.border.color')};
-          }
-          &:not(:disabled):active {
-            color: ${dt('button.outlined.success.active.color')};
-            border-color: ${dt('button.outlined.success.active.border.color')};
-          }
-        }
-        &.p-button-info {
-          &:not(:disabled):hover {
-            color: ${dt('button.outlined.info.hover.color')};
-            border-color: ${dt('button.outlined.info.hover.border.color')};
-          }
-          &:not(:disabled):active {
-            color: ${dt('button.outlined.info.active.color')};
-            border-color: ${dt('button.outlined.info.active.border.color')};
-          }
-        }
-        &.p-button-warn {
-          &:not(:disabled):hover {
-            color: ${dt('button.outlined.warn.hover.color')};
-            border-color: ${dt('button.outlined.warn.hover.border.color')};
-          }
-          &:not(:disabled):active {
-            color: ${dt('button.outlined.warn.active.color')};
-            border-color: ${dt('button.outlined.warn.active.border.color')};
-          }
-        }
-        &.p-button-help {
-          &:not(:disabled):hover {
-            color: ${dt('button.outlined.help.hover.color')};
-            border-color: ${dt('button.outlined.help.hover.border.color')};
-          }
-          &:not(:disabled):active {
-            color: ${dt('button.outlined.help.active.color')};
-            border-color: ${dt('button.outlined.help.active.border.color')};
-          }
-        }
-        &.p-button-danger {
-          &:not(:disabled):hover {
-            color: ${dt('button.outlined.danger.hover.color')};
-            border-color: ${dt('button.outlined.danger.hover.border.color')};
-          }
-          &:not(:disabled):active {
-            color: ${dt('button.outlined.danger.active.color')};
-            border-color: ${dt('button.outlined.danger.active.border.color')};
-          }
-        }
-        &.p-button-contrast {
-          &:not(:disabled):hover {
-            color: ${dt('button.outlined.contrast.hover.color')};
-            border-color: ${dt('button.outlined.contrast.hover.border.color')};
-          }
-          &:not(:disabled):active {
-            color: ${dt('button.outlined.contrast.active.color')};
-            border-color: ${dt('button.outlined.contrast.active.border.color')};
-          }
-        }
-
-        &.app-button-outlined-hover-fill {
-          &:not(:disabled):hover {
-            color: ${dt('button.primary.color')};
-            border-color: ${dt('button.primary.hover.border.color')};
-            background: ${dt('button.primary.hover.border.color')};
-          }
-          &:not(:disabled):active {
-            color: ${dt('button.primary.color')};
-            border-color: ${dt('button.primary.active.border.color')};
-            background: ${dt('button.primary.active.border.color')};
-          }
-        }
-        &.app-button-outlined-secondary-hover-fill {
-          &:not(:disabled):hover {
-            color: ${dt('button.secondary.color')};
-            border-color: ${dt('button.secondary.hover.border.color')};
-            background: ${dt('button.secondary.hover.border.color')};
-          }
-          &:not(:disabled):active {
-            color: ${dt('button.secondary.color')};
-            border-color: ${dt('button.secondary.active.border.color')};
-            background: ${dt('button.secondary.active.border.color')};
-          }
-        }
-      }
-
-      .p-button-text {
-        padding: ${dt('button.app.text.padding')};
-        &:not(:disabled):hover {
-          color: ${dt('button.text.primary.hover.color')};
-        }
-        &:not(:disabled):active {
-          color: ${dt('button.text.primary.active.color')};
-        }
-        &.p-button-secondary {
-          &:not(:disabled):hover {
-            color: ${dt('button.text.secondary.hover.color')};
-          }
-          &:not(:disabled):active {
-            color: ${dt('button.text.secondary.active.color')};
-          }
-        }
-        &.p-button-success {
-          &:not(:disabled):hover {
-            color: ${dt('button.text.success.hover.color')};
-          }
-          &:not(:disabled):active {
-            color: ${dt('button.text.success.active.color')};
-          }
-        }
-        &.p-button-info {
-          &:not(:disabled):hover {
-            color: ${dt('button.text.info.hover.color')};
-          }
-          &:not(:disabled):active {
-            color: ${dt('button.text.info.active.color')};
-          }
-        }
-        &.p-button-warn {
-          &:not(:disabled):hover {
-            color: ${dt('button.text.warn.hover.color')};
-          }
-          &:not(:disabled):active {
-            color: ${dt('button.text.warn.active.color')};
-          }
-        }
-        &.p-button-help {
-          &:not(:disabled):hover {
-            color: ${dt('button.text.help.hover.color')};
-          }
-          &:not(:disabled):active {
-            color: ${dt('button.text.help.active.color')};
-          }
-        }
-        &.p-button-danger {
-          &:not(:disabled):hover {
-            color: ${dt('button.text.danger.hover.color')};
-          }
-          &:not(:disabled):active {
-            color: ${dt('button.text.danger.active.color')};
-          }
-        }
-      }
-    `,
   },
   // SpeedDial
+  speeddial: {},
   // SplitButton
+  splitbutton: {},
   // --------------------------------------------------------------------------
 
   // --------------------------------------------------------------------------
@@ -895,8 +526,11 @@ export default {
     },
   },
   // DataView
+  dataview: {},
   // OrderList
+  orderlist: {},
   // OrgChart
+  orgchart: {},
   // Paginator
   paginator: {
     colorScheme: {
@@ -908,42 +542,24 @@ export default {
       minWidth: '6rem',
       maxWidth: 'fit-content',
     },
-    css: ({ dt }) => `
-      .p-paginator {
-        .p-paginator-rpp-dropdown {
-          min-width: ${dt('paginator.app.min.width')};
-          max-width: ${dt('paginator.app.max.width')};
-        }
-      }
-    `,
   },
   // PickList
+  picklist: {},
   // Timeline
+  timeline: {},
   // Tree
+  tree: {},
   // TreeTable
+  treetable: {},
   // VirtualScroller
+  virtualscroller: {},
   // --------------------------------------------------------------------------
 
   // --------------------------------------------------------------------------
   // Panel
   // --------------------------------------------------------------------------
   // Accordion
-  accordion: {
-    css: ({ dt }) => `
-      .p-accordion {
-        .p-accordionheader,
-        .p-accordionheader svg {
-          transition: color ${dt('accordion.transition.duration')},
-            background ${dt('accordion.transition.duration')};
-        }
-        .p-accordionpanel {
-          &:last-child {
-            border-color: transparent;
-          }
-        }
-      }
-    `,
-  },
+  accordion: {},
   // Card
   card: {
     title: {
@@ -958,6 +574,7 @@ export default {
     },
   },
   // Deferred
+  deferred: {},
   // Divider
   divider: {
     colorScheme: {
@@ -978,6 +595,7 @@ export default {
     },
   },
   // Panel
+  panel: {},
   // ScrollPanel
   scrollpanel: {
     bar: {
@@ -991,6 +609,7 @@ export default {
     },
   },
   // Splitter
+  splitter: {},
   // Stepper
   stepper: {
     stepNumber: {
@@ -1046,12 +665,14 @@ export default {
     },
   },
   // Toolbar
+  toolbar: {},
   // --------------------------------------------------------------------------
 
   // --------------------------------------------------------------------------
   // Overlay
   // --------------------------------------------------------------------------
   // ConfirmDialog
+  confirmdialog: {},
   // ConfirmPopup
   confirmpopup: {
     arrowOffset: 'calc({confirmpopupBorderRadius} * 2.5)',
@@ -1065,7 +686,9 @@ export default {
     footerGap: '1rem',
   },
   // Drawer
+  drawer: {},
   // DinamicDialog
+  dinamicdialog: {},
   // Popover
   popover: {
     arrowOffset: 'calc({popoverBorderRadius} * 2)',
@@ -1085,29 +708,6 @@ export default {
       fontSize: '{app.font.size.sm}',
       borderColor: '{surface.0}',
     },
-    css: ({ dt }) => `
-      .p-tooltip {
-        max-width: ${dt('tooltip.app.max.width')};
-        &.p-tooltip-top .p-tooltip-arrow {
-          border-top-color: ${dt('tooltip.app.border.color')};
-        }
-        &.p-tooltip-right .p-tooltip-arrow {
-          border-right-color: ${dt('tooltip.app.border.color')};
-        }
-        &.p-tooltip-bottom .p-tooltip-arrow {
-          border-bottom-color: ${dt('tooltip.app.border.color')};
-        }
-        &.p-tooltip-left .p-tooltip-arrow {
-          border-left-color: ${dt('tooltip.app.border.color')};
-        }
-        .p-tooltip-text {
-          font-size: ${dt('tooltip.app.font.size')};
-          color: ${dt('text.color')};
-          border-radius: ${dt('border.radius.sm')};
-          background: ${dt('tooltip.app.border.color')};
-        }
-      }
-    `,
   },
   // --------------------------------------------------------------------------
 
@@ -1118,11 +718,6 @@ export default {
   fileupload: {
     headerPadding: '1rem 1rem 0.5rem 1rem',
     contentPadding: '0.5rem 1rem 1rem 1rem',
-    css: ({ dt }) => `
-      .p-fileupload-content {
-        border-radius: ${dt('fileupload.border.radius')};
-      }
-    `,
   },
   // --------------------------------------------------------------------------
 
@@ -1130,12 +725,19 @@ export default {
   // Menu
   // --------------------------------------------------------------------------
   // Breadcrumb
+  breadcrumb: {},
   // ContextMenu
+  contextmenu: {},
   // Dock
+  dock: {},
   // Menu
+  menu: {},
   // Menubar
+  menubar: {},
   // MegaMenu
+  megamenu: {},
   // PanelMenu
+  panelmenu: {},
   // TieredMenu
   tieredmenu: {
     itemPadding: '1rem 1rem',
@@ -1217,15 +819,20 @@ export default {
   // Media
   // --------------------------------------------------------------------------
   // Carousel
+  carousel: {},
   // Galleria
+  galleria: {},
   // Image
+  image: {},
   // ImageCompare
+  imagecompare: {},
   // --------------------------------------------------------------------------
 
   // --------------------------------------------------------------------------
   // Misc
   // --------------------------------------------------------------------------
   // Avatar
+  avatar: {},
   // Badge
   badge: {
     fontSize: '{app.font.size.sm}',
@@ -1255,19 +862,9 @@ export default {
         primaryBackground: '{surface.500}',
       },
     },
-    css: ({ dt }) => `
-      .p-overlaybadge {
-        width: fit-content;
-        height: fit-content;
-        .p-badge {
-          &:not(.p-badge-circle) {
-            transform: translate(90%, -50%);
-          }
-        }
-      }
-    `,
   },
   // BlockUI
+  blockui: {},
   // Chip
   chip: {
     paddingX: '0.3rem',
@@ -1287,24 +884,13 @@ export default {
     app: {
       fontSize: '{app.font.size.sm}',
     },
-    css: ({ dt }) => `
-      .p-chip {
-        font-size: ${dt('chip.app.fontSize')};
-        .p-chip-label {
-          padding-block: ${dt('chip.padding.y')};
-          padding-inline: ${dt('chip.padding.x')};
-        }
-        .icon-close {
-          min-width: fit-content;
-          min-height: fit-content;
-          color: ${dt('chip.remove.icon.color')};
-        }
-      }
-    `,
   },
   // Inplace
+  inplace: {},
   // MeterGroup
+  metergroup: {},
   // ProgressBar
+  progressbar: {},
   // ProgressSpinner
   progressspinner: {
     colorScheme: {
@@ -1319,8 +905,12 @@ export default {
     },
   },
   // ScrollTop
+  scrolltop: {},
   // Skeleton
+  skeleton: {},
   // Tag
+  tag: {},
   // Terminal
+  terminal: {},
   // --------------------------------------------------------------------------
 }

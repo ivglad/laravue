@@ -1,0 +1,11 @@
+@layer preset {
+  .p-overlaybadge {
+    width: fit-content;
+    height: fit-content;
+    .p-badge {
+      &:not(.p-badge-circle) {
+        transform: translate(90%, -50%);
+      }
+    }
+  }
+} 

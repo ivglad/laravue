@@ -1,0 +1,15 @@
+@layer app {
+  .p-datepicker-day,
+  .p-datepicker-weekday,
+  .p-datepicker-time-picker {
+    font-size: var(--p-datepicker-app-day-font-size);
+    &.p-disabled {
+      color: var(--p-datepicker-app-day-disabled-color);
+    }      
+  }
+  .p-datepicker-input:disabled + .p-datepicker-input-icon-container {
+    color: var(--p-datepicker-app-day-disabled-color);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+} 

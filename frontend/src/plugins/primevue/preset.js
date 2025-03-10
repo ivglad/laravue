@@ -345,7 +345,7 @@ const Preset = definePreset(Aura, {
       offset: '2px',
       shadow: 'none',
     },
-    disabledOpacity: '1',
+    disabledOpacity: '0.5',
     iconSize: '2rem',
     anchorGutter: '2px',
     primary: {

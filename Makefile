@@ -18,7 +18,6 @@ env: ## Установка переменных окружения
 .PHONY: build
 build: ## Сборка проекта
 	@echo "Сборка проекта..."
-	chmod -R 755 .docker/db/data
 	docker compose build
 
 .PHONY: init
@@ -52,6 +51,11 @@ stop: ## Остановка контейнеров
 restart: ## Перезапуск контейнеров
 	@echo "Остановка контейнеров..."
 	docker compose restart
+
+.PHONY: console-frontend
+console-frontend: ## Открыть консоль фронтенда
+	@echo "Открытие консоли фронтенда..."
+	docker compose exec frontend bash
 
 .PHONY: console-backend
 console-backend: ## Открыть консоль бэкенда

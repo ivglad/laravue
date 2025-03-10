@@ -1,33 +1,4 @@
-@use '@/assets/styles/variables' as *;
-@use '@/assets/styles/mixins' as *;
-
 @layer preset {
-  // --------------------------------------------------------------------------
-  // Tooltip
-  // FIXME: Удалить после исправления бага в PrimeVue
-  // --------------------------------------------------------------------------
-  .p-tooltip {
-    max-width: 30rem;
-    &-top &-arrow {
-      border-top-color: var(--p-surface-0);
-    }
-    &-right &-arrow {
-      border-right-color: var(--p-surface-0);
-    }
-    &-bottom &-arrow {
-      border-bottom-color: var(--p-surface-0);
-    }
-    &-left &-arrow {
-      border-left-color: var(--p-surface-0);
-    }
-    &-text {
-      font-size: $fs-xs;
-      color: var(--p-text-color);
-      border-radius: var(--p-border-radius-md);
-      background: var(--p-surface-0);
-    }
-  }
-
   // --------------------------------------------------------------------------
   // Overlay offsets
   // --------------------------------------------------------------------------
@@ -47,41 +18,41 @@
   // --------------------------------------------------------------------------
   .p-disabled,
   .p-component[disabled] {
-    opacity: 0.6;
-    filter: grayscale(0.9);
+    opacity: var(--p-disabled-opacity);
+    // filter: grayscale(var(--p-disabled-opacity));
     user-select: none;
     pointer-events: none;
     &.p-button {
-      opacity: 0.4;
-      filter: grayscale(0.9);
+      opacity: var(--p-disabled-opacity);
+      // filter: grayscale(var(--p-disabled-opacity));
     }
 
     &:not(:has(.p-disabled)):not(:has(.p-component[disabled])) {
-      opacity: 0.6;
-      filter: grayscale(0.9);
+      opacity: var(--p-disabled-opacity);
+      // filter: grayscale(var(--p-disabled-opacity));
       &.p-button {
-        opacity: 0.4;
-        filter: grayscale(0.9);
+        opacity: var(--p-disabled-opacity);
+        // filter: grayscale(var(--p-disabled-opacity));
       }
     }
 
     &:has(.p-disabled),
     &:has(.p-component[disabled]) {
       opacity: 1;
-      filter: none;
+      // filter: none;
     }
 
     > * {
       opacity: 1;
-      filter: none;
+      // filter: none;
     }
 
     &:not(.p-button) .icon,
     &:not(.p-button) .p-icon,
     + .icon,
     + .p-icon {
-      color: var(--p-surface-200);
-      opacity: 0.6;
+      // color: var(--p-surface-200);
+      opacity: var(--p-disabled-opacity);
       cursor: default;
       user-select: none;
       pointer-events: none;
