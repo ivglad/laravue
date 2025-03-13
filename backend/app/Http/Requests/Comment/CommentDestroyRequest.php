@@ -26,17 +26,4 @@ class CommentDestroyRequest extends FormRequest
             'ids.*' => ['required', 'integer', 'exists:comments,id'],
         ];
     }
-
-    /**
-     * Get custom attributes for validator errors.
-     *
-     * @return array<string, string>
-     */
-    public function attributes(): array
-    {
-        return [
-            'ids' => 'комментарии',
-            'ids.*' => 'комментарий',
-        ];
-    }
 }

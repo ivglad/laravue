@@ -123,15 +123,4 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | SPA URL
-    |--------------------------------------------------------------------------
-    |
-    */
-
-    'spa' => [
-        'url' => env('SPA_URL', 'http://localhost'),
-        'restore_path' => env('SPA_RESTORE_PATH', '/reset-password')
-    ],
 ];

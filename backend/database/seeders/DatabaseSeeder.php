@@ -2,12 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Agreement\Agreement;
-use App\Models\Comment\Comment;
-use App\Models\Handbook\Counterparty;
-use App\Models\Order\Order;
 use App\Models\User;
+use Database\Seeders\User\RolesAndPermissionsSeeder;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,15 +14,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'Admin',
-            'surname' => 'Analyticum',
-            'patronymic' => '',
+        $userAdmin = User::factory()->create([
+            'email' => 'admin@example.ltd',
             'username' => 'admin',
-            'email' => 'admin@admin.ru',
-            'is_admin' => true,
-            'job' => 'Admin',
         ]);
-        User::factory(10)->create();
+        $user = User::factory()->create([
+            'email' => 'user@example.ltd',
+            'username' => 'user',
+        ]);
+
+        $this->call([
+            RolesAndPermissionsSeeder::class,
+        ]);
+
+        $roleAdmin = Role::where('name', 'admin')->first();
+        $roleUser = Role::where('name', 'user')->first();
+        $userAdmin->assignRole($roleAdmin);
+        $user->assignRole($roleUser);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UserUpdateRequest extends FormRequest
 {
@@ -11,7 +12,9 @@ class UserUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        $user = Auth::user();
+        return $user->id === $this->route('user')->id && $user->can('user.update') ||
+            $user->can('user.update.other');
     }
 
     /**
@@ -22,14 +25,16 @@ class UserUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => ['required', 'string', 'min:3'],
+            'surname' => ['required', 'string', 'min:2'],
             'name' => ['required', 'string', 'min:2'],
-            'surname' => ['nullable', 'string', 'min:2'],
             'patronymic' => ['nullable', 'string', 'min:2'],
-            'email' => ['nullable', 'email'],
-            'phone' => ['nullable', 'string', 'min:6'],
-            'job' => ['nullable', 'string', 'min:3'],
-            'is_admin' => ['nullable', 'boolean'],
+            'email' => ['required', 'string', 'min:3', 'email', 'unique:users,email,' . $this->route('user')->id],
+            'username' => ['required', 'string', 'min:3', 'unique:users,username,' . $this->route('user')->id],
+            'hex_color' => ['nullable', 'hex_color'],
+            'phone' => ['required', 'string'],
+            'job_title' => ['nullable', 'string', 'min:3'],
+            'role_ids' => ['nullable', 'array'],
+            'role_ids.*' => ['nullable', 'integer', 'exists:roles,id']
         ];
     }
 
@@ -41,13 +46,7 @@ class UserUpdateRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'username' => 'логин',
             'name' => 'имя',
-            'surname' => 'фамилия',
-            'patronymic' => 'отчество',
-            'email' => 'почта',
-            'phone' => 'телефон',
-            'job' => 'должность',
         ];
     }
 }

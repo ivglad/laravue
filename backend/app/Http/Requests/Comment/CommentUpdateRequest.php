@@ -23,6 +23,7 @@ class CommentUpdateRequest extends FormRequest
     {
         return [
             'content' => ['required', 'string'],
+            'action' => ['nullable', 'string'],
         ];
     }
 
@@ -35,6 +36,7 @@ class CommentUpdateRequest extends FormRequest
     {
         return [
             'content' => 'комментарий',
+            'action' => 'тип комментария',
         ];
     }
 }

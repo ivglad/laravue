@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests\Comment;
 
-use App\Enums\CommentModel;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class CommentStoreRequest extends FormRequest
 {
@@ -25,8 +23,9 @@ class CommentStoreRequest extends FormRequest
     {
         return [
             'content' => ['required', 'string'],
-            'commentable_type' => ['required', 'string', Rule::enum(CommentModel::class)],
+            'commentable_type' => ['required', 'string'],
             'commentable_id' => ['required', 'integer'],
+            'action' => ['nullable', 'string'],
         ];
     }
 
