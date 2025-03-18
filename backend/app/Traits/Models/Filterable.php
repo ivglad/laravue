@@ -7,23 +7,25 @@ namespace App\Traits\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
+/**
+ * Трейт для фильтра через Request и специализированного класса, указанного в static::$filterModel.
+ */
 trait Filterable
 {
     /**
-     * Apply all relevant filters.
+     * Применение фильтров
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param Builder $query
+     * @param array $removeFilters Массив полей фильтра, которые не нужно применять
+     * @return Builder
      */
-    public function scopeFilter(Builder $query): Builder
+    public function scopeFilter(Builder $query, array $removeFilters = []): Builder
     {
-        $request = resolve(\Illuminate\Http\Request::class);
+        $request = resolve(Request::class);
         if (isset(self::$filterModel)) {
             $filter = new self::$filterModel($request);
-            return $filter->apply($query);
-        }
-        else {
+            return $filter->apply($query, $removeFilters);
+        } else {
             return $query;
         }
     }

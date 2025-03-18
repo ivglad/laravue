@@ -26,8 +26,9 @@ class FileStoreRequest extends FormRequest
         return [
             'model_type' => ['required', 'string', Rule::enum(FileModel::class)],
             'model_id' => ['required', 'integer'],
+            'collection' => ['nullable', 'string'],
             'files' => ['required', 'array'],
-            'files.*' => ['required', 'file'],
+            'files.*' => ['required', 'file', 'mimes:doc,docx,png,jpg,jpeg,xlsx,xls,pdf'],
         ];
     }
 
@@ -41,8 +42,6 @@ class FileStoreRequest extends FormRequest
         return [
             'model_type' => 'тип сущности',
             'model_id' => 'идентификатор сущности',
-            'files' => 'файлы',
-            'files.*' => 'файл',
         ];
     }
 }

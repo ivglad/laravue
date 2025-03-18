@@ -17,8 +17,6 @@ class AuthResource extends JsonResource
         return [
             'token' => $this->createToken('API Token')->plainTextToken,
             'user' => new UserResource($this),
-            'permissions' => $this->getAllPermissions(),
-            'roles' => $this->roles,
         ];
     }
 

@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources\User;
 
+use App\Http\Resources\Role\PermissionCollection;
+use App\Http\Resources\Role\RoleCollection;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -16,14 +18,16 @@ class UserResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
             'surname' => $this->surname,
+            'name' => $this->name,
             'patronymic' => $this->patronymic,
             'email' => $this->email,
             'username' => $this->username,
+            'hex_color' => $this->hex_color,
             'phone' => $this->phone,
-            'job' => $this->job,
-            'is_admin' => $this->is_admin,
+            'job_title' => $this->job_title,
+            'roles' => (new RoleCollection($this->whenLoaded('roles')))->collection,
+            'permissions' => (new PermissionCollection($this->permission))->collection,
         ];
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Auth;
 
 class UserStoreRequest extends FormRequest
 {
@@ -12,7 +12,7 @@ class UserStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return Auth::user()->can('user.store');
     }
 
     /**
@@ -23,15 +23,16 @@ class UserStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => ['required', 'string', 'min:3', 'unique:users'],
+            'surname' => ['required', 'string', 'min:2'],
             'name' => ['required', 'string', 'min:2'],
-            'surname' => ['nullable', 'string', 'min:2'],
             'patronymic' => ['nullable', 'string', 'min:2'],
-            'email' => ['nullable', 'email'],
-            'phone' => ['nullable', 'string', 'min:6'],
-            'job' => ['nullable', 'string', 'min:3'],
-            'is_admin' => ['nullable', 'boolean'],
-            'password' => ['required', 'string', Password::min(8)->letters()->mixedCase()->numbers()],
+            'email' => ['required', 'string', 'min:3', 'email', 'unique:users,email'],
+            'username' => ['required', 'string', 'min:3', 'unique:users,username'],
+            'hex_color' => ['nullable', 'hex_color'],
+            'phone' => ['required', 'string'],
+            'job_title' => ['nullable', 'string', 'min:3'],
+            'role_ids' => ['nullable', 'array'],
+            'role_ids.*' => ['nullable', 'integer', 'exists:roles,id']
         ];
     }
 
@@ -43,14 +44,7 @@ class UserStoreRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'username' => 'логин',
             'name' => 'имя',
-            'surname' => 'фамилия',
-            'patronymic' => 'отчество',
-            'email' => 'почта',
-            'phone' => 'телефон',
-            'job' => 'должность',
-            'password' => 'пароль',
         ];
     }
 }

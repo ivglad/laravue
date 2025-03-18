@@ -26,17 +26,4 @@ class AuthRequest extends FormRequest
             'password' => ['required', 'string', 'min:6'],
         ];
     }
-
-    /**
-     * Get custom attributes for validator errors.
-     *
-     * @return array<string, string>
-     */
-    public function attributes(): array
-    {
-        return [
-            'username' => 'логин',
-            'password' => 'пароль',
-        ];
-    }
 }

@@ -6,30 +6,34 @@ namespace App\Http\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 abstract class Filter
 {
     /**
-     * The request instance.
+     * Экземпляр Request
      *
-     * @var \Illuminate\Http\Request
+     * @var Request
      */
-    protected $request;
+    protected Request $request;
 
     /**
-     * The builder instance.
+     * Экземпляр Builder
      *
-     * @var \Illuminate\Database\Eloquent\Builder
+     * @var Builder
      */
-    protected $builder;
+    protected Builder $builder;
 
+    /**
+     * Наименование таблицы запроса для избежания ошибок фильтрации и сортировок по нескольким таблицам
+     *
+     * @var string
+     */
     protected string $table;
 
     /**
-     * Initialize a new filter instance.
+     * Инициализирует новый фильтр
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @return void
      */
     public function __construct(Request $request)
@@ -38,19 +42,22 @@ abstract class Filter
     }
 
     /**
-     * Apply the filters on the builder.
+     * Применяет фильтры к Builder
      *
-     * @param \Illuminate\Database\Eloquent\Builder $builder
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param Builder $builder
+     * @param array $removeFilters массив имен фильтров, которые не нужно применять
+     * @return Builder
      */
-    public function apply(Builder $builder): Builder
+    public function apply(Builder $builder, array $removeFilters = []): Builder
     {
         $this->builder = $builder;
         $this->table = $this->builder->getModel()->getTable();
         if ($this->request->filled('filter') && is_array($this->request->filter)) {
             foreach ($this->request->filter as $name => $value) {
                 if (method_exists($this, $name)) {
-                    call_user_func_array([$this, $name], array_filter([$value]));
+                    if (empty($removeFilters) || !in_array($name, $removeFilters)) {
+                        call_user_func_array([$this, $name], array_filter([$value]));
+                    }
                 }
             }
         }
@@ -70,6 +77,13 @@ abstract class Filter
         return $this->builder;
     }
 
+    /**
+     * Применяет сортировку к Builder
+     *
+     * @param string $field
+     * @param string $direction
+     * @return void
+     */
     public function orderBy(string $field, string $direction = 'asc'): void
     {
         if (str_contains($field, '.')) {
@@ -77,13 +91,13 @@ abstract class Filter
             if (method_exists($this->builder->getModel(), $relation)) {
                 $relationTable = (new ($this->builder->getModel()))->$relation()->getRelated()->getTable();
                 $this->builder = $this->builder
-                        ->selectRaw($this->table . '.*')
+                    ->selectRaw($this->table . '.*')
                     ->leftJoin(
-                    $relationTable,
-                    $this->table . '.' . $relation . '_id',
-                    '=',
-                    $relationTable . '.id',
-                )->orderBy($relationTable . '.' . $field, $direction);
+                        $relationTable,
+                        $this->table . '.' . $relation . '_id',
+                        '=',
+                        $relationTable . '.id',
+                    )->orderBy($relationTable . '.' . $field, $direction);
             }
         } else {
             $this->builder = $this->builder->orderBy($field, $direction);

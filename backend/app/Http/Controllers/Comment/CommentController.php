@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Auth;
 class CommentController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * Сохранение комментария определенной модели, которая трансформируется через enum справочника
+     *
+     * @param CommentStoreRequest $request
+     * @return CommentResource
      */
     public function store(CommentStoreRequest $request): CommentResource
     {
@@ -28,29 +31,41 @@ class CommentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Обновление своего комментария, обновить чужой нельзя,
+     * как и изменить принадлежность комментария к определенной модели и объекту
+     *
+     * @param CommentUpdateRequest $request
+     * @param Comment $comment
+     * @return CommentResource|AccessDeniedJsonResponse
      */
     public function update(CommentUpdateRequest $request, Comment $comment): CommentResource|AccessDeniedJsonResponse
     {
-        if ($comment->user_id === Auth::id()) {
-            $comment->update($request->validated());
-            return new CommentResource($comment);
+        $attr = $request->validated();
+        if (Auth::id() === $comment->user_id) {
+            $comment->update($attr);
+            $comment->refresh();
+        } else {
+            return new AccessDeniedJsonResponse();
         }
-        return new AccessDeniedJsonResponse();
+        return new CommentResource($comment);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Удаление комментария по его id, к удалению допускаются только свои комментарии,
+     * если не установлена соответствующее право
+     *
+     * @param CommentDestroyRequest $request
+     * @return DeletedJsonResponse|AccessDeniedJsonResponse
      */
     public function destroy(CommentDestroyRequest $request): DeletedJsonResponse|AccessDeniedJsonResponse
     {
         $ids = $request->validated()['ids'];
-        $comments = Comment::whereIn('id', $ids)->get();
-        foreach ($comments as $comment)
-        if ($comment->user_id === Auth::id()) {
-            $comment->delete();
-            return new DeletedJsonResponse();
+        if (Auth::user()->can('comment.destroy.other')) {
+            Comment::whereIn('id', $ids)->delete();
         }
-        return new AccessDeniedJsonResponse();
+        else {
+            Comment::whereIn('id', $ids)->where('user_id', Auth::id())->delete();
+        }
+        return new DeletedJsonResponse();
     }
 }

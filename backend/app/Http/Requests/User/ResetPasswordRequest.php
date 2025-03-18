@@ -24,20 +24,8 @@ class ResetPasswordRequest extends FormRequest
     {
         return [
             'token' => ['required', 'string'],
-            'username' => ['required', 'string'],
+            'username' => ['required', 'string', 'min:3', 'exists:users,username'],
             'password' => ['required', 'string', Password::min(8)->letters()->mixedCase()->numbers(), 'confirmed'],
-        ];
-    }
-
-    /**
-     * Get custom attributes for validator errors.
-     *
-     * @return array<string, string>
-     */
-    public function attributes(): array
-    {
-        return [
-            'password' => 'пароль',
         ];
     }
 }
