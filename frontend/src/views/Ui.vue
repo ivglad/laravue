@@ -230,90 +230,10 @@ const setSurfaceColor = (color) => {
     width: 100%;
     max-width: 1200px;
   }
-  :deep(.content):not(.no-ui-styles) {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    .table-wrapper {
-      overflow-x: auto;
-      overflow-y: hidden;
-    }
-
-    & > div {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      width: 100%;
-    }
-    .row {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      width: 100%;
-    }
-    table {
-      width: fit-content;
-      border-collapse: separate;
-      border-spacing: 0;
-      padding-bottom: 1rem;
-      th,
-      td {
-        padding: 0.5rem 1rem;
-      }
-      thead {
-        tr {
-          &:first-child {
-            th {
-              &:first-child {
-                border-radius: var(--p-border-radius-lg) 0 0 0;
-              }
-              &:last-child {
-                border-radius: 0 var(--p-border-radius-lg) 0 0;
-              }
-            }
-          }
-          th {
-            text-align: start;
-          }
-        }
-      }
-      tbody {
-        tr {
-          td {
-            &:first-child {
-              text-align: start;
-              padding-right: 2rem;
-            }
-            & > * {
-              margin-right: 1rem;
-              &:last-child {
-                margin-right: 0;
-              }
-            }
-            & > .row,
-            & > .column {
-              display: flex;
-              width: fit-content;
-              gap: 1rem;
-            }
-            & > .column {
-              flex-direction: column;
-            }
-          }
-        }
-      }
-    }
-  }
 
   :deep(h1) {
     @include fluid-text(40, 20);
     font-weight: 700;
-  }
-  :deep(h2) {
-    @include fluid-text(24, 18);
-    font-weight: 600;
   }
 }
 </style>
