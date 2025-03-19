@@ -103,254 +103,246 @@ const groupedCities = ref([
     ],
   },
 ])
+
+// Определение вариантов и состояний для селектов
+const selectStates = ['Default', 'Disabled', 'Invalid', 'Loading']
+const selectVariants = [
+  'Default small',
+  'Default',
+  'Default large',
+  'Multiselect',
+  'Multiselect Grouped',
+  'Multiselect Extended',
+]
 </script>
 
 <template>
-  <section class="layout-ui-selects">
-    <Divider type="dashed" align="center">
-      <h2>Selects</h2>
-    </Divider>
-    <div class="content">
-      <div class="selects">
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>State /<br />Variant</th>
-                <th>Default</th>
-                <th>Disabled</th>
-                <th>Invalid</th>
-                <th>Loading</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Default</td>
-                <td>
-                  <Select
-                    v-model="selectedCity"
-                    :options="cities"
-                    optionLabel="label"
-                    placeholder="Выберите город" />
-                </td>
-                <td>
-                  <Select
-                    v-model="selectedCity"
-                    :options="cities"
-                    disabled
-                    optionLabel="label"
-                    placeholder="Выберите город" />
-                </td>
-                <td>
-                  <Select
-                    v-model="selectedCity"
-                    :options="cities"
-                    :invalid="!selectedCity"
-                    optionLabel="label"
-                    placeholder="Выберите город" />
-                </td>
-                <td>
-                  <Select
-                    v-model="selectedCity"
-                    :options="cities"
-                    :loading="true"
-                    optionLabel="label"
-                    placeholder="Выберите город">
-                    <template #loadingicon>
-                      <ProgressSpinner
-                        class="app-progressspinner-inside"
-                        fill="transparent" />
-                    </template>
-                  </Select>
-                </td>
-              </tr>
-              <tr>
-                <td>Default <br /> small</td>
-                <td>
-                  <Select
-                    v-model="selectedCity"
-                    :options="cities"
-                    size="small"
-                    optionLabel="label"
-                    placeholder="Выберите город" />
-                </td>
-              </tr>
-              <tr>
-                <td>Default <br /> large</td>
-                <td>
-                  <Select
-                    v-model="selectedCity"
-                    :options="cities"
-                    size="large"
-                    optionLabel="label"
-                    placeholder="Выберите город" />
-                </td>
-              </tr>
-              <tr>
-                <td>Multiselect</td>
-                <td>
-                  <MultiSelect
-                    v-model="selectedCities"
-                    :options="cities"
-                    optionLabel="label"
-                    display="chip"
-                    placeholder="Выберите города"
-                    filter
-                    resetFilterOnHide
-                    :showToggleAll="false"
-                    autoFilterFocus>
-                    <template #chip="slotProps">
-                      <Chip :label="slotProps.value.label" removable>
-                        <template #removeicon>
-                          <i-custom-close @click="slotProps.removeCallback" />
-                        </template>
-                      </Chip>
-                    </template>
-                  </MultiSelect>
-                </td>
-                <td>
-                  <MultiSelect
-                    v-model="selectedCities"
-                    :options="cities"
-                    optionLabel="label"
-                    display="chip"
-                    placeholder="Выберите города"
-                    filter
-                    resetFilterOnHide
-                    autoFilterFocus
-                    disabled>
-                    <template #chip="slotProps">
-                      <Chip :label="slotProps.value.label" removable>
-                        <template #removeicon>
-                          <i-custom-close @click="slotProps.removeCallback" />
-                        </template>
-                      </Chip>
-                    </template>
-                  </MultiSelect>
-                </td>
-                <td>
-                  <MultiSelect
-                    v-model="selectedCities"
-                    :options="cities"
-                    :invalid="!selectedCities"
-                    optionLabel="label"
-                    display="chip"
-                    placeholder="Выберите города"
-                    filter
-                    resetFilterOnHide
-                    autoFilterFocus>
-                    <template #chip="slotProps">
-                      <Chip :label="slotProps.value.label" removable>
-                        <template #removeicon>
-                          <i-custom-close @click="slotProps.removeCallback" />
-                        </template>
-                      </Chip>
-                    </template>
-                  </MultiSelect>
-                </td>
-                <td>
-                  <MultiSelect
-                    v-model="selectedCities"
-                    :options="cities"
-                    :loading="true"
-                    optionLabel="label"
-                    display="chip"
-                    placeholder="Выберите города"
-                    filter
-                    resetFilterOnHide
-                    autoFilterFocus>
-                    <template #chip="slotProps">
-                      <Chip :label="slotProps.value.label" removable>
-                        <template #removeicon>
-                          <i-custom-close @click="slotProps.removeCallback" />
-                        </template>
-                      </Chip>
-                    </template>
-                    <template #loadingicon>
-                      <ProgressSpinner
-                        class="app-progressspinner-inside"
-                        fill="transparent" />
-                    </template>
-                  </MultiSelect>
-                </td>
-              </tr>
-              <tr>
-                <td>Multiselect grouped</td>
-                <td>
-                  <MultiSelect
-                    v-model="selectedGroupedCities"
-                    :options="groupedCities"
-                    optionLabel="label"
-                    optionGroupLabel="label"
-                    optionGroupChildren="items"
-                    display="chip"
-                    placeholder="Выберите города"
-                    filter
-                    resetFilterOnHide
-                    autoFilterFocus>
-                    <template #chip="slotProps">
-                      <Chip :label="slotProps.value.label" removable>
-                        <template #removeicon>
-                          <i-custom-close @click="slotProps.removeCallback" />
-                        </template>
-                      </Chip>
-                    </template>
-                  </MultiSelect>
-                </td>
-              </tr>
-              <tr>
-                <td>Multiselect grouped <br />extended</td>
-                <td>
-                  <MultiSelect
-                    class="app-multiselect-extended"
-                    overlayClass="app-multiselect-extended-overlay"
-                    v-model="selectedGroupedCities"
-                    :options="groupedCities"
-                    optionLabel="label"
-                    optionGroupLabel="label"
-                    optionGroupChildren="items"
-                    display="chip"
-                    placeholder="Выберите города"
-                    filter
-                    :showToggleAll="false"
-                    resetFilterOnHide
-                    autoFilterFocus
-                    :focusOnHover="true"
-                    pt:listContainer:style="max-height: 25rem;"
-                    pt:pcOptionCheckbox:root:class="p-checkbox-lg p-inputfield-lg">
-                    <template #chip="slotProps">
-                      <Chip :label="slotProps.value.label" removable>
-                        <template #removeicon>
-                          <i-custom-close @click="slotProps.removeCallback" />
-                        </template>
-                      </Chip>
-                    </template>
-                    <template #option="slotProps">
-                      <div class="option-content">
-                        <span class="fw-semibold">{{
-                          slotProps.option.label
-                        }}</span>
-                        <div class="option-content-info">
-                          <span class="fs-xs">Area:</span>
-                          <span class="fs-xs"
-                            >{{ slotProps.option.area }} km²</span
-                          >
-                        </div>
-                        <Divider />
-                        <span class="fs-xs"
-                          >{{ slotProps.option.description }}
-                        </span>
-                      </div>
-                    </template>
-                  </MultiSelect>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </section>
+  <UiLayoutDisplay
+    title="Selects"
+    :states="selectStates"
+    :variants="selectVariants">
+    <!-- Small вариант -->
+    <template #default-small-default>
+      <Select
+        v-model="selectedCity"
+        :options="cities"
+        size="small"
+        optionLabel="label"
+        placeholder="Выберите город" />
+    </template>
+
+    <!-- Default вариант -->
+    <template #default-default>
+      <Select
+        v-model="selectedCity"
+        :options="cities"
+        optionLabel="label"
+        placeholder="Выберите город" />
+    </template>
+    <template #default-disabled>
+      <Select
+        v-model="selectedCity"
+        :options="cities"
+        disabled
+        optionLabel="label"
+        placeholder="Выберите город" />
+    </template>
+    <template #default-invalid>
+      <Select
+        v-model="selectedCity"
+        :options="cities"
+        :invalid="!selectedCity"
+        optionLabel="label"
+        placeholder="Выберите город" />
+    </template>
+    <template #default-loading>
+      <Select
+        v-model="selectedCity"
+        :options="cities"
+        :loading="true"
+        optionLabel="label"
+        placeholder="Выберите город">
+        <template #loadingicon>
+          <ProgressSpinner
+            class="app-progressspinner-inside"
+            fill="transparent" />
+        </template>
+      </Select>
+    </template>
+
+    <!-- Large вариант -->
+    <template #default-large-default>
+      <Select
+        v-model="selectedCity"
+        :options="cities"
+        size="large"
+        optionLabel="label"
+        placeholder="Выберите город" />
+    </template>
+
+    <!-- Multiselect вариант -->
+    <template #multiselect-default>
+      <MultiSelect
+        v-model="selectedCities"
+        :options="cities"
+        optionLabel="label"
+        display="chip"
+        placeholder="Выберите города"
+        filter
+        resetFilterOnHide
+        :showToggleAll="false"
+        autoFilterFocus>
+        <template #chip="slotProps">
+          <Chip :label="slotProps.value.label" removable>
+            <template #removeicon>
+              <i-custom-close @click="slotProps.removeCallback" />
+            </template>
+          </Chip>
+        </template>
+      </MultiSelect>
+    </template>
+    <template #multiselect-disabled>
+      <MultiSelect
+        v-model="selectedCities"
+        :options="cities"
+        optionLabel="label"
+        display="chip"
+        placeholder="Выберите города"
+        filter
+        resetFilterOnHide
+        autoFilterFocus
+        disabled>
+        <template #chip="slotProps">
+          <Chip :label="slotProps.value.label" removable>
+            <template #removeicon>
+              <i-custom-close @click="slotProps.removeCallback" />
+            </template>
+          </Chip>
+        </template>
+      </MultiSelect>
+    </template>
+    <template #multiselect-invalid>
+      <MultiSelect
+        v-model="selectedCities"
+        :options="cities"
+        :invalid="!selectedCities || selectedCities.length === 0"
+        optionLabel="label"
+        display="chip"
+        placeholder="Выберите города"
+        filter
+        resetFilterOnHide
+        autoFilterFocus>
+        <template #chip="slotProps">
+          <Chip :label="slotProps.value.label" removable>
+            <template #removeicon>
+              <i-custom-close @click="slotProps.removeCallback" />
+            </template>
+          </Chip>
+        </template>
+      </MultiSelect>
+    </template>
+    <template #multiselect-loading>
+      <MultiSelect
+        v-model="selectedCities"
+        :options="cities"
+        :loading="true"
+        optionLabel="label"
+        display="chip"
+        placeholder="Выберите города"
+        filter
+        resetFilterOnHide
+        autoFilterFocus>
+        <template #chip="slotProps">
+          <Chip :label="slotProps.value.label" removable>
+            <template #removeicon>
+              <i-custom-close @click="slotProps.removeCallback" />
+            </template>
+          </Chip>
+        </template>
+        <template #loadingicon>
+          <ProgressSpinner
+            class="app-progressspinner-inside"
+            fill="transparent" />
+        </template>
+      </MultiSelect>
+    </template>
+
+    <!-- Multiselect Grouped вариант -->
+    <template #multiselect-grouped-default>
+      <MultiSelect
+        v-model="selectedGroupedCities"
+        :options="groupedCities"
+        optionLabel="label"
+        optionGroupLabel="label"
+        optionGroupChildren="items"
+        display="chip"
+        placeholder="Выберите города"
+        filter
+        resetFilterOnHide
+        autoFilterFocus>
+        <template #chip="slotProps">
+          <Chip :label="slotProps.value.label" removable>
+            <template #removeicon>
+              <i-custom-close @click="slotProps.removeCallback" />
+            </template>
+          </Chip>
+        </template>
+      </MultiSelect>
+    </template>
+
+    <!-- Multiselect Extended вариант -->
+    <template #multiselect-extended-default>
+      <MultiSelect
+        class="app-multiselect-extended"
+        overlayClass="app-multiselect-extended-overlay"
+        v-model="selectedGroupedCities"
+        :options="groupedCities"
+        optionLabel="label"
+        optionGroupLabel="label"
+        optionGroupChildren="items"
+        display="chip"
+        placeholder="Выберите города"
+        filter
+        :showToggleAll="false"
+        resetFilterOnHide
+        autoFilterFocus
+        :focusOnHover="true"
+        pt:listContainer:style="max-height: 25rem;"
+        pt:pcOptionCheckbox:root:class="p-checkbox-lg p-inputfield-lg">
+        <template #chip="slotProps">
+          <Chip :label="slotProps.value.label" removable>
+            <template #removeicon>
+              <i-custom-close @click="slotProps.removeCallback" />
+            </template>
+          </Chip>
+        </template>
+        <template #option="slotProps">
+          <div class="option-content">
+            <span class="fw-semibold">{{ slotProps.option.label }}</span>
+            <div class="option-content-info">
+              <span class="fs-xs">Area:</span>
+              <span class="fs-xs">{{ slotProps.option.area }} km²</span>
+            </div>
+            <Divider />
+            <span class="fs-xs">{{ slotProps.option.description }}</span>
+          </div>
+        </template>
+      </MultiSelect>
+    </template>
+  </UiLayoutDisplay>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+// Стили для расширенных опций мультиселекта
+.option-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+
+  &-info {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+</style>

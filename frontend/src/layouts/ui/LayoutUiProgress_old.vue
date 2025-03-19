@@ -1,7 +1,10 @@
 <script setup></script>
 
 <template>
-  <UiLayoutDisplay title="Progress">
+  <section class="layout-ui-progress">
+    <Divider type="dashed" align="center">
+      <h2>Progress</h2>
+    </Divider>
     <div class="content">
       <div class="progress">
         <ProgressBar
@@ -11,13 +14,7 @@
         <ProgressSpinner class="app-progressspinner" fill="transparent" />
       </div>
     </div>
-  </UiLayoutDisplay>
+  </section>
 </template>
 
-<style lang="scss" scoped>
-.progress {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-</style>
+<style lang="scss" scoped></style>

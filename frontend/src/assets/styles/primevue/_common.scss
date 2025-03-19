@@ -1,5 +1,24 @@
 @layer preset {
   // --------------------------------------------------------------------------
+  // Font for elements
+  // --------------------------------------------------------------------------
+  button:not([class*='sm']):not([class*='lg']),
+  input:not([class*='sm']):not([class*='lg']),
+  textarea:not([class*='sm']):not([class*='lg']) {
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+  }
+  button {
+    line-height: 100%;
+  }
+  input,
+  textarea {
+    line-height: inherit;
+  }
+  // --------------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
   // Overlay offsets
   // --------------------------------------------------------------------------
   [data-pc-section='overlay'],
@@ -18,21 +37,24 @@
   // --------------------------------------------------------------------------
   .p-disabled,
   .p-component[disabled] {
+    &::placeholder {
+      color: var(--p-app-disabled-color);
+    }
     opacity: var(--p-disabled-opacity);
-    filter: grayscale(var(--p-disabled-opacity));
+    filter: grayscale(calc(var(--p-disabled-opacity) + 0.1));
     user-select: none;
     pointer-events: none;
     &.p-button {
       opacity: var(--p-disabled-opacity);
-      filter: grayscale(var(--p-disabled-opacity));
+      filter: grayscale(calc(var(--p-disabled-opacity) + 0.1));
     }
 
     &:not(:has(.p-disabled)):not(:has(.p-component[disabled])) {
       opacity: var(--p-disabled-opacity);
-      filter: grayscale(var(--p-disabled-opacity));
+      filter: grayscale(calc(var(--p-disabled-opacity) + 0.1));
       &.p-button {
         opacity: var(--p-disabled-opacity);
-        filter: grayscale(var(--p-disabled-opacity));
+        filter: grayscale(calc(var(--p-disabled-opacity) + 0.1));
       }
     }
 
@@ -52,26 +74,16 @@
     + .icon,
     + .p-icon {
       opacity: var(--p-disabled-opacity);
-      filter: grayscale(var(--p-disabled-opacity));
+      filter: grayscale(calc(var(--p-disabled-opacity) + 0.1));
       cursor: default;
       user-select: none;
       pointer-events: none;
     }
+    + label {
+      color: var(--p-app-disabled-color);
+      opacity: var(--p-disabled-opacity);
+      filter: grayscale(calc(var(--p-disabled-opacity) + 0.1));
+    }
   }
   // --------------------------------------------------------------------------
-
-  button:not([class*='sm']):not([class*='lg']),
-  input:not([class*='sm']):not([class*='lg']),
-  textarea:not([class*='sm']):not([class*='lg']) {
-    font-family: inherit;
-    font-size: inherit;
-    letter-spacing: inherit;
-  }
-  button {
-    line-height: 100%;
-  }
-  input,
-  textarea {
-    line-height: inherit;
-  }
 }

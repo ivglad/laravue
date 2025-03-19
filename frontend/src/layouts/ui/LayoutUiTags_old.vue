@@ -1,7 +1,10 @@
 <script setup></script>
 
 <template>
-  <UiLayoutDisplay title="Tags">
+  <section class="layout-ui-tags">
+    <Divider type="dashed" align="center">
+      <h2>Tags</h2>
+    </Divider>
     <div class="content">
       <div class="row">
         <Tag value="Primary"></Tag>
@@ -13,7 +16,7 @@
         <Tag severity="contrast" value="Contrast"></Tag>
       </div>
     </div>
-  </UiLayoutDisplay>
+  </section>
 </template>
 
 <style lang="scss" scoped></style>

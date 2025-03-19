@@ -268,7 +268,7 @@ const setButtonLoading = (status) => {
 
     <!-- Text кнопки -->
     <template #text-default>
-      <div class="column">
+      <div class="button-group">
         <Button label="Кнопка" variant="text" />
         <Button label="Кнопка" variant="text" severity="secondary" />
       </div>
@@ -280,19 +280,8 @@ const setButtonLoading = (status) => {
 </template>
 
 <style lang="scss" scoped>
-// Добавляем отступы для кнопок чтобы они не прилипали друг к другу
-:deep(.p-button) {
-  margin: 0.25rem;
-}
-
 .button-group {
   display: flex;
-  gap: 0.5rem;
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
   gap: 0.5rem;
 }
 </style>

@@ -1,49 +1,35 @@
 <script setup>
 const colorValue = ref(null)
+
+// Определение вариантов и состояний для выбора цвета
+const colorPickerStates = ['Default', 'Disabled']
+const colorPickerVariants = ['Default', 'Inline']
 </script>
 
 <template>
-  <section class="layout-ui-colorpicker">
-    <Divider type="dashed" align="center">
-      <h2>ColorPicker</h2>
-    </Divider>
-    <div class="content">
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>State /<br />Variant</th>
-              <th>Default</th>
-              <th>Disabled</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Default</td>
-              <td>
-                <ColorPicker v-model="colorValue" />
-              </td>
-              <td>
-                <ColorPicker v-model="colorValue" disabled />
-              </td>
-            </tr>
-            <tr>
-              <td>Inline</td>
-              <td>
-                <ColorPicker v-model="colorValue" inline />
-                <div>
-                  Color:
-                  <span v-if="colorValue">{{
-                    JSON.stringify(colorValue)
-                  }}</span>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+  <UiLayoutDisplay
+    title="ColorPicker"
+    :states="colorPickerStates"
+    :variants="colorPickerVariants">
+    <!-- Default вариант -->
+    <template #default-default>
+      <ColorPicker v-model="colorValue" />
+    </template>
+    <template #default-disabled>
+      <ColorPicker v-model="colorValue" disabled />
+    </template>
+
+    <!-- Inline вариант -->
+    <template #inline-default>
+      <div>
+        <ColorPicker v-model="colorValue" inline />
+        <div>
+          Color:
+          <span v-if="colorValue">{{ JSON.stringify(colorValue) }}</span>
+        </div>
       </div>
-    </div>
-  </section>
+    </template>
+  </UiLayoutDisplay>
 </template>
 
 <style lang="scss" scoped></style>

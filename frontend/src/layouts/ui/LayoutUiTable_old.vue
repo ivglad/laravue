@@ -44,8 +44,11 @@ const paginatorDropdownStyle = {
 </script>
 
 <template>
-  <UiLayoutDisplay title="Table">
-    <div class="content">
+  <section class="layout-ui-table">
+    <Divider type="dashed" align="center">
+      <h2>Table</h2>
+    </Divider>
+    <div class="content no-ui-styles">
       <div class="table">
         <DataTable
           v-model:selection="selectedCustomer"
@@ -130,72 +133,74 @@ const paginatorDropdownStyle = {
         </DataTable>
       </div>
     </div>
-  </UiLayoutDisplay>
+  </section>
 </template>
 
 <style lang="scss" scoped>
-.table {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  overflow-x: auto;
-  overflow-y: hidden;
-  :deep(table) {
-    width: 100%;
-    padding-bottom: 0;
-    border-collapse: separate;
-    border-spacing: 0;
-    thead {
-      color: var(--p-surface-500);
-      background: var(--p-surface-100);
-      tr {
-        height: 3rem;
-        &:first-child {
-          th {
-            &:first-child {
-              border-radius: 10px 0 0 0;
-            }
-            &:last-child {
-              border-radius: 0 10px 0 0;
+.layout-ui-table {
+  .table {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    :deep(table) {
+      width: 100%;
+      padding-bottom: 0;
+      border-collapse: separate;
+      border-spacing: 0;
+      thead {
+        color: var(--p-surface-500);
+        background: var(--p-surface-100);
+        tr {
+          height: 3rem;
+          &:first-child {
+            th {
+              &:first-child {
+                border-radius: 10px 0 0 0;
+              }
+              &:last-child {
+                border-radius: 0 10px 0 0;
+              }
             }
           }
-        }
-        &:nth-child(2) {
-          th {
-            text-align: left;
+          &:nth-child(2) {
+            th {
+              text-align: left;
+            }
           }
-        }
-        th {
-          padding: 1rem 2rem 1rem 1rem;
-          .th-title {
-            position: relative;
-            display: flex;
-            align-items: center;
-            flex-wrap: nowrap;
-            width: fit-content;
-            margin-right: 2rem;
-            .icon {
-              position: absolute;
-              left: calc(100% + 0.5rem);
-              transition: none;
+          th {
+            padding: 1rem 2rem 1rem 1rem;
+            .th-title {
+              position: relative;
+              display: flex;
+              align-items: center;
+              flex-wrap: nowrap;
+              width: fit-content;
+              margin-right: 2rem;
+              .icon {
+                position: absolute;
+                left: calc(100% + 0.5rem);
+                transition: none;
+              }
             }
           }
         }
       }
-    }
-    tbody {
-      tr {
-        @include transition;
-      }
-      .row {
-        &-selected {
-          background: var(--p-primary-100);
+      tbody {
+        tr {
+          @include transition;
         }
-        &-disabled {
-          opacity: 0.4;
-          filter: grayscale(0.9);
-          user-select: none;
-          pointer-events: none;
+        .row {
+          &-selected {
+            background: var(--p-primary-100);
+          }
+          &-disabled {
+            opacity: 0.4;
+            filter: grayscale(0.9);
+            user-select: none;
+            pointer-events: none;
+          }
         }
       }
     }

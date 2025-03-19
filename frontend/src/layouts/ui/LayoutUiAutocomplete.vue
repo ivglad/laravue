@@ -14,94 +14,72 @@ const autoCompleateSearch = useDebounceFn((event) => {
     life: 4000,
   })
 }, 2000)
+
+// Определение вариантов и состояний для автокомплита
+const autocompleteStates = ['Default', 'Disabled']
+const autocompleteVariants = ['Default input with icon', 'Autocomplete']
 </script>
 
 <template>
-  <section class="layout-ui-autocomplete">
-    <Divider type="dashed" align="center">
-      <h2>AutoComplete</h2>
-    </Divider>
-    <div class="content">
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>State /<br />Variant</th>
-              <th>Default</th>
-              <th>Disabled</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                Default input <br />
-                with icon
-              </td>
-              <td>
-                <IconField>
-                  <InputIcon class="pe-none">
-                    <i-custom-search />
-                  </InputIcon>
-                  <InputText v-model="inputValue" placeholder="Search" />
-                </IconField>
-              </td>
-              <td>
-                <IconField>
-                  <InputIcon class="p-disabled">
-                    <i-custom-search />
-                  </InputIcon>
-                  <InputText
-                    v-model="inputValue"
-                    placeholder="Search"
-                    disabled />
-                </IconField>
-              </td>
-            </tr>
-            <tr>
-              <td>AutoComplete</td>
-              <td>
-                <IconField>
-                  <InputIcon class="pe-none">
-                    <i-custom-search />
-                  </InputIcon>
-                  <AutoComplete
-                    v-model="inputValue"
-                    :suggestions="autoCompleateItems"
-                    placeholder="Search"
-                    @complete="autoCompleateSearch">
-                    <template #loader>
-                      <ProgressSpinner
-                        class="app-progressspinner-inside"
-                        fill="transparent" />
-                    </template>
-                  </AutoComplete>
-                </IconField>
-              </td>
-              <td>
-                <IconField>
-                  <InputIcon class="p-disabled">
-                    <i-custom-search />
-                  </InputIcon>
-                  <AutoComplete
-                    v-model="inputValue"
-                    :suggestions="autoCompleateItems"
-                    placeholder="Search"
-                    disabled
-                    @complete="autoCompleateSearch">
-                    <template #loader>
-                      <ProgressSpinner
-                        class="app-progressspinner-inside"
-                        fill="transparent" />
-                    </template>
-                  </AutoComplete>
-                </IconField>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
+  <UiLayoutDisplay
+    title="AutoComplete"
+    :states="autocompleteStates"
+    :variants="autocompleteVariants">
+    <!-- Default вариант -->
+    <template #default-input-with-icon-default>
+      <IconField>
+        <InputIcon class="pe-none">
+          <i-custom-search />
+        </InputIcon>
+        <InputText v-model="inputValue" placeholder="Search" />
+      </IconField>
+    </template>
+    <template #default-input-with-icon-disabled>
+      <IconField>
+        <InputIcon class="p-disabled">
+          <i-custom-search />
+        </InputIcon>
+        <InputText v-model="inputValue" placeholder="Search" disabled />
+      </IconField>
+    </template>
+
+    <!-- Autocomplete вариант -->
+    <template #autocomplete-default
+      ><IconField>
+        <InputIcon class="pe-none">
+          <i-custom-search />
+        </InputIcon>
+        <AutoComplete
+          v-model="inputValue"
+          :suggestions="autoCompleateItems"
+          placeholder="Search"
+          @complete="autoCompleateSearch">
+          <template #loader>
+            <ProgressSpinner
+              class="app-progressspinner-inside"
+              fill="transparent" />
+          </template>
+        </AutoComplete> </IconField
+    ></template>
+    <template #autocomplete-disabled>
+      <IconField>
+        <InputIcon class="p-disabled">
+          <i-custom-search />
+        </InputIcon>
+        <AutoComplete
+          v-model="inputValue"
+          :suggestions="autoCompleateItems"
+          placeholder="Search"
+          disabled
+          @complete="autoCompleateSearch">
+          <template #loader>
+            <ProgressSpinner
+              class="app-progressspinner-inside"
+              fill="transparent" />
+          </template>
+        </AutoComplete> </IconField
+    ></template>
+  </UiLayoutDisplay>
 </template>
 
 <style lang="scss" scoped></style>

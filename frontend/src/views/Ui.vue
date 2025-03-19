@@ -58,8 +58,8 @@ const setSurfaceColor = (color) => {
 </script>
 
 <template>
-  <div class="ui bg-sky-600">
-    <div class="ui-header bg-sky-600">
+  <div class="ui">
+    <div class="ui-header">
       <div class="ui-header__palette">
         <span class="ui-header__palette-title fw-bold">Цветовая палитра:</span>
         <div class="ui-header__primary">
@@ -82,82 +82,86 @@ const setSurfaceColor = (color) => {
         </div>
       </div>
     </div>
+
     <Divider align="center">
       <h1>UI-KIT</h1>
     </Divider>
 
-    <LayoutUiFonts />
+    <div class="ui-layouts">
+      <LayoutUiFonts />
 
-    <LayoutUiIcons />
+      <LayoutUiIcons />
 
-    <LayoutUiColors />
+      <LayoutUiColors />
 
-    <LayoutUiButtons />
+      <LayoutUiButtons />
 
-    <LayoutUiInputs />
+      <LayoutUiInputs />
 
-    <LayoutUiAutocomplete />
+      <LayoutUiAutocomplete />
 
-    <LayoutUiSelects />
+      <LayoutUiSelects />
 
-    <LayoutUiSelectToggleButtons />
+      <LayoutUiSelectToggleButtons />
 
-    <LayoutUiDatePickers />
+      <LayoutUiDatePickers />
 
-    <LayoutUiCheckboxes />
+      <LayoutUiCheckboxes />
 
-    <LayoutUiRadios />
+      <LayoutUiRadios />
 
-    <LayoutUiSwitches />
+      <LayoutUiSwitches />
 
-    <LayoutUiFileUpload />
+      <LayoutUiFileUpload />
 
-    <LayoutUiPopups />
+      <LayoutUiPopups />
 
-    <LayoutUiChips />
+      <LayoutUiChips />
 
-    <LayoutUiBadges />
+      <LayoutUiBadges />
 
-    <LayoutUiTags />
+      <LayoutUiTags />
 
-    <LayoutUiColorPicker />
+      <LayoutUiColorPicker />
 
-    <LayoutUiTabs />
+      <LayoutUiTabs />
 
-    <LayoutUiAccordion />
+      <LayoutUiAccordion />
 
-    <LayoutUiPaginator />
+      <LayoutUiPaginator />
 
-    <LayoutUiStepper />
+      <LayoutUiStepper />
 
-    <LayoutUiCard />
+      <LayoutUiCard />
 
-    <LayoutUiCarousel
-      v-animateonscroll="{
-        enterClass: 'animate-fadein',
-        leaveClass: 'animate-fadeout',
-      }"
-      style="transition-duration: 0.5s" />
+      <LayoutUiCarousel
+        v-animateonscroll="{
+          enterClass: 'animate-fadein',
+          leaveClass: 'animate-fadeout',
+        }"
+        style="transition-duration: 0.5s" />
 
-    <LayoutUiTable />
+      <LayoutUiTable />
 
-    <LayoutUiTableTanstack />
+      <LayoutUiTableTanstack />
 
-    <LayoutUiProgress />
+      <LayoutUiProgress />
 
-    <ScrollTop>
-      <template #icon>
-        <i-fluent-arrow-curve-up-right-20-filled />
-      </template>
-    </ScrollTop>
+      <ScrollTop>
+        <template #icon>
+          <i-fluent-arrow-curve-up-right-20-filled />
+        </template>
+      </ScrollTop>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .ui {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 2rem;
   width: 100%;
   height: 100%;
@@ -174,7 +178,7 @@ const setSurfaceColor = (color) => {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 100vw;
     height: 8rem;
     padding: 1rem 4rem 1rem 4rem;
     background: var(--p-surface-50);
@@ -191,7 +195,7 @@ const setSurfaceColor = (color) => {
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 1rem;
-      width: 100%;
+      width: calc(100% + 1.2rem);
       max-width: 1200px;
 
       &-title {
@@ -212,28 +216,40 @@ const setSurfaceColor = (color) => {
     }
   }
 
-  .components {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  section {
+  &-layouts {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    align-items: start;
+    gap: 2rem;
     width: 100%;
+    max-width: 1200px;
+
+    &-group {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 1rem;
+      border: 1px dashed var(--p-surface-300);
+      border-radius: var(--p-border-radius-lg);
+      padding: 1rem;
+
+      @include mq(l) {
+        flex-direction: column;
+      }
+    }
   }
 
   :deep(.content) {
-    width: 100%;
-    max-width: 1200px;
-  }
-
-  :deep(h1) {
-    @include fluid-text(40, 20);
-    font-weight: 700;
+    & > * {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
   }
 }
 </style>

@@ -51,8 +51,11 @@ const responsiveOptions = ref([
 </script>
 
 <template>
-  <UiLayoutDisplay title="Carousel">
-    <div class="content">
+  <section class="layout-ui-carousel">
+    <Divider type="dashed" align="center">
+      <h2>Carousel</h2>
+    </Divider>
+    <div class="content no-ui-styles">
       <Carousel
         class="app-carousel"
         :value="products"
@@ -91,7 +94,7 @@ const responsiveOptions = ref([
         </template>
       </Carousel>
     </div>
-  </UiLayoutDisplay>
+  </section>
 </template>
 
 <style lang="scss" scoped></style>

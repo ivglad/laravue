@@ -6,7 +6,7 @@ const props = defineProps({
   },
   states: {
     type: Array,
-    default: () => ['Default', 'Disabled', 'Invalid'],
+    default: () => [],
   },
   variants: {
     type: Array,
@@ -17,7 +17,7 @@ const props = defineProps({
 // CSS Grid template с равными колонками
 const gridTemplateColumns = computed(() => {
   // Первая колонка для заголовка вариантов, остальные равные для состояний
-  return `minmax(150px, min-content) repeat(${props.states.length}, 1fr)`
+  return `minmax(120px, min-content) repeat(${props.states.length}, 1fr)`
 })
 
 /**
@@ -46,14 +46,14 @@ const getSlotName = (variant, state) => {
     <div class="ui-layout-display__header">
       <h2>{{ title }}</h2>
     </div>
-    <div class="content">
-      <div class="grid-table-wrapper">
+    <div class="ui-layout-display__content">
+      <div class="raw-content-wrapper" v-if="!states?.length">
+        <slot />
+      </div>
+      <div class="grid-table-wrapper" v-else>
         <!-- Заголовок таблицы -->
         <div class="grid-table-header">
-          <div class="grid-cell header-cell first-cell">
-            <span>Variant</span>
-            <span>State:</span>
-          </div>
+          <div class="grid-cell header-cell first-cell">Variant</div>
           <div
             v-for="state in states"
             :key="state"
@@ -66,7 +66,11 @@ const getSlotName = (variant, state) => {
         <div v-for="variant in variants" :key="variant" class="grid-table-row">
           <div class="grid-cell first-cell">{{ variant }}</div>
           <div v-for="state in states" :key="state" class="grid-cell">
-            <slot :name="getSlotName(variant, state)"></slot>
+            <div
+              class="grid-cell-slot"
+              v-if="$slots[getSlotName(variant, state)]">
+              <slot :name="getSlotName(variant, state)"> </slot>
+            </div>
           </div>
         </div>
       </div>
@@ -76,15 +80,19 @@ const getSlotName = (variant, state) => {
 
 <style lang="scss" scoped>
 .ui-layout-display {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
   border: 1px solid var(--p-surface-200);
   border-radius: var(--p-border-radius-lg);
   overflow: hidden;
   &__header {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     width: 100%;
-    padding: 1rem;
+    padding: 1rem 2rem 1rem 2rem;
     border-radius: var(--p-border-radius-lg) var(--p-border-radius-lg) 0 0;
     background-color: var(--p-surface-100);
     .h2 {
@@ -92,15 +100,27 @@ const getSlotName = (variant, state) => {
       font-weight: 600;
     }
   }
-}
-.content {
-  padding: 0 2rem 2rem 2rem;
+  &__content {
+    width: fit-content;
+    padding: 0 2rem 2rem 2rem;
+    max-width: 100%;
+    overflow-x: auto;
+    @include mq(m) {
+      width: 100%;
+    }
+    &:has(.raw-content-wrapper) {
+      width: 100%;
+      padding: 2rem 2rem 2rem 2rem;
+    }
+    .raw-content-wrapper {
+      width: 100%;
+    }
+  }
 }
 
 .grid-table-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
   width: 100%;
   overflow-x: auto;
 
@@ -108,22 +128,21 @@ const getSlotName = (variant, state) => {
   .grid-table-row {
     display: grid;
     grid-template-columns: v-bind(gridTemplateColumns);
-    gap: 1rem;
+    gap: 2rem;
     width: 100%;
     @include mq(m) {
       grid-template-columns: 1fr;
       grid-auto-flow: row;
-    }
-  }
-  .grid-table-row {
-    @include mq(m) {
-      margin-bottom: 1rem;
+      gap: 0;
     }
   }
 
   .grid-table-header {
     border-top-left-radius: var(--p-border-radius-lg);
     border-top-right-radius: var(--p-border-radius-lg);
+    @include mq(m) {
+      margin-bottom: 2rem;
+    }
 
     .header-cell {
       font-weight: 600;
@@ -133,8 +152,7 @@ const getSlotName = (variant, state) => {
         justify-content: space-between;
         border-top-left-radius: var(--p-border-radius-lg);
         @include mq(m) {
-          padding-inline: 1rem;
-          border-top-right-radius: var(--p-border-radius-lg);
+          display: none;
         }
         & span:last-child {
           @include mq(m) {
@@ -158,18 +176,17 @@ const getSlotName = (variant, state) => {
   .grid-cell {
     display: flex;
     align-items: center;
+    width: 100%;
     @include mq(m) {
-      width: 100%;
       &:not(.first-cell):not(.header-cell) {
         grid-column: 1 / -1;
         padding-top: 0;
       }
       &.first-cell {
         font-weight: 600;
-        background-color: var(--p-surface-100);
       }
       &.first-cell:not(.header-cell) {
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 0.25rem;
       }
     }
 
@@ -178,12 +195,18 @@ const getSlotName = (variant, state) => {
     }
     &.first-cell {
       text-align: start;
+      margin-bottom: 1rem;
     }
 
     // Поддержка разрывов строк в заголовках
     &.header-cell,
     &.first-cell {
       white-space: pre-line;
+    }
+
+    &-slot {
+      width: 100%;
+      margin-bottom: 2rem;
     }
   }
 }

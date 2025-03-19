@@ -19,6 +19,11 @@
     &.p-multiselect-lg {
       height: var(--p-select-app-lg-height);
     }
+    &.p-disabled {
+      .p-multiselect-label {
+        color: var(--p-app-disabled-color);
+      }
+    }
     .p-multiselect-dropdown {
       .p-icon {
         width: var(--p-select-app-dropdown-icon-size);

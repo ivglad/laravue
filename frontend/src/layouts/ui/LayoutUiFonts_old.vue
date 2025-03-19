@@ -1,7 +1,10 @@
 <script setup></script>
 
 <template>
-  <UiLayoutDisplay title="Fonts">
+  <section class="layout-ui-fonts">
+    <Divider type="dashed" align="center">
+      <h2>Fonts</h2>
+    </Divider>
     <div class="content">
       <div>
         <div class="row">
@@ -41,7 +44,7 @@
         </div>
       </div>
     </div>
-  </UiLayoutDisplay>
+  </section>
 </template>
 
 <style lang="scss" scoped>

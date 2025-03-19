@@ -35,7 +35,7 @@ const Preset = definePreset(Aura, {
         },
       },
       disabled: {
-        color: '{surface.200}',
+        color: '{surface.300}',
       },
       fontSize: '1.4rem',
       fontSizeSm: '1.2rem',
@@ -345,7 +345,7 @@ const Preset = definePreset(Aura, {
       offset: '2px',
       shadow: 'none',
     },
-    disabledOpacity: '0.5',
+    disabledOpacity: '0.6',
     iconSize: '2rem',
     anchorGutter: '2px',
     primary: {

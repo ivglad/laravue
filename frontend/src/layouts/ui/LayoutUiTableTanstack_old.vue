@@ -126,8 +126,11 @@ const paginatorDropdownStyle = {
 </script>
 
 <template>
-  <UiLayoutDisplay title="Tanstack table">
-    <div class="content">
+  <section class="layout-ui-table-tanstack">
+    <Divider type="dashed" align="center">
+      <h2>Tanstack table</h2>
+    </Divider>
+    <div class="content no-ui-styles">
       <div class="table-tanstack">
         <div class="table-wrapper">
           <table>
@@ -203,90 +206,83 @@ const paginatorDropdownStyle = {
           :pt="paginatorDropdownStyle" />
       </div>
     </div>
-  </UiLayoutDisplay>
+  </section>
 </template>
 
 <style lang="scss" scoped>
-.table-wrapper {
-  overflow-x: auto;
-  overflow-y: hidden;
-}
-.table-tanstack {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  table {
-    width: 100%;
-    padding-bottom: 0;
-    border-collapse: separate;
-    border-spacing: 0;
-    th,
-    td {
-      padding: 0.5rem 2rem 0.5rem 1rem;
-    }
-    thead {
-      color: var(--p-surface-500);
-      background: var(--p-surface-100);
-      tr {
-        height: 3rem;
-        &:first-child {
-          th {
-            &:first-child {
-              border-radius: 10px 0 0 0;
-            }
-            &:last-child {
-              border-radius: 0 10px 0 0;
+.layout-ui-table-tanstack {
+  .table-wrapper {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  .table-tanstack {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    table {
+      width: 100%;
+      padding-bottom: 0;
+      border-collapse: separate;
+      border-spacing: 0;
+      th,
+      td {
+        padding: 0.5rem 2rem 0.5rem 1rem;
+      }
+      thead {
+        color: var(--p-surface-500);
+        background: var(--p-surface-100);
+        tr {
+          height: 3rem;
+          &:first-child {
+            th {
+              &:first-child {
+                border-radius: 10px 0 0 0;
+              }
+              &:last-child {
+                border-radius: 0 10px 0 0;
+              }
             }
           }
-        }
-        &:nth-child(2) {
-          th {
-            text-align: left;
+          &:nth-child(2) {
+            th {
+              text-align: left;
+            }
           }
-        }
-        th {
-          padding: 1rem 2rem 1rem 1rem;
-          .th-title {
-            position: relative;
-            display: flex;
-            align-items: center;
-            flex-wrap: nowrap;
-            width: fit-content;
-            margin-right: 2rem;
-            .icon {
-              position: absolute;
-              left: calc(100% + 0.5rem);
-              transition: none;
+          th {
+            padding: 1rem 2rem 1rem 1rem;
+            .th-title {
+              position: relative;
+              display: flex;
+              align-items: center;
+              flex-wrap: nowrap;
+              width: fit-content;
+              margin-right: 2rem;
+              .icon {
+                position: absolute;
+                left: calc(100% + 0.5rem);
+                transition: none;
+              }
             }
           }
         }
       }
-    }
-    tbody {
-      tr {
-        @include transition;
-
-        &:last-child {
-          td {
-            &:first-child {
-              border-radius: 0 0 0 10px;
-            }
-            &:last-child {
-              border-radius: 0 0 10px 0;
-            }
+      tbody {
+        tr {
+          @include transition;
+        }
+        .row {
+          &-selected {
+            background: var(--p-primary-100);
+          }
+          &-disabled {
+            opacity: 0.4;
+            filter: grayscale(0.9);
+            user-select: none;
+            pointer-events: none;
           }
         }
       }
     }
-  }
-  :deep(.row-selected) {
-    background: var(--p-primary-50);
-  }
-  :deep(.row-disabled) {
-    opacity: 0.4;
-    filter: grayscale(0.9);
-    user-select: none;
-    pointer-events: none;
   }
 }
 </style>

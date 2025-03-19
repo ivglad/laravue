@@ -1,35 +1,24 @@
 <script setup>
 const switchesState = ref(false)
+
+// Определение вариантов и состояний для переключателей
+const switchStates = ['Default', 'Disabled']
+const switchVariants = ['Default']
 </script>
 
 <template>
-  <section class="layout-ui-switches">
-    <Divider type="dashed" align="center">
-      <h2>Switches</h2>
-    </Divider>
-    <div class="content">
-      <div class="switches">
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>State /<br />Variant</th>
-                <th>Default</th>
-                <th>Disabled</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Default</td>
-                <td><ToggleSwitch v-model="switchesState" /></td>
-                <td><ToggleSwitch v-model="switchesState" disabled /></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </section>
+  <UiLayoutDisplay
+    title="Switches"
+    :states="switchStates"
+    :variants="switchVariants">
+    <!-- Default вариант -->
+    <template #default-default>
+      <ToggleSwitch v-model="switchesState" />
+    </template>
+    <template #default-disabled>
+      <ToggleSwitch v-model="switchesState" disabled />
+    </template>
+  </UiLayoutDisplay>
 </template>
 
 <style lang="scss" scoped></style>

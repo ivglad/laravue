@@ -14,7 +14,10 @@ const dynamicIcons = {
 </script>
 
 <template>
-  <UiLayoutDisplay title="Icons">
+  <section class="layout-ui-icons">
+    <Divider type="dashed" align="center">
+      <h2>Icons</h2>
+    </Divider>
     <div class="content">
       <div class="icons">
         <div class="row">
@@ -48,7 +51,7 @@ const dynamicIcons = {
         </div>
       </div>
     </div>
-  </UiLayoutDisplay>
+  </section>
 </template>
 
 <style lang="scss" scoped>

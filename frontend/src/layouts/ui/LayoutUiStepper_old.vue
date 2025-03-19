@@ -1,8 +1,11 @@
 <script setup></script>
 
 <template>
-  <UiLayoutDisplay title="Stepper">
-    <div class="content">
+  <section class="layout-ui-stepper">
+    <Divider type="dashed" align="center">
+      <h2>Stepper</h2>
+    </Divider>
+    <div class="content no-ui-styles">
       <Stepper :value="1" class="app-stepper">
         <StepList>
           <Step v-for="step in 3" :key="step" :value="step">
@@ -34,12 +37,7 @@
         </StepPanels>
       </Stepper>
     </div>
-  </UiLayoutDisplay>
+  </section>
 </template>
 
-<style lang="scss" scoped>
-.content {
-  min-width: min-content;
-  width: 50%;
-}
-</style>
+<style lang="scss" scoped></style>

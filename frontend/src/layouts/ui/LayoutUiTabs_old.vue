@@ -53,7 +53,10 @@ const tabs = ref([
 </script>
 
 <template>
-  <UiLayoutDisplay title="Tabs">
+  <section class="layout-ui-tabs">
+    <Divider type="dashed" align="center">
+      <h2>Tabs</h2>
+    </Divider>
     <div class="content">
       <Tabs :value="0" scrollable>
         <TabList>
@@ -75,7 +78,7 @@ const tabs = ref([
         </TabPanels>
       </Tabs>
     </div>
-  </UiLayoutDisplay>
+  </section>
 </template>
 
 <style lang="scss" scoped>

@@ -69,7 +69,10 @@ const copyColor = async (hex, variable) => {
 </script>
 
 <template>
-  <UiLayoutDisplay title="Colors">
+  <section class="layout-ui-colors">
+    <Divider type="dashed" align="center">
+      <h2>Colors</h2>
+    </Divider>
     <div class="content">
       <div class="options">
         <div>
@@ -91,7 +94,7 @@ const copyColor = async (hex, variable) => {
         <table class="colors-table">
           <thead>
             <tr>
-              <th>Color</th>
+              <th>Color /<br />Shade</th>
               <th v-for="shade in shadesStatic" :key="shade" class="shade">
                 {{ shade }}
               </th>
@@ -124,7 +127,7 @@ const copyColor = async (hex, variable) => {
         </table>
       </div>
     </div>
-  </UiLayoutDisplay>
+  </section>
 </template>
 
 <style lang="scss" scoped>
@@ -147,24 +150,6 @@ const copyColor = async (hex, variable) => {
 }
 
 .colors-table {
-  thead {
-    tr {
-      th {
-        padding: 1rem;
-        font-weight: 600;
-        &:first-child {
-          padding-left: 0;
-        }
-      }
-    }
-  }
-  tbody {
-    tr {
-      td {
-        padding: 1rem;
-      }
-    }
-  }
   .shade {
     padding: 0;
     text-align: center;

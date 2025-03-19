@@ -1,8 +1,11 @@
 <script setup></script>
 
 <template>
-  <UiLayoutDisplay title="Paginator">
-    <div class="content">
+  <section class="layout-ui-paginator">
+    <Divider type="dashed" align="center">
+      <h2>Paginator</h2>
+    </Divider>
+    <div class="content no-ui-styles">
       <Paginator
         :rows="10"
         :totalRecords="120"
@@ -16,7 +19,7 @@
         }">
       </Paginator>
     </div>
-  </UiLayoutDisplay>
+  </section>
 </template>
 
 <style lang="scss" scoped>

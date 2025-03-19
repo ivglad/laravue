@@ -15,10 +15,6 @@
         opacity: 0;
       }
     }
-    input[disabled] + label {
-      opacity: 0.4;
-      filter: grayscale(0.9);
-    }
     &-message {
       @include transition;
       position: absolute;

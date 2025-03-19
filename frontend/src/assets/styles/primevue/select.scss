@@ -1,9 +1,9 @@
 @layer preset {
   :root {
     --p-select-sm-font-size: var(--p-app-font-size);
-    --p-select-app-width: 20rem;
-    --p-select-app-min-width: fit-content;
-    --p-select-app-max-width: 40rem;
+    --p-select-app-width: 100%;
+    --p-select-app-min-width: min-content;
+    --p-select-app-max-width: 100%;
     --p-select-app-height: 4.2rem;
     --p-select-app-min-height: fit-content;
     --p-select-app-max-height: 100%;
@@ -25,6 +25,11 @@
     }
     &.p-select-lg {
       height: var(--p-select-app-lg-height);
+    }
+    &.p-disabled {
+      .p-select-label {
+        color: var(--p-app-disabled-color);
+      }
     }
     .p-select-dropdown {
       .p-icon {
@@ -58,4 +63,4 @@
   .p-select-overlay-sm .p-select-option {
     height: var(--p-select-app-sm-height);
   }
-} 
+}

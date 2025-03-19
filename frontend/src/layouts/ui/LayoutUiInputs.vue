@@ -112,7 +112,7 @@ const inputVariants = [
 
     <!-- FloatLabel вариант -->
     <template #floatlabel-default>
-      <FloatLabel class="app-input mt-10">
+      <FloatLabel class="app-input">
         <InputText
           id="layout-ui-input-floatlabe-1-state"
           v-model="inputState.value"
@@ -121,7 +121,7 @@ const inputVariants = [
       </FloatLabel>
     </template>
     <template #floatlabel-disabled>
-      <FloatLabel class="app-input mt-10">
+      <FloatLabel class="app-input">
         <InputText
           id="layout-ui-input-floatlabel-2-state"
           v-model="inputState.value"
@@ -131,7 +131,7 @@ const inputVariants = [
       </FloatLabel>
     </template>
     <template #floatlabel-invalid>
-      <FloatLabel class="app-input mt-10">
+      <FloatLabel class="app-input">
         <InputText
           id="layout-ui-input-floatlabel-3-state"
           v-model="inputState.value"
