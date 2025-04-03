@@ -1,4 +1,8 @@
 <script setup>
+// INFO: Для рендеринга через рендер функцию h() требуется импортировать компонент
+import LayoutUiTable from '@/layouts/ui/LayoutUiTable.vue'
+import IconCustomClose from '~icons/custom/close'
+
 const confirm = useConfirm()
 const toast = useToast()
 
@@ -99,16 +103,11 @@ const dialogVisible = ref(false)
 const drawerVisible = ref(false)
 
 const dialog = useDialog()
-const LayoutUiColors = defineAsyncComponent(() =>
-  import('@/layouts/ui/LayoutUiColors.vue'),
-)
-const IconCustomClose = defineAsyncComponent(() =>
-  import('~icons/custom/close'),
-)
+
 const showComponent = () => {
-  dialog.open(h(LayoutUiColors), {
+  dialog.open(h(LayoutUiTable), {
     props: {
-      header: 'Компонент Ui Colors',
+      header: 'Компонент Table',
       modal: true,
       maximizable: true,
       dismissableMask: true,
