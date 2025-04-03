@@ -105,7 +105,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 100vw;
     min-height: 100vh;
     margin: 0;
     padding: 0;
@@ -117,7 +116,6 @@
     background: var(--p-surface-50);
     background-repeat: no-repeat;
     scrollbar-width: thin;
-    scrollbar-gutter: stable;
     scroll-behavior: smooth;
     overflow-x: hidden;
     overflow-y: overlay;
@@ -148,6 +146,14 @@
 
   textarea {
     resize: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    @include active {
+      color: var(--p-primary-color);
+    }
   }
 
   .icon {

@@ -126,7 +126,7 @@ const paginatorDropdownStyle = {
 </script>
 
 <template>
-  <UiLayoutDisplay title="Tanstack table">
+  <LayoutUiTemplate title="Tanstack table">
     <div class="content">
       <div class="table-tanstack">
         <div class="table-wrapper">
@@ -203,7 +203,7 @@ const paginatorDropdownStyle = {
           :pt="paginatorDropdownStyle" />
       </div>
     </div>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss" scoped>
@@ -265,7 +265,9 @@ const paginatorDropdownStyle = {
     tbody {
       tr {
         @include transition;
-
+        @include active {
+          background: var(--p-surface-100);
+        }
         &:last-child {
           td {
             &:first-child {
@@ -280,7 +282,7 @@ const paginatorDropdownStyle = {
     }
   }
   :deep(.row-selected) {
-    background: var(--p-primary-50);
+    background: var(--p-surface-100);
   }
   :deep(.row-disabled) {
     opacity: 0.4;

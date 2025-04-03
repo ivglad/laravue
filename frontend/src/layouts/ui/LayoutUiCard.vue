@@ -21,7 +21,7 @@ const toggleMenu = (event) => {
 </script>
 
 <template>
-  <UiLayoutDisplay title="Card">
+  <LayoutUiTemplate title="Card">
     <div class="content">
       <Card class="app-card">
         <template #header>
@@ -60,7 +60,7 @@ const toggleMenu = (event) => {
         </template>
       </Card>
     </div>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss" scoped></style>

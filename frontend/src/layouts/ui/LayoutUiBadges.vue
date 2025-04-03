@@ -13,46 +13,46 @@ const badgeVariants = [
 </script>
 
 <template>
-  <UiLayoutDisplay
+  <LayoutUiTemplate
     title="Badges / Avatar"
     :states="badgeStates"
     :variants="badgeVariants">
-    <!-- Default вариант -->
+    <!-- Default -->
     <template #default-default>
       <OverlayBadge value="35" severity="danger">
         <i-custom-notifications />
       </OverlayBadge>
     </template>
 
-    <!-- Xlarge вариант -->
+    <!-- Xlarge -->
     <template #xlarge-default>
       <OverlayBadge value="35" severity="warn" size="xlarge">
         <i-custom-notifications />
       </OverlayBadge>
     </template>
 
-    <!-- Large вариант -->
+    <!-- Large -->
     <template #large-default>
       <OverlayBadge value="35" severity="success" size="large">
         <i-custom-notifications />
       </OverlayBadge>
     </template>
 
-    <!-- Small вариант -->
+    <!-- Small -->
     <template #small-default>
       <OverlayBadge value="35" severity="info" size="small">
         <i-custom-notifications />
       </OverlayBadge>
     </template>
 
-    <!-- Dot вариант -->
+    <!-- Dot -->
     <template #dot-default>
       <OverlayBadge severity="danger">
         <i-custom-notifications />
       </OverlayBadge>
     </template>
 
-    <!-- Avatar вариант -->
+    <!-- Avatar -->
     <template #avatar-default>
       <Avatar
         :label="getInitialsHelper('Линус Бенедикт Торвальдс')"
@@ -60,7 +60,7 @@ const badgeVariants = [
         shape="circle" />
     </template>
 
-    <!-- Avatar with Badge вариант -->
+    <!-- Avatar with Badge -->
     <template #avatar-with-badge-default>
       <OverlayBadge value="4" severity="danger">
         <Avatar
@@ -69,7 +69,7 @@ const badgeVariants = [
           shape="circle" />
       </OverlayBadge>
     </template>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss" scoped></style>

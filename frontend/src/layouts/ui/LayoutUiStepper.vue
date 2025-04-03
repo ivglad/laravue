@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <UiLayoutDisplay title="Stepper">
+  <LayoutUiTemplate title="Stepper">
     <div class="content">
       <Stepper :value="1" class="app-stepper">
         <StepList>
@@ -34,7 +34,7 @@
         </StepPanels>
       </Stepper>
     </div>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss" scoped>

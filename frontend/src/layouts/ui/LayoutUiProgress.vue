@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <UiLayoutDisplay title="Progress">
+  <LayoutUiTemplate title="Progress">
     <div class="content">
       <div class="progress">
         <ProgressBar
@@ -11,7 +11,7 @@
         <ProgressSpinner class="app-progressspinner" fill="transparent" />
       </div>
     </div>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss" scoped>

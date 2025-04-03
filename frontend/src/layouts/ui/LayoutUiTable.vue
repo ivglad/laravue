@@ -28,7 +28,7 @@ const totalSelectedRows = ref(null)
 const selectedCustomer = ref(null)
 const selectedCustomerExpandedRows = ref({})
 const onSelectedRows = (rows) => {
-  totalSelectedRows.value = rows.length
+  totalSelectedRows.value = rows?.length ?? 0
 }
 
 const paginatorDropdownStyle = {
@@ -44,13 +44,15 @@ const paginatorDropdownStyle = {
 </script>
 
 <template>
-  <UiLayoutDisplay title="Table">
+  <LayoutUiTemplate title="Table">
     <div class="content">
       <div class="table">
         <DataTable
           v-model:selection="selectedCustomer"
           v-model:expandedRows="selectedCustomerExpandedRows"
           :value="customers"
+          selectionMode="multiple"
+          rowHover
           dataKey="id"
           :rows="10"
           :rowsPerPageOptions="[10, 20, 50]"
@@ -83,12 +85,6 @@ const paginatorDropdownStyle = {
           </ColumnGroup>
           <Column expander style="width: 5rem">
             <template #rowtoggleicon="{ rowExpanded }">
-              <!-- FIXME: recommended, but not working on 4.2.4 -->
-              <i-custom-arrow-right
-                :style="rowExpanded ? 'transform: rotate(90deg);' : ''" />
-            </template>
-            <!-- FIXME: deprecated -->
-            <template #rowtogglericon="{ rowExpanded }">
               <i-custom-arrow-right
                 :style="rowExpanded ? 'transform: rotate(90deg);' : ''" />
             </template>
@@ -130,7 +126,7 @@ const paginatorDropdownStyle = {
         </DataTable>
       </div>
     </div>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss" scoped>

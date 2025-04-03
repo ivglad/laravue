@@ -7,18 +7,18 @@ const switchVariants = ['Default']
 </script>
 
 <template>
-  <UiLayoutDisplay
+  <LayoutUiTemplate
     title="Switches"
     :states="switchStates"
     :variants="switchVariants">
-    <!-- Default вариант -->
+    <!-- Default -->
     <template #default-default>
       <ToggleSwitch v-model="switchesState" />
     </template>
     <template #default-disabled>
       <ToggleSwitch v-model="switchesState" disabled />
     </template>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss" scoped></style>

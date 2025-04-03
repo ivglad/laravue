@@ -5,8 +5,8 @@ const chipVariants = ['Default', 'Removable', 'Icon']
 </script>
 
 <template>
-  <UiLayoutDisplay title="Chips" :states="chipStates" :variants="chipVariants">
-    <!-- Default вариант -->
+  <LayoutUiTemplate title="Chips" :states="chipStates" :variants="chipVariants">
+    <!-- Default -->
     <template #default-default>
       <Chip label="Chip">
         <template #removeicon>
@@ -22,7 +22,7 @@ const chipVariants = ['Default', 'Removable', 'Icon']
       </Chip>
     </template>
 
-    <!-- Removable вариант -->
+    <!-- Removable -->
     <template #removable-default>
       <Chip label="Chip" removable>
         <template #removeicon>
@@ -38,7 +38,7 @@ const chipVariants = ['Default', 'Removable', 'Icon']
       </Chip>
     </template>
 
-    <!-- Icon вариант -->
+    <!-- Icon -->
     <template #icon-default>
       <Chip class="app-chip" label="Линус Бенедикт Торвальдс" removable>
         <template #icon>
@@ -67,7 +67,7 @@ const chipVariants = ['Default', 'Removable', 'Icon']
         </template>
       </Chip>
     </template>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss" scoped></style>

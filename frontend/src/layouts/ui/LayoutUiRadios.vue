@@ -7,11 +7,11 @@ const radioVariants = ['Large', 'Default', 'Small']
 </script>
 
 <template>
-  <UiLayoutDisplay
+  <LayoutUiTemplate
     title="Radios"
     :states="radioStates"
     :variants="radioVariants">
-    <!-- Large вариант -->
+    <!-- Large -->
     <template #large-default>
       <RadioButton
         v-model="radioState"
@@ -28,7 +28,7 @@ const radioVariants = ['Large', 'Default', 'Small']
         disabled />
     </template>
 
-    <!-- Default вариант -->
+    <!-- Default -->
     <template #default-default>
       <label class="app-radio">
         <RadioButton v-model="radioState" value="Radio 2" name="radios" />
@@ -50,7 +50,7 @@ const radioVariants = ['Large', 'Default', 'Small']
       </label>
     </template>
 
-    <!-- Small вариант -->
+    <!-- Small -->
     <template #small-default>
       <RadioButton
         v-model="radioState"
@@ -66,7 +66,7 @@ const radioVariants = ['Large', 'Default', 'Small']
         size="small"
         disabled />
     </template>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss" scoped></style>

@@ -13,7 +13,7 @@ const toggleButtonVariants = ['SelectButton', 'ToggleButton']
 </script>
 
 <template>
-  <UiLayoutDisplay
+  <LayoutUiTemplate
     title="SelectButton / ToggleButton"
     :states="toggleButtonStates"
     :variants="toggleButtonVariants">
@@ -48,7 +48,7 @@ const toggleButtonVariants = ['SelectButton', 'ToggleButton']
         </template>
       </ToggleButton>
     </template>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss" scoped></style>

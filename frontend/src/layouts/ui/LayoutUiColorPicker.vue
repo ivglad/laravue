@@ -7,11 +7,11 @@ const colorPickerVariants = ['Default', 'Inline']
 </script>
 
 <template>
-  <UiLayoutDisplay
+  <LayoutUiTemplate
     title="ColorPicker"
     :states="colorPickerStates"
     :variants="colorPickerVariants">
-    <!-- Default вариант -->
+    <!-- Default -->
     <template #default-default>
       <ColorPicker v-model="colorValue" />
     </template>
@@ -19,7 +19,7 @@ const colorPickerVariants = ['Default', 'Inline']
       <ColorPicker v-model="colorValue" disabled />
     </template>
 
-    <!-- Inline вариант -->
+    <!-- Inline -->
     <template #inline-default>
       <div>
         <ColorPicker v-model="colorValue" inline />
@@ -29,7 +29,7 @@ const colorPickerVariants = ['Default', 'Inline']
         </div>
       </div>
     </template>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss" scoped></style>

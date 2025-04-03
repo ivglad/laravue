@@ -7,11 +7,11 @@ const checkboxVariants = ['Large', 'Default', 'Small']
 </script>
 
 <template>
-  <UiLayoutDisplay
+  <LayoutUiTemplate
     title="Checkboxes"
     :states="checkboxStates"
     :variants="checkboxVariants">
-    <!-- Large вариант -->
+    <!-- Large -->
     <template #large-default>
       <Checkbox v-model="checkboxState" size="large" binary />
     </template>
@@ -19,7 +19,7 @@ const checkboxVariants = ['Large', 'Default', 'Small']
       <Checkbox v-model="checkboxState" size="large" binary disabled />
     </template>
 
-    <!-- Default вариант -->
+    <!-- Default -->
     <template #default-default>
       <label class="app-checkbox">
         <Checkbox v-model="checkboxState" binary />
@@ -43,14 +43,14 @@ const checkboxVariants = ['Large', 'Default', 'Small']
       </label>
     </template>
 
-    <!-- Small вариант -->
+    <!-- Small -->
     <template #small-default>
       <Checkbox v-model="checkboxState" size="small" binary />
     </template>
     <template #small-disabled>
       <Checkbox v-model="checkboxState" size="small" binary disabled />
     </template>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss" scoped></style>

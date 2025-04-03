@@ -56,7 +56,7 @@
   transition: $property $duration $timing-function $delay;
 }
 @mixin transition-enter(
-  $duration: calc(var(--p-transition-duration) - 0.5s),
+  $duration: calc(var(--p-transition-duration) - 0.1s),
   $delay: 0s,
   $timing-function: cubic-bezier(0.65, 0, 0.35, 1),
   $property: all

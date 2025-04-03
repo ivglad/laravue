@@ -37,6 +37,7 @@ const inputVariants = [
   'Password',
   'Textarea',
   'Number',
+  'Number buttons',
   'Currency',
   'Prefix Suffix',
   'Otp',
@@ -46,11 +47,11 @@ const inputVariants = [
 </script>
 
 <template>
-  <UiLayoutDisplay
+  <LayoutUiTemplate
     title="Inputs"
     :states="inputStates"
     :variants="inputVariants">
-    <!-- Small вариант -->
+    <!-- Small -->
     <template #default-small-default>
       <InputText
         v-model="inputState.value"
@@ -94,7 +95,7 @@ const inputVariants = [
       </div>
     </template>
 
-    <!-- Large вариант -->
+    <!-- Large -->
     <template #default-large-default>
       <InputText
         v-model="inputState.value"
@@ -110,7 +111,7 @@ const inputVariants = [
         disabled />
     </template>
 
-    <!-- FloatLabel вариант -->
+    <!-- FloatLabel -->
     <template #floatlabel-default>
       <FloatLabel class="app-input">
         <InputText
@@ -153,7 +154,7 @@ const inputVariants = [
       </FloatLabel>
     </template>
 
-    <!-- Password вариант -->
+    <!-- Password -->
     <template #password-default>
       <Password v-model="inputState.value" :feedback="false" toggleMask />
     </template>
@@ -186,7 +187,7 @@ const inputVariants = [
       </div>
     </template>
 
-    <!-- Textarea вариант -->
+    <!-- Textarea -->
     <template #textarea-default>
       <FloatLabel variant="on">
         <Textarea
@@ -217,7 +218,7 @@ const inputVariants = [
       </FloatLabel>
     </template>
 
-    <!-- Number вариант -->
+    <!-- Number -->
     <template #number-default>
       <InputNumber
         v-model="inputState.value"
@@ -225,7 +226,28 @@ const inputVariants = [
         locale="ru-RU" />
     </template>
 
-    <!-- Currency вариант -->
+    <!-- Number buttons -->
+    <template #number-buttons-default>
+      <InputNumber
+        v-model="inputState.value"
+        inputId="number-buttons-default"
+        showButtons
+        buttonLayout="horizontal"
+        :step="0.25"
+        mode="currency"
+        currency="USD"
+        locale="ru-RU"
+        fluid>
+        <template #incrementbuttonicon>
+          <i-custom-plus />
+        </template>
+        <template #decrementbuttonicon>
+          <i-custom-minus />
+        </template>
+      </InputNumber>
+    </template>
+
+    <!-- Currency -->
     <template #currency-default>
       <InputNumber
         v-model="inputState.value"
@@ -234,12 +256,12 @@ const inputVariants = [
         locale="ru-RU" />
     </template>
 
-    <!-- Prefix / Suffix вариант -->
+    <!-- Prefix / Suffix -->
     <template #prefix-suffix-default>
       <InputNumber v-model="inputState.value" suffix="℃" locale="ru-RU" />
     </template>
 
-    <!-- Otp вариант -->
+    <!-- Otp -->
     <template #otp-default>
       <InputOtp v-model="inputOtp.value" />
     </template>
@@ -250,7 +272,7 @@ const inputVariants = [
       <InputOtp v-model="inputOtp.value" :invalid="inputState.error.show" />
     </template>
 
-    <!-- Mask вариант -->
+    <!-- Mask -->
     <template #mask-default>
       <div class="app-input app-input-mask">
         <Message severity="secondary" variant="simple"> Телефон </Message>
@@ -291,7 +313,7 @@ const inputVariants = [
       </div>
     </template>
 
-    <!-- Custom вариант -->
+    <!-- Custom -->
     <template #custom-default>
       <div class="app-input app-input-help">
         <Message severity="secondary" variant="simple">
@@ -385,7 +407,7 @@ const inputVariants = [
         </Message>
       </div>
     </template>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss" scoped></style>

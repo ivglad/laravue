@@ -240,16 +240,16 @@ const popupVariants = [
 </script>
 
 <template>
-  <UiLayoutDisplay
+  <LayoutUiTemplate
     title="Popups / Dialogs"
     :states="popupStates"
     :variants="popupVariants">
-    <!-- Confirm Dialog вариант -->
+    <!-- Confirm Dialog -->
     <template #confirm-dialog-default>
       <Button label="Подтверждение" outlined @click="confirmDialog('bottom')" />
     </template>
 
-    <!-- Confirm Popup Save вариант -->
+    <!-- Confirm Popup Save -->
     <template #confirm-popup-save-default>
       <Button
         label="Сохранить"
@@ -258,7 +258,7 @@ const popupVariants = [
         @click="saveConfirmPopup($event)" />
     </template>
 
-    <!-- Confirm Popup Delete вариант -->
+    <!-- Confirm Popup Delete -->
     <template #confirm-popup-delete-default>
       <Button
         label="Удалить"
@@ -267,7 +267,7 @@ const popupVariants = [
         @click="deleteConfirmPopup($event)" />
     </template>
 
-    <!-- Dialog вариант -->
+    <!-- Dialog -->
     <template #dialog-default>
       <Button label="Посмотреть" outlined @click="dialogVisible = true" />
       <Dialog
@@ -293,7 +293,7 @@ const popupVariants = [
       </Dialog>
     </template>
 
-    <!-- Drawer вариант -->
+    <!-- Drawer -->
     <template #drawer-default>
       <Button label="Посмотреть" outlined @click="drawerVisible = true" />
       <Drawer v-model:visible="drawerVisible" class="app-drawer">
@@ -318,7 +318,7 @@ const popupVariants = [
       </Drawer>
     </template>
 
-    <!-- Dynamic Dialog вариант -->
+    <!-- Dynamic Dialog -->
     <template #dynamic-dialog-default>
       <Button
         label="Посмотреть"
@@ -327,7 +327,7 @@ const popupVariants = [
         @click="showComponent" />
     </template>
 
-    <!-- Popover вариант -->
+    <!-- Popover -->
     <template #popover-default>
       <Button type="button" label="Выбрать" @click="togglePopover" />
       <Popover ref="popover" class="app-popover">
@@ -341,7 +341,7 @@ const popupVariants = [
       </Popover>
     </template>
 
-    <!-- Menu вариант -->
+    <!-- Menu -->
     <template #menu-default>
       <Button
         variant="text"
@@ -364,7 +364,7 @@ const popupVariants = [
       </Menu>
     </template>
 
-    <!-- TieredMenu вариант -->
+    <!-- TieredMenu -->
     <template #tieredmenu-default>
       <Button
         variant="text"
@@ -379,7 +379,7 @@ const popupVariants = [
       <TieredMenu ref="tieredMenu" :model="tieredSettings" popup />
     </template>
 
-    <!-- Tooltip вариант -->
+    <!-- Tooltip -->
     <template #tooltip-default>
       <div class="tooltip">
         <InputText
@@ -391,7 +391,7 @@ const popupVariants = [
           placeholder="Наведите для информации" />
       </div>
     </template>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss" scoped>

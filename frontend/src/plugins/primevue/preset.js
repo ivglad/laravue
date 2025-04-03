@@ -1,46 +1,69 @@
-import { definePreset } from '@primevue/themes'
-import Aura from '@primevue/themes/aura'
+import Aura from '@primeuix/themes/aura'
 import components from './components'
 
 const Preset = definePreset(Aura, {
   primitive: {
-    app: {
-      color: {
-        primary: {
-          50: '#f9f9fe',
-          100: '#e1e1fb',
-          200: '#cac8f7',
-          300: '#b2b0f4',
-          400: '#9b98f0',
-          500: '#8380ed',
-          600: '#6f6dc9',
-          700: '#5c5aa6',
-          800: '#484682',
-          900: '#34335f',
-          950: '#21203b',
+    extend: {
+      app: {
+        /**
+         *  Основная и вспомогательная цветовая палитра приложения
+         */
+        color: {
+          primary: {
+            50: '#f9f9fe',
+            100: '#e1e1fb',
+            200: '#cac8f7',
+            300: '#b2b0f4',
+            400: '#9b98f0',
+            500: '#8380ed',
+            600: '#6f6dc9',
+            700: '#5c5aa6',
+            800: '#484682',
+            900: '#34335f',
+            950: '#21203b',
+          },
+          surface: {
+            light: {
+              0: '#ffffff',
+              50: '#f8f7fa',
+              100: '#e3deec',
+              200: '#c2bad0',
+              300: '#a79cbb',
+              400: '#8c7da7',
+              500: '#715f92',
+              600: '#60517c',
+              700: '#4f4366',
+              800: '#3e3450',
+              900: '#2d263a',
+              950: '#1c1825',
+            },
+            dark: {
+              0: '#ffffff',
+              50: '#f8f7fa',
+              100: '#e3deec',
+              200: '#c2bad0',
+              300: '#a79cbb',
+              400: '#8c7da7',
+              500: '#715f92',
+              600: '#60517c',
+              700: '#4f4366',
+              800: '#3e3450',
+              900: '#2d263a',
+              950: '#1c1825',
+            },
+          },
         },
-        surface: {
-          0: '#ffffff',
-          50: '#f8f7fa',
-          100: '#e3deec',
-          200: '#c2bad0',
-          300: '#a79cbb',
-          400: '#8c7da7',
-          500: '#715f92',
-          600: '#60517c',
-          700: '#4f4366',
-          800: '#3e3450',
-          900: '#2d263a',
-          950: '#1c1825',
+        disabled: {
+          color: '{surface.300}',
         },
+        fontSize: '1.4rem',
+        fontSizeSm: '1.2rem',
+        fontSizeLg: '1.6rem',
       },
-      disabled: {
-        color: '{surface.300}',
-      },
-      fontSize: '1.4rem',
-      fontSizeSm: '1.2rem',
-      fontSizeLg: '1.6rem',
     },
+    /**
+     *  Радиусы элементов приложения
+     */
     borderRadius: {
       none: '0',
       xs: '4px',
@@ -337,17 +360,6 @@ const Preset = definePreset(Aura, {
     },
   },
   semantic: {
-    transitionDuration: '0.2s',
-    focusRing: {
-      width: '1px',
-      style: 'solid',
-      color: '{primary.color}',
-      offset: '2px',
-      shadow: 'none',
-    },
-    disabledOpacity: '0.6',
-    iconSize: '2rem',
-    anchorGutter: '2px',
     primary: {
       50: '{app.color.primary.50}',
       100: '{app.color.primary.100}',
@@ -361,6 +373,17 @@ const Preset = definePreset(Aura, {
       900: '{app.color.primary.900}',
       950: '{app.color.primary.950}',
     },
+    transitionDuration: '0.2s',
+    focusRing: {
+      width: '1px',
+      style: 'solid',
+      color: '{primary.color}',
+      offset: '2px',
+      shadow: 'none',
+    },
+    disabledOpacity: '0.6',
+    iconSize: '2rem',
+    anchorGutter: '2px',
     formField: {
       paddingX: '1rem',
       paddingY: '0.75rem',
@@ -449,18 +472,18 @@ const Preset = definePreset(Aura, {
     colorScheme: {
       light: {
         surface: {
-          0: '{app.color.surface.0}',
-          50: '{app.color.surface.50}',
-          100: '{app.color.surface.100}',
-          200: '{app.color.surface.200}',
-          300: '{app.color.surface.300}',
-          400: '{app.color.surface.400}',
-          500: '{app.color.surface.500}',
-          600: '{app.color.surface.600}',
-          700: '{app.color.surface.700}',
-          800: '{app.color.surface.800}',
-          900: '{app.color.surface.900}',
-          950: '{app.color.surface.950}',
+          0: '{app.color.surface.light.0}',
+          50: '{app.color.surface.light.50}',
+          100: '{app.color.surface.light.100}',
+          200: '{app.color.surface.light.200}',
+          300: '{app.color.surface.light.300}',
+          400: '{app.color.surface.light.400}',
+          500: '{app.color.surface.light.500}',
+          600: '{app.color.surface.light.600}',
+          700: '{app.color.surface.light.700}',
+          800: '{app.color.surface.light.800}',
+          900: '{app.color.surface.light.900}',
+          950: '{app.color.surface.light.950}',
         },
         primary: {
           color: '{primary.500}',
@@ -574,18 +597,18 @@ const Preset = definePreset(Aura, {
       },
       dark: {
         surface: {
-          0: '#ffffff',
-          50: '#fafafa',
-          100: '#f4f4f5',
-          200: '#e4e4e7',
-          300: '#d4d4d8',
-          400: '#a1a1aa',
-          500: '#71717a',
-          600: '#52525b',
-          700: '#3f3f46',
-          800: '#27272a',
-          900: '#18181b',
-          950: '#09090b',
+          0: '{app.color.surface.dark.950}',
+          50: '{app.color.surface.dark.900}',
+          100: '{app.color.surface.dark.800}',
+          200: '{app.color.surface.dark.700}',
+          300: '{app.color.surface.dark.600}',
+          400: '{app.color.surface.dark.500}',
+          500: '{app.color.surface.dark.400}',
+          600: '{app.color.surface.dark.300}',
+          700: '{app.color.surface.dark.200}',
+          800: '{app.color.surface.dark.100}',
+          900: '{app.color.surface.dark.50}',
+          950: '{app.color.surface.dark.0}',
         },
         primary: {
           color: '{primary.400}',

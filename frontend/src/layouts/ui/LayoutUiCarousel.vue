@@ -51,7 +51,7 @@ const responsiveOptions = ref([
 </script>
 
 <template>
-  <UiLayoutDisplay title="Carousel">
+  <LayoutUiTemplate title="Carousel">
     <div class="content">
       <Carousel
         class="app-carousel"
@@ -91,7 +91,7 @@ const responsiveOptions = ref([
         </template>
       </Carousel>
     </div>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss" scoped></style>

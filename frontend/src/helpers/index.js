@@ -1,11 +1,9 @@
 // Сокращение имени до инициалов
 export const getInitialsHelper = (fullName, order = [1, 2]) => {
   if (typeof fullName !== 'string') {
-    console.warn('getInitialsHelper: fullName must be a string')
     return ''
   }
   if (typeof order !== 'object') {
-    console.warn('getInitialsHelper: order must be an array')
     order = [1, 2]
   }
   const names = fullName.trim().split(' ')

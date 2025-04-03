@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <UiLayoutDisplay title="Paginator">
+  <LayoutUiTemplate title="Paginator">
     <div class="content">
       <Paginator
         :rows="10"
@@ -16,7 +16,7 @@
         }">
       </Paginator>
     </div>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss" scoped>

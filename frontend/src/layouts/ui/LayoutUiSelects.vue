@@ -109,6 +109,7 @@ const selectStates = ['Default', 'Disabled', 'Invalid', 'Loading']
 const selectVariants = [
   'Default small',
   'Default',
+  'Default FloatLabel',
   'Default large',
   'Multiselect',
   'Multiselect Grouped',
@@ -117,11 +118,11 @@ const selectVariants = [
 </script>
 
 <template>
-  <UiLayoutDisplay
+  <LayoutUiTemplate
     title="Selects"
     :states="selectStates"
     :variants="selectVariants">
-    <!-- Small вариант -->
+    <!-- Small -->
     <template #default-small-default>
       <Select
         v-model="selectedCity"
@@ -131,7 +132,7 @@ const selectVariants = [
         placeholder="Выберите город" />
     </template>
 
-    <!-- Default вариант -->
+    <!-- Default -->
     <template #default-default>
       <Select
         v-model="selectedCity"
@@ -170,7 +171,19 @@ const selectVariants = [
       </Select>
     </template>
 
-    <!-- Large вариант -->
+    <!-- Default FloatLabel -->
+    <template #default-floatlabel-default>
+      <FloatLabel>
+        <Select
+          v-model="selectedCity"
+          inputId="default-floatlabel-default"
+          :options="cities"
+          optionLabel="label" />
+        <label for="default-floatlabel-default">Выберите город</label>
+      </FloatLabel>
+    </template>
+
+    <!-- Large -->
     <template #default-large-default>
       <Select
         v-model="selectedCity"
@@ -180,7 +193,7 @@ const selectVariants = [
         placeholder="Выберите город" />
     </template>
 
-    <!-- Multiselect вариант -->
+    <!-- Multiselect -->
     <template #multiselect-default>
       <MultiSelect
         v-model="selectedCities"
@@ -267,7 +280,7 @@ const selectVariants = [
       </MultiSelect>
     </template>
 
-    <!-- Multiselect Grouped вариант -->
+    <!-- Multiselect Grouped -->
     <template #multiselect-grouped-default>
       <MultiSelect
         v-model="selectedGroupedCities"
@@ -290,7 +303,7 @@ const selectVariants = [
       </MultiSelect>
     </template>
 
-    <!-- Multiselect Extended вариант -->
+    <!-- Multiselect Extended -->
     <template #multiselect-extended-default>
       <MultiSelect
         class="app-multiselect-extended"
@@ -329,7 +342,7 @@ const selectVariants = [
         </template>
       </MultiSelect>
     </template>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss">

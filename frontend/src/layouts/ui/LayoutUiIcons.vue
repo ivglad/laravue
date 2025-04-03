@@ -14,7 +14,7 @@ const dynamicIcons = {
 </script>
 
 <template>
-  <UiLayoutDisplay title="Icons">
+  <LayoutUiTemplate title="Icons">
     <div class="content">
       <div class="icons">
         <div class="row">
@@ -26,6 +26,7 @@ const dynamicIcons = {
           <i-custom-message-send />
           <i-custom-settings />
           <i-custom-plus />
+          <i-custom-minus />
           <i-custom-search />
           <i-custom-options />
           <i-custom-notifications />
@@ -48,7 +49,7 @@ const dynamicIcons = {
         </div>
       </div>
     </div>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss" scoped>

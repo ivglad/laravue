@@ -1,5 +1,78 @@
 <script setup>
-const primaryColorsStatic = [
+const LayoutUiButtons = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiButtons.vue'),
+)
+const LayoutUiInputs = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiInputs.vue'),
+)
+const LayoutUiAutocomplete = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiAutocomplete.vue'),
+)
+const LayoutUiSelects = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiSelects.vue'),
+)
+const LayoutUiSelectToggleButtons = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiSelectToggleButtons.vue'),
+)
+const LayoutUiDatePickers = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiDatePickers.vue'),
+)
+const LayoutUiCheckboxes = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiCheckboxes.vue'),
+)
+const LayoutUiRadios = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiRadios.vue'),
+)
+const LayoutUiSwitches = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiSwitches.vue'),
+)
+const LayoutUiFileUpload = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiFileUpload.vue'),
+)
+const LayoutUiPopups = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiPopups.vue'),
+)
+const LayoutUiChips = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiChips.vue'),
+)
+const LayoutUiBadges = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiBadges.vue'),
+)
+const LayoutUiTags = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiTags.vue'),
+)
+const LayoutUiColorPicker = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiColorPicker.vue'),
+)
+const LayoutUiTabs = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiTabs.vue'),
+)
+const LayoutUiAccordion = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiAccordion.vue'),
+)
+const LayoutUiPaginator = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiPaginator.vue'),
+)
+const LayoutUiStepper = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiStepper.vue'),
+)
+const LayoutUiCard = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiCard.vue'),
+)
+const LayoutUiCarousel = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiCarousel.vue'),
+)
+const LayoutUiTable = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiTable.vue'),
+)
+const LayoutUiTableTanstack = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiTableTanstack.vue'),
+)
+const LayoutUiProgress = defineAsyncComponent(() =>
+  import('@/layouts/ui/LayoutUiProgress.vue'),
+)
+
+const PRIMARY_COLORS = [
   'app.color.primary',
   'emerald',
   'green',
@@ -19,7 +92,7 @@ const primaryColorsStatic = [
   'pink',
   'rose',
 ]
-const surfaceColorsStatic = [
+const SURFACE_COLORS = [
   'app.color.surface',
   'slate',
   'gray',
@@ -27,33 +100,103 @@ const surfaceColorsStatic = [
   'neutral',
   'stone',
 ]
-const shadesStatic = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
+const COLOR_SHADES = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
 
-const getCssVariable = (str) => {
-  const tokens = str ?? str?.split('.')
-  return tokens?.length ? str.replace(/\./g, '-') : str
-}
 const getBackgroundColor = (color, shade = 400) => {
   return {
-    backgroundColor: `var(--p-${getCssVariable(color)}-${shade})`,
+    'background-color': $dt(`${color}.${shade}`)?.variable,
   }
 }
 
+const primaryPalette = ref({})
 const setPrimaryColor = (color) => {
-  const palette = Object.fromEntries(
-    shadesStatic.map((shade) => [shade, `{${getCssVariable(color)}.${shade}}`]),
+  primaryPalette.value = Object.fromEntries(
+    COLOR_SHADES.map((shade) => [shade, `{${color}.${shade}}`]),
   )
   updatePrimaryPalette({
-    light: palette,
+    light: primaryPalette.value,
   })
 }
+const surfacePalette = ref({})
 const setSurfaceColor = (color) => {
-  const palette = Object.fromEntries(
-    shadesStatic.map((shade) => [shade, `{${getCssVariable(color)}.${shade}}`]),
+  surfacePalette.value = Object.fromEntries(
+    COLOR_SHADES.map((shade) => [shade, `{${color}.${shade}}`]),
   )
   updateSurfacePalette({
-    light: palette,
+    light: surfacePalette.value,
   })
+}
+
+const updateLayoutsVisibility = ref(false)
+const isUpdatingLayouts = ref(false)
+const setLayoutsVisibility = async (value) => {
+  if (layouts.value.every((layout) => layout.selected === value)) {
+    return
+  }
+  isUpdatingLayouts.value = true
+
+  const updateLayoutsSequentially = async () => {
+    const layoutsToUpdate = [...layouts.value]
+    if (!value) {
+      layoutsToUpdate.reverse()
+    }
+    for (let i = 0; i < layoutsToUpdate.length; i++) {
+      if (layoutsToUpdate[i].selected !== value) {
+        layoutsToUpdate[i].selected = value
+
+        if (i < layoutsToUpdate.length - 1) {
+          await new Promise((resolve) => setTimeout(resolve, value ? 50 : 10))
+        }
+      }
+    }
+    isUpdatingLayouts.value = false
+  }
+
+  await updateLayoutsSequentially()
+}
+watch(() => updateLayoutsVisibility.value, setLayoutsVisibility)
+
+const layouts = ref([
+  { name: 'LayoutUiFonts', label: 'Fonts', selected: true },
+  { name: 'LayoutUiIcons', label: 'Icons', selected: true },
+  { name: 'LayoutUiColors', label: 'Colors', selected: true },
+  { name: 'LayoutUiButtons', label: 'Buttons', selected: true },
+  { name: 'LayoutUiInputs', label: 'Inputs', selected: true },
+  { name: 'LayoutUiAutocomplete', label: 'Autocomplete', selected: false },
+  { name: 'LayoutUiSelects', label: 'Selects', selected: false },
+  {
+    name: 'LayoutUiSelectToggleButtons',
+    label: 'Select / Toggle Buttons',
+    selected: false,
+  },
+  { name: 'LayoutUiDatePickers', label: 'DatePickers', selected: false },
+  { name: 'LayoutUiCheckboxes', label: 'Checkboxes', selected: false },
+  { name: 'LayoutUiRadios', label: 'Radios', selected: false },
+  { name: 'LayoutUiSwitches', label: 'Switches', selected: false },
+  { name: 'LayoutUiFileUpload', label: 'FileUpload', selected: false },
+  { name: 'LayoutUiPopups', label: 'Popups', selected: false },
+  { name: 'LayoutUiChips', label: 'Chips', selected: false },
+  { name: 'LayoutUiBadges', label: 'Badges', selected: false },
+  { name: 'LayoutUiTags', label: 'Tags', selected: false },
+  { name: 'LayoutUiBreadcrumb', label: 'Breadcrumb', selected: false },
+  { name: 'LayoutUiColorPicker', label: 'ColorPicker', selected: false },
+  { name: 'LayoutUiTabs', label: 'Tabs', selected: false },
+  { name: 'LayoutUiAccordion', label: 'Accordion', selected: false },
+  { name: 'LayoutUiPaginator', label: 'Paginator', selected: false },
+  { name: 'LayoutUiStepper', label: 'Stepper', selected: false },
+  { name: 'LayoutUiCard', label: 'Card', selected: false },
+  { name: 'LayoutUiCarousel', label: 'Carousel', selected: false },
+  { name: 'LayoutUiTable', label: 'Table', selected: false },
+  {
+    name: 'LayoutUiTableTanstack',
+    label: 'TableTanstack',
+    selected: false,
+  },
+  { name: 'LayoutUiProgress', label: 'Progress', selected: false },
+])
+
+const isComponentSelected = (componentName) => {
+  return layouts.value.find((item) => item.name === componentName).selected
 }
 </script>
 
@@ -65,7 +208,7 @@ const setSurfaceColor = (color) => {
         <div class="ui-header__primary">
           <span>Primary:</span>
           <div
-            v-for="color in primaryColorsStatic"
+            v-for="color in PRIMARY_COLORS"
             :key="color"
             class="ui-header__surface-color"
             :style="getBackgroundColor(color)"
@@ -74,7 +217,7 @@ const setSurfaceColor = (color) => {
         <div class="ui-header__surface">
           <span>Surface:</span>
           <div
-            v-for="color in surfaceColorsStatic"
+            v-for="color in SURFACE_COLORS"
             :key="color"
             class="ui-header__surface-color"
             :style="getBackgroundColor(color)"
@@ -88,64 +231,149 @@ const setSurfaceColor = (color) => {
     </Divider>
 
     <div class="ui-layouts">
-      <LayoutUiFonts />
+      <div class="ui-layouts-toggle">
+        <ToggleButton
+          v-model="updateLayoutsVisibility"
+          onLabel="Скрыть все"
+          offLabel="Показать все"
+          :disabled="isUpdatingLayouts" />
+        <div
+          class="ui-layout-toggle"
+          v-for="layout in layouts"
+          :key="layout.name">
+          <ToggleButton
+            v-model="layout.selected"
+            :onLabel="layout.label"
+            :offLabel="layout.label" />
+        </div>
+      </div>
 
-      <LayoutUiIcons />
+      <TransitionGroup
+        tag="div"
+        name="fade-group"
+        class="ui-layouts-components">
+        <LayoutUiFonts
+          v-if="isComponentSelected('LayoutUiFonts')"
+          key="LayoutUiFonts" />
 
-      <LayoutUiColors />
+        <LayoutUiIcons
+          v-if="isComponentSelected('LayoutUiIcons')"
+          key="LayoutUiIcons" />
 
-      <LayoutUiButtons />
+        <LayoutUiColors
+          v-if="isComponentSelected('LayoutUiColors')"
+          :primary-colors="PRIMARY_COLORS"
+          :surface-colors="SURFACE_COLORS"
+          :color-shades="COLOR_SHADES"
+          :primary-palette="primaryPalette"
+          :surface-palette="surfacePalette"
+          key="LayoutUiColors" />
 
-      <LayoutUiInputs />
+        <LayoutUiButtons
+          v-if="isComponentSelected('LayoutUiButtons')"
+          key="LayoutUiButtons" />
 
-      <LayoutUiAutocomplete />
+        <LayoutUiInputs
+          v-if="isComponentSelected('LayoutUiInputs')"
+          key="LayoutUiInputs" />
 
-      <LayoutUiSelects />
+        <LayoutUiAutocomplete
+          v-if="isComponentSelected('LayoutUiAutocomplete')"
+          key="LayoutUiAutocomplete" />
 
-      <LayoutUiSelectToggleButtons />
+        <LayoutUiSelects
+          v-if="isComponentSelected('LayoutUiSelects')"
+          key="LayoutUiSelects" />
 
-      <LayoutUiDatePickers />
+        <LayoutUiSelectToggleButtons
+          v-if="isComponentSelected('LayoutUiSelectToggleButtons')"
+          key="LayoutUiSelectToggleButtons" />
 
-      <LayoutUiCheckboxes />
+        <LayoutUiDatePickers
+          v-if="isComponentSelected('LayoutUiDatePickers')"
+          key="LayoutUiDatePickers" />
 
-      <LayoutUiRadios />
+        <LayoutUiCheckboxes
+          v-if="isComponentSelected('LayoutUiCheckboxes')"
+          key="LayoutUiCheckboxes" />
 
-      <LayoutUiSwitches />
+        <LayoutUiRadios
+          v-if="isComponentSelected('LayoutUiRadios')"
+          key="LayoutUiRadios" />
 
-      <LayoutUiFileUpload />
+        <LayoutUiSwitches
+          v-if="isComponentSelected('LayoutUiSwitches')"
+          key="LayoutUiSwitches" />
 
-      <LayoutUiPopups />
+        <LayoutUiFileUpload
+          v-if="isComponentSelected('LayoutUiFileUpload')"
+          key="LayoutUiFileUpload" />
 
-      <LayoutUiChips />
+        <LayoutUiPopups
+          v-if="isComponentSelected('LayoutUiPopups')"
+          key="LayoutUiPopups" />
 
-      <LayoutUiBadges />
+        <LayoutUiChips
+          v-if="isComponentSelected('LayoutUiChips')"
+          key="LayoutUiChips" />
 
-      <LayoutUiTags />
+        <LayoutUiBadges
+          v-if="isComponentSelected('LayoutUiBadges')"
+          key="LayoutUiBadges" />
 
-      <LayoutUiColorPicker />
+        <LayoutUiTags
+          v-if="isComponentSelected('LayoutUiTags')"
+          key="LayoutUiTags" />
 
-      <LayoutUiTabs />
+        <LayoutUiBreadcrumb
+          v-if="isComponentSelected('LayoutUiBreadcrumb')"
+          key="LayoutUiBreadcrumb" />
 
-      <LayoutUiAccordion />
+        <LayoutUiColorPicker
+          v-if="isComponentSelected('LayoutUiColorPicker')"
+          key="LayoutUiColorPicker" />
 
-      <LayoutUiPaginator />
+        <LayoutUiTabs
+          v-if="isComponentSelected('LayoutUiTabs')"
+          key="LayoutUiTabs" />
 
-      <LayoutUiStepper />
+        <LayoutUiAccordion
+          v-if="isComponentSelected('LayoutUiAccordion')"
+          key="LayoutUiAccordion" />
 
-      <LayoutUiCard />
+        <LayoutUiPaginator
+          v-if="isComponentSelected('LayoutUiPaginator')"
+          key="LayoutUiPaginator" />
 
-      <LayoutUiCarousel
-        v-animateonscroll="{
-          enterClass: 'animate-fadein',
-          leaveClass: 'animate-fadeout',
-        }"
-        style="transition-duration: 0.5s" />
+        <LayoutUiStepper
+          v-if="isComponentSelected('LayoutUiStepper')"
+          key="LayoutUiStepper" />
 
-      <LayoutUiTable />
+        <LayoutUiCard
+          v-if="isComponentSelected('LayoutUiCard')"
+          key="LayoutUiCard" />
 
-      <LayoutUiTableTanstack />
+        <LayoutUiCarousel
+          v-if="isComponentSelected('LayoutUiCarousel')"
+          v-animateonscroll="{
+            enterClass: 'animate-fadein',
+            leaveClass: 'animate-fadeout',
+          }"
+          style="transition-duration: 0.5s"
+          key="LayoutUiCarousel" />
 
-      <LayoutUiProgress />
+        <LayoutUiTable
+          v-if="isComponentSelected('LayoutUiTable')"
+          key="LayoutUiTable" />
+
+        <LayoutUiTableTanstack
+          v-if="isComponentSelected('LayoutUiTableTanstack')"
+          key="LayoutUiTableTanstack" />
+
+        <LayoutUiProgress
+          v-if="isComponentSelected('LayoutUiProgress')"
+          key="LayoutUiProgress" />
+      </TransitionGroup>
 
       <ScrollTop>
         <template #icon>
@@ -223,6 +451,22 @@ const setSurfaceColor = (color) => {
     gap: 2rem;
     width: 100%;
     max-width: 1200px;
+
+    &-toggle {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    &-components {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      width: 100%;
+    }
 
     &-group {
       display: flex;

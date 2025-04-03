@@ -4,6 +4,7 @@ const buttonStates = ['Default', 'Disabled', 'Loading']
 const buttonVariants = [
   'Primary small',
   'Primary',
+  'Primary with icon',
   'Primary large',
   'Secondary',
   'Success',
@@ -12,6 +13,7 @@ const buttonVariants = [
   'Contrast',
   'Outlined small',
   'Outlined',
+  'Outlined with icon',
   'Outlined large',
   'Outlined secondary',
   'Outlined success',
@@ -32,16 +34,16 @@ const setButtonLoading = (status) => {
 </script>
 
 <template>
-  <UiLayoutDisplay
+  <LayoutUiTemplate
     title="Buttons"
     :states="buttonStates"
     :variants="buttonVariants">
-    <!-- Primary small кнопки -->
+    <!-- Primary small -->
     <template #primary-small-default>
       <Button label="Кнопка" size="small" />
     </template>
 
-    <!-- Primary кнопки -->
+    <!-- Primary -->
     <template #primary-default>
       <Button label="Кнопка" @click="setButtonLoading(!buttonLoading)" />
     </template>
@@ -56,12 +58,21 @@ const setButtonLoading = (status) => {
       </Button>
     </template>
 
-    <!-- Primary large кнопки -->
+    <!-- Primary with icon -->
+    <template #primary-with-icon-default>
+      <Button label="Кнопка" @click="setButtonLoading(!buttonLoading)">
+        <template #icon>
+          <i-custom-settings class="app-button-icon-right" />
+        </template>
+      </Button>
+    </template>
+
+    <!-- Primary large -->
     <template #primary-large-default>
       <Button label="Кнопка" size="large" />
     </template>
 
-    <!-- Secondary кнопки -->
+    <!-- Secondary -->
     <template #secondary-default>
       <Button
         label="Кнопка"
@@ -79,32 +90,32 @@ const setButtonLoading = (status) => {
       </Button>
     </template>
 
-    <!-- Success кнопки -->
+    <!-- Success -->
     <template #success-default>
       <Button label="Кнопка" severity="success" />
     </template>
 
-    <!-- Warn кнопки -->
+    <!-- Warn -->
     <template #warn-default>
       <Button label="Кнопка" severity="warn" />
     </template>
 
-    <!-- Danger кнопки -->
+    <!-- Danger -->
     <template #danger-default>
       <Button label="Кнопка" severity="danger" />
     </template>
 
-    <!-- Contrast кнопки -->
+    <!-- Contrast -->
     <template #contrast-default>
       <Button label="Кнопка" severity="contrast" />
     </template>
 
-    <!-- Outlined small кнопки -->
+    <!-- Outlined small -->
     <template #outlined-small-default>
       <Button label="Кнопка" size="small" outlined />
     </template>
 
-    <!-- Outlined кнопки -->
+    <!-- Outlined -->
     <template #outlined-default>
       <Button
         label="Кнопка"
@@ -122,12 +133,21 @@ const setButtonLoading = (status) => {
       </Button>
     </template>
 
-    <!-- Outlined large кнопки -->
+    <!-- Outlined with icon -->
+    <template #outlined-with-icon-default>
+      <Button label="Кнопка" outlined>
+        <template #icon>
+          <i-custom-settings class="app-button-icon-right" />
+        </template>
+      </Button>
+    </template>
+
+    <!-- Outlined large -->
     <template #outlined-large-default>
       <Button label="Кнопка" size="large" outlined />
     </template>
 
-    <!-- Outlined secondary кнопки -->
+    <!-- Outlined secondary -->
     <template #outlined-secondary-default>
       <Button
         label="Кнопка"
@@ -150,27 +170,27 @@ const setButtonLoading = (status) => {
       </Button>
     </template>
 
-    <!-- Outlined success кнопки -->
+    <!-- Outlined success -->
     <template #outlined-success-default>
       <Button label="Кнопка" severity="success" outlined />
     </template>
 
-    <!-- Outlined warn кнопки -->
+    <!-- Outlined warn -->
     <template #outlined-warn-default>
       <Button label="Кнопка" severity="warn" outlined />
     </template>
 
-    <!-- Outlined danger кнопки -->
+    <!-- Outlined danger -->
     <template #outlined-danger-default>
       <Button label="Кнопка" severity="danger" outlined />
     </template>
 
-    <!-- Outlined contrast кнопки -->
+    <!-- Outlined contrast -->
     <template #outlined-contrast-default>
       <Button label="Кнопка" severity="contrast" outlined />
     </template>
 
-    <!-- Icon filled кнопки -->
+    <!-- Icon filled -->
     <template #icon-filled-default>
       <div class="button-group">
         <Button aria-label="options" rounded>
@@ -193,7 +213,7 @@ const setButtonLoading = (status) => {
       </Button>
     </template>
 
-    <!-- Icon outlined кнопки -->
+    <!-- Icon outlined -->
     <template #icon-outlined-default>
       <div class="button-group">
         <Button aria-label="plus" outlined rounded>
@@ -216,7 +236,7 @@ const setButtonLoading = (status) => {
       </Button>
     </template>
 
-    <!-- Icon outlined hover filled кнопки -->
+    <!-- Icon outlined hover filled -->
     <template #icon-outlined-hover-filled-default>
       <div class="button-group">
         <Button class="app-button-outlined-hover-fill" outlined rounded>
@@ -243,7 +263,7 @@ const setButtonLoading = (status) => {
       </Button>
     </template>
 
-    <!-- Icon кнопки -->
+    <!-- Icon -->
     <template #icon-default>
       <div class="button-group">
         <Button variant="text" rounded>
@@ -266,7 +286,7 @@ const setButtonLoading = (status) => {
       </Button>
     </template>
 
-    <!-- Text кнопки -->
+    <!-- Text -->
     <template #text-default>
       <div class="button-group">
         <Button label="Кнопка" variant="text" />
@@ -276,7 +296,7 @@ const setButtonLoading = (status) => {
     <template #text-disabled>
       <Button label="Кнопка" variant="text" disabled />
     </template>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss" scoped>

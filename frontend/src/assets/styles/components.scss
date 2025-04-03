@@ -2,6 +2,35 @@
 @use '@/assets/styles/mixins' as *;
 
 @layer app {
+  .app-button {
+    &-icon {
+      &-right {
+        order: 2;
+        & + .p-button-label {
+          order: 1;
+        }
+      }
+      &-left {
+        order: 1;
+        & + .p-button-label {
+          order: 2;
+        }
+      }
+      &-top {
+        order: 1;
+        & + .p-button-label {
+          order: 2;
+        }
+      }
+      &-bottom {
+        order: 2;
+        & + .p-button-label {
+          order: 1;
+        }
+      }
+    }
+  }
+
   .app-input {
     position: relative;
     display: flex;
@@ -122,6 +151,9 @@
   }
 
   .app-fileupload {
+    border-style: dashed;
+    border-width: 2px;
+    width: 40rem;
     &-file {
       display: flex;
       align-items: start;

@@ -1,4 +1,9 @@
-<script setup></script>
+<script setup>
+const isDarkMode = computed(() => {
+  return document.body.classList.contains('p-dark-mode')
+})
+provide('isDarkMode', isDarkMode)
+</script>
 
 <template>
   <Toast>

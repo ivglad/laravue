@@ -662,12 +662,10 @@ export default {
   progressspinner: {
     colorScheme: {
       light: {
-        root: {
-          'color.1': '{primary.color}',
-          'color.2': '{primary.color}',
-          'color.3': '{primary.color}',
-          'color.4': '{primary.color}',
-        },
+        'color.one': '{primary.color}',
+        'color.two': '{primary.color}',
+        'color.three': '{primary.color}',
+        'color.four': '{primary.color}',
       },
     },
   },

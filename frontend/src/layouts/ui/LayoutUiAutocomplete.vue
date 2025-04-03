@@ -21,11 +21,11 @@ const autocompleteVariants = ['Default input with icon', 'Autocomplete']
 </script>
 
 <template>
-  <UiLayoutDisplay
+  <LayoutUiTemplate
     title="AutoComplete"
     :states="autocompleteStates"
     :variants="autocompleteVariants">
-    <!-- Default вариант -->
+    <!-- Default -->
     <template #default-input-with-icon-default>
       <IconField>
         <InputIcon class="pe-none">
@@ -43,7 +43,7 @@ const autocompleteVariants = ['Default input with icon', 'Autocomplete']
       </IconField>
     </template>
 
-    <!-- Autocomplete вариант -->
+    <!-- Autocomplete -->
     <template #autocomplete-default
       ><IconField>
         <InputIcon class="pe-none">
@@ -79,7 +79,7 @@ const autocompleteVariants = ['Default input with icon', 'Autocomplete']
           </template>
         </AutoComplete> </IconField
     ></template>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss" scoped></style>

@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <UiLayoutDisplay title="Fonts">
+  <LayoutUiTemplate title="Fonts">
     <div class="content">
       <div>
         <div class="row">
@@ -41,7 +41,7 @@
         </div>
       </div>
     </div>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss" scoped>

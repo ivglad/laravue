@@ -1,6 +1,6 @@
 <script setup>
 const toast = useToast()
-const onUpload = () => {
+const onUploadMessage = () => {
   toast.add({
     severity: 'success',
     summary: 'Успешно',
@@ -8,7 +8,7 @@ const onUpload = () => {
     life: 3000,
   })
 }
-const onErrorUpload = (e) => {
+const onErrorUploadMessage = (e) => {
   upsertUploadErrorFiles(e.files)
   toast.add({
     severity: 'error',
@@ -28,11 +28,8 @@ const upsertUploadErrorFiles = (files) => {
   uploadErrorFiles.value.push(...files)
 }
 
-const onRemoveFile = (file, removeFileCallback, index) => {
+const onRemoveFile = (removeFileCallback, index) => {
   removeFileCallback(index)
-}
-const uploadEvent = (callback) => {
-  callback()
 }
 
 // Определение вариантов и состояний для загрузки файлов
@@ -41,11 +38,11 @@ const fileUploadVariants = ['Default']
 </script>
 
 <template>
-  <UiLayoutDisplay
+  <LayoutUiTemplate
     title="File upload"
     :states="fileUploadStates"
     :variants="fileUploadVariants">
-    <!-- Default вариант -->
+    <!-- Default -->
     <template #default-default>
       <FileUpload
         name="requestParameter[]"
@@ -54,25 +51,26 @@ const fileUploadVariants = ['Default']
         pt:header:class="app-fileupload-header"
         pt:content:class="app-fileupload-content"
         pt:empty:class="app-fileupload-empty"
-        invalidFileSizeMessage="Размер файла не должен превышать 1 МБ"
-        invalidFileLimitMessage="Количество загружаемых файлов не должно превышать 10"
-        invalidFileTypeMessage="Неправильный тип файла"
+        invalidFileSizeMessage="{0}:Размер файла не должен превышать {1}"
+        invalidFileLimitMessage="Количество загружаемых файлов не должно превышать {0}"
+        invalidFileTypeMessage="{0}:Неправильный тип файла"
         :fileLimit="10"
         accept="image/*"
         :maxFileSize="1000000"
         multiple
         :showCancelButton="false"
-        @upload="onUpload($event)"
-        @error="onErrorUpload($event)">
+        :showUploadButton="false"
+        @upload="onUploadMessage($event)"
+        @error="onErrorUploadMessage($event)">
         <template #empty>
-          <span>Перетащите файлы сюда <br />или выберите вручную</span>
+          <span>Перетащите файлы сюда или выберите вручную</span>
         </template>
         <template #header="{ chooseCallback, uploadCallback, files }">
-          <Button label="Прикрепить" @click="chooseCallback()" />
-          <Button
-            label="Загрузить"
-            :disabled="!files || files.length === 0"
-            @click="uploadEvent(uploadCallback)" />
+          <Button label="Прикрепить" @click="chooseCallback">
+            <template #icon>
+              <i-custom-plus class="app-button-icon-right" />
+            </template>
+          </Button>
         </template>
         <template
           #content="{
@@ -86,10 +84,11 @@ const fileUploadVariants = ['Default']
             v-for="message of messages"
             :key="message"
             size="small"
-            severity="error">
+            severity="error"
+            closable>
             {{ message }}
           </Message>
-          <div v-if="files.length > 0" class="app-fileupload-files">
+          <div v-if="files?.length" class="app-fileupload-files">
             <div
               class="app-fileupload-file"
               v-for="(file, index) of files"
@@ -103,22 +102,22 @@ const fileUploadVariants = ['Default']
                   }">
                   {{ file.name }}
                 </span>
-                <Message severity="secondary" variant="simple" size="small">{{
-                  formatSizeHelper(file.size)
-                }}</Message>
+                <Message severity="secondary" variant="simple" size="small">
+                  {{ formatSizeHelper(file.size) }}
+                </Message>
               </div>
               <Button
                 variant="text"
                 severity="secondary"
                 rounded
-                @click="onRemoveFile(file, removeFileCallback, index)">
+                @click="onRemoveFile(removeFileCallback, index)">
                 <template #icon>
                   <i-custom-close />
                 </template>
               </Button>
             </div>
           </div>
-          <div v-if="uploadedFiles.length > 0">
+          <div v-if="uploadedFiles?.length">
             <div
               class="app-fileupload-file"
               v-for="(file, index) of uploadedFiles"
@@ -132,9 +131,9 @@ const fileUploadVariants = ['Default']
                   }">
                   {{ file.name }}
                 </span>
-                <Message severity="secondary" variant="simple" size="small">{{
-                  formatSizeHelper(file.size)
-                }}</Message>
+                <Message severity="secondary" variant="simple" size="small">
+                  {{ formatSizeHelper(file.size) }}
+                </Message>
               </div>
 
               <Badge
@@ -159,7 +158,7 @@ const fileUploadVariants = ['Default']
         </template>
       </FileUpload>
     </template>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss" scoped></style>

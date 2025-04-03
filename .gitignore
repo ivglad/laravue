@@ -1,5 +1,7 @@
 /.idea
 /.vscode
+/.cursor
+/.cursorrules
 */node_modules
 */vendor
 

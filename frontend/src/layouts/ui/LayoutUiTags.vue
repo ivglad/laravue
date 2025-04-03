@@ -1,9 +1,9 @@
 <script setup></script>
 
 <template>
-  <UiLayoutDisplay title="Tags">
+  <LayoutUiTemplate title="Tags">
     <div class="content">
-      <div class="row">
+      <div class="tags">
         <Tag value="Primary"></Tag>
         <Tag severity="secondary" value="Secondary"></Tag>
         <Tag severity="success" value="Success"></Tag>
@@ -13,7 +13,11 @@
         <Tag severity="contrast" value="Contrast"></Tag>
       </div>
     </div>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.tags {
+  align-items: start;
+}
+</style>

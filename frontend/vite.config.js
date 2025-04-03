@@ -75,7 +75,7 @@ export default defineConfig({
       ],
       packagePresets: [
         'primevue',
-        '@primevue/themes',
+        '@primeuix/themes',
         '@primevue/core/api',
         '@primevue/forms/resolvers/zod',
         '@tanstack/vue-table',
@@ -119,7 +119,7 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         api: 'modern-compiler',
-        additionalData: `@use '@/assets/styles/index' as *;`,
+        additionalData: `@use '@/assets/styles/_index' as *;`,
       },
     },
   },

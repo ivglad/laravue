@@ -9,11 +9,11 @@ const datePickerVariants = ['Default', 'Range']
 </script>
 
 <template>
-  <UiLayoutDisplay
+  <LayoutUiTemplate
     title="DatePickers"
     :states="datePickerStates"
     :variants="datePickerVariants">
-    <!-- Default вариант -->
+    <!-- Default -->
     <template #default-default>
       <DatePicker
         v-model="date"
@@ -45,7 +45,7 @@ const datePickerVariants = ['Default', 'Range']
         :manualInput="false" />
     </template>
 
-    <!-- Range вариант -->
+    <!-- Range -->
     <template #range-default>
       <DatePicker
         v-model="dates"
@@ -56,7 +56,7 @@ const datePickerVariants = ['Default', 'Range']
         showButtonBar
         :manualInput="false" />
     </template>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss" scoped></style>

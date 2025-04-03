@@ -13,11 +13,11 @@ const accordionVariants = ['Accordion', 'Panel', 'Fieldset', 'ScrollPanel']
 </script>
 
 <template>
-  <UiLayoutDisplay
+  <LayoutUiTemplate
     title="Accordion / Panel / Fieldset"
     :states="accordionStates"
     :variants="accordionVariants">
-    <!-- Accordion вариант -->
+    <!-- Accordion -->
     <template #accordion-default>
       <Accordion :value="['0']" multiple>
         <template #expandicon>
@@ -71,7 +71,7 @@ const accordionVariants = ['Accordion', 'Panel', 'Fieldset', 'ScrollPanel']
       </Accordion>
     </template>
 
-    <!-- Panel вариант -->
+    <!-- Panel -->
     <template #panel-default>
       <Panel header="Заголовок" toggleable>
         <template #toggleicon="{ collapsed }">
@@ -91,7 +91,7 @@ const accordionVariants = ['Accordion', 'Panel', 'Fieldset', 'ScrollPanel']
       </Panel>
     </template>
 
-    <!-- Fieldset вариант -->
+    <!-- Fieldset -->
     <template #fieldset-default>
       <Fieldset legend="Заголовок" toggleable>
         <template #toggleicon="{ collapsed }">
@@ -111,7 +111,7 @@ const accordionVariants = ['Accordion', 'Panel', 'Fieldset', 'ScrollPanel']
       </Fieldset>
     </template>
 
-    <!-- ScrollPanel вариант -->
+    <!-- ScrollPanel -->
     <template #scrollpanel-default>
       <ScrollPanel class="scrollpanel">
         <span class="fw-semibold">ScrollPanel</span>
@@ -128,7 +128,7 @@ const accordionVariants = ['Accordion', 'Panel', 'Fieldset', 'ScrollPanel']
         </p>
       </ScrollPanel>
     </template>
-  </UiLayoutDisplay>
+  </LayoutUiTemplate>
 </template>
 
 <style lang="scss" scoped>

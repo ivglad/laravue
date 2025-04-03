@@ -2,51 +2,43 @@
 @use '@/assets/styles/mixins' as *;
 
 @layer app {
+  // Single transition
   .fade-move,
   .fade-enter-active {
     @include transition-enter;
     user-select: none;
     pointer-events: none;
   }
-
   .fade-leave-active {
     @include transition;
     user-select: none;
     pointer-events: none;
   }
-
   .fade-enter-from,
   .fade-leave-to {
     opacity: 0;
   }
 
+  // Group transition
   .fade-group-move,
-  .fade-group-enter-active {
-    @include transition-enter;
-    user-select: none;
-    pointer-events: none;
-  }
-
+  .fade-group-enter-active,
   .fade-group-leave-active {
     @include transition;
-    user-select: none;
-    pointer-events: none;
   }
-
   .fade-group-enter-from,
   .fade-group-leave-to {
+    user-select: none;
+    pointer-events: none;
     opacity: 0;
-    transform: scale(0.95);
+    transform: scale(0.99);
+    transform-origin: 50% 50%;
   }
+  // .fade-group-leave-active {
+  // @include transition-enter;
+  // position: absolute;
+  // }
 
-  @for $i from 1 through 20 {
-    $delay: 0.15s * $i;
-    .fade-group-enter-active:nth-of-type(#{$i}),
-    .fade-group-leave-active:nth-of-type(#{$i}) {
-      transition-delay: $delay !important;
-    }
-  }
-
+  // Glitch animation
   .glitch {
     animation: glitch-paths 5s step-end infinite;
     &::before {
@@ -91,7 +83,6 @@
       animation: glitch-font 7s step-end infinite;
     }
   }
-
   @keyframes glitch-paths {
     0% {
       clip-path: polygon(
@@ -337,7 +328,6 @@
       clip-path: none;
     }
   }
-
   @keyframes glitch-opacity {
     0% {
       opacity: 0.1;
@@ -366,7 +356,6 @@
       opacity: 0;
     }
   }
-
   @keyframes glitch-movement {
     0% {
       top: -5px;
@@ -389,7 +378,6 @@
       left: 0px;
     }
   }
-
   @keyframes glitch-font {
     0% {
       opacity: 0.1;
