@@ -24,6 +24,12 @@ import { PrimeVueResolver } from '@primevue/auto-import-resolver'
 // ----------------------------------------------------------------------------
 
 // ----------------------------------------------------------------------------
+// Motion
+// ----------------------------------------------------------------------------
+import MotionResolver from 'motion-v/resolver'
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
 // PWA
 // ----------------------------------------------------------------------------
 import { VitePWA } from 'vite-plugin-pwa'
@@ -72,6 +78,9 @@ export default defineConfig({
         {
           zod: ['z'],
         },
+        {
+          motion: ['motion-v'],
+        },
       ],
       packagePresets: [
         'primevue',
@@ -97,6 +106,7 @@ export default defineConfig({
           customCollections: ['custom'],
         }),
         PrimeVueResolver(),
+        MotionResolver(),
       ],
       dts: true,
     }),

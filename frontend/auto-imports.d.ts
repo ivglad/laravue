@@ -465,6 +465,7 @@ declare global {
   const memo: typeof import('@tanstack/vue-table')['memo']
   const merge: typeof import('@primeuix/themes')['merge']
   const mix: typeof import('@primeuix/themes')['mix']
+  const motion-v: typeof import('motion')['motion-v']
   const nextTick: typeof import('vue')['nextTick']
   const noop: typeof import('@vueuse/core')['noop']
   const normalizeDate: typeof import('@vueuse/core')['normalizeDate']
@@ -1252,6 +1253,7 @@ declare module 'vue' {
     readonly memo: UnwrapRef<typeof import('@tanstack/vue-table')['memo']>
     readonly merge: UnwrapRef<typeof import('@primeuix/themes')['merge']>
     readonly mix: UnwrapRef<typeof import('@primeuix/themes')['mix']>
+    readonly motion-v: UnwrapRef<typeof import('motion')['motion-v']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly noop: UnwrapRef<typeof import('@vueuse/core')['noop']>
     readonly normalizeDate: UnwrapRef<typeof import('@vueuse/core')['normalizeDate']>
