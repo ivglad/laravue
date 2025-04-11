@@ -79,7 +79,9 @@ export const createCommandObservable = (command, args = [], options = {}) => {
         observer.next(`Команда выполнена успешно.`);
         observer.complete();
       } else {
-        observer.error(new Error(`Процесс завершился с кодом ${code}`));
+        observer.error(
+          new Error(`Процесс завершился с кодом ${code}\n${outputBuffer}`)
+        );
       }
     });
 
@@ -127,23 +129,42 @@ export const runInteractive = (command, args = [], options = {}) => {
   // Если терминал не поддерживает TTY, используем упрощенный вывод
   if (!process.stdout.isTTY) {
     return new Promise((resolve, reject) => {
+      let errorOutput = "";
+
       const child = spawn(command, args, {
         cwd: options.cwd || PROJECT_DIR,
-        stdio: "inherit",
+        stdio: ["inherit", "pipe", "pipe"],
         shell: true,
         ...options, // Другие опции, например env
+      });
+
+      // Сохраняем вывод stderr для отображения в случае ошибки
+      child.stderr.on("data", (data) => {
+        errorOutput += data.toString();
       });
 
       child.on("close", (code) => {
         if (code === 0) {
           resolve();
         } else {
-          reject(new Error(`Процесс завершился с кодом ${code}`));
+          reject(
+            new Error(
+              `Процесс завершился с кодом ${code}\n\nПодробности ошибки:\n${
+                errorOutput || "Нет дополнительной информации"
+              }`
+            )
+          );
         }
       });
 
       child.on("error", (err) => {
-        reject(err);
+        reject(
+          new Error(
+            `Ошибка выполнения: ${err.message}\n\nПодробности:\n${
+              errorOutput || "Нет дополнительной информации"
+            }`
+          )
+        );
       });
     });
   }
@@ -229,11 +250,13 @@ export const createInteractiveRunner = (initialText) => {
   };
 
   // Останавливает спиннер и показывает ошибку
-  const fail = (text) => {
+  const fail = (text, details = "") => {
     spinner.fail(text || spinner.text);
     const finalText = text || spinner.text;
+    const errorDetails = details ? `\n\nПодробности ошибки:\n${details}` : "";
+
     logUpdate(
-      `${COLOR.ERROR(`✗ ${finalText}`)}\n\n${outputLines
+      `${COLOR.ERROR(`✗ ${finalText}${errorDetails}`)}\n\n${outputLines
         .slice(-MAX_OUTPUT_LINES)
         .join("\n")}`
     );

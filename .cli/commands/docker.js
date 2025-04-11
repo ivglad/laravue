@@ -41,7 +41,9 @@ export const registerDockerCommands = (program) => {
           statusMessages,
         });
       } catch (error) {
-        console.error(COLOR.ERROR(error.message));
+        console.error(
+          COLOR.ERROR(`Ошибка при сборке Docker образов:\n${error.message}`)
+        );
       }
     });
 
@@ -78,7 +80,9 @@ export const registerDockerCommands = (program) => {
           statusMessages,
         });
       } catch (error) {
-        console.error(COLOR.ERROR(error.message));
+        console.error(
+          COLOR.ERROR(`Ошибка при запуске контейнеров:\n${error.message}`)
+        );
       }
     });
 
@@ -99,7 +103,9 @@ export const registerDockerCommands = (program) => {
           statusMessages,
         });
       } catch (error) {
-        console.error(COLOR.ERROR(error.message));
+        console.error(
+          COLOR.ERROR(`Ошибка при остановке контейнеров:\n${error.message}`)
+        );
       }
     });
 
@@ -116,7 +122,9 @@ export const registerDockerCommands = (program) => {
           statusMessages,
         });
       } catch (error) {
-        console.error(COLOR.ERROR(error.message));
+        console.error(
+          COLOR.ERROR(`Ошибка при запуске контейнеров:\n${error.message}`)
+        );
       }
     });
 
@@ -136,7 +144,9 @@ export const registerDockerCommands = (program) => {
           statusMessages,
         });
       } catch (error) {
-        console.error(COLOR.ERROR(error.message));
+        console.error(
+          COLOR.ERROR(`Ошибка при остановке контейнеров:\n${error.message}`)
+        );
       }
     });
 
@@ -157,7 +167,9 @@ export const registerDockerCommands = (program) => {
           statusMessages,
         });
       } catch (error) {
-        console.error(COLOR.ERROR(error.message));
+        console.error(
+          COLOR.ERROR(`Ошибка при перезапуске контейнеров:\n${error.message}`)
+        );
       }
     });
 
@@ -174,7 +186,11 @@ export const registerDockerCommands = (program) => {
           statusMessages,
         });
       } catch (error) {
-        console.error(COLOR.ERROR(error.message));
+        console.error(
+          COLOR.ERROR(
+            `Ошибка при проверке статуса контейнеров:\n${error.message}`
+          )
+        );
       }
     });
 
@@ -200,7 +216,9 @@ export const registerDockerCommands = (program) => {
           }
         );
       } catch (error) {
-        console.error(COLOR.ERROR(error.message));
+        console.error(
+          COLOR.ERROR(`Ошибка при очистке Docker ресурсов:\n${error.message}`)
+        );
       }
     });
 };
