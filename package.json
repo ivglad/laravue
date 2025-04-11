@@ -1,0 +1,31 @@
+{
+  "name": "laravue-cli",
+  "version": "1.0.0",
+  "description": "CLI утилита для управления проектом LaraVue",
+  "main": "cli.js",
+  "type": "module",
+  "bin": {
+    "laravue": "./cli.js",
+    "lv": "./cli.js"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
+    "listr": "^0.14.3",
+    "log-update": "^6.1.0",
+    "ora": "^8.2.0",
+    "rxjs": "^7.8.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "chmod +x cli.js"
+  },
+  "keywords": [
+    "cli",
+    "laravel",
+    "vue",
+    "docker"
+  ],
+  "author": "@ivglad",
+  "license": "MIT"
+}

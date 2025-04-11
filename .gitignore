@@ -2,10 +2,13 @@
 /.vscode
 /.cursor
 /.cursorrules
-*/node_modules
-*/vendor
+**/node_modules
+**/vendor
 
 /.docker/*/data/*
 /.docker/*/logs/*
 
-/.env
+**/package-lock.json
+
+/.envauto-imports.d.ts
+components.d.ts

@@ -30,6 +30,7 @@ define BACKEND_COMMANDS
   term    - Открыть консоль бэкенда
   logs    - Посмотреть логи бэкенда
   clear   - Очистка кэша приложения
+  routes  - Отображение маршрутов приложения
 endef
 export BACKEND_COMMANDS
 
@@ -38,6 +39,7 @@ define DB_COMMANDS
   seed    - Заполнение базы тестовыми данными
   reset   - Сброс базы данных и миграция
   fresh   - Пересоздание таблиц с миграцией
+  dump    - Создание дампа базы данных (DB_TYPE=mysql|postgres DUMP_PATH=./path)
 endef
 export DB_COMMANDS
 
@@ -122,7 +124,7 @@ env: ## Установка переменных окружения
 	cp -n frontend/.env.example frontend/.env || echo "frontend/.env уже существует"
 
 .PHONY: install
-install: env d-build db-migrate db-seed ## Полная установка проекта
+install: env d-build db-migrate db-seed ## Полная установка проекта (Docker)
 	@echo "$(COLOR_SUCCESS)Проект установлен и готов к использованию!$(COLOR_RESET)"
 
 ##############################################################################
@@ -198,15 +200,6 @@ frontend: check-requirements ## Выполнение команд для фро�
 	elif [ "$(FRONTEND_ARGS)" = "build" ]; then \
 		echo "Сборка фронтенда..."; \
 		$(DOCKER_COMPOSE) exec frontend npm run build; \
-	elif [ "$(FRONTEND_ARGS)" = "lint" ]; then \
-		echo "Запуск линтера фронтенда..."; \
-		$(DOCKER_COMPOSE) exec frontend npm run lint; \
-	elif [ "$(FRONTEND_ARGS)" = "test" ]; then \
-		echo "Запуск тестов фронтенда..."; \
-		$(DOCKER_COMPOSE) exec frontend npm run test; \
-	elif [ "$(FRONTEND_ARGS)" = "format" ]; then \
-		echo "Форматирование кода фронтенда..."; \
-		$(DOCKER_COMPOSE) exec frontend npm run format; \
 	else \
 		echo "$(COLOR_ERROR)Неизвестная команда: $(FRONTEND_ARGS)$(COLOR_RESET)"; \
 		echo "Доступные команды:"; \
@@ -240,9 +233,6 @@ backend: check-requirements ## Выполнение команд для бэке
 		$(DOCKER_COMPOSE) exec backend php artisan config:clear; \
 		$(DOCKER_COMPOSE) exec backend php artisan route:clear; \
 		$(DOCKER_COMPOSE) exec backend php artisan view:clear; \
-	elif [ "$(BACKEND_ARGS)" = "test" ]; then \
-		echo "Запуск тестов бэкенда..."; \
-		$(DOCKER_COMPOSE) exec backend php artisan test; \
 	else \
 		echo "$(COLOR_ERROR)Неизвестная команда: $(BACKEND_ARGS)$(COLOR_RESET)"; \
 		echo "Доступные команды:"; \
@@ -273,6 +263,21 @@ db: check-requirements ## Выполнение команд для базы да
 	elif [ "$(DB_ARGS)" = "fresh" ]; then \
 		echo "Пересоздание таблиц с миграцией..."; \
 		$(DOCKER_COMPOSE) exec backend php artisan migrate:fresh; \
+	elif [ "$(DB_ARGS)" = "dump" ]; then \
+		echo "Создание дампа базы данных..."; \
+		DB_TYPE=$$(echo $$DB_TYPE | tr '[:upper:]' '[:lower:]' || echo "mysql"); \
+		DUMP_PATH=$$(echo $$DUMP_PATH || echo "."); \
+		if [ "$$DB_TYPE" = "mysql" ]; then \
+			echo "Создание дампа MySQL в $$DUMP_PATH..."; \
+			$(DOCKER_COMPOSE) exec db mysqldump -u$${MYSQL_USER:-root} -p$${MYSQL_PASSWORD:-password} $${MYSQL_DATABASE:-laravel} > "$$DUMP_PATH/mysql_dump_$$(date +%Y%m%d_%H%M%S).sql"; \
+		elif [ "$$DB_TYPE" = "postgres" ]; then \
+			echo "Создание дампа PostgreSQL в $$DUMP_PATH..."; \
+			$(DOCKER_COMPOSE) exec db pg_dump -U $${POSTGRES_USER:-postgres} $${POSTGRES_DB:-laravel} > "$$DUMP_PATH/postgres_dump_$$(date +%Y%m%d_%H%M%S).sql"; \
+		else \
+			echo "$(COLOR_ERROR)Неизвестный тип базы данных: $$DB_TYPE. Используйте mysql или postgres.$(COLOR_RESET)"; \
+			exit 1; \
+		fi; \
+		echo "Дамп базы данных создан в $$DUMP_PATH"; \
 	else \
 		echo "$(COLOR_ERROR)Неизвестная команда: $(DB_ARGS)$(COLOR_RESET)"; \
 		echo "Доступные команды:"; \
