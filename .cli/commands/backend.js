@@ -135,89 +135,11 @@ export const registerBackendCommands = (program) => {
             );
           }
 
-          runner.succeed("Зависимости для бэкенда успешно установлены");
+          runner.succeed("Зависимости бэкенда установлены");
         } catch (error) {
-          runner.fail(`Ошибка: ${error.message}`);
+          runner.fail(`Ошибка при установке зависимостей: ${error.message}`);
           throw error;
         }
-      } catch (error) {
-        console.error(COLOR.ERROR_SYMBOL(`Ошибка: ${error.message}`));
-        process.exit(1);
-      }
-    });
-
-  backend
-    .command("test")
-    .description("Запуск тестов для бэкенда")
-    .action(async () => {
-      try {
-        checkRequirements();
-
-        await runInteractive(
-          DOCKER_COMPOSE,
-          ["exec", "backend", "php", "artisan", "test"],
-          {
-            title: COLOR.HEADER("Запуск тестов для бэкенда"),
-            statusMessages: [
-              "Запуск тестов для бэкенда...",
-              "Инициализация тестовой среды...",
-              "Выполнение тестов...",
-              "Сбор результатов тестирования...",
-            ],
-          }
-        );
-      } catch (error) {
-        console.error(COLOR.ERROR_SYMBOL(`Ошибка: ${error.message}`));
-        process.exit(1);
-      }
-    });
-
-  backend
-    .command("lint")
-    .description("Проверка кода на соответствие стандартам")
-    .action(async () => {
-      try {
-        checkRequirements();
-
-        await runInteractive(
-          DOCKER_COMPOSE,
-          ["exec", "backend", "composer", "lint"],
-          {
-            title: COLOR.HEADER("Проверка кода бэкенда"),
-            statusMessages: [
-              "Проверка кода бэкенда...",
-              "Анализ исходных файлов...",
-              "Проверка соответствия стандартам PSR...",
-              "Поиск потенциальных проблем...",
-            ],
-          }
-        );
-      } catch (error) {
-        console.error(COLOR.ERROR_SYMBOL(`Ошибка: ${error.message}`));
-        process.exit(1);
-      }
-    });
-
-  backend
-    .command("fix")
-    .description("Автоматическое исправление стилей кода")
-    .action(async () => {
-      try {
-        checkRequirements();
-
-        await runInteractive(
-          DOCKER_COMPOSE,
-          ["exec", "backend", "composer", "fix"],
-          {
-            title: COLOR.HEADER("Исправление стилей кода"),
-            statusMessages: [
-              "Исправление стилей кода бэкенда...",
-              "Анализ исходных файлов...",
-              "Применение правил форматирования...",
-              "Автоматическое исправление проблем...",
-            ],
-          }
-        );
       } catch (error) {
         console.error(COLOR.ERROR_SYMBOL(`Ошибка: ${error.message}`));
         process.exit(1);
@@ -352,7 +274,7 @@ export const registerBackendCommands = (program) => {
 
           runner.succeed("Все типы кэша успешно очищены");
         } catch (error) {
-          runner.fail(`Ошибка: ${error.message}`);
+          runner.fail(`Ошибка при очистке кэша: ${error.message}`);
           throw error;
         }
       } catch (error) {

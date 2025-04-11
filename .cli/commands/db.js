@@ -124,7 +124,7 @@ export const registerDbCommands = (program) => {
     .option(
       "-t, --type <type>",
       "Тип базы данных (mysql или postgres)",
-      "postgres"
+      undefined
     )
     .option("-p, --path <path>", "Путь для сохранения дампа", ".")
     .action(async (options) => {
@@ -135,10 +135,6 @@ export const registerDbCommands = (program) => {
         runner.start();
 
         try {
-          const dbType = options.type.toLowerCase();
-          const dumpPath = options.path;
-          const timestamp = new Date().toISOString().replace(/[:.]/g, "_");
-
           // Получаем переменные окружения из backend/.env
           runner.setText(COLOR.PROCESS("Чтение конфигурации базы данных..."));
           runner.addOutputLine(
@@ -146,6 +142,22 @@ export const registerDbCommands = (program) => {
           );
 
           const backendEnv = await readEnvFile("backend/.env");
+
+          // Определяем тип БД из backend/.env файла, если не указан через параметры
+          let dbType = options.type;
+          if (!dbType) {
+            dbType = (backendEnv.DB_CONNECTION || "postgres").toLowerCase();
+            runner.addOutputLine(
+              COLOR.INFO_SYMBOL(
+                `Определен тип БД из .env: ${COLOR.VALUE(dbType)}`
+              )
+            );
+          } else {
+            dbType = dbType.toLowerCase();
+          }
+
+          const dumpPath = options.path;
+          const timestamp = new Date().toISOString().replace(/[:.]/g, "_");
 
           if (dbType === "mysql") {
             runner.setText(COLOR.PROCESS("Создание дампа MySQL..."));

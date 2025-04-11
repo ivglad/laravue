@@ -39,7 +39,7 @@ define DB_COMMANDS
   seed    - Заполнение базы тестовыми данными
   reset   - Сброс базы данных и миграция
   fresh   - Пересоздание таблиц с миграцией
-  dump    - Создание дампа базы данных (DB_TYPE=mysql|postgres DUMP_PATH=./path)
+  dump    - Создание дампа базы данных (автоопределение типа из backend/.env или DB_TYPE=mysql|postgres DUMP_PATH=./path)
 endef
 export DB_COMMANDS
 
@@ -265,8 +265,14 @@ db: check-requirements ## Выполнение команд для базы да
 		$(DOCKER_COMPOSE) exec backend php artisan migrate:fresh; \
 	elif [ "$(DB_ARGS)" = "dump" ]; then \
 		echo "Создание дампа базы данных..."; \
-		DB_TYPE=$$(echo $$DB_TYPE | tr '[:upper:]' '[:lower:]' || echo "mysql"); \
+		# Проверяем наличие ENV_VAR_DB_CONNECTION в backend/.env
+		if [ -f backend/.env ]; then \
+			DB_CONNECTION=$$(grep DB_CONNECTION backend/.env | cut -d '=' -f2 2>/dev/null); \
+		fi; \
+		# Если переменная DB_TYPE не задана, используем DB_CONNECTION или postgres по умолчанию
+		DB_TYPE=$$(echo $$DB_TYPE | tr '[:upper:]' '[:lower:]' || echo "$${DB_CONNECTION:-postgres}" | tr '[:upper:]' '[:lower:]'); \
 		DUMP_PATH=$$(echo $$DUMP_PATH || echo "."); \
+		echo "Используется тип базы данных: $$DB_TYPE"; \
 		if [ "$$DB_TYPE" = "mysql" ]; then \
 			echo "Создание дампа MySQL в $$DUMP_PATH..."; \
 			$(DOCKER_COMPOSE) exec db mysqldump -u$${MYSQL_USER:-root} -p$${MYSQL_PASSWORD:-password} $${MYSQL_DATABASE:-laravel} > "$$DUMP_PATH/mysql_dump_$$(date +%Y%m%d_%H%M%S).sql"; \
@@ -294,13 +300,6 @@ clean: ## Очистка временных файлов и артефактов
 	@echo "Очистка временных файлов..."
 	find . -name "*.tmp" -type f -delete
 	find . -name "*.log" -type f -delete
-
-.PHONY: distclean
-distclean: clean ## Удаление всех файлов, созданных при конфигурации или сборке
-	@echo "Удаление всех файлов, созданных при конфигурации или сборке..."
-	find . -name "*.cache" -type f -delete
-	find frontend -name "node_modules" -type d -exec rm -rf {} +
-	find backend -name "vendor" -type d -exec rm -rf {} +
 
 .PHONY: d-prune
 d-prune: check-requirements ## Очистка неиспользуемых Docker ресурсов

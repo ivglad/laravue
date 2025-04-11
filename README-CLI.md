@@ -168,10 +168,6 @@ lv db dump -t postgres -p ./backups
 # Очистка временных файлов
 laravue clean
 lv clean
-
-# Полная очистка
-laravue distclean
-lv distclean
 ```
 
 ## Сравнение с прямым использованием Make
@@ -188,25 +184,25 @@ lv distclean
 
 ## Особенности команды db dump
 
-Команда для создания дампа базы данных поддерживает два типа баз данных и настраиваемый путь для сохранения:
+Команда для создания дампа базы данных автоматически определяет тип БД из файла `backend/.env` (переменная `DB_CONNECTION`) и поддерживает настраиваемый путь для сохранения:
 
-- **Тип базы данных**: MySQL (по умолчанию) или PostgreSQL
+- **Тип базы данных**: Автоматически определяется из `backend/.env`. Если тип не указан, используется PostgreSQL. Можно явно указать через параметр.
 - **Путь для сохранения**: Можно указать произвольный путь (по умолчанию текущий каталог)
 
 ### Примеры использования:
 
 ```bash
-# Дамп MySQL (по умолчанию) в текущий каталог
+# Дамп базы данных на основе настроек в backend/.env в текущий каталог
 laravue db dump
 lv db dump
 
-# Дамп MySQL в указанный каталог
-laravue db dump --path ./backups
-lv db dump --path ./backups
-laravue db dump -p ./backups
-lv db dump -p ./backups
+# Дамп MySQL в указанный каталог (переопределяя автоматическое определение)
+laravue db dump --type mysql --path ./backups
+lv db dump --type mysql --path ./backups
+laravue db dump -t mysql -p ./backups
+lv db dump -t mysql -p ./backups
 
-# Дамп PostgreSQL в текущий каталог
+# Дамп PostgreSQL в текущий каталог (переопределяя автоматическое определение)
 laravue db dump --type postgres
 lv db dump --type postgres
 laravue db dump -t postgres
@@ -222,11 +218,14 @@ lv db dump -t postgres -p ./backups
 При использовании Makefile:
 
 ```bash
-# Дамп MySQL (по умолчанию) в текущий каталог
+# Дамп базы данных на основе настроек в backend/.env в текущий каталог
 make db dump
 
+# Дамп MySQL в текущий каталог (переопределяя автоматическое определение)
+DB_TYPE=mysql make db dump
+
 # Дамп MySQL в указанный каталог
-DUMP_PATH=./backups make db dump
+DB_TYPE=mysql DUMP_PATH=./backups make db dump
 
 # Дамп PostgreSQL в текущий каталог
 DB_TYPE=postgres make db dump
