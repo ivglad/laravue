@@ -1,226 +1,185 @@
-/**
- * Команды CLI для работы с Docker
- */
-import COLOR from "../utils/colors.js";
-import checkRequirements from "../utils/requirements.js";
-import { DOCKER_COMPOSE } from "../config.js";
+import inquirer from "inquirer";
+import { executeCommand } from "../utils/executor.js";
+import { COLORS, SYMBOLS, AVAILABLE_COMMANDS } from "../config.js";
 import {
-  runInteractive,
-  createInteractiveRunner,
-} from "../utils/interactive-runner.js";
+  checkRequirements,
+  displayRequirementsErrors,
+  getDockerComposeCommand,
+} from "../utils/validator.js";
 
 /**
- * Добавление команд для работы с Docker
- * @param {Command} program - Экземпляр программы Commander
+ * Регистрирует команды для работы с Docker
+ * @param {import('commander').Command} program - Экземпляр commander
  */
-export const registerDockerCommands = (program) => {
-  const docker = program
-    .command("docker")
-    .description("Команды для управления Docker");
+export function registerDockerCommands(program) {
+  const dockerCompose = getDockerComposeCommand();
 
-  docker
-    .command("build")
-    .description("Собрать образы Docker")
-    .argument("[service]", "Имя сервиса для сборки (по умолчанию - все)")
-    .action(async (service) => {
+  // Общая функция для проверки требований перед выполнением команд
+  const checkBeforeAction = async () => {
+    const requirements = checkRequirements();
+    if (!displayRequirementsErrors(requirements)) {
+      process.exit(1);
+    }
+    return true;
+  };
+
+  // Основная команда docker с интерактивным режимом
+  program
+    .command("docker [command]")
+    .description("Команды для работы с Docker")
+    .action(async (command) => {
       try {
-        const title = `Сборка ${service || "всех сервисов"}`;
-        const statusMessages = [
-          `Сборка ${service || "всех сервисов"}`,
-          `Подготовка контекста сборки для ${service || "всех сервисов"}`,
-          `Загрузка зависимостей для ${service || "всех сервисов"}`,
-          `Компиляция приложения для ${service || "всех сервисов"}`,
-          `Оптимизация образа для ${service || "всех сервисов"}`,
-        ];
+        await checkBeforeAction();
 
-        const args = ["build"];
-        if (service) args.push(service);
+        // Если команда не указана, предлагаем интерактивный выбор
+        if (!command) {
+          const choices = AVAILABLE_COMMANDS.DOCKER.map((cmd) => ({
+            name: `${cmd.name} - ${cmd.description}`,
+            value: cmd.name,
+          }));
 
-        await runInteractive(DOCKER_COMPOSE, args, {
-          title,
-          statusMessages,
-        });
-      } catch (error) {
-        console.error(
-          COLOR.ERROR(`Ошибка при сборке Docker образов:\n${error.message}`)
-        );
-      }
-    });
+          const { selectedCommand } = await inquirer.prompt([
+            {
+              type: "list",
+              name: "selectedCommand",
+              message: "Выберите Docker команду:",
+              choices,
+            },
+          ]);
 
-  docker
-    .command("up")
-    .description("Запустить все контейнеры")
-    .option(
-      "-d, --detach",
-      "Запустить в фоновом режиме (используется по умолчанию)"
-    )
-    .option("-i, --interactive", "Запустить в интерактивном режиме (без -d)")
-    .action(async (options) => {
-      try {
-        const title = "Запуск контейнеров";
-        const statusMessages = [
-          "Запуск контейнеров",
-          "Подготовка Docker окружения",
-          "Инициализация сервисов",
-          "Проверка сетевых подключений",
-        ];
-
-        // Параметры команды up
-        const upArgs = ["up"];
-
-        // По умолчанию используем detach режим, если только не указан --interactive
-        const useDetach = !options?.interactive;
-
-        if (useDetach) {
-          upArgs.push("-d");
+          command = selectedCommand;
         }
 
-        await runInteractive(DOCKER_COMPOSE, upArgs, {
-          title,
-          statusMessages,
-        });
+        // Обработка команды
+        switch (command) {
+          case "build":
+            // Для build запрашиваем дополнительную информацию о сервисе
+            const { service } = await inquirer.prompt([
+              {
+                type: "input",
+                name: "service",
+                message:
+                  "Введите имя сервиса для сборки (оставьте пустым для сборки всех сервисов):",
+                default: "",
+              },
+            ]);
+
+            if (service) {
+              await executeCommand(
+                `${dockerCompose} build ${service}`,
+                `Сборка сервиса ${service}`
+              );
+            } else {
+              await executeCommand(
+                `${dockerCompose} build`,
+                "Сборка всех сервисов"
+              );
+            }
+            break;
+
+          case "init":
+            const commands = [
+              {
+                command: "lv env",
+                description: "Установка переменных окружения",
+              },
+              {
+                command: `${dockerCompose} build`,
+                description: "Сборка Docker образов",
+              },
+            ];
+
+            for (const cmd of commands) {
+              const success = await executeCommand(
+                cmd.command,
+                cmd.description
+              );
+              if (!success) break;
+            }
+            break;
+
+          case "up":
+            await executeCommand(
+              `${dockerCompose} up -d`,
+              "Создание и запуск контейнеров"
+            );
+            break;
+
+          case "down":
+            await executeCommand(
+              `${dockerCompose} down`,
+              "Остановка и удаление контейнеров"
+            );
+            break;
+
+          case "start":
+            await executeCommand(
+              `${dockerCompose} start`,
+              "Запуск контейнеров"
+            );
+            break;
+
+          case "stop":
+            await executeCommand(
+              `${dockerCompose} stop`,
+              "Остановка контейнеров"
+            );
+            break;
+
+          case "restart":
+            await executeCommand(
+              `${dockerCompose} restart`,
+              "Перезапуск контейнеров"
+            );
+            break;
+
+          case "status":
+            await executeCommand(
+              `${dockerCompose} ps`,
+              "Проверка статуса контейнеров"
+            );
+            break;
+
+          case "prune":
+            // Запрос подтверждения перед удалением
+            const { confirmPrune } = await inquirer.prompt([
+              {
+                type: "confirm",
+                name: "confirmPrune",
+                message:
+                  "Это действие удалит все неиспользуемые Docker ресурсы (образы, контейнеры, сети и тома). Продолжить?",
+                default: false,
+              },
+            ]);
+
+            if (confirmPrune) {
+              await executeCommand(
+                "docker system prune -af --volumes",
+                "Очистка неиспользуемых Docker ресурсов"
+              );
+            } else {
+              console.log(
+                `${COLORS.INFO}${SYMBOLS.INFO} Операция отменена${COLORS.RESET}`
+              );
+            }
+            break;
+
+          default:
+            console.error(
+              `${COLORS.ERROR}${SYMBOLS.ERROR} Неизвестная команда: ${command}${COLORS.RESET}`
+            );
+            console.log("Доступные команды:");
+            AVAILABLE_COMMANDS.DOCKER.forEach((cmd) => {
+              console.log(`  ${cmd.name.padEnd(10)} - ${cmd.description}`);
+            });
+            process.exit(1);
+        }
       } catch (error) {
+        // Убираем обработку ExitPromptError, так как она теперь обрабатывается глобально
         console.error(
-          COLOR.ERROR(`Ошибка при запуске контейнеров:\n${error.message}`)
+          `${COLORS.ERROR}${SYMBOLS.ERROR} Ошибка: ${error.message}${COLORS.RESET}`
         );
+        process.exit(1);
       }
     });
-
-  docker
-    .command("down")
-    .description("Остановка и удаление контейнеров")
-    .action(async () => {
-      try {
-        const title = "Остановка и удаление контейнеров";
-        const statusMessages = [
-          "Остановка контейнеров",
-          "Удаление контейнеров",
-          "Очистка сетевых ресурсов",
-        ];
-
-        await runInteractive(DOCKER_COMPOSE, ["down"], {
-          title,
-          statusMessages,
-        });
-      } catch (error) {
-        console.error(
-          COLOR.ERROR(`Ошибка при остановке контейнеров:\n${error.message}`)
-        );
-      }
-    });
-
-  docker
-    .command("start")
-    .description("Запуск контейнеров")
-    .action(async () => {
-      try {
-        const title = "Запуск контейнеров";
-        const statusMessages = ["Запуск контейнеров", "Инициализация сервисов"];
-
-        await runInteractive(DOCKER_COMPOSE, ["start"], {
-          title,
-          statusMessages,
-        });
-      } catch (error) {
-        console.error(
-          COLOR.ERROR(`Ошибка при запуске контейнеров:\n${error.message}`)
-        );
-      }
-    });
-
-  docker
-    .command("stop")
-    .description("Остановка контейнеров")
-    .action(async () => {
-      try {
-        const title = "Остановка контейнеров";
-        const statusMessages = [
-          "Остановка контейнеров",
-          "Завершение работы сервисов",
-        ];
-
-        await runInteractive(DOCKER_COMPOSE, ["stop"], {
-          title,
-          statusMessages,
-        });
-      } catch (error) {
-        console.error(
-          COLOR.ERROR(`Ошибка при остановке контейнеров:\n${error.message}`)
-        );
-      }
-    });
-
-  docker
-    .command("restart")
-    .description("Перезапуск контейнеров")
-    .action(async () => {
-      try {
-        const title = "Перезапуск контейнеров";
-        const statusMessages = [
-          "Перезапуск контейнеров",
-          "Остановка сервисов",
-          "Инициализация сервисов",
-        ];
-
-        await runInteractive(DOCKER_COMPOSE, ["restart"], {
-          title,
-          statusMessages,
-        });
-      } catch (error) {
-        console.error(
-          COLOR.ERROR(`Ошибка при перезапуске контейнеров:\n${error.message}`)
-        );
-      }
-    });
-
-  docker
-    .command("status")
-    .description("Проверка статуса контейнеров")
-    .action(async () => {
-      try {
-        const title = "Проверка статуса контейнеров";
-        const statusMessages = ["Проверка статуса контейнеров"];
-
-        await runInteractive(DOCKER_COMPOSE, ["ps"], {
-          title,
-          statusMessages,
-        });
-      } catch (error) {
-        console.error(
-          COLOR.ERROR(
-            `Ошибка при проверке статуса контейнеров:\n${error.message}`
-          )
-        );
-      }
-    });
-
-  docker
-    .command("prune")
-    .description("Очистка неиспользуемых Docker ресурсов")
-    .action(async () => {
-      try {
-        const title = "Очистка неиспользуемых Docker ресурсов";
-        const statusMessages = [
-          "Очистка неиспользуемых Docker ресурсов",
-          "Удаление неиспользуемых образов",
-          "Удаление неиспользуемых томов",
-          "Удаление неиспользуемых сетей",
-        ];
-
-        await runInteractive(
-          "docker",
-          ["system", "prune", "-af", "--volumes"],
-          {
-            title,
-            statusMessages,
-          }
-        );
-      } catch (error) {
-        console.error(
-          COLOR.ERROR(`Ошибка при очистке Docker ресурсов:\n${error.message}`)
-        );
-      }
-    });
-};
-
-export default registerDockerCommands;
+}

@@ -1,363 +1,197 @@
-/**
- * Функции для выполнения команд в терминале
- */
-import { execSync, spawn } from "child_process";
-import path from "path";
-import logUpdate from "log-update";
-import COLOR from "./colors.js";
-import createSpinner from "./spinner.js";
-
-// Путь к проекту (по умолчанию текущий каталог)
-export const PROJECT_DIR = process.cwd();
+import { spawn } from "child_process";
+import ora from "ora";
+import { COLORS, SYMBOLS } from "../config.js";
 
 /**
- * Чтение переменных окружения из .env файла
- * @param {string} envPath - Путь к .env файлу
- * @returns {object} - Объект с переменными окружения
+ * Выполняет команду с отображением спиннера и форматированным выводом
+ * @param {string} command - Команда для выполнения
+ * @param {string} description - Описание команды для спиннера
+ * @param {Object} options - Дополнительные опции
+ * @param {boolean} options.shell - Выполнять в оболочке shell (по умолчанию true)
+ * @param {boolean} options.interactive - Интерактивная команда (по умолчанию false)
+ * @returns {Promise<boolean>} - Успешность выполнения команды
  */
-export const readEnvFile = async (envPath) => {
-  const { existsSync, readFileSync } = await import("fs");
-  const envVars = {};
+export function executeCommand(command, description, options = {}) {
+  const { shell = true, interactive = false } = options;
 
-  try {
-    const filePath = path.resolve(PROJECT_DIR, envPath);
-    if (existsSync(filePath)) {
-      const envContent = readFileSync(filePath, "utf8");
-      const lines = envContent.split("\n");
+  // Создаем спиннер для отображения прогресса
+  const spinner = ora({
+    text: `${description}...`,
+    color: "cyan",
+  }).start();
 
-      for (const line of lines) {
-        // Пропускаем комментарии и пустые строки
-        if (line.trim() === "" || line.trim().startsWith("#")) continue;
+  return new Promise((resolve) => {
+    // Разделяем команду на части
+    const [cmd, ...args] = interactive
+      ? [command]
+      : command.split(" ").filter(Boolean);
 
-        // Разбиваем строку на ключ и значение
-        const match = line.match(/^\s*([\w.-]+)\s*=\s*(.*)?\s*$/);
-        if (match) {
-          const key = match[1];
-          // Убираем кавычки в начале и конце, если они есть
-          let value = match[2] || "";
-          value = value.trim();
-          if (value.startsWith('"') && value.endsWith('"')) {
-            value = value.slice(1, -1);
-          } else if (value.startsWith("'") && value.endsWith("'")) {
-            value = value.slice(1, -1);
+    // Создаем процесс с наследованием stdio для интерактивного вывода
+    const proc = spawn(cmd, args, {
+      shell,
+      stdio: "pipe", // Всегда используем pipe для контроля вывода
+      env: process.env,
+    });
+
+    let stdout = "";
+    let stderr = "";
+    // Максимальное количество строк для отображения в интерактивном режиме
+    const maxLines = 15;
+
+    // Это Docker команда?
+    const isDockerCommand = command.includes("docker");
+
+    // Для обоих потоков (stdout и stderr) обновляем текст спиннера
+    proc.stdout.on("data", (data) => {
+      const output = data.toString();
+      stdout += output;
+
+      // Обновляем интерактивный вывод, показывая последние N строк
+      const lines = stdout.split("\n");
+      const lastLines = lines.slice(-maxLines).join("\n");
+
+      // Останавливаем спиннер и создаем новый для имитации обновления экрана
+      spinner.stop();
+      spinner.start(`${description}...\n${lastLines}`);
+    });
+
+    proc.stderr.on("data", (data) => {
+      const output = data.toString();
+      stderr += output;
+
+      // Обновляем интерактивный вывод, показывая последние N строк
+      const lines = stderr.split("\n");
+      const lastLines = lines.slice(-maxLines).join("\n");
+
+      // Останавливаем спиннер и создаем новый для имитации обновления экрана
+      spinner.stop();
+      spinner.start(`${description}...\n${lastLines}`);
+
+      // Для Docker команд добавляем stderr в stdout для полноты лога
+      if (isDockerCommand) {
+        stdout += output;
+      }
+    });
+
+    // Обработка завершения процесса
+    proc.on("close", (code) => {
+      if (code === 0) {
+        spinner.succeed(
+          `${description} ${COLORS.SUCCESS}${SYMBOLS.SUCCESS} Успешно${COLORS.RESET}`
+        );
+        resolve(true);
+      } else {
+        // Выводим полный лог ошибки и stdout
+        let errorOutput = "";
+
+        // Логика обработки для Docker-команд и других
+        if (isDockerCommand) {
+          // Для Docker команд ищем ошибки как в stderr, так и в stdout
+          // Соединяем оба потока, но пытаемся извлечь осмысленные части ошибок
+          let combinedOutput = "";
+
+          // Сначала проверяем stderr
+          if (stderr) {
+            combinedOutput += stderr;
           }
 
-          envVars[key] = value;
+          // Затем добавляем stdout, если он содержит информацию не из stderr
+          if (stdout) {
+            combinedOutput += (combinedOutput ? "\n" : "") + stdout;
+          }
+
+          // Извлекаем осмысленные строки
+          const cleanLines = combinedOutput
+            .split("\n")
+            .filter(
+              (line) =>
+                line.trim() &&
+                !line.includes("⠋") &&
+                !line.includes("⠙") &&
+                !line.includes("⠹") &&
+                !line.includes("⠸") &&
+                !line.includes("⠼") &&
+                !line.includes("⠴") &&
+                !line.includes("⠦") &&
+                !line.includes("⠧") &&
+                !line.includes("⠇") &&
+                !line.includes("⠏") &&
+                !line.includes("#") &&
+                !line.includes("DONE") &&
+                !line.includes("CACHED")
+            );
+
+          if (cleanLines.length > 0) {
+            errorOutput = cleanLines.join("\n");
+          }
+        } else {
+          // Стандартная обработка для не-Docker команд
+          // Проверяем stderr
+          if (stderr) {
+            const stderrLines = stderr
+              .split("\n")
+              .filter((line) => line.trim());
+            if (stderrLines.length > 0) {
+              errorOutput += stderrLines.join("\n");
+            }
+          }
+
+          // Проверяем stdout, если stderr пуст
+          if (stdout && (!errorOutput || errorOutput.length === 0)) {
+            const stdoutLines = stdout
+              .split("\n")
+              .filter((line) => line.trim());
+            if (stdoutLines.length > 0) {
+              errorOutput += (errorOutput ? "\n" : "") + stdoutLines.join("\n");
+            }
+          }
         }
+
+        spinner.fail(
+          `${COLORS.ERROR}Ошибка команды: ${command}${COLORS.RESET}`
+        );
+
+        if (errorOutput) {
+          console.error(`${COLORS.ERROR}${errorOutput}${COLORS.RESET}`);
+        } else {
+          // Если нет детальной информации, пробуем показать хоть что-то
+          console.error(
+            `${COLORS.ERROR}Выполнение команды завершилось с ошибкой. Код ошибки: ${code}${COLORS.RESET}`
+          );
+        }
+
+        resolve(false);
       }
-    } else {
-      console.warn(COLOR.WARNING(`Файл ${envPath} не найден`));
-    }
-  } catch (error) {
-    console.warn(
-      COLOR.WARNING(`Ошибка при чтении файла ${envPath}: ${error.message}`)
-    );
-  }
-
-  return envVars;
-};
-
-// --- Новая функция спиннера на основе log-update ---
-const spinnerFrames = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
-
-/**
- * Создает спиннер с использованием log-update для интерактивных команд
- * @param {string} initialText - Начальный текст
- * @param {string[]} statusMessages - Массив сообщений для циклического отображения (опционально)
- * @param {number} animationIntervalMs - Интервал анимации кадров спиннера (мс)
- * @param {number} statusUpdateIntervalMs - Интервал смены статусных сообщений (мс)
- * @returns {object} - Объект управления спиннером
- */
-const createLogUpdateSpinner = (
-  initialText,
-  statusMessages = null,
-  animationIntervalMs = 80,
-  statusUpdateIntervalMs = 2000
-) => {
-  let frameIndex = 0;
-  let statusIndex = 0;
-  let currentText = initialText;
-  let animationInterval = null;
-  let statusInterval = null;
-  let isActive = false;
-
-  const getSpinnerText = () => {
-    const frame = spinnerFrames[frameIndex % spinnerFrames.length];
-    return `${COLOR.INFO(frame)} ${currentText}`;
-  };
-
-  const render = () => {
-    if (isActive) {
-      logUpdate(getSpinnerText());
-    }
-  };
-
-  const start = () => {
-    if (isActive) return controller;
-    isActive = true;
-
-    // Обновление текста статуса (если есть)
-    if (
-      statusMessages &&
-      Array.isArray(statusMessages) &&
-      statusMessages.length > 0
-    ) {
-      currentText = `${statusMessages[statusIndex % statusMessages.length]}...`;
-      statusInterval = setInterval(() => {
-        statusIndex++;
-        currentText = `${
-          statusMessages[statusIndex % statusMessages.length]
-        }...`;
-        // Рендер произойдет в animationInterval
-      }, statusUpdateIntervalMs);
-    } else {
-      currentText = initialText; // Убедимся, что текст начальный
-    }
-
-    // Анимация кадров
-    animationInterval = setInterval(() => {
-      render(); // Рендерим текущий текст и кадр
-      frameIndex++;
-    }, animationIntervalMs);
-
-    render(); // Первый рендер
-    return controller;
-  };
-
-  const stop = () => {
-    if (!isActive) return;
-    clearInterval(animationInterval);
-    clearInterval(statusInterval);
-    animationInterval = null;
-    statusInterval = null;
-    isActive = false;
-  };
-
-  const clear = () => {
-    if (isActive) {
-      // Очищаем только если были активны
-      stop(); // Останавливаем интервалы перед очисткой
-    }
-    logUpdate.clear(); // Очищаем строку
-  };
-
-  const update = () => {
-    // Просто перерисовываем текущее состояние спиннера
-    // Полезно после clear() и вывода данных команды
-    if (isActive) {
-      render();
-    }
-  };
-
-  const succeed = (text) => {
-    const finalText =
-      text || (statusMessages && statusMessages[0]) || initialText;
-    clear(); // Остановит интервалы и очистит строку
-    console.log(COLOR.SUCCESS(`✓ ${finalText}`));
-  };
-
-  const fail = (text) => {
-    const finalText =
-      text || (statusMessages && statusMessages[0]) || initialText;
-    clear(); // Остановит интервалы и очистит строку
-    console.log(COLOR.ERROR(`✗ ${finalText}`));
-  };
-
-  // Метод для обновления текста спиннера извне
-  // (если не используются statusMessages)
-  const setText = (text) => {
-    currentText = text;
-    if (isActive && (!statusMessages || statusMessages.length === 0)) {
-      render(); // Обновляем сразу, если статус не циклический
-    }
-  };
-
-  const controller = {
-    start,
-    stop,
-    clear,
-    update,
-    succeed,
-    fail,
-    setText, // Добавляем setText
-    // Добавим геттер для текста, может пригодиться
-    get text() {
-      return currentText;
-    },
-  };
-  return controller;
-};
-// --- Конец новой функции спиннера ---
-
-/**
- * Выполнение команды оболочки (неинтерактивное)
- * Использует старый спиннер ora, если нужен (например, для silent)
- * @param {string} command - Команда для выполнения
- * @param {object} options - Опции для выполнения
- * @returns {string} Вывод команды
- */
-export const execCommand = (command, options = {}) => {
-  // Используем новый log-update спиннер и для execCommand
-  let spinnerControl = null;
-  const statusMessages = options.statusMessages || [`Выполнение: ${command}`];
-
-  // Запускаем спиннер только если не установлен режим silent
-  if (!options.silent) {
-    spinnerControl = createLogUpdateSpinner(statusMessages[0], statusMessages);
-    spinnerControl.start();
-  }
-
-  try {
-    const result = execSync(command, {
-      cwd: PROJECT_DIR,
-      // Для execSync 'pipe' подходит лучше всего для захвата вывода
-      stdio: "pipe",
-      encoding: "utf8",
-      ...options,
     });
 
-    // Выводим результат, если не silent
-    if (!options.silent && result) {
-      // Если спиннер был активен, очищаем его перед выводом
-      spinnerControl?.clear();
-      process.stdout.write(result);
-    }
-
-    // Показываем успех, если спиннер был активен
-    spinnerControl?.succeed();
-    return result || ""; // Возвращаем результат или пустую строку
-  } catch (error) {
-    // Показываем ошибку, если спиннер был активен
-    spinnerControl?.fail();
-
-    // Выводим stderr ошибки, если не silent
-    if (!options.silent) {
-      // Очистка не нужна, fail уже очистил
-      const errorMessage = error.stderr?.toString() || error.message;
-      // Используем console.error, так как logUpdate уже очищен
-      console.error(COLOR.ERROR(`Ошибка выполнения: ${errorMessage}`));
-    }
-
-    if (options.ignoreError) {
-      return "";
-    }
-    process.exit(1); // Выход остается
-  }
-};
-
-/**
- * Интерактивный запуск команды оболочки (использует log-update)
- * @param {string} command - Команда для выполнения
- * @param {string[]} args - Аргументы команды
- * @param {object} options - Дополнительные опции
- * @param {boolean} options.interactiveOutput - Если true, разрешает прямой доступ
- * к stdout/stderr для команд с интерактивным выводом (docker compose и т.д.)
- */
-export const spawnInteractive = (command, args = [], options = {}) => {
-  return new Promise((resolve, reject) => {
-    const commandStr = `${command} ${args.join(" ")}`;
-    const statusMessages = options.statusMessages || [
-      `Выполнение: ${commandStr}`,
-    ];
-
-    // Выбираем режим работы в зависимости от типа команды
-    const isInteractiveOutput = options.interactiveOutput === true;
-    let spinnerControl = null;
-
-    // Если команда не требует интерактивного вывода, используем log-update спиннер
-    if (!isInteractiveOutput) {
-      spinnerControl = createLogUpdateSpinner(
-        statusMessages[0],
-        statusMessages
+    // Обработка ошибок запуска процесса
+    proc.on("error", (err) => {
+      spinner.fail(
+        `${COLORS.ERROR}Ошибка запуска команды: ${command}${COLORS.RESET}`
       );
-      spinnerControl.start();
-    } else {
-      // Для интерактивных команд просто выводим стартовое сообщение
-      console.log(COLOR.INFO(`${statusMessages[0]}...`));
-    }
-
-    const child = spawn(command, args, {
-      cwd: PROJECT_DIR,
-      // Для интерактивных команд (docker compose и т.д.) используем inherit,
-      // чтобы они могли напрямую управлять выводом и обновлять статус на одной строке
-      stdio: isInteractiveOutput ? "inherit" : ["inherit", "pipe", "pipe"],
-      shell: true,
-      ...options, // Передаем остальные опции, например, env
-    });
-
-    // Если команда не интерактивная, перехватываем вывод и показываем спиннер
-    if (!isInteractiveOutput && child.stdout && child.stderr) {
-      // Обработка вывода stdout
-      child.stdout.on("data", (data) => {
-        spinnerControl.clear(); // Временно очищаем строку спиннера
-        process.stdout.write(data); // Выводим данные команды
-        spinnerControl.update(); // Перерисовываем спиннер над новыми данными
-      });
-
-      // Обработка вывода stderr
-      child.stderr.on("data", (data) => {
-        spinnerControl.clear(); // Временно очищаем строку спиннера
-        process.stderr.write(data); // Выводим данные ошибки
-        spinnerControl.update(); // Перерисовываем спиннер над новыми данными
-      });
-    }
-
-    child.on("close", (code) => {
-      if (code === 0) {
-        // Только для не-интерактивных команд показываем спиннер успеха
-        if (!isInteractiveOutput) {
-          spinnerControl.succeed();
-        } else {
-          // Для интерактивных команд просто выводим сообщение об успехе
-          console.log(COLOR.SUCCESS(`✓ ${statusMessages[0]}`));
-        }
-        resolve();
-      } else {
-        // Только для не-интерактивных команд показываем спиннер ошибки
-        if (!isInteractiveOutput) {
-          spinnerControl.fail();
-        } else {
-          // Для интерактивных команд просто выводим сообщение об ошибке
-          console.log(COLOR.ERROR(`✗ ${statusMessages[0]}`));
-        }
-        // Не нужно выводить доп. ошибку, stderr уже должен был вывести все
-        reject(new Error(`Процесс завершился с кодом ${code}`));
-      }
-    });
-
-    child.on("error", (err) => {
-      // Только для не-интерактивных команд показываем спиннер ошибки
-      if (!isInteractiveOutput) {
-        spinnerControl.fail();
-      } else {
-        // Для интерактивных команд просто выводим сообщение об ошибке
-        console.log(COLOR.ERROR(`✗ ${statusMessages[0]}`));
-      }
-      // Добавляем вывод ошибки для большей информативности
-      console.error(COLOR.ERROR(` Ошибка запуска процесса: ${err.message}`));
-      reject(err);
+      console.error(`${COLORS.ERROR}${err.message}${COLORS.RESET}`);
+      resolve(false);
     });
   });
-};
+}
 
 /**
- * Копирование файла, если он не существует
- * @param {string} source - Исходный файл
- * @param {string} destination - Файл назначения
- * @returns {boolean} - true если файл был скопирован, false если файл уже существовал
+ * Выполняет последовательность команд
+ * @param {Array<{command: string, description: string, options?: Object}>} commands - Массив команд
+ * @returns {Promise<boolean>} - Успешность выполнения всех команд
  */
-export const copyIfNotExists = async (source, destination) => {
-  try {
-    const fs = await import("fs/promises");
-    const { existsSync } = await import("fs");
+export async function executeSequence(commands) {
+  for (const cmd of commands) {
+    const success = await executeCommand(
+      cmd.command,
+      cmd.description,
+      cmd.options
+    );
 
-    if (!existsSync(destination)) {
-      await fs.copyFile(source, destination);
-      return true; // Файл был скопирован
-    } else {
-      return false; // Файл уже существовал
+    if (!success) {
+      return false;
     }
-  } catch (error) {
-    throw new Error(`Ошибка при копировании файла: ${error.message}`);
   }
-};
+
+  return true;
+}
