@@ -6,7 +6,7 @@ services:
     build:
       context: ./.docker/nginx
       dockerfile: Dockerfile
-    container_name: nginx-${DOCKER_PROJECT_NAME}
+    container_name: nginx-${DOCKER_PROJECT_NAME:-laravue}
     restart: unless-stopped
     tty: true
     volumes:
@@ -16,7 +16,21 @@ services:
     env_file:
       - ./.env
     networks:
-      - default
+      - frontend-network
+      - backend-network
+    depends_on:
+      - backend
+      - frontend
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1G
 
   ####################################################################################################
   # Vue
@@ -25,7 +39,7 @@ services:
     build:
       context: .
       dockerfile: .docker/frontend/Dockerfile
-    container_name: frontend-${DOCKER_PROJECT_NAME}
+    container_name: frontend-${DOCKER_PROJECT_NAME:-laravue}
     restart: unless-stopped
     volumes:
       - ./frontend:/var/www/frontend
@@ -33,7 +47,19 @@ services:
     env_file:
       - ./frontend/.env
     networks:
-      - default
+      - frontend-network
+    depends_on:
+      - backend
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 2G
 
   ####################################################################################################
   # Laravel
@@ -45,13 +71,27 @@ services:
       args:
         - UID=${UID:-1000}
         - GID=${GID:-1000}
-    container_name: backend-${DOCKER_PROJECT_NAME}
+    container_name: backend-${DOCKER_PROJECT_NAME:-laravue}
     restart: unless-stopped
     volumes:
       - ./backend:/var/www/backend
       - /var/www/backend/vendor
     env_file:
       - ./backend/.env
+    networks:
+      - backend-network
+    depends_on:
+      - db
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 4G
 
   ####################################################################################################
   # DB
@@ -60,7 +100,7 @@ services:
     build:
       context: .
       dockerfile: .docker/db/Dockerfile
-    container_name: db-${DOCKER_PROJECT_NAME}
+    container_name: db-${DOCKER_PROJECT_NAME:-laravue}
     restart: unless-stopped
     ports:
       - ${HOST_DB_PORT}:5432
@@ -70,12 +110,24 @@ services:
     env_file:
       - ./backend/.env
     networks:
-      - default
+      - backend-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 8G
 
 volumes:
   db:
     external: true
 
 networks:
-  default:
+  frontend-network:
+    driver: bridge
+  backend-network:
     driver: bridge

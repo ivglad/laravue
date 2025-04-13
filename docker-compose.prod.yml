@@ -1,0 +1,39 @@
+# Файл для продакшена, используйте docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+services:
+  nginx:
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./ssl:/etc/nginx/ssl
+    environment:
+      - PRODUCTION=true
+    deploy:
+      replicas: 2 # Масштабирование для продакшена
+
+  frontend:
+    restart: always
+    # Удаление томов с кодом, использование только образа
+    volumes: []
+    environment:
+      - NODE_ENV=production
+
+  backend:
+    restart: always
+    # Удаление томов с кодом, использование только образа
+    volumes: []
+    environment:
+      - APP_ENV=production
+      - APP_DEBUG=false
+
+  db:
+    restart: always
+    ports: [] # Закрытие внешних портов
+    environment:
+      - POSTGRES_LOGGING=minimal
+    deploy:
+      resources:
+        limits:
+          cpus: "4"
+          memory: "16G"
