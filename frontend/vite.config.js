@@ -35,6 +35,9 @@ import MotionResolver from 'motion-v/resolver'
 import { VitePWA } from 'vite-plugin-pwa'
 // ----------------------------------------------------------------------------
 
+// Загрузка переменных окружения для активации PWA
+const enablePWA = process.env.VITE_ENABLE_PWA === 'true'
+
 export default defineConfig({
   server: {
     host: '0.0.0.0',
@@ -78,9 +81,6 @@ export default defineConfig({
         {
           zod: ['z'],
         },
-        {
-          motion: ['motion-v'],
-        },
       ],
       packagePresets: [
         'primevue',
@@ -111,19 +111,23 @@ export default defineConfig({
       dts: true,
     }),
     ViteImageOptimizer(),
-    // TODO: реализовать активацию PWA по значению в .env
-    // VitePWA({
-    //   registerType: 'autoUpdate',
-    //   workbox: {
-    //     cleanupOutdatedCaches: true,
-    //     skipWaiting: true,
-    //     globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
-    //   },
-    //   // PWA in dev mode
-    //   devOptions: {
-    //     enabled: false,
-    //   },
-    // }),
+    // Активация PWA на основе переменной окружения VITE_ENABLE_PWA
+    ...(enablePWA
+      ? [
+          VitePWA({
+            registerType: 'autoUpdate',
+            workbox: {
+              cleanupOutdatedCaches: true,
+              skipWaiting: true,
+              globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+            },
+            // PWA в режиме разработки
+            devOptions: {
+              enabled: process.env.VITE_ENABLE_PWA_DEV === 'true',
+            },
+          }),
+        ]
+      : []),
   ],
   css: {
     preprocessorOptions: {
