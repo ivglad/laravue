@@ -42,45 +42,40 @@ const getSlotName = (variant, state) => {
 </script>
 
 <template>
-  <Transition name="fade">
-    <section class="ui-layout-display">
-      <div class="ui-layout-display__header">
-        <h2>{{ title }}</h2>
+  <section class="ui-layout-display">
+    <div class="ui-layout-display__header">
+      <h2>{{ title }}</h2>
+    </div>
+    <div class="ui-layout-display__content">
+      <div class="raw-content-wrapper" v-if="!states?.length">
+        <slot />
       </div>
-      <div class="ui-layout-display__content">
-        <div class="raw-content-wrapper" v-if="!states?.length">
-          <slot />
-        </div>
-        <div class="grid-table-wrapper" v-else>
-          <!-- Заголовок таблицы -->
-          <div class="grid-table-header">
-            <div class="grid-cell header-cell first-cell">Variant</div>
-            <div
-              v-for="state in states"
-              :key="state"
-              class="grid-cell header-cell">
-              {{ state }}
-            </div>
-          </div>
-
-          <!-- Дополнительные варианты -->
+      <div class="grid-table-wrapper" v-else>
+        <!-- Заголовок таблицы -->
+        <div class="grid-table-header">
+          <div class="grid-cell header-cell first-cell">Variant</div>
           <div
-            v-for="variant in variants"
-            :key="variant"
-            class="grid-table-row">
-            <div class="grid-cell first-cell">{{ variant }}</div>
-            <div v-for="state in states" :key="state" class="grid-cell">
-              <div
-                class="grid-cell-slot"
-                v-if="$slots[getSlotName(variant, state)]">
-                <slot :name="getSlotName(variant, state)"> </slot>
-              </div>
+            v-for="state in states"
+            :key="state"
+            class="grid-cell header-cell">
+            {{ state }}
+          </div>
+        </div>
+
+        <!-- Дополнительные варианты -->
+        <div v-for="variant in variants" :key="variant" class="grid-table-row">
+          <div class="grid-cell first-cell">{{ variant }}</div>
+          <div v-for="state in states" :key="state" class="grid-cell">
+            <div
+              class="grid-cell-slot"
+              v-if="$slots[getSlotName(variant, state)]">
+              <slot :name="getSlotName(variant, state)"> </slot>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  </Transition>
+    </div>
+  </section>
 </template>
 
 <style lang="scss" scoped>
@@ -109,6 +104,7 @@ const getSlotName = (variant, state) => {
     width: fit-content;
     padding: 0 2rem 2rem 2rem;
     max-width: 100%;
+    background-color: var(--p-surface-50);
     overflow-x: auto;
     @include mq(m) {
       width: 100%;

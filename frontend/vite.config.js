@@ -71,7 +71,12 @@ export default defineConfig({
     }),
     AutoImport({
       include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/, /\.md$/],
-      dirs: ['src/helpers/**', 'src/store/**'],
+      dirs: [
+        'src/composables/**',
+        'src/helpers/**',
+        'src/store/**',
+        'src/utils/**',
+      ],
       imports: [
         'vue',
         'vue-router',
