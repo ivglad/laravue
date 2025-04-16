@@ -12,5 +12,3 @@
 **/.env
 **/.env.production
 **/.env.backup
-
-/.envauto-imports.d.ts

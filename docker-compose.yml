@@ -43,7 +43,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./frontend:/var/www/frontend
-      - /var/www/frontend/node_modules
+      - frontend_dependencies:/var/www/frontend/node_modules
     env_file:
       - ./frontend/.env
     networks:
@@ -75,7 +75,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./backend:/var/www/backend
-      - /var/www/backend/vendor
+      - backend_dependencies:/var/www/backend/vendor
     env_file:
       - ./backend/.env
     networks:
@@ -125,6 +125,8 @@ services:
 volumes:
   db:
     external: true
+  frontend_dependencies:
+  backend_dependencies:
 
 networks:
   frontend-network:

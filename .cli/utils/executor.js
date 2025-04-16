@@ -36,7 +36,7 @@ export function executeCommand(command, description, options = {}) {
     let stdout = "";
     let stderr = "";
     // Максимальное количество строк для отображения в интерактивном режиме
-    const maxLines = 15;
+    const maxLines = 10;
 
     // Это Docker команда?
     const isDockerCommand = command.includes("docker");
