@@ -9,6 +9,8 @@
 /.docker/*/logs/*
 
 **/package-lock.json
+**/.env
+**/.env.production
+**/.env.backup
 
 /.envauto-imports.d.ts
-components.d.ts
